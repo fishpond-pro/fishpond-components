@@ -1,3 +1,5 @@
 {
-  "todoItem": "todoItem"
+  "source": "source",
+  "message": "message",
+  "content": "content"
 }

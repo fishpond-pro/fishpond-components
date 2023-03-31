@@ -9,11 +9,42 @@ generator client {
   previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
-model TodoItem {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  modifiedAt  DateTime @default(now())
+model Source {
+  id Int      @id @default(autoincrement())
+  platform String
+  link String
+  content String
+  version String
+  data  Message[]
 
-  status      String?
-  description String?
+  createdAt   DateTime @default(now())
+  modifiedAt  DateTime @default(now()) @updatedAt
+}
+
+model Message {
+  id Int @id @default(autoincrement())
+  title String
+  time DateTime
+  description String
+  type String
+  content Content?
+  source Source @relation(fields: [sourceId], references: [id])
+  sourceId Int
+
+  createdAt   DateTime @default(now())
+  modifiedAt  DateTime @default(now()) @updatedAt
+}
+
+model Content {
+  id Int @id @default(autoincrement())
+  title String
+  time DateTime
+  description String
+  type String
+  content String
+  message Message @relation(fields: [messageId], references: [id])
+  messageId Int @unique
+
+  createdAt   DateTime @default(now())
+  modifiedAt  DateTime @default(now()) @updatedAt
 }
