@@ -12,9 +12,6 @@ generator client {
 model Source {
   id Int      @id @default(autoincrement())
   platform String
-  link String
-  content String
-  version String
   data  Message[]
 
   createdAt   DateTime @default(now())
@@ -23,10 +20,11 @@ model Source {
 
 model Message {
   id Int @id @default(autoincrement())
-  title String
-  time DateTime
-  description String
-  type String
+  link String
+  title String?
+  time DateTime?
+  description String?
+  type String // article/video/audio
   content Content?
   source Source @relation(fields: [sourceId], references: [id])
   sourceId Int
@@ -38,10 +36,8 @@ model Message {
 model Content {
   id Int @id @default(autoincrement())
   title String
-  time DateTime
   description String
-  type String
-  content String
+  content String // article content or media OSS URL
   message Message @relation(fields: [messageId], references: [id])
   messageId Int @unique
 

@@ -1,7 +1,13 @@
 import React from 'react'
-
-import Todos from '../../views/Message'
+import { useSignal } from '@polymita/connect/dist/react';
+import Timeline from '../../views/Timeline'
+import messageDriver from '@/drivers/message'
 
 export default function Main () {
-  return (<Todos />)
+
+  const message = useSignal(messageDriver);  
+  
+  console.log('message: ', message.messages());
+
+  return (<Timeline />)
 }

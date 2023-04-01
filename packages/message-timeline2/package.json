@@ -23,10 +23,13 @@
     "README.md"
   ],
   "dependencies": {
-    "@polymita/connect": "*",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.11.15",
+    "@polymita/connect": "^0.0.12",
     "@polymita/renderer": "^0.0.4",
-    "@polymita/signal": "*",
-    "@polymita/signal-model": "*",
+    "@polymita/signal": "^0.0.13",
+    "@polymita/signal-model": "^0.0.12",
     "@prisma/client": "^4.2.1",
     "immer": "^9.0.14",
     "lodash": "^4.17.21",
@@ -34,7 +37,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.9.0",
-    "tarat": "^0.0.74"
+    "tarat": "^0.0.78"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.182",

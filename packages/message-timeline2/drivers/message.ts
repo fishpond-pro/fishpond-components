@@ -2,9 +2,19 @@ import {
   prisma,
   state,
 } from '@polymita/signal-model'
-import type { Message } from '../models/customPrismaClient/client'
-import indexes from '../models/indexes.json'
+import indexes from '@/models/indexes.json'
 
+export interface Message {
+  id: number
+  link: string
+  title: string | null
+  time: Date | null
+  description: string | null
+  type: string
+  sourceId: number
+  createdAt: Date
+  modifiedAt: Date
+}
 
 export default function message () {
 
