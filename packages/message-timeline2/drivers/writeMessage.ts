@@ -57,6 +57,7 @@ export default function writeMessage () {
 
   // source
   const sourceModel = prisma<Source[]>(indexes.source);
+  console.log('sourceModel: ', sourceModel._hook.refresh);
   const writeSource = writePrisma(sourceModel);
   const saveSource = inputComputeInServer(async (param: Source) => {
     console.log('param: ', param);

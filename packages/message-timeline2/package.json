@@ -29,7 +29,7 @@
     "@polymita/connect": "^0.0.12",
     "@polymita/renderer": "^0.0.4",
     "@polymita/signal": "^0.0.13",
-    "@polymita/signal-model": "^0.0.12",
+    "@polymita/signal-model": "^0.0.15",
     "@prisma/client": "^4.2.1",
     "immer": "^9.0.14",
     "lodash": "^4.17.21",
@@ -37,7 +37,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.9.0",
-    "tarat": "^0.0.78"
+    "tarat": "^0.0.79"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.182",

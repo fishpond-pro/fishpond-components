@@ -107,3 +107,7 @@ dist
 packages/*/customPrismaClient
 packages/*/.tarat/
 packages/*/dist/
+packages/*/models/migrations
+packages/*/models/dev.db
+packages/*/models/indexes.json
+

@@ -10,7 +10,7 @@ importers:
       '@polymita/connect': ^0.0.12
       '@polymita/renderer': ^0.0.4
       '@polymita/signal': ^0.0.13
-      '@polymita/signal-model': ^0.0.12
+      '@polymita/signal-model': ^0.0.15
       '@prisma/client': ^4.2.1
       '@types/lodash': ^4.14.182
       '@types/node': ^18.6.2
@@ -24,7 +24,7 @@ importers:
       react-dom: ^18.2.0
       react-router-dom: ^6.9.0
       tailwindcss: ^3.1.8
-      tarat: ^0.0.78
+      tarat: ^0.0.79
       tslib: ^2.4.0
       typescript: ^5.0.2
     dependencies:
@@ -34,7 +34,7 @@ importers:
       '@polymita/connect': 0.0.12_dnfrbi3fvfo5a52mxfsjkfozju
       '@polymita/renderer': 0.0.4_typescript@5.0.3
       '@polymita/signal': 0.0.13_typescript@5.0.3
-      '@polymita/signal-model': 0.0.12_dcjvpv4mi6hh7ndiiov23l4aey
+      '@polymita/signal-model': 0.0.15_dcjvpv4mi6hh7ndiiov23l4aey
       '@prisma/client': 4.12.0_prisma@4.12.0
       immer: 9.0.21
       lodash: 4.17.21
@@ -42,7 +42,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-router-dom: 6.10.0_biqbaboplfbrettd7655fr4n2y
-      tarat: 0.0.78_4j5xgvqe3vo5jhsdxj5a7zm7ui
+      tarat: 0.0.79_4j5xgvqe3vo5jhsdxj5a7zm7ui
     devDependencies:
       '@types/lodash': 4.14.192
       '@types/node': 18.15.11
@@ -1241,6 +1241,23 @@ packages:
     resolution: {integrity: sha512-rL+I+10MTJR9+prb1LrArRjXetSE7c8xDTnSidBr4UgHjf3tOZxkcXFkzihXvCX/P/1ZUR3SjrJMGbLQAE5K+A==}
     peerDependencies:
       '@polymita/signal': 0.0.13
+    dependencies:
+      '@jest/test-sequencer': 28.1.3
+      '@polymita/signal': 0.0.13_typescript@5.0.3
+      '@types/jest': 29.5.0
+      eventemitter3: 4.0.7
+      immer: 9.0.21
+      rollup-plugin-dts: 4.2.3_typescript@5.0.3
+      tslib: 2.5.0
+    transitivePeerDependencies:
+      - rollup
+      - typescript
+    dev: false
+
+  /@polymita/signal-model/0.0.15_dcjvpv4mi6hh7ndiiov23l4aey:
+    resolution: {integrity: sha512-skFcGj1Oh1AZ7wfxi9DaNgGEFi69gKRrPg6z7cyIf7Q8yAIaJ2/hCvR+NO+65lxJ0DdLkiBtyIEeB5eDI36C5Q==}
+    peerDependencies:
+      '@polymita/signal': 0.0.16
     dependencies:
       '@jest/test-sequencer': 28.1.3
       '@polymita/signal': 0.0.13_typescript@5.0.3
@@ -7467,8 +7484,8 @@ packages:
       yallist: 4.0.0
     dev: false
 
-  /tarat/0.0.78_4j5xgvqe3vo5jhsdxj5a7zm7ui:
-    resolution: {integrity: sha512-RQfoa+HjcjGxu9HlNfz/tQPKydB+8dkH0b76E6gaz3WyllTKYeO634if1975k2mBHeb3rFIMGbt1euOjpZ5vgQ==}
+  /tarat/0.0.79_4j5xgvqe3vo5jhsdxj5a7zm7ui:
+    resolution: {integrity: sha512-aiPv5ars4v0UcPEYQ/fsiaBsMla2RAVLvvzCrL26gnF3m1+1cMdump5VV1w72xifWbqJj7IdIB0CS6yzXM6DcQ==}
     hasBin: true
     dependencies:
       '@babel/parser': 7.21.4
