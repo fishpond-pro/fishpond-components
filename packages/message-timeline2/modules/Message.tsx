@@ -9,7 +9,9 @@ export let meta: {
 }
 
 export interface MessageProps {
-  name: string
+  title: string,
+  description: string,
+  footer: string
 }
 
 export const propTypes = {
@@ -28,20 +30,15 @@ export type MessageLayout = {
 }
 export const layout = (props: MessageProps) => {
   const logic = useLogic<LogicReturn>()
-  // return (
-  //   <messageContainer>
-  //      my mc <br/>
-  //      {props.name}
-  //   </messageContainer>
-  // )
+
   return h(
-    'messageContainer', { className: 'block border' },
-      h('messageTitle', { className: 'text-slate-800 block border-b p-2 text-lg' }, props.name),
-      h('messageContent', { className: 'text-slate-400 block p-2' },
-        'my-content',
+    'messageContainer', { class: 'block border rounded-md overflow-hidden' },
+      h('messageTitle', { class: 'text-slate-800 block p-2 text-lg' }, props.title),
+      h('messageContent', { class: 'text-slate-400 block p-2 truncate' },
+        props.description,
       ),
-      h('messageFooter', { className: 'text-slate-500 block border-t p-2 text-xs' },
-        'footer'
+      h('messageFooter', { class: 'text-slate-500 block border-t p-2 text-xs' },
+        props.footer
       )
   )
 }

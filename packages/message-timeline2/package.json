@@ -27,7 +27,7 @@
     "@emotion/styled": "^11.10.6",
     "@mui/material": "^5.11.15",
     "@polymita/connect": "^0.0.12",
-    "@polymita/renderer": "^0.0.4",
+    "@polymita/renderer": "^0.0.10",
     "@polymita/signal": "^0.0.13",
     "@polymita/signal-model": "^0.0.15",
     "@prisma/client": "^4.2.1",
@@ -37,7 +37,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.9.0",
-    "tarat": "^0.0.79"
+    "tarat": "^0.0.80"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.182",

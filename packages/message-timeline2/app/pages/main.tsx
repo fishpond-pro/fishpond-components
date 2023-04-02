@@ -9,5 +9,9 @@ export default function Main () {
   
   console.log('message: ', message.messages());
 
-  return (<Timeline />)
+  return (
+    <div className='main'>
+      <Timeline messages={message.messages} />
+    </div>
+  )
 }

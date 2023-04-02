@@ -7,49 +7,7 @@ import {
   writePrisma,
 } from '@polymita/signal-model'
 import indexes from '@/models/indexes.json'
-import messageDriver from './message';
-
-
-/**
- * Model Source
- * 
- */
-export type Source = {
-  id: number
-  platform: string
-  createdAt: Date
-  modifiedAt: Date
-}
-
-/**
- * Model Message
- * 
- */
-export type Message = {
-  id: number
-  link: string
-  title: string | null
-  time: Date | null
-  description: string | null
-  type: string
-  sourceId: number
-  createdAt: Date
-  modifiedAt: Date
-}
-
-/**
- * Model Content
- * 
- */
-export type Content = {
-  id: number
-  title: string
-  description: string
-  content: string
-  messageId: number
-  createdAt: Date
-  modifiedAt: Date
-}
+import messageDriver, { Content, Message, Source } from './message';
 
 
 export default function writeMessage () {

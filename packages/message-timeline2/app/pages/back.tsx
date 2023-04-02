@@ -21,7 +21,7 @@ export default function Main () {
     link: 'https://zhuanlan.zhihu.com/p/618851796',
     source: {
       connect: {
-        id: 7
+        id: 1
       }
     }
   }, null, 2));
@@ -43,7 +43,7 @@ export default function Main () {
     根据field_type字段类型的设置，具体的字段值保存到decimal_value等不同的字段中。`,
     message: {
       connect: {
-        id: 2,
+        id: 1,
       }
     }
   }, null, 2))
@@ -59,7 +59,7 @@ export default function Main () {
         wmDriver.saveSource(JSON.parse(source))
       } }>Save Source</Button>
 
-      <hr className="m-2" />
+      <hr className="m-2 w-[200px]" />
 
       <div>
         <textarea className="border p-2 w-full" rows={10} value={message} onChange={e => setMessage(e.target.value)}>

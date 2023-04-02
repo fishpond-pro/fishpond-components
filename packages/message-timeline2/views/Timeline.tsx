@@ -6,6 +6,7 @@ import { RenderToReact } from '@/shared/render';
 const TimelineComponent = RenderToReact(TimelineModule);
 
 const Timeline = (props: any) => {
+  console.log('props: ', props);
 
   return (
     <TimelineComponent {...props} />
