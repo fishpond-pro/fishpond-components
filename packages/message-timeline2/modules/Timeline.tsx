@@ -1,6 +1,6 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createComponent, useComponentModule } from '@polymita/renderer';
 import { after, Signal, signal } from '@polymita/signal'
-import * as MessageModule from './Message'
+import * as MessageModule from './MessageDirection'
 import type { Message } from '@/drivers/message';
 
 export const name = 'Timeline' as const
@@ -52,8 +52,9 @@ export const layout = (props: TimelineProps) => {
     patchRules (props, draft) {
       return [
         {
-          target: draft.messageContainer,
+          target: draft.messageDirectionContainer,
           style: {
+            display: 'block',
             margin: '10px',
           }
         }
@@ -79,12 +80,14 @@ export const layout = (props: TimelineProps) => {
                 key: message.id,
                 title: message.title,
                 description: message.description,
-                footer: message.source?.platform
+                footer: message.source?.platform,
+                createdAt: message.createdAt,
+                direction: 'left'
               }
           )
         }),
       ),
-      h('centerLine', { class: 'w-[2px] bg-gray-200 absolute top-2 bottom-2 left-1/2 transform -translate-x-1/2'}),
+      h('centerLine', { class: 'w-[2px] bg-gray-200 absolute top-2 bottom-2 left-1/2 -translate-x-1/2'}),
       h('rightLine', {
         class: 'flex-1 min-w-0'
       },
@@ -95,7 +98,9 @@ export const layout = (props: TimelineProps) => {
               key: message.id,
               title: message.title,
               description: message.description,
-              footer: message.source?.platform
+              footer: message.source?.platform,
+              createdAt: message.createdAt,
+              direction: 'right'
             }
           )      
         })

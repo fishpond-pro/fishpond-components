@@ -12,6 +12,7 @@ export interface MessageProps {
   title: string,
   description: string,
   footer: string
+  createdAt: string // Date.toString()
 }
 
 export const propTypes = {
@@ -29,7 +30,7 @@ export type MessageLayout = {
   ]
 }
 export const layout = (props: MessageProps) => {
-  const logic = useLogic<LogicReturn>()
+  const logic = useLogic<LogicReturn>();
 
   return h(
     'messageContainer', { class: 'block border rounded-md overflow-hidden' },
