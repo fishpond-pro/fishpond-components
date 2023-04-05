@@ -11,8 +11,11 @@ export let meta: {
 }
 
 export interface MessageDirectionProps extends MessageModule.MessageProps {
-  direction: 'left' | 'right'
+  direction: 'left' | 'right',
+  showYear?: boolean;
 }
+
+const getFormat = (showYear: boolean) => showYear ? 'yyyy-MM-dd hh:mm:ss' : 'MM-dd hh:mm:ss'
 
 export const propTypes = {
 }
@@ -33,19 +36,23 @@ export const layout = (props: MessageDirectionProps) => {
   const logic = useLogic<LogicReturn>()
   const Message = useModule(MessageModule)
 
-  const dateStr = format(new Date(props.createdAt), 'yyyy-MM-dd hh:mm:ss');
+  const dateStr = format(new Date(props.createdAt), getFormat(props.showYear));
 
   return (
     h('messageDirectionContainer', {},
       h(Message, { ...props }),
       props.direction === 'left' ? (
         h('direction-line', { class: 'block relative border-slate-100 h-[30px] border-l-[2px] border-b-[2px]', style: { marginLeft: '50%' } },
-          h('created-time', { class: 'bg-white block border-slate-100 absolute text-xs top-full left-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap' }, dateStr),
+          h('created-time', { class: 'bg-white block border-slate-100 absolute text-xs top-full left-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-slate-200' }, 
+            dateStr
+          ),
         )
       ) : null,
       props.direction === 'right' ? (
         h('direction-line', { class: 'block relative border-slate-100 h-[30px] border-r-[2px] border-b-[2px]', style: { marginRight: '50%' } },
-          h('created-time', { class: 'bg-white block border-slate-100 absolute text-xs top-full left-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap' }, dateStr),
+          h('created-time', { class: 'bg-white block border-slate-100 absolute text-xs top-full left-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-slate-200' },
+            dateStr
+          ),
         )
       ) : null,
     )
