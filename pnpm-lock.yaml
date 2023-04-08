@@ -8,7 +8,7 @@ importers:
       '@emotion/styled': ^11.10.6
       '@mui/material': ^5.11.15
       '@polymita/connect': ^0.0.12
-      '@polymita/renderer': ^0.0.10
+      '@polymita/renderer': ^0.0.11
       '@polymita/signal': ^0.0.13
       '@polymita/signal-model': ^0.0.15
       '@prisma/client': ^4.2.1
@@ -33,11 +33,62 @@ importers:
       '@emotion/styled': 11.10.6_y3jktkphxddpitstssvkgnnxe4
       '@mui/material': 5.11.15_we7fkeim3mnobwhg4eygxpogke
       '@polymita/connect': 0.0.12_dnfrbi3fvfo5a52mxfsjkfozju
-      '@polymita/renderer': 0.0.10_typescript@5.0.3
+      '@polymita/renderer': 0.0.11_typescript@5.0.3
       '@polymita/signal': 0.0.13_typescript@5.0.3
       '@polymita/signal-model': 0.0.15_dcjvpv4mi6hh7ndiiov23l4aey
       '@prisma/client': 4.12.0_prisma@4.12.0
       date-fns: 2.29.3
+      immer: 9.0.21
+      lodash: 4.17.21
+      prisma: 4.12.0
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-router-dom: 6.10.0_biqbaboplfbrettd7655fr4n2y
+      tarat: 0.0.80_4j5xgvqe3vo5jhsdxj5a7zm7ui
+    devDependencies:
+      '@types/lodash': 4.14.192
+      '@types/node': 18.15.11
+      '@types/react': 18.0.31
+      '@types/react-dom': 18.0.11
+      less: 4.1.3
+      tailwindcss: 3.3.1
+      tslib: 2.5.0
+      typescript: 5.0.3
+
+  packages/source-subscriber:
+    specifiers:
+      '@emotion/react': ^11.10.6
+      '@emotion/styled': ^11.10.6
+      '@mui/material': ^5.11.15
+      '@polymita/connect': ^0.0.12
+      '@polymita/renderer': ^0.0.11
+      '@polymita/signal': ^0.0.13
+      '@polymita/signal-model': ^0.0.15
+      '@prisma/client': ^4.2.1
+      '@types/lodash': ^4.14.182
+      '@types/node': ^18.6.2
+      '@types/react': ^18.0.15
+      '@types/react-dom': ^18.0.5
+      immer: ^9.0.14
+      less: ^4.1.2
+      lodash: ^4.17.21
+      prisma: ^4.2.1
+      react: ^18.2.0
+      react-dom: ^18.2.0
+      react-router-dom: ^6.9.0
+      tailwindcss: ^3.1.8
+      tarat: ^0.0.80
+      tslib: ^2.4.0
+      typescript: ^5.0.2
+    dependencies:
+      '@emotion/react': 11.10.6_o2wclmlv6kymw75psj4clbbe6a
+      '@emotion/styled': 11.10.6_y3jktkphxddpitstssvkgnnxe4
+      '@mui/material': 5.11.15_we7fkeim3mnobwhg4eygxpogke
+      '@polymita/connect': 0.0.12_dnfrbi3fvfo5a52mxfsjkfozju
+      '@polymita/renderer': 0.0.11_typescript@5.0.3
+      '@polymita/signal': 0.0.13_typescript@5.0.3
+      '@polymita/signal-model': 0.0.15_dcjvpv4mi6hh7ndiiov23l4aey
+      '@prisma/client': 4.12.0_prisma@4.12.0
       immer: 9.0.21
       lodash: 4.17.21
       prisma: 4.12.0
@@ -1228,11 +1279,11 @@ packages:
       - typescript
     dev: false
 
-  /@polymita/renderer/0.0.10_typescript@5.0.3:
-    resolution: {integrity: sha512-mIgl48lo10Ty/ObmuwaNk40RkzrZTkQe2Q+5YwiaHfM5MMqNntw4oqxbIWKnuDxQNm+i+5Ur3GdurqBMzLlwgQ==}
+  /@polymita/renderer/0.0.11_typescript@5.0.3:
+    resolution: {integrity: sha512-JQsqmUP5abzxVIS9TLcYmcMxx/JcS/6gqWYSVNRF5BrM8cd/Ggml5R1qc55rXjw8R/Eu/mjNEF2dTDIKVZ46sg==}
     dependencies:
       '@emotion/css': 11.10.6
-      '@polymita/signal': 0.0.18_typescript@5.0.3
+      '@polymita/signal': 0.0.19_typescript@5.0.3
       csstype: 3.1.1
     transitivePeerDependencies:
       - rollup
@@ -1301,8 +1352,8 @@ packages:
       - typescript
     dev: false
 
-  /@polymita/signal/0.0.18_typescript@5.0.3:
-    resolution: {integrity: sha512-20SyIhLkyCtBWzO+U9EfgCB35shtYRu9YoZO3M/lRu5cOPLBhGJigSCYMRZh9y4hoWG2cZ8ZRWNVd69ae4Iauw==}
+  /@polymita/signal/0.0.19_typescript@5.0.3:
+    resolution: {integrity: sha512-9z0O133MFAj6/fI0qV1e7AqxNk9t9wJGOaPd7fjhaEqN2+s4wTYRFD6a0c1gNJxhTOjIC9TjnEMO6im6aL3Jag==}
     dependencies:
       '@jest/test-sequencer': 28.1.3
       '@types/jest': 29.5.0

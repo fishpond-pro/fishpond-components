@@ -1,5 +1,5 @@
 {
-  "name": "message-timeline2",
+  "name": "my-tarat-unit",
   "version": "1.0.1",
   "tarat": {},
   "description": "a tarat unit",
@@ -31,7 +31,6 @@
     "@polymita/signal": "^0.0.13",
     "@polymita/signal-model": "^0.0.15",
     "@prisma/client": "^4.2.1",
-    "date-fns": "^2.29.3",
     "immer": "^9.0.14",
     "lodash": "^4.17.21",
     "prisma": "^4.2.1",
