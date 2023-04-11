@@ -1,6 +1,7 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft } from '@polymita/renderer';
 import { after, Signal, signal } from '@polymita/signal'
 
+
 export const name = 'SourceList' as const
 export let meta: {
   props: SourceListProps,
@@ -28,7 +29,14 @@ export type SourceListLayout = {
 export const layout = (props: SourceListProps) => {
   const logic = useLogic<LogicReturn>()
   return (
-    h('sourceListContainer', {})
+    h('sourceListContainer', 
+      {},
+      h('listHeader', { class: 'flex' }, 
+        h('listTitle', { class: 'flex-1' },
+
+        )
+      )
+    )
   )
 }
 

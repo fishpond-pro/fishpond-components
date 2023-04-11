@@ -1,7 +1,11 @@
 import React from 'react'
 
-import Todos from '../../views/todos'
+import View from '../../views/todos'
 
 export default function Main () {
-  return (<Todos />)
+  return (
+    <div className="w-[300px] border"> 
+      <View />
+    </div>
+  )
 }

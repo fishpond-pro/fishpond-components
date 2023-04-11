@@ -9,11 +9,28 @@ generator client {
   previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
-model RSSSource {
+model DataSource {
   id          Int      @id @default(autoincrement())
   createdAt   DateTime @default(now())
   modifiedAt  DateTime @default(now()) @updatedAt
 
-  status      String?
-  description String?
+  type Int // 0.RSShub 1.自定义爬虫脚本
+  name String
+}
+
+
+model RSS {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  modifiedAt  DateTime @default(now()) @updatedAt
+
+  href String // RSS地址
+  scheduleCron String? // 定时任务
+}
+
+// 自定义RPA，待开发
+model RPA {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  modifiedAt  DateTime @default(now()) @updatedAt
 }
