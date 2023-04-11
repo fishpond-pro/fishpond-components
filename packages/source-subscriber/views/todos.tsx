@@ -1,13 +1,16 @@
 import { useSignal } from '@polymita/connect/dist/react'
 import React, { useState } from 'react'
+import * as ComponentModule from '../modules/SourceList';
+import { RenderToReact } from '@/shared/render';
 
-const Todos = () => {
+const Component = RenderToReact(ComponentModule);
+
+const Timeline = (props: any) => {
+  console.log('props: ', props);
 
   return (
-    <div>
-      todos
-    </div>
+    <Component {...props} />
   )
 }
 
-export default Todos
+export default Timeline;
