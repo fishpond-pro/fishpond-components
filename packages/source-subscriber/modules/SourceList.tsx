@@ -1,5 +1,5 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, useModule } from '@polymita/renderer';
-import { after, Signal, signal } from '@polymita/signal'
+import { signal } from '@polymita/signal-model'
 import * as AddSourceModule from './AddSource'
 
 export const name = 'SourceList' as const
@@ -36,6 +36,8 @@ export const layout = (props: SourceListProps) => {
 
   const AddSourceCpt = useModule(AddSourceModule)
 
+  console.log('re')
+
   return (
     h('sourceListContainer', { class: 'block' },
       h('listHeader', { class: 'flex p-2' }, 
@@ -43,7 +45,7 @@ export const layout = (props: SourceListProps) => {
           props.title
         ),
         h('addSourceEntry', {
-          className: 'inline-block w-[24px] text-center',
+          className: 'inline-block w-[24px] text-center cursor-pointer',
           onClick() {
             sourceModalVisible(true)
           }

@@ -1,4 +1,3 @@
-import { useSignal } from '@polymita/connect/dist/react'
 import React, { useState } from 'react'
 import * as ComponentModule from '../modules/SourceList';
 import { RenderToReact } from '@/shared/render';
