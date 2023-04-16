@@ -1,6 +1,6 @@
-import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft } from '@polymita/renderer';
+import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, useModule } from '@polymita/renderer';
 import { after, Signal, signal } from '@polymita/signal'
-
+import * as AddSourceModule from './AddSource'
 
 export const name = 'SourceList' as const
 export let meta: {
@@ -10,13 +10,16 @@ export let meta: {
 }
 
 export interface SourceListProps {
+  title: string
 }
 
 export const propTypes = {
 }
 
 export const logic = (props: SignalProps<SourceListProps>) => {
+  const sourceModalVisible = signal(false)
   return {
+    sourceModalVisible,
   }
 }
 type LogicReturn = ReturnType<typeof logic>
@@ -24,18 +27,31 @@ type LogicReturn = ReturnType<typeof logic>
 export type SourceListLayout = {
   type: 'sourceListContainer',
   children: [
-  ]
+  ],
 }
 export const layout = (props: SourceListProps) => {
-  const logic = useLogic<LogicReturn>()
-  return (
-    h('sourceListContainer', 
-      {},
-      h('listHeader', { class: 'flex' }, 
-        h('listTitle', { class: 'flex-1' },
+  const {
+    sourceModalVisible,
+  } = useLogic<LogicReturn>()
 
+  const AddSourceCpt = useModule(AddSourceModule)
+
+  return (
+    h('sourceListContainer', { class: 'block' },
+      h('listHeader', { class: 'flex p-2' }, 
+        h('listTitle', { class: 'flex-1' },
+          props.title
+        ),
+        h('addSourceEntry', {
+          className: 'inline-block w-[24px] text-center',
+          onClick() {
+            sourceModalVisible(true)
+          }
+        },
+          '+'
         )
-      )
+      ),
+      h(AddSourceCpt, { visible: sourceModalVisible })
     )
   )
 }

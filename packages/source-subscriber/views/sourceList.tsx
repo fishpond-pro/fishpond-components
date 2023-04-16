@@ -5,7 +5,7 @@ import { RenderToReact } from '@/shared/render';
 
 const Component = RenderToReact(ComponentModule);
 
-const Timeline = (props: any) => {
+const SourceList = (props: any) => {
   console.log('props: ', props);
 
   return (
@@ -13,4 +13,4 @@ const Timeline = (props: any) => {
   )
 }
 
-export default Timeline;
+export default SourceList;

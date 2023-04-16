@@ -1,11 +1,11 @@
 import React from 'react'
 
-import View from '../../views/todos'
+import View from '../../views/sourceList'
 
 export default function Main () {
   return (
     <div className="w-[300px] border"> 
-      <View />
+      <View title="订阅源" />
     </div>
   )
 }

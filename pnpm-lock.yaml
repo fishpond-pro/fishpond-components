@@ -8,7 +8,7 @@ importers:
       '@emotion/styled': ^11.10.6
       '@mui/material': ^5.11.15
       '@polymita/connect': ^0.0.12
-      '@polymita/renderer': ^0.0.11
+      '@polymita/renderer': ^1.0.2
       '@polymita/signal': ^0.0.13
       '@polymita/signal-model': ^0.0.15
       '@prisma/client': ^4.2.1
@@ -33,7 +33,7 @@ importers:
       '@emotion/styled': 11.10.6_y3jktkphxddpitstssvkgnnxe4
       '@mui/material': 5.11.15_we7fkeim3mnobwhg4eygxpogke
       '@polymita/connect': 0.0.12_dnfrbi3fvfo5a52mxfsjkfozju
-      '@polymita/renderer': 0.0.11_typescript@5.0.3
+      '@polymita/renderer': 1.0.2_typescript@5.0.3
       '@polymita/signal': 0.0.13_typescript@5.0.3
       '@polymita/signal-model': 0.0.15_dcjvpv4mi6hh7ndiiov23l4aey
       '@prisma/client': 4.12.0_prisma@4.12.0
@@ -61,7 +61,7 @@ importers:
       '@emotion/styled': ^11.10.6
       '@mui/material': ^5.11.15
       '@polymita/connect': ^0.0.12
-      '@polymita/renderer': ^0.0.11
+      '@polymita/renderer': 1.0.6
       '@polymita/signal': ^0.0.13
       '@polymita/signal-model': ^0.0.15
       '@prisma/client': ^4.2.1
@@ -72,6 +72,7 @@ importers:
       immer: ^9.0.14
       less: ^4.1.2
       lodash: ^4.17.21
+      polymita: 0.0.9
       prisma: ^4.2.1
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -85,12 +86,13 @@ importers:
       '@emotion/styled': 11.10.6_y3jktkphxddpitstssvkgnnxe4
       '@mui/material': 5.11.15_we7fkeim3mnobwhg4eygxpogke
       '@polymita/connect': 0.0.12_dnfrbi3fvfo5a52mxfsjkfozju
-      '@polymita/renderer': 0.0.11_typescript@5.0.3
+      '@polymita/renderer': 1.0.6_typescript@5.0.3
       '@polymita/signal': 0.0.13_typescript@5.0.3
       '@polymita/signal-model': 0.0.15_dcjvpv4mi6hh7ndiiov23l4aey
       '@prisma/client': 4.12.0_prisma@4.12.0
       immer: 9.0.21
       lodash: 4.17.21
+      polymita: 0.0.9_typescript@5.0.3
       prisma: 4.12.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -114,6 +116,10 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.1.1
       '@jridgewell/trace-mapping': 0.3.17
+    dev: false
+
+  /@ant-design/icons-svg/4.2.1:
+    resolution: {integrity: sha512-EB0iwlKDGpG93hW8f85CTJTs4SvMX7tt5ceupvhALp1IF44SeUFOMhKUOYqpsoYWQKAOuTRDMqn75rEaKDp0Xw==}
     dev: false
 
   /@babel/code-frame/7.21.4:
@@ -1279,11 +1285,22 @@ packages:
       - typescript
     dev: false
 
-  /@polymita/renderer/0.0.11_typescript@5.0.3:
-    resolution: {integrity: sha512-JQsqmUP5abzxVIS9TLcYmcMxx/JcS/6gqWYSVNRF5BrM8cd/Ggml5R1qc55rXjw8R/Eu/mjNEF2dTDIKVZ46sg==}
+  /@polymita/renderer/1.0.2_typescript@5.0.3:
+    resolution: {integrity: sha512-OOuVZVpgkOXZgKjK2Hj7I95K6Grrw+YA54dFb0e+K7E9UgKGcLQlYEjkzCqMr2JkQgOw3rbQEYKMJ4U3vkKwUg==}
     dependencies:
       '@emotion/css': 11.10.6
-      '@polymita/signal': 0.0.19_typescript@5.0.3
+      '@polymita/signal': 0.0.21_typescript@5.0.3
+      csstype: 3.1.1
+    transitivePeerDependencies:
+      - rollup
+      - typescript
+    dev: false
+
+  /@polymita/renderer/1.0.6_typescript@5.0.3:
+    resolution: {integrity: sha512-A1yDPLPZnXZ9zqHtrzZjU7rXhv/OoDFZpxqECIn91R2y7U10WsUul0yFfx0eg9vMj3c6kxk9TxKCH6BhVvw63g==}
+    dependencies:
+      '@emotion/css': 11.10.6
+      '@polymita/signal': 0.0.25_typescript@5.0.3
       csstype: 3.1.1
     transitivePeerDependencies:
       - rollup
@@ -1352,8 +1369,36 @@ packages:
       - typescript
     dev: false
 
-  /@polymita/signal/0.0.19_typescript@5.0.3:
-    resolution: {integrity: sha512-9z0O133MFAj6/fI0qV1e7AqxNk9t9wJGOaPd7fjhaEqN2+s4wTYRFD6a0c1gNJxhTOjIC9TjnEMO6im6aL3Jag==}
+  /@polymita/signal/0.0.21_typescript@5.0.3:
+    resolution: {integrity: sha512-jFpVQLYyuIaOAGse8/cHGWVebU4WuhbtxOiQRuxoj1vMV1G8aeXh1KcoChuLhCqCRmD/Umuk5dCcAgyc5fov5Q==}
+    dependencies:
+      '@jest/test-sequencer': 28.1.3
+      '@types/jest': 29.5.0
+      eventemitter3: 4.0.7
+      immer: 9.0.21
+      rollup-plugin-dts: 4.2.3_typescript@5.0.3
+      tslib: 2.5.0
+    transitivePeerDependencies:
+      - rollup
+      - typescript
+    dev: false
+
+  /@polymita/signal/0.0.24_typescript@5.0.3:
+    resolution: {integrity: sha512-g2stIomnNgABDw1sMqsY3uJACqARKdXLc2PEDaFGCTBq7TxeLo9YntCFoJEIDrlKzo5lQPfL4/3zGur8dindfw==}
+    dependencies:
+      '@jest/test-sequencer': 28.1.3
+      '@types/jest': 29.5.0
+      eventemitter3: 4.0.7
+      immer: 9.0.21
+      rollup-plugin-dts: 4.2.3_typescript@5.0.3
+      tslib: 2.5.0
+    transitivePeerDependencies:
+      - rollup
+      - typescript
+    dev: false
+
+  /@polymita/signal/0.0.25_typescript@5.0.3:
+    resolution: {integrity: sha512-hoEEeUcLsrzEKpb1iRtLT2qWWyvQP4mrevegOUcvMLSOZeQdNFL3YDz9bb1PDmtOMwwcC+kx+8oCcsLazvzgHQ==}
     dependencies:
       '@jest/test-sequencer': 28.1.3
       '@types/jest': 29.5.0
@@ -2571,7 +2616,6 @@ packages:
   /camelcase-css/2.0.1:
     resolution: {integrity: sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==}
     engines: {node: '>= 6'}
-    dev: true
 
   /camelcase/5.3.1:
     resolution: {integrity: sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==}
@@ -3145,7 +3189,6 @@ packages:
 
   /didyoumean/1.2.2:
     resolution: {integrity: sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==}
-    dev: true
 
   /diff-sequences/28.1.1:
     resolution: {integrity: sha512-FU0iFaH/E23a+a718l8Qa/19bF9p06kgE0KipMOMadwa3SjnaElKzPaUC0vnibs6/B/9ni97s61mcejk8W1fQw==}
@@ -3166,7 +3209,6 @@ packages:
 
   /dlv/1.1.3:
     resolution: {integrity: sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==}
-    dev: true
 
   /dom-helpers/5.2.1:
     resolution: {integrity: sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==}
@@ -4106,7 +4148,6 @@ packages:
     engines: {node: '>=10.13.0'}
     dependencies:
       is-glob: 4.0.3
-    dev: true
 
   /glob-regex/0.3.2:
     resolution: {integrity: sha512-m5blUd3/OqDTWwzBBtWBPrGlAzatRywHameHeekAZyZrskYouOGdNB8T/q6JucucvJXtOuyHIn0/Yia7iDasDw==}
@@ -5177,7 +5218,6 @@ packages:
   /jiti/1.18.2:
     resolution: {integrity: sha512-QAdOptna2NYiSSpv0O/BwoHBSmz4YhpzJHyi+fnMRTXFjp7B8i/YG5Z8IfusxB1ufjcD2Sre1F3R+nX3fvy7gg==}
     hasBin: true
-    dev: true
 
   /js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -5848,7 +5888,6 @@ packages:
   /object-hash/3.0.0:
     resolution: {integrity: sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==}
     engines: {node: '>= 6'}
-    dev: true
 
   /object-inspect/1.12.3:
     resolution: {integrity: sha512-geUvdk7c+eizMNUDkRpW1wJwgfOiOeHbxBR/hLXK1aT6zmVSO0jsQcs7fj6MGw89jC/cjGfLcNOrtMYtGqm81g==}
@@ -6104,7 +6143,6 @@ packages:
   /pify/2.3.0:
     resolution: {integrity: sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==}
     engines: {node: '>=0.10.0'}
-    dev: true
 
   /pify/3.0.0:
     resolution: {integrity: sha512-C3FsVNH1udSEX48gGX1xfvwTWfsYWj5U+8/uK15BGzIGrKoUpghX8hWZwa/OFnakBiiVNmBvemTJR5mcy7iPcg==}
@@ -6137,6 +6175,22 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       find-up: 5.0.0
+    dev: false
+
+  /polymita/0.0.9_typescript@5.0.3:
+    resolution: {integrity: sha512-byitjkqLfPeej0FxMNckU2us9lorVpp401uSlJawYwBxyHJZ8el8lzKOvrV3KKYIB78jS4wnpoJYDGdQ9qiNsg==}
+    dependencies:
+      '@ant-design/icons-svg': 4.2.1
+      '@polymita/renderer': 1.0.6_typescript@5.0.3
+      '@polymita/signal': 0.0.24_typescript@5.0.3
+      '@types/jest': 29.5.0
+      '@types/node': 18.15.11
+      react: 18.2.0
+      tailwindcss: 3.3.1
+    transitivePeerDependencies:
+      - rollup
+      - ts-node
+      - typescript
     dev: false
 
   /postcss-calc/8.2.4_postcss@8.4.21:
@@ -6219,7 +6273,6 @@ packages:
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.1
-    dev: true
 
   /postcss-js/4.0.1_postcss@8.4.21:
     resolution: {integrity: sha512-dDLF8pEO191hJMtlHFPRa8xsizHaM82MLfNkUHdUtVEV3tgTp5oj+8qbEqYM57SLfc74KSbw//4SeJma2LRVIw==}
@@ -6229,7 +6282,6 @@ packages:
     dependencies:
       camelcase-css: 2.0.1
       postcss: 8.4.21
-    dev: true
 
   /postcss-load-config/3.1.4_postcss@8.4.21:
     resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
@@ -6380,7 +6432,6 @@ packages:
     dependencies:
       postcss: 8.4.21
       postcss-selector-parser: 6.0.11
-    dev: true
 
   /postcss-normalize-charset/5.1.0_postcss@8.4.21:
     resolution: {integrity: sha512-mSgUJ+pd/ldRGVx26p2wz9dNZ7ji6Pn8VWBajMXFf8jk7vUoSrZ2lt/wZR7DtlZYKesmZI680qjr2CeFF2fbUg==}
@@ -6728,7 +6779,6 @@ packages:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
     dependencies:
       pify: 2.3.0
-    dev: true
 
   /read-pkg-up/7.0.1:
     resolution: {integrity: sha512-zK0TB7Xd6JpCLmlLmufqykGE+/TlOePD6qKClNW7hHDKFh/J7/7gCWGR7joEQEW1bKq3a3yUZSObOoWLFQ4ohg==}
@@ -7518,7 +7568,6 @@ packages:
       sucrase: 3.31.0
     transitivePeerDependencies:
       - ts-node
-    dev: true
 
   /tar-stream/2.2.0:
     resolution: {integrity: sha512-ujeqbceABgwMZxEJnk2HDY2DlnUZ+9oEcb1KzTVfYHio0UE6dG71n60d8D2I4qNvleWrrXpmjpt7vZeF1LnMZQ==}

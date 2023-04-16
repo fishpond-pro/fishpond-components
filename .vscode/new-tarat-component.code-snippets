@@ -32,7 +32,7 @@
       "export const layout = (props: $2Props) => {",
       "  const logic = useLogic<LogicReturn>()",
       "  return (",
-      "    h(${TM_DIRECTORY/^.+[\\/\\\\]+(.*)$/$1/}Container, {})",
+      "    h('${TM_DIRECTORY/^.+[\\/\\\\]+(.*)$/$1/}Container', {})",
       "  )",
       "}",
       "",
