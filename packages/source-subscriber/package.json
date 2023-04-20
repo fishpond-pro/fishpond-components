@@ -33,7 +33,7 @@
     "@prisma/client": "^4.2.1",
     "immer": "^9.0.14",
     "lodash": "^4.17.21",
-    "polymita": "*",
+    "polymita": "^0.0.14",
     "prisma": "^4.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

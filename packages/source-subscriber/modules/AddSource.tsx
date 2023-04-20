@@ -18,8 +18,17 @@ export const propTypes = {
   visible: PropTypes.signal.isRequired,
 }
 
+
+
 export const logic = (props: SignalProps<AddSourceProps>) => {
+  const name = signal('')
+  const link = signal('')
+
   return {
+    form: {
+      name,
+      link,
+    }
   }
 }
 type LogicReturn = ReturnType<typeof logic>
@@ -31,6 +40,7 @@ export type AddSourceLayout = {
 }
 
 export const layout = (props: AddSourceProps) => {
+  const logic = useLogic<LogicReturn>()
 
   const ModalCpt = useModule(ModalModule)
   const InputCpt = useModule(InputModule)
@@ -39,11 +49,19 @@ export const layout = (props: AddSourceProps) => {
 
   return (
     h('addSourceContainer', {},
-      visible ? h(ModalCpt, { title: '数据源' },
+      visible ? h(ModalCpt, { 
+        title: '数据源',
+        onClose () { props.visible(false) },
+        onOk () { console.log(`val ${logic.form.name()} ${logic.form.link()}`) }
+      },
         h('div', { class: 'modal-header' },
-          h('row', {},
+          h('row', { class: 'flex' },
             h('label', {}, '名称'),
-            h(InputCpt, { value: signal('') }),
+            h(InputCpt, { value: logic.form.name }),
+          ),
+          h('row', { class: 'flex' },
+            h('label', {}, '链接'),
+            h(InputCpt, { value: logic.form.link }),
           )
         )
       ) : ''

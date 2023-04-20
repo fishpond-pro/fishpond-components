@@ -72,7 +72,7 @@ importers:
       immer: ^9.0.14
       less: ^4.1.2
       lodash: ^4.17.21
-      polymita: '*'
+      polymita: ^0.0.14
       prisma: ^4.2.1
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -92,7 +92,7 @@ importers:
       '@prisma/client': 4.12.0_prisma@4.12.0
       immer: 9.0.21
       lodash: 4.17.21
-      polymita: 0.0.9_qmpooxayhpzvy37qg3kqohf7ve
+      polymita: 0.0.14_qmpooxayhpzvy37qg3kqohf7ve
       prisma: 4.12.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -6162,8 +6162,8 @@ packages:
       find-up: 5.0.0
     dev: false
 
-  /polymita/0.0.9_qmpooxayhpzvy37qg3kqohf7ve:
-    resolution: {integrity: sha512-byitjkqLfPeej0FxMNckU2us9lorVpp401uSlJawYwBxyHJZ8el8lzKOvrV3KKYIB78jS4wnpoJYDGdQ9qiNsg==}
+  /polymita/0.0.14_qmpooxayhpzvy37qg3kqohf7ve:
+    resolution: {integrity: sha512-XbI6EoSx9TpSzaL9A4ma+FtoJSuI1ozuLavdidNmctkuFOXpami1VbeqTrvSpsPgwinKdc7dsk8F1Nyh4waplw==}
     dependencies:
       '@ant-design/icons-svg': 4.2.1
       '@polymita/renderer': 1.0.7_qvsgbkcfubi2m4q3wowkoamgle
