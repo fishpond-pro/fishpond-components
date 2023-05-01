@@ -1,4 +1,4 @@
-import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, useModule } from '@polymita/renderer';
+import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent } from '@polymita/renderer';
 import { signal } from '@polymita/signal-model'
 import * as AddSourceModule from './AddSource'
 
@@ -29,12 +29,12 @@ export type SourceListLayout = {
   children: [
   ],
 }
+const AddSourceCpt = createFunctionComponent(AddSourceModule)
 export const layout = (props: SourceListProps) => {
   const {
     sourceModalVisible,
   } = useLogic<LogicReturn>()
 
-  const AddSourceCpt = useModule(AddSourceModule)
 
   console.log('re')
 

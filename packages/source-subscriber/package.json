@@ -1,5 +1,5 @@
 {
-  "name": "my-tarat-unit",
+  "name": "source-subscriber",
   "version": "1.0.1",
   "tarat": {},
   "description": "a tarat unit",
@@ -18,7 +18,7 @@
   },
   "files": [
     "dist",
-    "pacakge.json",
+    "package.json",
     "types",
     "README.md"
   ],
@@ -27,13 +27,13 @@
     "@emotion/styled": "^11.10.6",
     "@mui/material": "^5.11.15",
     "@polymita/connect": "*",
-    "@polymita/renderer": "^1.0.7",
+    "@polymita/renderer": "^2.0.6",
     "@polymita/signal": "*",
     "@polymita/signal-model": "*",
     "@prisma/client": "^4.2.1",
     "immer": "^9.0.14",
     "lodash": "^4.17.21",
-    "polymita": "^0.0.14",
+    "polymita": "^0.1.2",
     "prisma": "^4.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

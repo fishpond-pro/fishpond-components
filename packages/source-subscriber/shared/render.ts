@@ -1,4 +1,4 @@
-import { createRSRenderer, NormalizeProps, SingleFileModule } from '@polymita/renderer'
+import { createRSRenderer, SingleFileModule } from '@polymita/renderer'
 import React from 'react'
 
 export function RenderToReact<P>(module: SingleFileModule<P, any, any, any>) {
