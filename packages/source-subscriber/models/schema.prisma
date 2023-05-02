@@ -15,17 +15,22 @@ model DataSource {
   modifiedAt  DateTime @default(now()) @updatedAt
 
   type Int // 0.RSShub 1.自定义爬虫脚本
-  name String
+ 
+  rss RSS?
+  rpa RPA?
 }
-
 
 model RSS {
   id          Int      @id @default(autoincrement())
   createdAt   DateTime @default(now())
   modifiedAt  DateTime @default(now()) @updatedAt
 
+  name String
   href String // RSS地址
   scheduleCron String? // 定时任务
+
+  dataSource DataSource? @relation(fields: [dataSourceId], references: [id]) // 数据源
+  dataSourceId Int? @unique
 }
 
 // 自定义RPA，待开发
@@ -33,4 +38,8 @@ model RPA {
   id          Int      @id @default(autoincrement())
   createdAt   DateTime @default(now())
   modifiedAt  DateTime @default(now()) @updatedAt
+  name String
+
+  dataSource DataSource? @relation(fields: [dataSourceId], references: [id]) // 数据源
+  dataSourceId Int? @unique
 }

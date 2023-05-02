@@ -1,11 +1,24 @@
 import React from 'react'
 import 'polymita/dist/components/index.css'
-import View from '../../views/sourceList'
+import View from '@/views/sourceList'
+import SourceDriver from '@/drivers/source'
+import { useSignal } from '@polymita/connect/dist/react'
 
 export default function Main () {
+
+  const source = useSignal(SourceDriver)
+
+  console.log('ds:', source.ds())
+
   return (
     <div className="w-[300px] border"> 
-      <View title="订阅源" />
+      <View
+        list={source.ds}
+        title="订阅源" 
+        onSubmit={(arg) => {
+          source.addSource(arg)
+        }} 
+      />
     </div>
   )
 }
