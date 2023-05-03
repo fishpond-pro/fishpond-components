@@ -13,7 +13,7 @@ export default function Main () {
   return (
     <div className="w-[300px] border"> 
       <View
-        list={source.ds}
+        list={source.ds as any}
         title="订阅源" 
         onSubmit={(arg) => {
           source.addSource(arg)

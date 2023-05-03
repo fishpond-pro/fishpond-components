@@ -2,6 +2,7 @@ import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFu
 import { Signal, signal } from '@polymita/signal-model'
 import * as AddSourceModule from './AddSource'
 import type { DataSource } from '@/drivers/source';
+import * as ListModule from 'polymita/dist/components/list/index'
 
 export const name = 'SourceList' as const
 export let meta: {
@@ -33,6 +34,8 @@ export type SourceListLayout = {
   ],
 }
 const AddSourceCpt = createFunctionComponent(AddSourceModule)
+const ListCpt = createFunctionComponent(ListModule);
+
 export const layout = (props: SourceListProps) => {
   const {
     sourceModalVisible,
@@ -56,12 +59,10 @@ export const layout = (props: SourceListProps) => {
           '+'
         )
       ),
-      h('listBody', { class: '' },
-        list.map((item, i) => {
-          const name = item.type === 0 ? item.rss.name : item.type === 1 ? item.rpa.name : '';
-          return h('listItem', { key: item.id, class: 'flex p-2 border-b' }, `${i+1}.${name}`)
-        })
-      ),
+      h(ListCpt, { list: props.list as any, render: (item: DataSource, i) => {
+        const name = item.type === 0 ? item.rss.name : item.type === 1 ? item.rpa.name : '';
+        return `${i+1}.${name}`
+      } }),
       h(AddSourceCpt, { visible: sourceModalVisible, onSubmit: props.onSubmit })
     )
   )

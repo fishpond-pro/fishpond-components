@@ -1,7 +1,8 @@
-import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent } from '@polymita/renderer';
+import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, createComposeComponent } from '@polymita/renderer';
 import { after, inputCompute, Signal, signal } from '@polymita/signal'
 import * as ModalModule from 'polymita/dist/components/modal'
 import * as InputModule from 'polymita/dist/components/input'
+import * as FormModule from 'polymita/dist/components/schema-form'
 
 export const name = 'AddSource' as const
 export let meta: {
@@ -62,6 +63,8 @@ const InputCpt = createFunctionComponent(InputModule, {
     ]
   }
 })
+const FormCpt = createFunctionComponent(FormModule);
+
 export const layout = (props: AddSourceProps) => {
   const logic = useLogic<LogicReturn>()
 
@@ -74,16 +77,19 @@ export const layout = (props: AddSourceProps) => {
         onClose () { props.visible(false) },
         onOk () { props.visible(false); logic.submit() }
       },
-        h('sourceForm', { class: 'modal-header m-4' },
-          h('rowItem', { class: 'flex items-center mb-4' },
-            h('itemLabel', { class: 'mr-2' }, '名称:'),
-            h(InputCpt, { value: logic.form.name }),
-          ),
-          h('rowItem', { class: 'flex items-center' },
-            h('itemLabel', { class: 'mr-2' }, '链接:'),
-            h(InputCpt, { value: logic.form.link }),
-          )
-        )
+        h(FormCpt, {
+          layout: { labelWidth: '4em' },
+          form: [
+            {
+              label: '名称',
+              value: logic.form.name,
+            },
+            {
+              label: '链接',
+              value: logic.form.link,
+            }
+          ]
+        })
       ) : ''
     )
   )
