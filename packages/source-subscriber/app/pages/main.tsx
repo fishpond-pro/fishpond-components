@@ -17,7 +17,10 @@ export default function Main () {
         title="订阅源" 
         onSubmit={(arg) => {
           source.addSource(arg)
-        }} 
+        }}
+        onClick={(item, i) => {
+          console.log('item: ', i, item);
+        }}
       />
     </div>
   )

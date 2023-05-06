@@ -12,9 +12,10 @@ export let meta: {
 }
 
 export interface SourceListProps {
-  title: string
-  onSubmit: AddSourceModule.AddSourceProps['onSubmit']
+  title?: string
+  onSubmit?: AddSourceModule.AddSourceProps['onSubmit']
   list: Signal<DataSource[]>
+  onClick?: (ds: DataSource, index: number) => void;
 }
 
 export const propTypes = {
@@ -59,9 +60,18 @@ export const layout = (props: SourceListProps) => {
           '+'
         )
       ),
-      h(ListCpt, { list: props.list as any, render: (item: DataSource, i) => {
+      h(ListCpt, { list: props.list as any, render: (item: DataSource, i: number) => {
         const name = item.type === 0 ? item.rss.name : item.type === 1 ? item.rpa.name : '';
-        return `${i+1}.${name}`
+        return h(
+          'listContent',
+          {
+            class: 'block',
+            onClick () {
+              props.onClick?.(item, i);
+            } 
+          }, 
+          `${i+1}.${name}`
+        )
       } }),
       h(AddSourceCpt, { visible: sourceModalVisible, onSubmit: props.onSubmit })
     )
