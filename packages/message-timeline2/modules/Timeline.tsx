@@ -1,4 +1,4 @@
-import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createComponent, useComponentModule } from '@polymita/renderer';
+import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent } from '@polymita/renderer';
 import { after, Signal, signal } from '@polymita/signal'
 import * as MessageModule from './MessageDirection'
 import type { Message } from '@/drivers/message';
@@ -46,21 +46,21 @@ function split (messages: Message[]) {
   return [left, right];
 }
 
+const Message = createFunctionComponent(MessageModule, {
+  patchRules (props, draft) {
+    return [
+      {
+        target: draft.messageDirectionContainer,
+        style: {
+          display: 'block',
+          margin: '10px',
+        }
+      }
+    ]
+  } 
+});
 export const layout = (props: TimelineProps) => {
   const logic = useLogic<LogicReturn>()
-  const Message = useComponentModule(MessageModule, {
-    patchRules (props, draft) {
-      return [
-        {
-          target: draft.messageDirectionContainer,
-          style: {
-            display: 'block',
-            margin: '10px',
-          }
-        }
-      ]
-    } 
-  });
 
   const messagesData = props.messages();
 

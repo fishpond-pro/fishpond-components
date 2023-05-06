@@ -1,4 +1,4 @@
-import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, useModule } from '@polymita/renderer';
+import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent } from '@polymita/renderer';
 import { after, Signal, signal } from '@polymita/signal'
 import * as MessageModule from './Message'
 import { format } from 'date-fns'
@@ -32,9 +32,8 @@ export type MessageDirectionLayout = {
     MessageModule.MessageLayout,
   ]
 }
+const Message = createFunctionComponent(MessageModule)
 export const layout = (props: MessageDirectionProps) => {
-  const logic = useLogic<LogicReturn>()
-  const Message = useModule(MessageModule)
 
   const dateStr = format(new Date(props.createdAt), getFormat(props.showYear));
 

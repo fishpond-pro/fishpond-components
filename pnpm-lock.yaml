@@ -7,10 +7,10 @@ importers:
       '@emotion/react': ^11.10.6
       '@emotion/styled': ^11.10.6
       '@mui/material': ^5.11.15
-      '@polymita/connect': ^0.0.12
-      '@polymita/renderer': ^2.0.4
-      '@polymita/signal': ^0.0.13
-      '@polymita/signal-model': ^0.0.15
+      '@polymita/connect': ^0.0.25
+      '@polymita/renderer': ^2.0.12
+      '@polymita/signal': ^0.0.26
+      '@polymita/signal-model': ^0.0.25
       '@prisma/client': ^4.2.1
       '@types/lodash': ^4.14.182
       '@types/node': ^18.6.2
@@ -20,6 +20,7 @@ importers:
       immer: ^9.0.14
       less: ^4.1.2
       lodash: ^4.17.21
+      polymita: ^0.2.0
       prisma: ^4.2.1
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -32,14 +33,15 @@ importers:
       '@emotion/react': 11.10.6_o2wclmlv6kymw75psj4clbbe6a
       '@emotion/styled': 11.10.6_y3jktkphxddpitstssvkgnnxe4
       '@mui/material': 5.11.15_we7fkeim3mnobwhg4eygxpogke
-      '@polymita/connect': 0.0.12_dnfrbi3fvfo5a52mxfsjkfozju
-      '@polymita/renderer': 2.0.4_qvsgbkcfubi2m4q3wowkoamgle
-      '@polymita/signal': 0.0.13_typescript@5.0.3
-      '@polymita/signal-model': 0.0.15_dcjvpv4mi6hh7ndiiov23l4aey
+      '@polymita/connect': 0.0.25_gnawpi3325a6k4i5uadwqszqda
+      '@polymita/renderer': 2.0.12_w3ydrfhypi2dowt2llggds7qx4
+      '@polymita/signal': 0.0.26_typescript@5.0.3
+      '@polymita/signal-model': 0.0.25_aupznfxe7mbdlwc7sfti36mp6y
       '@prisma/client': 4.12.0_prisma@4.12.0
       date-fns: 2.29.3
       immer: 9.0.21
       lodash: 4.17.21
+      polymita: 0.2.0_l7bpwm2pfpb2wosnn5k24nofjy
       prisma: 4.12.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -1328,6 +1330,20 @@ packages:
       - typescript
     dev: false
 
+  /@polymita/connect/0.0.25_gnawpi3325a6k4i5uadwqszqda:
+    resolution: {integrity: sha512-HcG8rFIEvaJDNm1t6aDaBm1ODi44ppak2ls4fD3TKcWuIqD2I0z3YbEH2GryvSZ7HessWJb/e1kT8/XOEmqE3w==}
+    dependencies:
+      '@polymita/signal-model': 0.0.25_aupznfxe7mbdlwc7sfti36mp6y
+      '@types/node': 18.15.11
+      '@types/react': 18.0.31
+      swr: 2.1.1_react@18.2.0
+    transitivePeerDependencies:
+      - '@polymita/signal'
+      - react
+      - rollup
+      - typescript
+    dev: false
+
   /@polymita/renderer/2.0.12_qvsgbkcfubi2m4q3wowkoamgle:
     resolution: {integrity: sha512-PSL0ZXHCUkSsIJ4VlEAYg8GyXW7z3besUW/8Ac5tc4jnZmT3tkwQ8sMS4Ij52s3ThKV4bdIyJJBiat2dr3keyw==}
     peerDependencies:
@@ -1338,13 +1354,13 @@ packages:
       csstype: 3.1.2
     dev: false
 
-  /@polymita/renderer/2.0.4_qvsgbkcfubi2m4q3wowkoamgle:
-    resolution: {integrity: sha512-TaAlovWdeczcejX29ZsNlvmaLjnMFgD4/XuxnZp9cf/uraIeZeyV9FQfNQhNN8CdW2+jCwzdoLpOiMVjK2fsgg==}
+  /@polymita/renderer/2.0.12_w3ydrfhypi2dowt2llggds7qx4:
+    resolution: {integrity: sha512-PSL0ZXHCUkSsIJ4VlEAYg8GyXW7z3besUW/8Ac5tc4jnZmT3tkwQ8sMS4Ij52s3ThKV4bdIyJJBiat2dr3keyw==}
     peerDependencies:
-      '@polymita/signal-model': workspace:*
+      '@polymita/signal-model': 0.0.25
     dependencies:
       '@emotion/css': 11.10.6
-      '@polymita/signal-model': 0.0.15_dcjvpv4mi6hh7ndiiov23l4aey
+      '@polymita/signal-model': 0.0.25_aupznfxe7mbdlwc7sfti36mp6y
       csstype: 3.1.1
     dev: false
 
@@ -1382,6 +1398,23 @@ packages:
       - typescript
     dev: false
 
+  /@polymita/signal-model/0.0.25_aupznfxe7mbdlwc7sfti36mp6y:
+    resolution: {integrity: sha512-/xe5ldC4wQHTtidrGQy22CI/XReX7AHRXneqJrfhxHqhk5K5dPxbNoefxG80MBxgmN4jbeOvF+9UuAUSZ2RnKg==}
+    peerDependencies:
+      '@polymita/signal': 0.0.26
+    dependencies:
+      '@jest/test-sequencer': 28.1.3
+      '@polymita/signal': 0.0.26_typescript@5.0.3
+      '@types/jest': 29.5.0
+      eventemitter3: 4.0.7
+      immer: 9.0.21
+      rollup-plugin-dts: 4.2.3_typescript@5.0.3
+      tslib: 2.5.0
+    transitivePeerDependencies:
+      - rollup
+      - typescript
+    dev: false
+
   /@polymita/signal/0.0.13_typescript@5.0.3:
     resolution: {integrity: sha512-6/Ye2oMbAwEyIJ+DAuWa0HlyqSUAWCVW0h7Qaf42fdHx3oeXV/cqI9/MFcRsrtEAb98eaFapDuD/t0e5JyZ4cw==}
     dependencies:
@@ -1404,6 +1437,20 @@ packages:
       eventemitter3: 4.0.7
       immer: 9.0.21
       rollup-plugin-dts: 4.2.3_yzewpdkcknpxdake4jhk2fpr5a
+      tslib: 2.5.0
+    transitivePeerDependencies:
+      - rollup
+      - typescript
+    dev: false
+
+  /@polymita/signal/0.0.26_typescript@5.0.3:
+    resolution: {integrity: sha512-yj2+V6qEL6qdCAfYDgbcOtQIt3V4OPZof6y/IbvFvRkg9+PQoS1fFDXC2L8dprYBuSovdArVthyoe2R0VrztuQ==}
+    dependencies:
+      '@jest/test-sequencer': 28.1.3
+      '@types/jest': 29.5.0
+      eventemitter3: 4.0.7
+      immer: 9.0.21
+      rollup-plugin-dts: 4.2.3_typescript@5.0.3
       tslib: 2.5.0
     transitivePeerDependencies:
       - rollup
@@ -6198,6 +6245,25 @@ packages:
       '@polymita/renderer': 2.0.12_qvsgbkcfubi2m4q3wowkoamgle
       '@polymita/signal': 0.0.13_typescript@5.0.3
       '@polymita/signal-model': 0.0.15_dcjvpv4mi6hh7ndiiov23l4aey
+      '@types/jest': 29.5.1
+      '@types/node': 18.15.11
+      react: 18.2.0
+      tailwindcss: 3.3.1
+    transitivePeerDependencies:
+      - ts-node
+    dev: false
+
+  /polymita/0.2.0_l7bpwm2pfpb2wosnn5k24nofjy:
+    resolution: {integrity: sha512-umUezJkJpOU+StRR+PHZXacq3oAl0dM/N8V1BX+skZsswDN0AzXjHRSlxCuEzByjbt7PA1bP5ZLwyYpSTUPhHQ==}
+    peerDependencies:
+      '@polymita/renderer': ^2.0.4
+      '@polymita/signal': ^0.0.24
+      '@polymita/signal-model': ^0.0.25
+    dependencies:
+      '@ant-design/icons-svg': 4.2.1
+      '@polymita/renderer': 2.0.12_w3ydrfhypi2dowt2llggds7qx4
+      '@polymita/signal': 0.0.26_typescript@5.0.3
+      '@polymita/signal-model': 0.0.25_aupznfxe7mbdlwc7sfti36mp6y
       '@types/jest': 29.5.1
       '@types/node': 18.15.11
       react: 18.2.0
