@@ -32,19 +32,15 @@ function build(cwd) {
         ...process.env,
         // FORCE_COLOR: 1,
       },
-      stdio: [process.stdin, process.stdout, 'pipe']
+      stdio: [process.stdin, process.stdout, process.stderr]
     })
-    let hasError = false
-    instance.stderr.on('data', (data) => {
-      console.log(chalk.red(`${data}`));
-      hasError = data.length
-      if (hasError) {
-        reject();
-      }
-    })
-    instance.on('exit', (...args) => {
-      if (!hasError) {
-        console.log(`\nend building`, args)
+
+    instance.on('close', (code) => {
+      if (code) {
+        console.log(chalk.red(`build ${cwd} failed`));
+        reject()
+      } else {
+        console.log(chalk.green(`build ${cwd} success`));
         resolve()
       }
     })
@@ -68,8 +64,12 @@ function publish (package) {
 
 function commit () {
   return new Promise(resolve => {
+    const versions = allPackages.map(dir => {
+      const pkgJSON = JSON.parse(readFileSync(join(dir, PKG)).toString())
+      return `${pkgJSON.name}@${pkgJSON.version}`
+    }).join(' ');
     const taratPkg = JSON.parse(readFileSync(join(taratModule, PKG)).toString())
-    exec(`git commit -a -m "release: fish-components v${taratPkg.version} "`, (err, stdout) => {
+    exec(`git commit -a -m "release: ${versions} "`, (err, stdout) => {
       if (err) {
         throw err
       }
