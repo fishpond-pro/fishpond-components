@@ -1,0 +1,10 @@
+{
+  "name": "fishpond-components",
+  "scripts": {
+    "build": "node scripts/release",
+    "release": "RELEASE=1 node scripts/release"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2"
+  }
+}

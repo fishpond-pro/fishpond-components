@@ -2,6 +2,12 @@ lockfileVersion: 5.4
 
 importers:
 
+  .:
+    specifiers:
+      chalk: ^4.1.2
+    dependencies:
+      chalk: 4.1.2
+
   packages/message-timeline2:
     specifiers:
       '@emotion/react': ^11.10.6
