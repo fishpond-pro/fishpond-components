@@ -28,15 +28,17 @@ function build(cwd) {
   return new Promise((resolve, reject) => {
     const instance = spawn('npm', ['run', 'build'], {
       cwd,
-      env: {
-        ...process.env,
-        // FORCE_COLOR: 1,
-      },
-      stdio: [process.stdin, process.stdout, process.stderr]
+      stdio: [process.stdin, process.stdout, 'pipe']
+    })
+    let hasError = false
+    instance.stderr.on('data', (d) => {
+      console.error(`${chalk.red('error')}:${d}`)
+      hasError = true
     })
 
-    instance.on('close', (code) => {
-      if (code) {
+    instance.on('close', (code, signal) => {
+      console.log('code, signal: ', code, signal);
+      if (code || hasError) {
         console.log(chalk.red(`build ${cwd} failed`));
         reject()
       } else {
