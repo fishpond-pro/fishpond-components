@@ -95,6 +95,7 @@ console.time('release')
 Promise.all(allPackages.map(dir => {
   return build(dir)
 })).then(() => {
+  console.log('build all end');
   if (SHOULD_RELEASE) {
     Promise.all(allPackages.map(upgradePatch))
       .then(() => {

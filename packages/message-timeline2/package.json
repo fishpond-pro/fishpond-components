@@ -1,5 +1,5 @@
 {
-  "name": "@fishpond/message-timeline2",
+  "name": "@polymita/message-timeline",
   "version": "1.0.1",
   "tarat": {},
   "description": "a tarat unit",
@@ -12,6 +12,9 @@
     "p:gen": "prisma generate",
     "p:deploy": "prisma migrate deploy",
     "p:studio": "prisma studio"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "prisma": {
     "schema": "./models/schema.prisma"

@@ -1,5 +1,5 @@
 {
-  "name": "@fishpond/source-subscriber",
+  "name": "@polymita/source-subscriber",
   "version": "1.0.1",
   "tarat": {},
   "description": "a tarat unit",
@@ -12,6 +12,9 @@
     "p:gen": "prisma generate",
     "p:deploy": "prisma migrate deploy",
     "p:studio": "prisma studio"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "prisma": {
     "schema": "./models/schema.prisma"
@@ -28,7 +31,6 @@
     "@mui/material": "^5.11.15",
     "@polymita/connect": "*",
     "@polymita/renderer": "*",
-    "@polymita/signal": "*",
     "@polymita/signal-model": "*",
     "polymita": "^0.2.0",
     "@prisma/client": "^4.2.1",
