@@ -70,7 +70,7 @@ importers:
       '@mui/material': ^5.11.15
       '@polymita/connect': ^0.0.26
       '@polymita/renderer': ^2.0.17
-      '@polymita/signal': '*'
+      '@polymita/signal': ^0.0.27
       '@polymita/signal-model': ^0.0.26
       '@prisma/client': ^4.2.1
       '@types/lodash': ^4.14.182
@@ -86,7 +86,7 @@ importers:
       react-dom: ^18.2.0
       react-router-dom: ^6.9.0
       tailwindcss: ^3.1.8
-      tarat: ^0.0.80
+      tarat: ^0.0.86
       tslib: ^2.4.0
       typescript: ^5.0.2
     dependencies:
@@ -105,7 +105,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-router-dom: 6.11.2_biqbaboplfbrettd7655fr4n2y
-      tarat: 0.0.80_zvtjpqyh2eqbb5v4wyzupgucfm
+      tarat: 0.0.86_zvtjpqyh2eqbb5v4wyzupgucfm
     devDependencies:
       '@types/lodash': 4.14.194
       '@types/node': 18.16.13
@@ -7510,8 +7510,8 @@ packages:
       yallist: 4.0.0
     dev: false
 
-  /tarat/0.0.80_zvtjpqyh2eqbb5v4wyzupgucfm:
-    resolution: {integrity: sha512-3P2reAfZotxb00E4zOp4AYvXZJ/0FQjoM6TgvbK1SoQeQTEVy1TDob4FK34LG59UXq46D3RR1x6ISvC1okZeqA==}
+  /tarat/0.0.81_zvtjpqyh2eqbb5v4wyzupgucfm:
+    resolution: {integrity: sha512-83ukq8POu5g5T/A36y+K/NPJfFa5OwJ+pIgyNw1gPa+XpWSTJ5jcM1qlQR0TwTns2poEsONz/2ew2ZONQN/Sdg==}
     hasBin: true
     dependencies:
       '@babel/parser': 7.21.8
@@ -7596,8 +7596,8 @@ packages:
       - typescript
     dev: false
 
-  /tarat/0.0.81_zvtjpqyh2eqbb5v4wyzupgucfm:
-    resolution: {integrity: sha512-83ukq8POu5g5T/A36y+K/NPJfFa5OwJ+pIgyNw1gPa+XpWSTJ5jcM1qlQR0TwTns2poEsONz/2ew2ZONQN/Sdg==}
+  /tarat/0.0.86_zvtjpqyh2eqbb5v4wyzupgucfm:
+    resolution: {integrity: sha512-CidTwU5mY8LIB/Fa8hecUc43cq0jg/SGx/PyxpRH9ekOqJ10qD//JObcif4TkP280iPIJEN+844V5xANDEbapg==}
     hasBin: true
     dependencies:
       '@babel/parser': 7.21.8
