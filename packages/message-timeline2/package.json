@@ -4,6 +4,7 @@
   "tarat": {},
   "description": "a tarat unit",
   "scripts": {
+    "update:core": "pnpm update tarat@* @polymita/connect@* @polymita/renderer@* @polymita/signal-model@* @polymita/signal@* polymita@*",
     "init": "pnpm i && npm run p:dev",
     "dev": "tarat dev",
     "build": "tarat build",
@@ -31,7 +32,7 @@
     "@mui/material": "^5.11.15",
     "@polymita/connect": "*",
     "@polymita/renderer": "*",
-    "@polymita/signal": "*",
+    "@polymita/signal": "^0.0.27",
     "@polymita/signal-model": "*",
     "@prisma/client": "^4.2.1",
     "date-fns": "^2.29.3",

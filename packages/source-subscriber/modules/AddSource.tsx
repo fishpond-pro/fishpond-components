@@ -1,5 +1,5 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, createComposeComponent } from '@polymita/renderer';
-import { after, inputCompute, Signal, signal } from '@polymita/signal'
+import { after, inputCompute, Signal, signal } from '@polymita/signal-model'
 import * as ModalModule from 'polymita/dist/components/modal'
 import * as InputModule from 'polymita/dist/components/input'
 import * as FormModule from 'polymita/dist/components/schema-form'

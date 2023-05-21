@@ -1,7 +1,6 @@
 import {
   inputComputeInServer,
   model,
-  state,
   writeModel,
 } from '@polymita/signal-model'
 import indexes from '@/models/indexes.json'
