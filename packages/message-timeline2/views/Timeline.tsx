@@ -1,4 +1,3 @@
-import { useSignal } from '@polymita/connect/dist/react'
 import React, { useState } from 'react'
 import * as TimelineModule from '../modules/Timeline';
 import { RenderToReact } from '@/shared/render';

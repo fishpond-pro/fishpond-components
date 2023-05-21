@@ -1,5 +1,5 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent } from '@polymita/renderer';
-import { after, Signal, signal } from '@polymita/signal'
+import { after, Signal, signal } from '@polymita/signal-model'
 import * as MessageModule from './MessageDirection'
 import type { Message } from '@/drivers/message';
 

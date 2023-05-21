@@ -1,5 +1,4 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent } from '@polymita/renderer';
-import { after, Signal, signal } from '@polymita/signal'
 import * as MessageModule from './Message'
 import { format } from 'date-fns'
 

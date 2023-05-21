@@ -1,5 +1,4 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft } from '@polymita/renderer';
-import { after, Signal, signal } from '@polymita/signal'
 
 export const name = 'Message' as const
 export let meta: {
