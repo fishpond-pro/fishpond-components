@@ -1,6 +1,6 @@
 {
   "name": "@polymita/message-timeline",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "tarat": {},
   "description": "a tarat unit",
   "scripts": {
@@ -35,13 +35,13 @@
     "@polymita/signal": "^0.0.27",
     "@polymita/signal-model": "^0.0.26",
     "@prisma/client": "^4.2.1",
-    "tarat": "^0.0.87",
     "date-fns": "^2.29.3",
     "immer": "^9.0.14",
     "lodash": "^4.17.21",
     "polymita": "^0.2.0",
     "prisma": "^4.2.1",
-    "react-router-dom": "^6.9.0"
+    "react-router-dom": "^6.9.0",
+    "tarat": "^0.0.88"
   },
   "peerDependencies": {
     "react": "^18.2.0",

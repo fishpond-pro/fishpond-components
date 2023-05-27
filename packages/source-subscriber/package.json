@@ -1,6 +1,6 @@
 {
   "name": "@polymita/source-subscriber",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "tarat": {},
   "description": "a tarat unit",
   "scripts": {
@@ -40,7 +40,7 @@
     "polymita": "^0.2.0",
     "prisma": "^4.2.1",
     "react-router-dom": "^6.9.0",
-    "tarat": "^0.0.87"
+    "tarat": "^0.0.88"
   },
   "peerDependencies": {
     "react": "^18.2.0",
