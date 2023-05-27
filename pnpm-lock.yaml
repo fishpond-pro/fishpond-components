@@ -32,7 +32,7 @@ importers:
       react-dom: ^18.2.0
       react-router-dom: ^6.9.0
       tailwindcss: ^3.1.8
-      tarat: ^0.0.88
+      tarat: ^0.0.89
       tslib: ^2.4.0
       typescript: ^5.0.2
     dependencies:
@@ -50,7 +50,7 @@ importers:
       polymita: 0.2.0_l7p7e2k34nqydf24ziv6krkqkm
       prisma: 4.14.1
       react-router-dom: 6.11.2_biqbaboplfbrettd7655fr4n2y
-      tarat: 0.0.88_zvtjpqyh2eqbb5v4wyzupgucfm
+      tarat: 0.0.89_zvtjpqyh2eqbb5v4wyzupgucfm
     devDependencies:
       '@types/lodash': 4.14.194
       '@types/node': 18.16.13
@@ -86,7 +86,7 @@ importers:
       react-dom: ^18.2.0
       react-router-dom: ^6.9.0
       tailwindcss: ^3.1.8
-      tarat: ^0.0.87
+      tarat: ^0.0.90
       tslib: ^2.4.0
       typescript: ^5.0.2
     dependencies:
@@ -103,7 +103,7 @@ importers:
       polymita: 0.2.0_l7p7e2k34nqydf24ziv6krkqkm
       prisma: 4.14.1
       react-router-dom: 6.11.2_biqbaboplfbrettd7655fr4n2y
-      tarat: 0.0.87_zvtjpqyh2eqbb5v4wyzupgucfm
+      tarat: 0.0.90_zvtjpqyh2eqbb5v4wyzupgucfm
     devDependencies:
       '@types/lodash': 4.14.194
       '@types/node': 18.16.13
@@ -7514,8 +7514,8 @@ packages:
       yallist: 4.0.0
     dev: false
 
-  /tarat/0.0.87_zvtjpqyh2eqbb5v4wyzupgucfm:
-    resolution: {integrity: sha512-JMA+zgx+sZJkERZerihJPLvvj5+dZ8v1RHCIx0QG6RcL3elochRnGjOhEtpXTZlx7/9IgaOJcqIG635dOOlLEw==}
+  /tarat/0.0.89_zvtjpqyh2eqbb5v4wyzupgucfm:
+    resolution: {integrity: sha512-zjosuYcqTOxl++5ktcCs3+WsaT55TTmHmJ0htd5yChwoBBKz1e1XIhA8RGCwclYNHBim4WTIspOzeyTbZjhhXQ==}
     hasBin: true
     dependencies:
       '@babel/parser': 7.22.3
@@ -7600,8 +7600,8 @@ packages:
       - typescript
     dev: false
 
-  /tarat/0.0.88_zvtjpqyh2eqbb5v4wyzupgucfm:
-    resolution: {integrity: sha512-dSuJHRdhdcGXsKx7J8ZxHPBd0sZk1goZ7douxdEyhfCgHbx2KH/rP8gKnbFK2cBXy5kxmjGptiItt8kZPgSlnw==}
+  /tarat/0.0.90_zvtjpqyh2eqbb5v4wyzupgucfm:
+    resolution: {integrity: sha512-IZqP3MiX1yIZQRD5JOVt5Z3Az1m8jmmbCb4qAejpul2ED+MSlISrZfapoc5zrFqhU2v8Dw3hdQhKjlubEbWWkQ==}
     hasBin: true
     dependencies:
       '@babel/parser': 7.22.3
