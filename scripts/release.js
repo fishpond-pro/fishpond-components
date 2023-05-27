@@ -70,7 +70,6 @@ function commit () {
       const pkgJSON = JSON.parse(readFileSync(join(dir, PKG)).toString())
       return `${pkgJSON.name}@${pkgJSON.version}`
     }).join(' ');
-    const taratPkg = JSON.parse(readFileSync(join(taratModule, PKG)).toString())
     exec(`git commit -a -m "release: ${versions} "`, (err, stdout) => {
       if (err) {
         throw err

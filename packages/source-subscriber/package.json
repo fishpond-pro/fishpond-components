@@ -1,10 +1,10 @@
 {
   "name": "@polymita/source-subscriber",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "tarat": {},
   "description": "a tarat unit",
   "scripts": {
-    "update:core": "pnpm update tarat@* @polymita/connect@* @polymita/renderer@* @polymita/signal-model@* @polymita/signal@* polymita@*",
+    "update:core": "pnpm update tarat@latest @polymita/connect@latest @polymita/renderer@latest @polymita/signal-model@latest @polymita/signal@latest polymita@latest",
     "init": "pnpm i && npm run p:dev",
     "dev": "tarat dev",
     "build": "tarat build",
@@ -40,7 +40,7 @@
     "polymita": "^0.2.0",
     "prisma": "^4.2.1",
     "react-router-dom": "^6.9.0",
-    "tarat": "*"
+    "tarat": "^0.0.87"
   },
   "peerDependencies": {
     "react": "^18.2.0",
@@ -52,10 +52,10 @@
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.5",
     "less": "^4.1.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "tailwindcss": "^3.1.8",
     "tslib": "^2.4.0",
-    "typescript": "^5.0.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "typescript": "^5.0.2"
   }
 }
