@@ -44,6 +44,9 @@ export type RPA = {
 export default function source () {
 
   const ds = model<DataSource[]>(indexes.dataSource, () => ({
+    orderBy: {
+      modifiedAt: 'desc',
+    },
     include: {
       rss: true,
       rpa: true
