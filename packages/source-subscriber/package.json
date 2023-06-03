@@ -37,10 +37,10 @@
     "@prisma/client": "^4.2.1",
     "immer": "^9.0.14",
     "lodash": "^4.17.21",
-    "polymita": "^0.2.0",
+    "polymita": "workspace:*",
     "prisma": "^4.2.1",
     "react-router-dom": "^6.9.0",
-    "tarat": "^0.0.90"
+    "tarat": "^0.0.94"
   },
   "peerDependencies": {
     "react": "^18.2.0",

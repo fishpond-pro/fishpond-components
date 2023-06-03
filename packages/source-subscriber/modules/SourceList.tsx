@@ -2,7 +2,7 @@ import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFu
 import { Signal, signal } from '@polymita/signal-model'
 import * as AddSourceModule from './AddSource'
 import type { DataSource } from '@/drivers/source';
-import * as ListModule from 'polymita/dist/components/list/index'
+import * as ListModule from 'polymita/list'
 
 export const name = 'SourceList' as const
 export let meta: {
