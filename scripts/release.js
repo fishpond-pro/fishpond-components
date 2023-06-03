@@ -8,7 +8,7 @@ const SHOULD_RELEASE = !!process.env.RELEASE
 console.log('SHOULD_RELEASE: ', SHOULD_RELEASE);
 
 const packagesPath = join(__dirname, '../packages/')
-const allPackages = readdirSync(packagesPath).map(pkg => {
+const allPackages = readdirSync(packagesPath).filter(packagesPath => packagesPath !== 'polymita').map(pkg => {
   return join(packagesPath, pkg)
 })
 
