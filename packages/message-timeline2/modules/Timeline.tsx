@@ -1,7 +1,7 @@
-import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent } from '@polymita/renderer';
+import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, StyleRule } from '@polymita/renderer';
 import { after, Signal, signal } from '@polymita/signal-model'
 import * as MessageModule from './MessageDirection'
-import type { Message } from '@/drivers/message';
+import type { MessageItem } from '@/drivers/message';
 
 export const name = 'Timeline' as const
 export let meta: {
@@ -11,7 +11,7 @@ export let meta: {
 }
 
 export interface TimelineProps {
-  messages: Signal<Message[]>
+  messages: Signal<MessageItem[]>
 }
 
 export const propTypes = {
@@ -31,9 +31,9 @@ export type TimelineLayout = {
 /**
  * 按顺序，交叉拆分为左右2列
  */
-function split (messages: Message[]) {
-  const left: Message[] = [];
-  const right: Message[] = [];
+function split (messages: MessageItem[]) {
+  const left: MessageItem[] = [];
+  const right: MessageItem[] = [];
 
   messages.forEach((message, index) => {
     if (index % 2 === 0) {
@@ -109,7 +109,7 @@ export const layout = (props: TimelineProps) => {
   )
 }
 
-export const styleRules = (props: TimelineProps, layout: ConvertToLayoutTreeDraft<TimelineLayout>) => {
+export const styleRules = (props: TimelineProps, layout: ConvertToLayoutTreeDraft<TimelineLayout>): StyleRule[] => {
   return [
   ]
 }

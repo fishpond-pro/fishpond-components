@@ -61,7 +61,7 @@ export const layout = (props: SourceListProps) => {
         )
       ),
       h(ListCpt, { list: props.list as any, render: (item: DataSource, i: number) => {
-        const name = item.type === 0 ? item.rss.name : item.type === 1 ? item.rpa.name : '';
+        const name = item.type === 0 ? item.rss?.name : item.type === 1 ? item.rpa?.name : '';
         return h(
           'listContent',
           {

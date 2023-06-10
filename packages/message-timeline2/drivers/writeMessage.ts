@@ -7,7 +7,7 @@ import {
   writePrisma,
 } from '@polymita/signal-model'
 import indexes from '@/models/indexes.json'
-import messageDriver, { Content, Message, Source } from './message';
+import messageDriver, { Content, MessageItem, Source } from './message';
 
 
 export default function writeMessage () {
@@ -27,9 +27,9 @@ export default function writeMessage () {
   })
 
   // message
-  const messageModel = prisma<Message[]>(indexes.message);
+  const messageModel = prisma<MessageItem[]>(indexes.message);
   const writeMessage = writePrisma(messageModel);
-  const saveMessage = inputComputeInServer(async (param: Message) => {
+  const saveMessage = inputComputeInServer(async (param: MessageItem) => {
     if (param.id) {
       await writeMessage.update(param.id, param)
     } else {

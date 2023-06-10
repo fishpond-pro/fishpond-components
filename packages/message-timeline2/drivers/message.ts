@@ -19,7 +19,7 @@ export type Source = {
  * Model Message
  * 
  */
-export type Message = {
+export type MessageItem = {
   id: number
   link: string
   title: string | null
@@ -46,12 +46,12 @@ export type Content = {
   createdAt: Date
   modifiedAt: Date
 
-  message?: Message
+  message?: MessageItem
 }
 
 export default function message () {
 
-  const messages = prisma<Message[]>(indexes.message, () => ({
+  const messages = prisma<MessageItem[]>(indexes.message, () => ({
     orderBy: {
       createdAt: 'desc'
     },
