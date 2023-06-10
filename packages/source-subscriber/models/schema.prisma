@@ -15,7 +15,8 @@ model DataSource {
   modifiedAt  DateTime @default(now()) @updatedAt
 
   type Int // 0.RSShub 1.自定义爬虫脚本
- 
+  platform String? // 所属平台
+
   rss RSS?
   rpa RPA?
 }

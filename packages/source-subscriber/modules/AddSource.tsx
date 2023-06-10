@@ -4,7 +4,6 @@ import * as ModalModule from 'polymita/components/modal'
 import * as InputModule from 'polymita/components/input'
 import * as FormModule from 'polymita/components/schema-form'
 import icon1 from 'polymita/icons/account-book'
-console.log('icon1: ', icon1);
 
 export const name = 'AddSource' as const
 export let meta: {
@@ -17,7 +16,8 @@ export interface AddSourceProps {
   visible: Signal<boolean>,
   onSubmit: (arg: {
     name: string,
-    link: string
+    link: string,
+    platform: string
   }) => void
 }
 
@@ -28,11 +28,13 @@ export const propTypes = {
 export const logic = (props: SignalProps<AddSourceProps>) => {
   const name = signal('')
   const link = signal('')
+  const platform = signal('')
 
   const submit = inputCompute(() => {
     props.onSubmit({
       name: name(),
-      link: link()
+      link: link(),
+      platform: platform(),
     });
   });
 
@@ -40,6 +42,7 @@ export const logic = (props: SignalProps<AddSourceProps>) => {
     form: {
       name,
       link,
+      platform,
     },
     submit
   }
@@ -89,7 +92,11 @@ export const layout = (props: AddSourceProps) => {
             {
               label: '链接',
               value: logic.form.link,
-            }
+            },
+            {
+              label: '平台',
+              value: logic.form.platform,
+            },
           ]
         })
       ) : ''

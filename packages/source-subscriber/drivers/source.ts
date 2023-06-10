@@ -5,8 +5,6 @@ import {
 } from '@polymita/signal-model'
 import indexes from '@/models/indexes.json'
 
-
-
 /**
  * Model DataSource
  * 
@@ -56,13 +54,14 @@ export default function source () {
   const writeSource = writeModel(ds, () => ({
   }))
 
-  const addSource = inputComputeInServer(function * (arg: { name: string, link: string }) {
+  const addSource = inputComputeInServer(function * (arg: { name: string, link: string, platform: string }) {
     yield writeSource.create({
       type: 0,
+      platform: arg.platform,
       rss: {
         create: {
           name: arg.name,
-          href: arg.link
+          href: arg.link,
         }
       }
     })
