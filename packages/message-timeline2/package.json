@@ -1,6 +1,6 @@
 {
   "name": "@polymita/message-timeline",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "tarat": {},
   "description": "a tarat unit",
   "scripts": {
@@ -30,10 +30,10 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/material": "^5.11.15",
-    "@polymita/connect": "^0.0.26",
-    "@polymita/renderer": "^2.0.17",
-    "@polymita/signal": "^0.0.27",
-    "@polymita/signal-model": "^0.0.26",
+    "@polymita/connect": "^0.0.30",
+    "@polymita/renderer": "^2.0.20",
+    "@polymita/signal": "^0.0.30",
+    "@polymita/signal-model": "^0.0.29",
     "@prisma/client": "^4.2.1",
     "date-fns": "^2.29.3",
     "immer": "^9.0.14",
@@ -41,7 +41,7 @@
     "polymita": "workspace:*",
     "prisma": "^4.2.1",
     "react-router-dom": "^6.9.0",
-    "tarat": "^0.0.94"
+    "tarat": "^0.0.96"
   },
   "peerDependencies": {
     "react": "^18.2.0",

@@ -17,6 +17,12 @@ const PKG = 'package.json'
 const [specificModule] = process.argv.slice(2)
 console.log('specificModule: ', specificModule);
 
+async function buildDeps () {
+  console.log('start building deps...')
+  await build(join(__dirname, '../packages/polymita'))
+  console.log('complete building deps...')
+}
+
 function build(cwd) {
   if (specificModule && !(new RegExp(`${specificModule}$`).test(cwd))) {
     console.log(`skip building ${cwd}`)
@@ -91,18 +97,22 @@ function upgradePatch(dirPath) {
 
 console.time('release')
 
-Promise.all(allPackages.map(dir => {
-  return build(dir)
-})).then(() => {
-  console.log('build all end');
-  if (SHOULD_RELEASE) {
-    Promise.all(allPackages.map(upgradePatch))
-      .then(() => {
-        return commit()
-      }).then(() => {
-        return Promise.all(allPackages.map(publish))
-      }).then(() => {
-        console.timeEnd('release tarat')
-      });
-  }
+buildDeps().then(() => {
+  return Promise.all(allPackages.map(dir => {
+    return build(dir)
+  })).then(async () => {
+
+    console.log('build all end');
+    if (SHOULD_RELEASE) {
+      Promise.all(allPackages.map(upgradePatch))
+        .then(() => {
+          return commit()
+        }).then(() => {
+          return Promise.all(allPackages.map(publish))
+        }).then(() => {
+          console.timeEnd('release tarat')
+        });
+    }
+  })
+  
 })

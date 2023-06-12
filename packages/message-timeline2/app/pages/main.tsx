@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSignal } from '@polymita/connect/dist/react';
+import { useSignal } from '@polymita/connect';
 import Timeline from '../../views/Timeline'
 import messageDriver from '@/drivers/message'
 

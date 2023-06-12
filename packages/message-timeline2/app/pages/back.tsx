@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSignal } from '@polymita/connect/dist/react';
+import { useSignal } from '@polymita/connect';
 import Button from '@mui/material/Button';
 import writeMessage from '@/drivers/writeMessage';
 

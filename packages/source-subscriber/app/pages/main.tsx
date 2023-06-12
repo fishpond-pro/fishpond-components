@@ -2,7 +2,7 @@ import React from 'react'
 import 'polymita/index.css'
 import View from '@/views/sourceList'
 import SourceDriver from '@/drivers/source'
-import { useSignal } from '@polymita/connect/dist/react'
+import { useSignal } from '@polymita/connect'
 
 export default function Main () {
 
