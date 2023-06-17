@@ -4,7 +4,6 @@
   "tarat": {},
   "description": "a tarat unit",
   "scripts": {
-    "update:core": "pnpm update tarat@latest @polymita/connect@latest @polymita/renderer@latest @polymita/signal-model@latest @polymita/signal@latest polymita@latest",
     "init": "pnpm i && npm run p:dev",
     "dev": "tarat dev",
     "build": "tarat build",
@@ -27,21 +26,21 @@
     "README.md"
   ],
   "dependencies": {
+    "@polymita/connect": "workspace:*",
+    "@polymita/message-timeline": "workspace:*",
+    "@polymita/renderer": "workspace:*",
+    "@polymita/server": "workspace:*",
+    "@polymita/signal": "workspace:*",
+    "polymita": "workspace:*",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/material": "^5.11.15",
-    "@polymita/connect": "^0.0.30",
-    "@polymita/renderer": "^2.0.20",
-    "@polymita/signal": "^0.0.30",
-    "@polymita/signal-model": "^0.0.30",
     "@prisma/client": "^4.2.1",
     "date-fns": "^2.29.3",
     "immer": "^9.0.14",
     "lodash": "^4.17.21",
-    "polymita": "workspace:*",
     "prisma": "^4.2.1",
-    "react-router-dom": "^6.9.0",
-    "tarat": "^0.0.96"
+    "react-router-dom": "^6.9.0"
   },
   "peerDependencies": {
     "react": "^18.2.0",
