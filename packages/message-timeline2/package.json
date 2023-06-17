@@ -33,7 +33,7 @@
     "@polymita/connect": "^0.0.30",
     "@polymita/renderer": "^2.0.20",
     "@polymita/signal": "^0.0.30",
-    "@polymita/signal-model": "^0.0.29",
+    "@polymita/signal-model": "^0.0.30",
     "@prisma/client": "^4.2.1",
     "date-fns": "^2.29.3",
     "immer": "^9.0.14",
