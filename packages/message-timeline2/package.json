@@ -31,6 +31,7 @@
     "@polymita/renderer": "workspace:*",
     "@polymita/server": "workspace:*",
     "@polymita/signal": "workspace:*",
+    "@polymita/signal-model": "workspace:*",
     "polymita": "workspace:*",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",

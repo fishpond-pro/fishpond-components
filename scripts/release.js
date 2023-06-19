@@ -18,9 +18,6 @@ const [specificModule] = process.argv.slice(2)
 console.log('specificModule: ', specificModule);
 
 async function buildDeps () {
-  console.log('start building deps...')
-  await build(join(__dirname, '../packages/polymita'))
-  console.log('complete building deps...')
 }
 
 function build(cwd) {
