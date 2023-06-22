@@ -14,11 +14,13 @@ export type DataSource = {
   createdAt: Date
   modifiedAt: Date
   type: 0
+  platform: string
   rss: RSS
 } | {
   id: number
   createdAt: Date
   modifiedAt: Date
+  platform: string
   type: 1
   rpa: RPA
 }
