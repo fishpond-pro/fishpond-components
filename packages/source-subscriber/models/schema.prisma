@@ -26,8 +26,8 @@ model DataSource {
   type     Int // 0.RSShub 1.自定义爬虫脚本
   platform String? // 所属平台
 
-  rss _RSS?
-  rpa _RPA?
+  rss RSS?
+  rpa RPA?
 }
 
 model RSS {
@@ -39,8 +39,8 @@ model RSS {
   href         String // RSS地址
   scheduleCron String? // 定时任务
 
-  dataSource _DataSource? @relation(fields: [dataSourceId], references: [id]) // 数据源
-  dataSourceId Int? @unique
+  dataSource   DataSource? @relation(fields: [dataSourceId], references: [id]) // 数据源
+  dataSourceId Int?        @unique
 }
 
 model RPA {
@@ -49,8 +49,8 @@ model RPA {
   modifiedAt DateTime @default(now()) @updatedAt
   name       String
 
-  dataSource _DataSource? @relation(fields: [dataSourceId], references: [id]) // 数据源
-  dataSourceId Int? @unique
+  dataSource   DataSource? @relation(fields: [dataSourceId], references: [id]) // 数据源
+  dataSourceId Int?        @unique
 }
 
 model Polymita_message_timeline_Source {
