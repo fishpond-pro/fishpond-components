@@ -8,8 +8,6 @@ export interface SourceListProps extends ComponentModule.SourceListProps {
 }
 
 const SourceList = (props: SourceListProps) => {
-  console.log('props: ', props);
-
   return (
     <Component {...props} />
   )
