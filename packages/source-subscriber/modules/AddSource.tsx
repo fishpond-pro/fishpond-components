@@ -3,7 +3,6 @@ import { after, inputCompute, Signal, signal } from '@polymita/signal-model'
 import * as ModalModule from 'polymita/components/modal'
 import * as InputModule from 'polymita/components/input'
 import * as FormModule from 'polymita/components/schema-form'
-import icon1 from 'polymita/icons/account-book'
 
 export const name = 'AddSource' as const
 export let meta: {

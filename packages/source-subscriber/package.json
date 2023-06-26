@@ -27,7 +27,6 @@
   ],
   "dependencies": {
     "@polymita/connect": "workspace:*",
-    "@polymita/message-timeline": "workspace:*",
     "@polymita/renderer": "workspace:*",
     "@polymita/server": "workspace:*",
     "@polymita/signal": "workspace:*",
