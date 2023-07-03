@@ -8,7 +8,23 @@ export let meta: {
   patchCommands: []
 }
 
+export interface RSSSource {
+  group: string
+  subGroup: string
+  title: string
+  route: {
+    author: string
+    example: string,
+    path: string,
+    radar?: boolean,
+    rssbud?: boolean
+    paramsdesc?: string[]
+  },
+  tipsMarkDown: string[]
+}
+
 export interface SourceItemProps {
+  value: RSSSource
 }
 
 export const propTypes = {
@@ -25,10 +41,34 @@ export type SourceItemLayout = {
   children: [
   ]
 }
+
+function getParamsFromPath(path: string, desc?: string[]) {
+  const params = path.split('/').filter(p => p.trim().startsWith(':'))
+  return params.map((p, index) => {
+    const optional = /\?$/.test(p)
+    return {
+      name: optional ? p.slice(1, -1) : p.slice(1),
+      optional,
+      desc: desc?.[index]
+    }
+  })
+}
+
 export const layout = (props: SourceItemProps) => {
   const logic = useLogic<LogicReturn>()
+  const { route } = props.value
+  const params = getParamsFromPath(route.path, route.paramsdesc)
   return (
     h('sourceItemContainer', {},
+      h('sourceItemTitle', {}, props.value.title),
+      h('sourceItemRoute', {}, props.value.route.path),
+      h('sourceItemRouteParams', {},
+        params.map(p => h('sourceItemRouteParam', {},
+          p.name,
+          p.optional ? '可选' : '必选',
+          p.desc
+        ))
+      )
     )
   )
 }

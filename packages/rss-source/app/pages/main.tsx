@@ -1,7 +1,8 @@
 import React from 'react'
 
-import Todos from '../../views/todos'
+import SourceList from '@/views/SourceList'
+import sourceMock from './source.json'
 
 export default function Main () {
-  return (<Todos />)
+  return (<SourceList sources={sourceMock} />)
 }

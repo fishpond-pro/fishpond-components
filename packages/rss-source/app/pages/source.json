@@ -1,0 +1,139 @@
+[
+  {
+    "group": "二次元",
+    "subGroup": "005.tv",
+    "title": "二次元资讯",
+    "route": {
+      "author": "unfeng",
+      "example": "005tv/zx/lates",
+      "path": "005tv/zx/lates"
+    },
+    "tipsMarkDown": []
+  },
+  {
+    "group": "二次元",
+    "subGroup": "1draw #深夜の真剣お絵描き 60 分一本勝負",
+    "title": "投稿一览",
+    "route": {
+      "author": "ackyu199",
+      "path": "1draw",
+      "example": "1draw"
+    },
+    "tipsMarkDown": []
+  },
+  {
+    "group": "二次元",
+    "subGroup": "78 动漫",
+    "title": "新品速递",
+    "route": {
+      "author": "czitz",
+      "example": "78dm/new",
+      "path": "78dm/news/:path",
+      "paramsdesc": [
+        "参数，见说明，默认为空"
+      ]
+    },
+    "tipsMarkDown": [
+      "",
+      "若订阅 [新品速递](https://www.78dm.net/news)，网址为 <https://www.78dm.net/news>。截取 `https://www.78dm.net` 到末尾的部分 `/news` 作为参数，此时路由为 [`/78dm/news`](https://rsshub.app/78dm/news)。",
+      "",
+      "若订阅子分类 [新品速递 - 综合](https://www.78dm.net/news/0/9/0/0/0/0/0/1.html)，网址为 <https://www.78dm.net/news/0/9/0/0/0/0/0/1.html>。截取 `https://www.78dm.net` 到末尾 `.html` 的部分 `/news/0/9/0/0/0/0/0/1` 作为参数，路由为 [`/78dm/news/0/9/0/0/0/0/0/1`](https://rsshub.app/78dm/news/0/9/0/0/0/0/0/1)。",
+      ""
+    ]
+  },
+  {
+    "group": "二次元",
+    "subGroup": "78 动漫",
+    "title": "精彩评测",
+    "route": {
+      "author": "czitz",
+      "example": "78dm/eval_lis",
+      "path": "78dm/eval_list/:path",
+      "paramsdesc": [
+        "参数，见说明，默认为空"
+      ]
+    },
+    "tipsMarkDown": [
+      "",
+      "若订阅 [精彩评测](https://www.78dm.net/eval_list)，网址为 <https://www.78dm.net/eval_list>。截取 `https://www.78dm.net` 到末尾的部分 `/eval_list` 作为参数，此时路由为 [`/78dm/eval_list`](https://rsshub.app/78dm/eval_list)。",
+      "",
+      "若订阅子分类 [精彩评测 - 综合](https://www.78dm.net/eval_list/120/0/0/1.html)，网址为 <https://www.78dm.net/eval_list/120/0/0/1.html>。截取 `https://www.78dm.net` 到末尾 `.html` 的部分 `/eval_list/120/0/0/1` 作为参数，路由为 [`/78dm/eval_list/120/0/0/1`](https://rsshub.app/78dm/eval_list/120/0/0/1)。",
+      ""
+    ]
+  },
+  {
+    "group": "二次元",
+    "subGroup": "78 动漫",
+    "title": "好帖推荐",
+    "route": {
+      "author": "czitz",
+      "example": "78dm/ht_lis",
+      "path": "78dm/ht_list/:path",
+      "paramsdesc": [
+        "参数，见说明，默认为空"
+      ]
+    },
+    "tipsMarkDown": [
+      "",
+      "若订阅 [好帖推荐](https://www.78dm.net/ht_list)，网址为 <https://www.78dm.net/ht_list>。截取 `https://www.78dm.net` 到末尾的部分 `/ht_list` 作为参数，此时路由为 [`/78dm/ht_list`](https://rsshub.app/78dm/ht_list)。",
+      "",
+      "若订阅子分类 [好帖推荐 - 综合](https://www.78dm.net/ht_list/107/0/0/1.html)，网址为 <https://www.78dm.net/ht_list/107/0/0/1.html>。截取 `https://www.78dm.net` 到末尾 `.html` 的部分 `/ht_list/107/0/0/1` 作为参数，路由为 [`/78dm/ht_list/107/0/0/1`](https://rsshub.app/78dm/ht_list/107/0/0/1)。",
+      ""
+    ]
+  },
+  {
+    "group": "二次元",
+    "subGroup": "AcFun",
+    "title": "番剧",
+    "route": {
+      "author": "yqfe",
+      "example": "acfun/bangumi/502215",
+      "path": "acfun/bangumi/:i",
+      "paramsdesc": [
+        "番剧 id"
+      ],
+      "radar": "",
+      "rssbud": ""
+    },
+    "tipsMarkDown": [
+      "",
+      "番剧 id 不包含开头的 aa。",
+      "例如：<http://www.acfun.cn/bangumi/aa5022158> 的番剧 id 是 5022158，不包括开头的 aa。",
+      ""
+    ]
+  },
+  {
+    "group": "二次元",
+    "subGroup": "AcFun",
+    "title": "用户投稿",
+    "route": {
+      "author": "dssm",
+      "example": "acfun/user/video/1445052",
+      "path": "acfun/user/video/:i",
+      "paramsdesc": [
+        "用户 UID"
+      ],
+      "radar": "",
+      "rssbud": ""
+    },
+    "tipsMarkDown": []
+  },
+  {
+    "group": "二次元",
+    "subGroup": "AcFun",
+    "title": "文章",
+    "route": {
+      "author": "onyR",
+      "example": "acfun/article/11",
+      "path": "acfun/article/:categoryId/:sortType?/:timeRange",
+      "paramsdesc": [
+        "分区 ID，见下表",
+        "排序，见下表，默认为 `createTime`",
+        "时间范围，见下表，仅在排序是 `hotScore` 有效，默认为 `all`"
+      ],
+      "radar": "",
+      "rssbud": ""
+    },
+    "tipsMarkDown": []
+  }
+]

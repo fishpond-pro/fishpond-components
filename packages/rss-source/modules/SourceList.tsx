@@ -1,5 +1,5 @@
-import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft } from '@polymita/renderer';
-import { after, Signal, signal } from '@polymita/signal'
+import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent } from '@polymita/renderer';
+import * as SourceItemModule from './SourceItem'
 
 export const name = 'SourceList' as const
 export let meta: {
@@ -8,11 +8,15 @@ export let meta: {
   patchCommands: []
 }
 
+
 export interface SourceListProps {
+  sources: SourceItemModule.RSSSource[]
 }
 
 export const propTypes = {
 }
+
+const SourceItem = createFunctionComponent(SourceItemModule)
 
 export const logic = (props: SignalProps<SourceListProps>) => {
   return {
@@ -28,7 +32,11 @@ export type SourceListLayout = {
 export const layout = (props: SourceListProps) => {
   const logic = useLogic<LogicReturn>()
   return (
-    h('sourceListContainer', {}, 'source-list in todos')
+    h('sourceListContainer', {}, 
+      h('div', {},
+        props.sources.map(source => h(SourceItem, { key: `${source.group}-${source.subGroup}-${source.title}`, value: source }))
+      )
+    )
   )
 }
 

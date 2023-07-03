@@ -104,7 +104,7 @@ dist
 .tern-port
 
 
-packages/*/customPrismaClient
+packages/*/models/customPrismaClient
 packages/*/.tarat/
 packages/*/dist/
 packages/*/models/migrations

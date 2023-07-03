@@ -23,17 +23,24 @@
     "README.md"
   ],
   "dependencies": {
-    "@polymita/connect": "*",
-    "@polymita/signal": "*",
-    "@polymita/signal-model": "*",
+    "@polymita/connect": "workspace:*",
+    "@polymita/renderer": "workspace:*",
+    "@polymita/server": "workspace:*",
+    "@polymita/signal": "workspace:*",
+    "@polymita/signal-model": "workspace:*",
+    "polymita": "workspace:*",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.11.15",
     "@prisma/client": "^4.2.1",
     "immer": "^9.0.14",
     "lodash": "^4.17.21",
     "prisma": "^4.2.1",
+    "react-router-dom": "^6.9.0"
+  },
+  "peerDependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.9.0",
-    "tarat": "*"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.182",
@@ -41,6 +48,8 @@
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.5",
     "less": "^4.1.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "tailwindcss": "^3.1.8",
     "tslib": "^2.4.0",
     "typescript": "^5.0.2"
