@@ -23,6 +23,24 @@
   },
   {
     "group": "二次元",
+    "subGroup": "AcFun",
+    "title": "文章",
+    "route": {
+      "author": "onyR",
+      "example": "acfun/article/11",
+      "path": "acfun/article/:categoryId/:sortType?/:timeRange",
+      "paramsdesc": [
+        "分区 ID，见下表",
+        "排序，见下表，默认为 `createTime`",
+        "时间范围，见下表，仅在排序是 `hotScore` 有效，默认为 `all`"
+      ],
+      "radar": "",
+      "rssbud": ""
+    },
+    "tipsMarkDown": []
+  },
+  {
+    "group": "二次元",
     "subGroup": "78 动漫",
     "title": "新品速递",
     "route": {
@@ -112,24 +130,6 @@
       "path": "acfun/user/video/:i",
       "paramsdesc": [
         "用户 UID"
-      ],
-      "radar": "",
-      "rssbud": ""
-    },
-    "tipsMarkDown": []
-  },
-  {
-    "group": "二次元",
-    "subGroup": "AcFun",
-    "title": "文章",
-    "route": {
-      "author": "onyR",
-      "example": "acfun/article/11",
-      "path": "acfun/article/:categoryId/:sortType?/:timeRange",
-      "paramsdesc": [
-        "分区 ID，见下表",
-        "排序，见下表，默认为 `createTime`",
-        "时间范围，见下表，仅在排序是 `hotScore` 有效，默认为 `all`"
       ],
       "radar": "",
       "rssbud": ""
