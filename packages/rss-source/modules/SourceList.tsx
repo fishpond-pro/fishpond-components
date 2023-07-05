@@ -33,7 +33,7 @@ export const layout = (props: SourceListProps) => {
   const logic = useLogic<LogicReturn>()
   return (
     h('sourceListContainer', {}, 
-      h('div', { className: 'columns-4 gap-1' },
+      h('div', { className: 'columns-4 gap-1', style: { columnGap: 10 } },
         props.sources.map(source => h(SourceItem, { key: `${source.group}-${source.subGroup}-${source.title}`, value: source }))
       )
     )

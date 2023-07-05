@@ -59,7 +59,7 @@ export const layout = (props: SourceItemProps) => {
   const { route } = props.value
   const params = getParamsFromPath(route.path, route.paramsdesc)
   return (
-    h('sourceItemContainer', { class: 'inline-block border p-4 w-[300px]' },
+    h('sourceItemContainer', { class: 'inline-block border mb-2 p-4 w-[300px]' },
       h('sourceItemTitle', { class: 'block mb-2 pb-2 border-b' }, props.value.title),
       h('sourceItemRoute', { class: 'block break-all' }, 
         h ('span', { className: 'mr-1 text-gray-500' }, '路由:'),
