@@ -26,6 +26,7 @@ export interface RSSSource {
 export interface SourceItemProps {
   value: RSSSource
   width: number
+  onClick: (target: RSSSource) => void
 }
 
 export const propTypes = {
@@ -56,17 +57,26 @@ function getParamsFromPath(path: string, desc?: string[]) {
 }
 
 export const layout = (props: SourceItemProps) => {
-  const logic = useLogic<LogicReturn>()
+  const logic = useLogic<LogicReturn>();
+  
   const { width, value } = props
-  const { route } = value
+  const { route, subGroup, title } = value
   const { path, paramsdesc } = route
   const params = getParamsFromPath(route.path, route.paramsdesc)
   return (
-    <sourceItemContainer className="inline-block box-border border mb-2 p-4" style={{ width: width || 200 }}>
-      <sourceItemTitle className="block mb-2 pb-2 border-b" >{props.value.title}</sourceItemTitle>
+    <sourceItemContainer
+      onClick={() => {
+        props.onClick?.(value)
+      }}
+      className="cursor-pointer inline-block box-border border mb-2 p-4" style={{ width: width || 200 }}>
+      <sourceItemTitle className="mb-2 pb-2 border-b flex items-center" >
+        <span className="inline-block text-ellipsis whitespace-nowrap overflow-hidden">{subGroup}</span>
+        <span className="mx-1" >-</span>
+        <span className="flex-1 whitespace-nowrap" >{title}</span>
+      </sourceItemTitle>
       <sourceItemRoute className="block break-all">
         <span className='mr-1 text-gray-500'>路由:</span>
-        {path}
+        /{path}
       </sourceItemRoute>
       <sourceItemRoute className="block break-all">
         <span className='mr-1 text-gray-500'>参数:</span>
