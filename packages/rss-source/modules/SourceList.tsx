@@ -1,4 +1,4 @@
-import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent } from '@polymita/renderer';
+import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, VirtualLayoutJSON } from '@polymita/renderer';
 import * as SourceItemModule from './SourceItem'
 
 export const name = 'SourceList' as const
@@ -11,6 +11,7 @@ export let meta: {
 
 export interface SourceListProps {
   sources: SourceItemModule.RSSSource[]
+  width: number
 }
 
 export const propTypes = {
@@ -29,14 +30,29 @@ export type SourceListLayout = {
   children: [
   ]
 }
-export const layout = (props: SourceListProps) => {
+
+const COLUMN_WIDTH = 4;
+
+export const layout = (props: SourceListProps): VirtualLayoutJSON => {
   const logic = useLogic<LogicReturn>()
+
+  const columnWidth = props.width / COLUMN_WIDTH
+
   return (
-    h('sourceListContainer', {}, 
-      h('div', { className: 'columns-4 gap-1', style: { columnGap: 10 } },
-        props.sources.map(source => h(SourceItem, { key: `${source.group}-${source.subGroup}-${source.title}`, value: source }))
-      )
+    h('sourceListContainer', { className: "block" },
+      <div style={{ columnCount: COLUMN_WIDTH }}>
+        {props.sources.map(source => (
+          <SourceItem width={columnWidth} key={`${source.group}-${source.subGroup}-${source.title}`} value={source} />
+        ))}
+      </div>
     )
+    // <sourceListContainer className="block">
+    //   <div style={{ columnCount: COLUMN_WIDTH }}>
+    //     {props.sources.map(source => (
+    //       <SourceItem width={columnWidth} key={`${source.group}-${source.subGroup}-${source.title}`} value={source} />
+    //     ))}
+    //   </div>
+    // </sourceListContainer>
   )
 }
 
