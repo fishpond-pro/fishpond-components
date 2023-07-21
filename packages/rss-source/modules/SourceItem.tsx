@@ -26,7 +26,7 @@ export interface RSSSource {
 export interface SourceItemProps {
   value: RSSSource
   width: number
-  onClick: (target: RSSSource) => void
+  onClick?: (target: RSSSource) => void
 }
 
 export const propTypes = {
