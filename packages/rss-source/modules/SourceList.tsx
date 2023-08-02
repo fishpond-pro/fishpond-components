@@ -1,5 +1,7 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, VirtualLayoutJSON } from '@polymita/renderer';
 import * as SourceItemModule from './SourceItem'
+import { signal } from '@polymita/signal-model';
+import * as DrawerModule from 'polymita/components/drawer'
 
 export const name = 'SourceList' as const
 export let meta: {
@@ -18,9 +20,13 @@ export const propTypes = {
 }
 
 const SourceItem = createFunctionComponent(SourceItemModule)
+const Drawer = createFunctionComponent(DrawerModule)
 
 export const logic = (props: SignalProps<SourceListProps>) => {
+  const currentSource = signal<SourceItemModule.RSSSource>(null)
+
   return {
+    currentSource,
   }
 }
 type LogicReturn = ReturnType<typeof logic>
@@ -38,21 +44,46 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
 
   const columnWidth = props.width / COLUMN_WIDTH
 
+  const currentSource = logic.currentSource()
+
+  const params = currentSource && SourceItemModule.getParamsFromPath(currentSource.route.path, currentSource.route.paramsdesc)
+
   return (
-    h('sourceListContainer', { className: "block" },
+    <sourceListContainer className="block">
       <div style={{ columnCount: COLUMN_WIDTH }}>
         {props.sources.map(source => (
-          <SourceItem width={columnWidth} key={`${source.group}-${source.subGroup}-${source.title}`} value={source} />
+          <SourceItem 
+            width={columnWidth} 
+            key={`${source.group}-${source.subGroup}-${source.title}`}
+            value={source}
+            onClick={() => {
+              logic.currentSource(source)
+            }} />
         ))}
       </div>
-    )
-    // <sourceListContainer className="block">
-    //   <div style={{ columnCount: COLUMN_WIDTH }}>
-    //     {props.sources.map(source => (
-    //       <SourceItem width={columnWidth} key={`${source.group}-${source.subGroup}-${source.title}`} value={source} />
-    //     ))}
-    //   </div>
-    // </sourceListContainer>
+      {currentSource && (
+        <Drawer title={`${currentSource.group}/${currentSource.subGroup}/${currentSource.title}`} >
+          <sourceItemRoute className="block break-all">
+            <span className='mr-1 text-gray-500'>路径:</span>
+            /{currentSource.route.path}
+          </sourceItemRoute>
+          <sourceItemRoute if={!!params.length} className="block break-all">
+            <span className='mr-1 text-gray-500'>参数:</span>
+          </sourceItemRoute>
+          <sourceItemRouteParams if={!!params.length} className="block">
+            {params.map(p => (
+              <sourceItemRouteParam className="block">
+                <span className="px-[4px] py-[2px] bg-slate-100 text-gray-600">{p.name}</span>
+                ,
+                {p.optional ? '可选' : '必选'}
+                ,
+                {p.desc}
+              </sourceItemRouteParam>
+            ))}
+          </sourceItemRouteParams>
+        </Drawer>
+      )}
+    </sourceListContainer>
   )
 }
 

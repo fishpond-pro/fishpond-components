@@ -44,7 +44,7 @@ export type SourceItemLayout = {
   ]
 }
 
-function getParamsFromPath(path: string, desc?: string[]) {
+export function getParamsFromPath(path: string, desc?: string[]) {
   const params = path.split('/').filter(p => p.trim().startsWith(':'))
   return params.map((p, index) => {
     const optional = /\?$/.test(p)
@@ -61,7 +61,7 @@ export const layout = (props: SourceItemProps) => {
   
   const { width, value } = props
   const { route, subGroup, title } = value
-  const { path, paramsdesc } = route
+  const { path } = route
   const params = getParamsFromPath(route.path, route.paramsdesc)
   return (
     <sourceItemContainer
@@ -75,13 +75,13 @@ export const layout = (props: SourceItemProps) => {
         <span className="flex-1 whitespace-nowrap" >{title}</span>
       </sourceItemTitle>
       <sourceItemRoute className="block break-all">
-        <span className='mr-1 text-gray-500'>路由:</span>
+        <span className='mr-1 text-gray-500'>路径:</span>
         /{path}
       </sourceItemRoute>
-      <sourceItemRoute className="block break-all">
+      <sourceItemRoute if={!!params.length} className="block break-all">
         <span className='mr-1 text-gray-500'>参数:</span>
       </sourceItemRoute>
-      <sourceItemRouteParams className="block">
+      <sourceItemRouteParams if={!!params.length} className="block">
         {params.map(p => (
           <sourceItemRouteParam className="block">
             <span className="px-[4px] py-[2px] bg-slate-100 text-gray-600">{p.name}</span>

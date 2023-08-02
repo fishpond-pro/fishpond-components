@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-
+import 'polymita/index.css'
 import SourceList from '@/views/SourceList'
 import sourceMock from './source.json'
 
