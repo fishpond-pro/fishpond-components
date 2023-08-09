@@ -1,0 +1,114 @@
+import { getParamsFromPath } from '@/utils/index'
+import {
+  after,
+  inputCompute,
+  signal,
+} from '@polymita/signal-model'
+
+interface RSSSource {
+  group: string
+  subGroup: string
+  title: string
+  route: {
+    author: string
+    example: string,
+    path: string,
+    radar?: boolean,
+    rssbud?: boolean
+    paramsdesc?: string[]
+  },
+  tipsMarkDown: string[]
+}
+
+interface PreviewMessage {
+
+}
+
+export default function sourceListInnerLogic (props: {
+  onQuery: (arg: { path: string, payload: Record<string,any> }) => Promise<PreviewMessage[]>
+  onSubmit: (arg: { path: string, payload: Record<string,any> }) => void
+}) {
+  const currentSource = signal<RSSSource>(null)
+
+  const sourcePreviewForm = signal<{
+    path: string,
+    payload: Record<string,any>
+  }>({
+    path: '',
+    payload: {}
+  })
+
+  const selectCurrentSource = inputCompute((source?: RSSSource) => {
+    currentSource(source)
+
+    if (source) {
+      const params = getParamsFromPath(source.route.path, source.route.paramsdesc)
+  
+      sourcePreviewForm(draft => {
+        draft.path = source.route.path;
+        params.forEach(obj => {
+          draft.payload[obj.name] = ''
+        })
+      })
+    } else {
+      sourcePreviewForm(draft => {
+        draft.path = '';
+        draft.payload = {}
+      })
+    }
+  });
+
+  const previewMessages = signal<PreviewMessage[]>([])
+
+  const error = signal('')
+
+  const queryPreview = inputCompute(function * () {
+    const { path, payload } = sourcePreviewForm()
+    try {
+      const messages:PreviewMessage[] = yield props.onQuery({
+        path,
+        payload
+      })
+      previewMessages(messages)
+    } catch (e) {
+      error(e.message)
+    }
+  })
+
+  const showConfirmSubmit = signal({
+    visible: false,
+    title: '',
+  })
+
+  const submit = inputCompute(() => {
+
+    const messages = previewMessages()
+    if (messages.length <= 0) {
+      showConfirmSubmit(draft => {
+        draft.visible = true
+        draft.title = 'Sure to submit?'
+      })
+      return
+    } 
+
+    secondConfirmSubmit()
+  })
+  const secondConfirmSubmit = inputCompute(() => {
+    showConfirmSubmit(draft => {
+      draft.visible = false
+    })
+    const form = sourcePreviewForm()
+    props.onSubmit(form)   
+
+    selectCurrentSource(undefined)
+  })
+
+  return {
+    selectCurrentSource,
+    sourcePreviewForm,
+    queryPreview,
+    previewMessages,
+    submit,
+    secondConfirmSubmit,
+  }
+}

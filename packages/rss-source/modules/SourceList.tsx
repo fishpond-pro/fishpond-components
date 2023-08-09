@@ -2,6 +2,7 @@ import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFu
 import * as SourceItemModule from './SourceItem'
 import { signal } from '@polymita/signal-model';
 import * as DrawerModule from 'polymita/components/drawer'
+import {getParamsFromPath } from '@/utils/index'
 
 export const name = 'SourceList' as const
 export let meta: {
@@ -46,7 +47,7 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
 
   const currentSource = logic.currentSource()
 
-  const params = currentSource && SourceItemModule.getParamsFromPath(currentSource.route.path, currentSource.route.paramsdesc)
+  const params = currentSource && getParamsFromPath(currentSource.route.path, currentSource.route.paramsdesc)
 
   return (
     <sourceListContainer className="block">

@@ -1,5 +1,6 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft } from '@polymita/renderer';
 import { after, Signal, signal } from '@polymita/signal'
+import { getParamsFromPath } from '@/utils/index';
 
 export const name = 'SourceItem' as const
 export let meta: {
@@ -42,18 +43,6 @@ export type SourceItemLayout = {
   type: 'sourceItemContainer',
   children: [
   ]
-}
-
-export function getParamsFromPath(path: string, desc?: string[]) {
-  const params = path.split('/').filter(p => p.trim().startsWith(':'))
-  return params.map((p, index) => {
-    const optional = /\?$/.test(p)
-    return {
-      name: optional ? p.slice(1, -1) : p.slice(1),
-      optional,
-      desc: desc?.[index]
-    }
-  })
 }
 
 export const layout = (props: SourceItemProps) => {
@@ -105,3 +94,4 @@ export const designPattern = (props: SourceItemProps, layout: ConvertToLayoutTre
   const logic = useLogic<LogicReturn>()
   return {}
 }
+
