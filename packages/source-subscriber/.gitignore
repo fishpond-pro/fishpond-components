@@ -108,3 +108,4 @@ customPrismaClient
 dist/
 
 ./models/dev.db
+.test/

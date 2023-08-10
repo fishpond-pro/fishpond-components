@@ -106,3 +106,5 @@ dist
 customPrismaClient
 .tarat/
 dist/
+
+.test/
