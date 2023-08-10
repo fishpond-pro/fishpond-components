@@ -11,7 +11,8 @@
     "p:dev": "prisma migrate dev && prisma generate",
     "p:gen": "prisma generate",
     "p:deploy": "prisma migrate deploy",
-    "p:studio": "prisma studio"
+    "p:studio": "prisma studio",
+    "test": "polymita test"
   },
   "publishConfig": {
     "access": "public"
