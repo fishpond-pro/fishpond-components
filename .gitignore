@@ -112,3 +112,4 @@ packages/*/models/dev.db
 packages/*/models/indexes.json
 packages/*/models/dev.db-journal
 
+.test/
