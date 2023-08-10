@@ -21,7 +21,7 @@ interface RSSSource {
 }
 
 interface PreviewMessage {
-
+  title: string
 }
 
 export default function sourceListInnerLogic (props: {
