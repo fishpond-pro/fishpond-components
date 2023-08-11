@@ -1,9 +1,8 @@
 import { getParamsFromPath } from '@/utils/index'
 import {
-  after,
   inputCompute,
   signal,
-} from '@polymita/signal-model'
+} from '@polymita/signal'
 
 interface RSSSource {
   group: string
