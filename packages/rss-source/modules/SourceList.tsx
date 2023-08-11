@@ -3,6 +3,7 @@ import * as SourceItemModule from './SourceItem'
 import { signal } from '@polymita/signal-model';
 import * as DrawerModule from 'polymita/components/drawer'
 import {getParamsFromPath } from '@/utils/index'
+import sourceListInnerLogic, { SourceListInnerLogicProps } from '@/drivers/sourceListInnerLogic'
 
 export const name = 'SourceList' as const
 export let meta: {
@@ -12,7 +13,7 @@ export let meta: {
 }
 
 
-export interface SourceListProps {
+export interface SourceListProps extends SourceListInnerLogicProps {
   sources: SourceItemModule.RSSSource[]
   width: number
 }
@@ -24,10 +25,11 @@ const SourceItem = createFunctionComponent(SourceItemModule)
 const Drawer = createFunctionComponent(DrawerModule)
 
 export const logic = (props: SignalProps<SourceListProps>) => {
-  const currentSource = signal<SourceItemModule.RSSSource>(null)
+  
+  const r = sourceListInnerLogic(props)
 
   return {
-    currentSource,
+    ...r,
   }
 }
 type LogicReturn = ReturnType<typeof logic>

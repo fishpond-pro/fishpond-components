@@ -23,10 +23,12 @@ interface PreviewMessage {
   title: string
 }
 
-export default function sourceListInnerLogic (props: {
+export interface SourceListInnerLogicProps {
   onQuery: (arg: { path: string, payload: Record<string,any> }) => Promise<PreviewMessage[]>
   onSubmit: (arg: { path: string, payload: Record<string,any> }) => void
-}) {
+}
+
+export default function sourceListInnerLogic (props: SourceListInnerLogicProps) {
   const currentSource = signal<RSSSource>(null)
 
   const sourcePreviewForm = signal<{
@@ -103,6 +105,7 @@ export default function sourceListInnerLogic (props: {
   })
 
   return {
+    currentSource,
     selectCurrentSource,
     sourcePreviewForm,
     queryPreview,
