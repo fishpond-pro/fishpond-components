@@ -75,7 +75,7 @@ export default function sourceListInnerLogic (props: {
     }
   })
 
-  const showConfirmSubmit = signal({
+  const showSubmitConfirm = signal({
     visible: false,
     title: '',
   })
@@ -84,7 +84,7 @@ export default function sourceListInnerLogic (props: {
 
     const messages = previewMessages()
     if (messages.length <= 0) {
-      showConfirmSubmit(draft => {
+      showSubmitConfirm(draft => {
         draft.visible = true
         draft.title = 'Sure to submit?'
       })
@@ -94,7 +94,7 @@ export default function sourceListInnerLogic (props: {
     secondConfirmSubmit()
   })
   const secondConfirmSubmit = inputCompute(() => {
-    showConfirmSubmit(draft => {
+    showSubmitConfirm(draft => {
       draft.visible = false
     })
     const form = sourcePreviewForm()
@@ -109,6 +109,7 @@ export default function sourceListInnerLogic (props: {
     queryPreview,
     previewMessages,
     submit,
-    secondConfirmSubmit,
+    secondConfirmSubmit,    
+    showSubmitConfirm,
   }
 }

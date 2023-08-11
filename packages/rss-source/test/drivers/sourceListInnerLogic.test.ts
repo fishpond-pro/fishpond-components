@@ -30,12 +30,18 @@ describe('test driver/sourceListInnerLogic', () => {
         disableChainLog: true,
       })
     })
-    it('hello client', async () => {
-      const runner = new clientSm.ModelRunner(clientDriver)
+    const mockMs = () => ([{ title: 't1' }, { title: 't2' }])
+    const mockForm = () => ({ path: 'test path', payload: { test: 'test' } })
+
+    it('preview and submit', async () => {
+      const runner = new clientSm.ModelRunner(clientDriver)      
+      
       const result = runner.init([
         {
-          onQuery: () => Promise.resolve([{ title: 't1' }, { title: 't2' }]),
-          onSubmit: () => {}
+          onQuery: () => Promise.resolve(mockMs()),
+          onSubmit: (form) => {
+            expect(form).toEqual(mockForm())
+          }
         }
       ])
 
@@ -43,13 +49,41 @@ describe('test driver/sourceListInnerLogic', () => {
 
       result.selectCurrentSource(source())
       result.sourcePreviewForm(draft => {
-        draft.path = 'test path'
-        Object.assign(draft.payload, { test: 'test' })
+        draft.path = mockForm().path
+        Object.assign(draft.payload, mockForm().payload)
       })
       await result.queryPreview()
-
-      expect(result.previewMessages()).toEqual([{ title: 't1' }, { title: 't2' }])
+      const ms = result.previewMessages()
+      expect(ms).toEqual(mockMs())
+      
+      result.submit()
     })    
+    it ('not preview but submit directly', async () => {
+      const runner = new clientSm.ModelRunner(clientDriver)      
+      
+      const result = runner.init([
+        {
+          onQuery: () => Promise.resolve(mockMs()),
+          onSubmit: (form) => {
+            expect(form).toEqual(mockForm())
+          }
+        }
+      ])
+
+      result.selectCurrentSource(source())
+      result.sourcePreviewForm(draft => {
+        draft.path = mockForm().path
+        Object.assign(draft.payload, mockForm().payload)
+      })
+
+      result.submit()
+
+      expect(result.showSubmitConfirm().visible).toEqual(true)
+      expect(result.showSubmitConfirm().title).toBeTruthy()
+
+      result.secondConfirmSubmit()
+      expect(result.showSubmitConfirm().visible).toEqual(false)
+    })
   })
   describe('server', () => {
     beforeAll(async () => {
