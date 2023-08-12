@@ -1,5 +1,6 @@
 import { getParamsFromPath } from '@/utils/index'
 import {
+  computed,
   inputCompute,
   signal,
 } from '@polymita/signal'
@@ -31,12 +32,14 @@ export interface SourceListInnerLogicProps {
 export default function sourceListInnerLogic (props: SourceListInnerLogicProps) {
   const currentSource = signal<RSSSource>(null)
 
-  const sourcePreviewForm = signal<{
-    path: string,
-    payload: Record<string,any>
-  }>({
-    path: '',
-    payload: {}
+  const path = signal('')
+  const payloads = signal<{ key: string, value: string }[]>([])
+
+  const sourcePreviewForm = computed(() => {
+    return {
+      path: path(),
+      payload: payloads().reduce((pre, cur) => (Object.assign(pre, { [cur.key]: cur.value})), {} as Record<string, string>)
+    }
   })
 
   const selectCurrentSource = inputCompute((source?: RSSSource) => {
@@ -45,17 +48,11 @@ export default function sourceListInnerLogic (props: SourceListInnerLogicProps) 
     if (source) {
       const params = getParamsFromPath(source.route.path, source.route.paramsdesc)
   
-      sourcePreviewForm(draft => {
-        draft.path = source.route.path;
-        params.forEach(obj => {
-          draft.payload[obj.name] = ''
-        })
-      })
+      path(source.route.path)
+      payloads(params.map(obj => ({ key: obj.name, value: '' })))
     } else {
-      sourcePreviewForm(draft => {
-        draft.path = '';
-        draft.payload = {}
-      })
+      path('')
+      payloads([])
     }
   });
 
@@ -105,9 +102,13 @@ export default function sourceListInnerLogic (props: SourceListInnerLogicProps) 
   })
 
   return {
+    path,
     currentSource,
     selectCurrentSource,
-    sourcePreviewForm,
+    form: {
+      path,
+      payloads,
+    },
     queryPreview,
     previewMessages,
     submit,

@@ -1,9 +1,13 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, VirtualLayoutJSON } from '@polymita/renderer';
 import * as SourceItemModule from './SourceItem'
 import { signal } from '@polymita/signal-model';
+
 import * as DrawerModule from 'polymita/components/drawer'
+import * as InputModule from 'polymita/components/input'
+
 import {getParamsFromPath } from '@/utils/index'
 import sourceListInnerLogic, { SourceListInnerLogicProps } from '@/drivers/sourceListInnerLogic'
+
 
 export const name = 'SourceList' as const
 export let meta: {
@@ -23,6 +27,7 @@ export const propTypes = {
 
 const SourceItem = createFunctionComponent(SourceItemModule)
 const Drawer = createFunctionComponent(DrawerModule)
+const Input = createFunctionComponent(InputModule)
 
 export const logic = (props: SignalProps<SourceListProps>) => {
   
@@ -65,25 +70,43 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
         ))}
       </div>
       {currentSource && (
-        <Drawer title={`${currentSource.group}/${currentSource.subGroup}/${currentSource.title}`} >
-          <sourceItemRoute className="block break-all">
-            <span className='mr-1 text-gray-500'>路径:</span>
-            /{currentSource.route.path}
-          </sourceItemRoute>
-          <sourceItemRoute if={!!params.length} className="block break-all">
-            <span className='mr-1 text-gray-500'>参数:</span>
-          </sourceItemRoute>
-          <sourceItemRouteParams if={!!params.length} className="block">
-            {params.map(p => (
-              <sourceItemRouteParam className="block">
-                <span className="px-[4px] py-[2px] bg-slate-100 text-gray-600">{p.name}</span>
-                ,
-                {p.optional ? '可选' : '必选'}
-                ,
-                {p.desc}
-              </sourceItemRouteParam>
-            ))}
-          </sourceItemRouteParams>
+        <Drawer 
+          closable 
+          width={1000} 
+          onClose={() => logic.selectCurrentSource(null)} 
+          title={`${currentSource.group}/${currentSource.subGroup}/${currentSource.title}`} 
+        >
+          <div className="flex mg-2">            
+            <div className="flex-1">
+              <sourceItemRoute className="block break-all">
+                <span className='mr-1 text-gray-500'>路径:</span>
+                /{currentSource.route.path}
+              </sourceItemRoute>
+              <sourceItemRoute if={!!params.length} className="block break-all">
+                <span className='mr-1 text-gray-500'>参数:</span>
+              </sourceItemRoute>
+              <sourceItemRouteParams if={!!params.length} className="block">
+                {params.map(p => (
+                  <sourceItemRouteParam className="block">
+                    <span className="px-[4px] py-[2px] bg-slate-100 text-gray-600">{p.name}</span>
+                    ,
+                    {p.optional ? '可选' : '必选'}
+                    ,
+                    {p.desc}
+                  </sourceItemRouteParam>
+                ))}
+              </sourceItemRouteParams>
+              <sourcePreviewForm className="block border-slate-100 mt-2 pd-2">
+                <Input value={logic.sourcePreviewForm().path} />
+              </sourcePreviewForm>
+            </div>
+            <div className="flex mx-2 items-center justify-center">
+              &gt;
+            </div>
+            <div className="flex-1 relative">
+              {logic.previewMessages().length === 0 ? <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">暂无</span> : ''}
+            </div>
+          </div>
         </Drawer>
       )}
     </sourceListContainer>

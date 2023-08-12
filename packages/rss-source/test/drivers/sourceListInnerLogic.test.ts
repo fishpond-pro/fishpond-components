@@ -48,10 +48,9 @@ describe('test driver/sourceListInnerLogic', () => {
       expect(Object.keys(result).length).toBeGreaterThan(0)
 
       result.selectCurrentSource(source())
-      result.sourcePreviewForm(draft => {
-        draft.path = mockForm().path
-        Object.assign(draft.payload, mockForm().payload)
-      })
+      result.form.path(mockForm().path)
+      result.form.payloads([{ key: 'test', value: mockForm().payload.test }])
+
       await result.queryPreview()
       const ms = result.previewMessages()
       expect(ms).toEqual(mockMs())
@@ -71,10 +70,8 @@ describe('test driver/sourceListInnerLogic', () => {
       ])
 
       result.selectCurrentSource(source())
-      result.sourcePreviewForm(draft => {
-        draft.path = mockForm().path
-        Object.assign(draft.payload, mockForm().payload)
-      })
+      result.form.path(mockForm().path)
+      result.form.payloads([{ key: 'test', value: mockForm().payload.test }])
 
       result.submit()
 
