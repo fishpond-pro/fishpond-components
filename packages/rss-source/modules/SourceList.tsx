@@ -97,14 +97,23 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
                 ))}
               </sourceItemRouteParams>
               <sourcePreviewForm className="block border-slate-100 mt-2 pd-2">
-                <Input value={logic.sourcePreviewForm().path} />
+                {Object.entries(logic.sourcePreviewForm().payload).map((key) => (
+                  <Input value={logic.sourcePreviewForm() as any} value-path={['payload', key]} />
+                ))}
               </sourcePreviewForm>
             </div>
-            <div className="flex mx-2 items-center justify-center">
+            <div className="flex mx-4 items-center justify-center">
               &gt;
             </div>
             <div className="flex-1 relative">
               {logic.previewMessages().length === 0 ? <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">暂无</span> : ''}
+              {logic.previewMessages().map((m, index) => {
+                return (
+                  <div key={m.title}>
+                    {index+1}.{m.title}
+                  </div>
+                )
+              })}
             </div>
           </div>
         </Drawer>
