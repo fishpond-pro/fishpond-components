@@ -6,7 +6,7 @@ import {
   signal,
 } from '@polymita/signal'
 
-interface RSSSource {
+export interface RSSSource {
   group: string
   subGroup: string
   title: string
@@ -21,7 +21,7 @@ interface RSSSource {
   tipsMarkDown: string[]
 }
 
-interface PreviewMessage {
+export interface PreviewMessage {
   title: string
 }
 
