@@ -1,5 +1,6 @@
 import { getParamsFromPath } from '@/utils/index'
 import {
+  after,
   computed,
   inputCompute,
   signal,
@@ -57,6 +58,13 @@ export default function sourceListInnerLogic (props: SourceListInnerLogicProps) 
     }
   });
 
+  after(() => {
+    showSubmitConfirm(draft => {
+      draft.visible = false
+      draft.title = ''
+    })
+  }, [sourcePreviewForm])
+
   const previewMessages = signal<PreviewMessage[]>([])
 
   const error = signal('')
@@ -99,7 +107,7 @@ export default function sourceListInnerLogic (props: SourceListInnerLogicProps) 
     const form = sourcePreviewForm()
     props.onSubmit(form)   
 
-    selectCurrentSource(undefined)
+    selectCurrentSource(null)
   })
 
   return {

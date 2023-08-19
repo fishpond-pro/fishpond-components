@@ -32,7 +32,25 @@ export default function Main () {
 
   return (
     <div ref={listDIVRef}>
-      {width >= 0 ? <SourceList width={width} sources={sourceMock} /> : null}
+      {width >= 0 ? (
+        <SourceList 
+          width={width} sources={sourceMock} 
+          onQuery={(form) => {
+            console.log('[onQuery] form: ', form);
+            return [
+              {
+                title: 'mock message',
+              },
+              {
+                title: 'my message2',
+              },
+            ]
+          }}
+          onSubmit={(form) => {
+            console.log('[onSubmit] form: ', form);
+          }}
+        />
+      ) : null}
     </div>
   )
 }
