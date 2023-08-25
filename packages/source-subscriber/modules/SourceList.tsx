@@ -16,6 +16,8 @@ export interface SourceListProps {
   onSubmit?: AddSourceModule.AddSourceProps['onSubmit']
   list: Signal<DataSource[]>
   onClick?: (ds: DataSource, index: number) => void;
+  modal?: boolean
+  onClickPlus?: () => void;
 }
 
 export const propTypes = {
@@ -54,7 +56,11 @@ export const layout = (props: SourceListProps) => {
         h('addSourceEntry', {
           className: 'inline-block w-[24px] text-center cursor-pointer',
           onClick() {
-            sourceModalVisible(true)
+            if (props.modal) {
+              sourceModalVisible(true)
+            } else {
+              props.onClickPlus?.();
+            }
           }
         },
           '+'

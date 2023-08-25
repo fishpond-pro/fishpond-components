@@ -11,7 +11,7 @@ export interface MessageProps {
   title: string,
   description: string,
   footer: string
-  createdAt: string // Date.toString()
+  createdAt: string | Date; // Date.toString()
 }
 
 export const propTypes = {
@@ -31,15 +31,12 @@ export type MessageLayout = {
 export const layout = (props: MessageProps) => {
   const logic = useLogic<LogicReturn>();
 
-  return h(
-    'messageContainer', { class: 'block border rounded-md overflow-hidden' },
-      h('messageTitle', { class: 'text-slate-800 block p-2 text-lg' }, props.title),
-      h('messageContent', { class: 'text-slate-400 block p-2 truncate' },
-        props.description,
-      ),
-      h('messageFooter', { class: 'text-slate-500 block border-t p-2 text-xs' },
-        props.footer
-      )
+  return (
+    <messageContainer className="block border rounded-md overflow-hidden">
+      <messageTitle className="text-slate-800 block p-2 text-lg">{props.title}</messageTitle>
+      <messageContent className="text-slate-400 block p-2 truncate">{props.description}</messageContent>
+      <messageFooter className="text-slate-500 block border-t p-2 text-xs">{props.footer}</messageFooter>
+    </messageContainer>
   )
 }
 

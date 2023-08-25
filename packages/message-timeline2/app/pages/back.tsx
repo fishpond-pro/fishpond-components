@@ -10,7 +10,8 @@ export default function Main () {
   console.log('wmDriver.messages', wmDriver.messages());
 
   const [source, setSource] = React.useState(JSON.stringify({
-    platform: 'zhihu',
+    channel: 'zhihu',
+    lastUpdatedDate: new Date(),
   }, null, 2));
 
   const [message, setMessage] = React.useState(JSON.stringify({

@@ -34,7 +34,8 @@ export default function Main () {
     <div ref={listDIVRef}>
       {width >= 0 ? (
         <SourceList 
-          width={width} sources={sourceMock} 
+          width={width} 
+          sources={sourceMock} 
           onQuery={(form) => {
             console.log('[onQuery] form: ', form);
             return [
