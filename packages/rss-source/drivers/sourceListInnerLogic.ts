@@ -19,6 +19,7 @@ export interface RSSSource {
     paramsdesc?: string[]
   },
   tipsMarkDown: string[]
+  tables: string
 }
 
 export interface PreviewMessage {

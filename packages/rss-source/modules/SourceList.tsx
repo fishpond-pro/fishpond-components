@@ -1,10 +1,10 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, VirtualLayoutJSON } from '@polymita/renderer';
 import * as SourceItemModule from './SourceItem'
-import { signal } from '@polymita/signal-model';
 
 import * as DrawerModule from 'polymita/components/drawer'
 import * as InputModule from 'polymita/components/input'
 import * as ButtonModule from 'polymita/components/button'
+import * as RSSTableModule from './RSSTable'
 
 import {getParamsFromPath } from '@/utils/index'
 import sourceListInnerLogic, { SourceListInnerLogicProps } from '@/drivers/sourceListInnerLogic'
@@ -30,6 +30,7 @@ const SourceItem = createFunctionComponent(SourceItemModule)
 const Drawer = createFunctionComponent(DrawerModule)
 const Input = createFunctionComponent(InputModule)
 const Button = createFunctionComponent(ButtonModule)
+const RSSTable = createFunctionComponent(RSSTableModule)
 
 export const logic = (props: SignalProps<SourceListProps>) => {
   
@@ -55,6 +56,7 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
   const columnWidth = props.width / COLUMN_WIDTH
 
   const currentSource = logic.currentSource()
+  console.log('currentSource: ', currentSource);
 
   const params = currentSource && getParamsFromPath(currentSource.route.path, currentSource.route.paramsdesc)
 
@@ -98,7 +100,7 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
               <Button onClick={() => logic.showSubmitConfirm()} type="primary" >Sure</Button>
             </submitConfirmMessage>
             <div className="flex flex-row">
-              <div className="flex-1">
+              <div className="flex-1 min-w-0">
                 <sourceItemRoute className="block break-all">
                   <span className='mr-1 text-gray-500'>路径:</span>
                   /{currentSource.route.path}
@@ -117,6 +119,8 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
                     </sourceItemRouteParam>
                   ))}
                 </sourceItemRouteParams>
+                <RSSTable tables={currentSource.tables} />
+                <h3 className="mt-2">参数表单</h3>
                 <sourcePreviewForm className="block border-slate-100 mt-2 pd-2">
                   {Object.keys(logic.sourcePreviewForm().payload).map((key) => (
                     <div className="mb-2">

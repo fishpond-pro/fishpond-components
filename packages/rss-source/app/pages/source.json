@@ -1,46 +1,6 @@
 [
   {
     "group": "二次元",
-    "subGroup": "005.tv",
-    "title": "二次元资讯",
-    "route": {
-      "author": "unfeng",
-      "example": "005tv/zx/lates",
-      "path": "005tv/zx/lates"
-    },
-    "tipsMarkDown": []
-  },
-  {
-    "group": "二次元",
-    "subGroup": "1draw #深夜の真剣お絵描き 60 分一本勝負",
-    "title": "投稿一览",
-    "route": {
-      "author": "ackyu199",
-      "path": "1draw",
-      "example": "1draw"
-    },
-    "tipsMarkDown": []
-  },
-  {
-    "group": "二次元",
-    "subGroup": "AcFun",
-    "title": "文章",
-    "route": {
-      "author": "onyR",
-      "example": "acfun/article/11",
-      "path": "acfun/article/:categoryId/:sortType?/:timeRange",
-      "paramsdesc": [
-        "分区 ID，见下表",
-        "排序，见下表，默认为 `createTime`",
-        "时间范围，见下表，仅在排序是 `hotScore` 有效，默认为 `all`"
-      ],
-      "radar": "",
-      "rssbud": ""
-    },
-    "tipsMarkDown": []
-  },
-  {
-    "group": "二次元",
     "subGroup": "78 动漫",
     "title": "新品速递",
     "route": {
@@ -57,7 +17,8 @@
       "",
       "若订阅子分类 [新品速递 - 综合](https://www.78dm.net/news/0/9/0/0/0/0/0/1.html)，网址为 <https://www.78dm.net/news/0/9/0/0/0/0/0/1.html>。截取 `https://www.78dm.net` 到末尾 `.html` 的部分 `/news/0/9/0/0/0/0/0/1` 作为参数，路由为 [`/78dm/news/0/9/0/0/0/0/0/1`](https://rsshub.app/78dm/news/0/9/0/0/0/0/0/1)。",
       ""
-    ]
+    ],
+    "tables": ""
   },
   {
     "group": "二次元",
@@ -77,7 +38,8 @@
       "",
       "若订阅子分类 [精彩评测 - 综合](https://www.78dm.net/eval_list/120/0/0/1.html)，网址为 <https://www.78dm.net/eval_list/120/0/0/1.html>。截取 `https://www.78dm.net` 到末尾 `.html` 的部分 `/eval_list/120/0/0/1` 作为参数，路由为 [`/78dm/eval_list/120/0/0/1`](https://rsshub.app/78dm/eval_list/120/0/0/1)。",
       ""
-    ]
+    ],
+    "tables": ""
   },
   {
     "group": "二次元",
@@ -97,18 +59,21 @@
       "",
       "若订阅子分类 [好帖推荐 - 综合](https://www.78dm.net/ht_list/107/0/0/1.html)，网址为 <https://www.78dm.net/ht_list/107/0/0/1.html>。截取 `https://www.78dm.net` 到末尾 `.html` 的部分 `/ht_list/107/0/0/1` 作为参数，路由为 [`/78dm/ht_list/107/0/0/1`](https://rsshub.app/78dm/ht_list/107/0/0/1)。",
       ""
-    ]
+    ],
+    "tables": ""
   },
   {
     "group": "二次元",
     "subGroup": "AcFun",
-    "title": "番剧",
+    "title": "文章",
     "route": {
-      "author": "yqfe",
-      "example": "acfun/bangumi/502215",
-      "path": "acfun/bangumi/:i",
+      "author": "onyR",
+      "example": "acfun/article/11",
+      "path": "acfun/article/:categoryId/:sortType?/:timeRange",
       "paramsdesc": [
-        "番剧 id"
+        "分区 ID，见下表",
+        "排序，见下表，默认为 `createTime`",
+        "时间范围，见下表，仅在排序是 `hotScore` 有效，默认为 `all`"
       ],
       "radar": "",
       "rssbud": ""
@@ -118,22 +83,430 @@
       "番剧 id 不包含开头的 aa。",
       "例如：<http://www.acfun.cn/bangumi/aa5022158> 的番剧 id 是 5022158，不包括开头的 aa。",
       ""
-    ]
+    ],
+    "tables": "| 时间不限 | 24 小时 | 三天     | 一周    | 一个月   |\n| -------- | ------- | -------- | ------- | -------- |\n| all      | oneDay  | threeDay | oneWeek | oneMonth |"
   },
   {
     "group": "二次元",
-    "subGroup": "AcFun",
-    "title": "用户投稿",
+    "subGroup": "Anime1",
+    "title": "動畫",
     "route": {
-      "author": "dssm",
-      "example": "acfun/user/video/1445052",
-      "path": "acfun/user/video/:i",
+      "author": "aple314",
+      "example": "anime1/anime/2018年秋季/哥布林殺",
+      "path": "anime1/anime/:time/:nam",
       "paramsdesc": [
-        "用户 UID"
+        "时间",
+        "动画名称"
       ],
       "radar": "",
       "rssbud": ""
     },
-    "tipsMarkDown": []
+    "tipsMarkDown": [
+      "",
+      "番剧 id 不包含开头的 aa。",
+      "例如：<http://www.acfun.cn/bangumi/aa5022158> 的番剧 id 是 5022158，不包括开头的 aa。",
+      ""
+    ],
+    "tables": "| 时间不限 | 24 小时 | 三天     | 一周    | 一个月   |\n| -------- | ------- | -------- | ------- | -------- |\n| all      | oneDay  | threeDay | oneWeek | oneMonth |"
+  },
+  {
+    "group": "二次元",
+    "subGroup": "Animen 动漫平台",
+    "title": "news",
+    "route": {
+      "author": "ogicJak",
+      "example": "animen/news/z",
+      "path": "animen/news/:typ",
+      "paramsdesc": [
+        "板块类型"
+      ]
+    },
+    "tipsMarkDown": [
+      "",
+      "番剧 id 不包含开头的 aa。",
+      "例如：<http://www.acfun.cn/bangumi/aa5022158> 的番剧 id 是 5022158，不包括开头的 aa。",
+      ""
+    ],
+    "tables": "| 最新 | 焦点 | 动画 | 漫画 | 游戏 | 小说 | 真人版 | 活动 | 音乐 | 访谈 | 其他 | 新闻稿 | 懒人包 | 公告 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ------ | ---- | ---- | ---- | ---- | ------ | ------ | ---- |\n| zx   | jd   | dh   | mh   | yx   | xs   | zrb    | hd   | yy   | ft   | qt   | xwg    | lrb    | gg   |"
+  },
+  {
+    "group": "二次元",
+    "subGroup": "DLsite",
+    "title": "通用",
+    "route": {
+      "author": "czitz",
+      "example": "dlsite/home/ne",
+      "path": "dlsite/:path",
+      "paramsdesc": [
+        "路径，默认为 `/home/new`，即発売カレンダー"
+      ]
+    },
+    "tipsMarkDown": [
+      "",
+      "订阅该路由可以先访问网站指定过滤器，然后在路由的路径处填写对应页面 URL 中 `https://www.dlsite.com/` 后的字段。下面是两个例子。",
+      "",
+      "若订阅 [「ボイス・ASMR」の作品一覧 発売日が新しい順](https://www.dlsite.com/home/works/type/=/work_type_category/audio/order/release_d)，则将对应页面 URL <https://www.dlsite.com/home/works/type/=/work_type_category/audio/order/release_d> 中 `https://www.dlsite.com/` 后的字段 `home/works/type/=/work_type_category/audio/order/release_d` 作为路径填入。此时路由为 [`/dlsite/home/works/type/=/work_type_category/audio/order/release_d`](https://rsshub.app/dlsite/home/works/type/=/work_type_category/audio/order/release_d)",
+      "",
+      "若订阅 [割引中作品 割引開始日が新しい順](https://www.dlsite.com/home/works/discount/=/order/cstart_d)，则将对应页面 URL <https://www.dlsite.com/home/works/discount/=/order/cstart_d> 中 `https://www.dlsite.com/` 后的字段 `home/works/discount/=/order/cstart_d` 作为路径填入。此时路由为 [`/dlsite/home/works/discount/=/order/cstart_d`](https://rsshub.app/dlsite/home/works/discount/=/order/cstart_d)",
+      ""
+    ],
+    "tables": "| 最新 | 焦点 | 动画 | 漫画 | 游戏 | 小说 | 真人版 | 活动 | 音乐 | 访谈 | 其他 | 新闻稿 | 懒人包 | 公告 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ------ | ---- | ---- | ---- | ---- | ------ | ------ | ---- |\n| zx   | jd   | dh   | mh   | yx   | xs   | zrb    | hd   | yy   | ft   | qt   | xwg    | lrb    | gg   |"
+  },
+  {
+    "group": "二次元",
+    "subGroup": "DLsite",
+    "title": "当前日期发售的新产品",
+    "route": {
+      "author": "ssxs",
+      "example": "dlsite/new/hom",
+      "path": "dlsite/new/:typ",
+      "paramsdesc": [
+        "类型，如下表"
+      ]
+    },
+    "tipsMarkDown": [
+      "",
+      "订阅该路由可以先访问网站指定过滤器，然后在路由的路径处填写对应页面 URL 中 `https://www.dlsite.com/` 后的字段。下面是两个例子。",
+      "",
+      "若订阅 [「ボイス・ASMR」の作品一覧 発売日が新しい順](https://www.dlsite.com/home/works/type/=/work_type_category/audio/order/release_d)，则将对应页面 URL <https://www.dlsite.com/home/works/type/=/work_type_category/audio/order/release_d> 中 `https://www.dlsite.com/` 后的字段 `home/works/type/=/work_type_category/audio/order/release_d` 作为路径填入。此时路由为 [`/dlsite/home/works/type/=/work_type_category/audio/order/release_d`](https://rsshub.app/dlsite/home/works/type/=/work_type_category/audio/order/release_d)",
+      "",
+      "若订阅 [割引中作品 割引開始日が新しい順](https://www.dlsite.com/home/works/discount/=/order/cstart_d)，则将对应页面 URL <https://www.dlsite.com/home/works/discount/=/order/cstart_d> 中 `https://www.dlsite.com/` 后的字段 `home/works/discount/=/order/cstart_d` 作为路径填入。此时路由为 [`/dlsite/home/works/discount/=/order/cstart_d`](https://rsshub.app/dlsite/home/works/discount/=/order/cstart_d)",
+      ""
+    ],
+    "tables": "| 同人 | 漫画  | 软件 | 同人 (R18) | 漫画 (R18) | 美少女游戏 | 乙女  | BL |\n| ---- | ----- | ---- | ---------- | ---------- | ---------- | ----- | -- |\n| home | comic | soft | maniax     | books      | pro        | girls | bl |"
+  },
+  {
+    "group": "二次元",
+    "subGroup": "Hpoi 手办维基",
+    "title": "情报",
+    "route": {
+      "author": "anmm",
+      "path": "hpoi/info/:type",
+      "example": "hpoi/info/al",
+      "paramsdesc": [
+        "分类, 见下表, 默认为`all`"
+      ]
+    },
+    "tipsMarkDown": [
+      "",
+      "订阅该路由可以先访问网站指定过滤器，然后在路由的路径处填写对应页面 URL 中 `https://www.dlsite.com/` 后的字段。下面是两个例子。",
+      "",
+      "若订阅 [「ボイス・ASMR」の作品一覧 発売日が新しい順](https://www.dlsite.com/home/works/type/=/work_type_category/audio/order/release_d)，则将对应页面 URL <https://www.dlsite.com/home/works/type/=/work_type_category/audio/order/release_d> 中 `https://www.dlsite.com/` 后的字段 `home/works/type/=/work_type_category/audio/order/release_d` 作为路径填入。此时路由为 [`/dlsite/home/works/type/=/work_type_category/audio/order/release_d`](https://rsshub.app/dlsite/home/works/type/=/work_type_category/audio/order/release_d)",
+      "",
+      "若订阅 [割引中作品 割引開始日が新しい順](https://www.dlsite.com/home/works/discount/=/order/cstart_d)，则将对应页面 URL <https://www.dlsite.com/home/works/discount/=/order/cstart_d> 中 `https://www.dlsite.com/` 后的字段 `home/works/discount/=/order/cstart_d` 作为路径填入。此时路由为 [`/dlsite/home/works/discount/=/order/cstart_d`](https://rsshub.app/dlsite/home/works/discount/=/order/cstart_d)",
+      ""
+    ],
+    "tables": "| 全部 | 手办  | 模型  |\n| ---- | ----- | ----- |\n| all  | hobby | model |"
+  },
+  {
+    "group": "二次元",
+    "subGroup": "Hpoi 手办维基",
+    "title": "浏览周边",
+    "route": {
+      "author": "owel52 DIYgo",
+      "path": "hpoi/:category/:word",
+      "example": "hpoi/charactar/124651",
+      "paramsdesc": [
+        "分类, 见下表",
+        "角色/作品 ID"
+      ]
+    },
+    "tipsMarkDown": [
+      "",
+      "订阅该路由可以先访问网站指定过滤器，然后在路由的路径处填写对应页面 URL 中 `https://www.dlsite.com/` 后的字段。下面是两个例子。",
+      "",
+      "若订阅 [「ボイス・ASMR」の作品一覧 発売日が新しい順](https://www.dlsite.com/home/works/type/=/work_type_category/audio/order/release_d)，则将对应页面 URL <https://www.dlsite.com/home/works/type/=/work_type_category/audio/order/release_d> 中 `https://www.dlsite.com/` 后的字段 `home/works/type/=/work_type_category/audio/order/release_d` 作为路径填入。此时路由为 [`/dlsite/home/works/type/=/work_type_category/audio/order/release_d`](https://rsshub.app/dlsite/home/works/type/=/work_type_category/audio/order/release_d)",
+      "",
+      "若订阅 [割引中作品 割引開始日が新しい順](https://www.dlsite.com/home/works/discount/=/order/cstart_d)，则将对应页面 URL <https://www.dlsite.com/home/works/discount/=/order/cstart_d> 中 `https://www.dlsite.com/` 后的字段 `home/works/discount/=/order/cstart_d` 作为路径填入。此时路由为 [`/dlsite/home/works/discount/=/order/cstart_d`](https://rsshub.app/dlsite/home/works/discount/=/order/cstart_d)",
+      ""
+    ],
+    "tables": "| 角色手办  | 作品手办 |\n| --------- | -------- |\n| charactar | works    |"
+  },
+  {
+    "group": "二次元",
+    "subGroup": "Hpoi 手办维基",
+    "title": "用户动态",
+    "route": {
+      "author": "uyuhuang DIYgo",
+      "path": "hpoi/user/:user_id/:cat",
+      "example": "hpoi/user/116297/bu",
+      "paramsdesc": [
+        "用户ID",
+        "类别, 见下表"
+      ]
+    },
+    "tipsMarkDown": [
+      "",
+      "订阅该路由可以先访问网站指定过滤器，然后在路由的路径处填写对应页面 URL 中 `https://www.dlsite.com/` 后的字段。下面是两个例子。",
+      "",
+      "若订阅 [「ボイス・ASMR」の作品一覧 発売日が新しい順](https://www.dlsite.com/home/works/type/=/work_type_category/audio/order/release_d)，则将对应页面 URL <https://www.dlsite.com/home/works/type/=/work_type_category/audio/order/release_d> 中 `https://www.dlsite.com/` 后的字段 `home/works/type/=/work_type_category/audio/order/release_d` 作为路径填入。此时路由为 [`/dlsite/home/works/type/=/work_type_category/audio/order/release_d`](https://rsshub.app/dlsite/home/works/type/=/work_type_category/audio/order/release_d)",
+      "",
+      "若订阅 [割引中作品 割引開始日が新しい順](https://www.dlsite.com/home/works/discount/=/order/cstart_d)，则将对应页面 URL <https://www.dlsite.com/home/works/discount/=/order/cstart_d> 中 `https://www.dlsite.com/` 后的字段 `home/works/discount/=/order/cstart_d` 作为路径填入。此时路由为 [`/dlsite/home/works/discount/=/order/cstart_d`](https://rsshub.app/dlsite/home/works/discount/=/order/cstart_d)",
+      ""
+    ],
+    "tables": "| 想买 | 预定     | 已入 | 关注 | 有过   |\n| ---- | -------- | ---- | ---- | ------ |\n| want | preorder | buy  | care | resell |"
+  },
+  {
+    "group": "二次元",
+    "subGroup": "iwara",
+    "title": "用户",
+    "route": {
+      "author": "atpanda",
+      "example": "iwara/users/kelpie/vide",
+      "path": "iwara/users/:username/:type",
+      "paramsdesc": [
+        "用户昵称",
+        "type 默认为 video"
+      ],
+      "radar": "",
+      "rssbud": ""
+    },
+    "tipsMarkDown": [
+      "",
+      "订阅该路由可以先访问网站指定过滤器，然后在路由的路径处填写对应页面 URL 中 `https://www.dlsite.com/` 后的字段。下面是两个例子。",
+      "",
+      "若订阅 [「ボイス・ASMR」の作品一覧 発売日が新しい順](https://www.dlsite.com/home/works/type/=/work_type_category/audio/order/release_d)，则将对应页面 URL <https://www.dlsite.com/home/works/type/=/work_type_category/audio/order/release_d> 中 `https://www.dlsite.com/` 后的字段 `home/works/type/=/work_type_category/audio/order/release_d` 作为路径填入。此时路由为 [`/dlsite/home/works/type/=/work_type_category/audio/order/release_d`](https://rsshub.app/dlsite/home/works/type/=/work_type_category/audio/order/release_d)",
+      "",
+      "若订阅 [割引中作品 割引開始日が新しい順](https://www.dlsite.com/home/works/discount/=/order/cstart_d)，则将对应页面 URL <https://www.dlsite.com/home/works/discount/=/order/cstart_d> 中 `https://www.dlsite.com/` 后的字段 `home/works/discount/=/order/cstart_d` 作为路径填入。此时路由为 [`/dlsite/home/works/discount/=/order/cstart_d`](https://rsshub.app/dlsite/home/works/discount/=/order/cstart_d)",
+      ""
+    ],
+    "tables": "| type |  视频 |  图片 |\n| :--: | :---: | :---: |\n| 参数 | video | image |"
+  },
+  {
+    "group": "二次元",
+    "subGroup": "iwara",
+    "title": "用户订阅列表",
+    "route": {
+      "author": "eCC",
+      "example": "iwara/subscription",
+      "path": "iwara/subscription",
+      "radar": "",
+      "rssbud": "",
+      "selfhost": ""
+    },
+    "tipsMarkDown": [
+      "",
+      "订阅该路由可以先访问网站指定过滤器，然后在路由的路径处填写对应页面 URL 中 `https://www.dlsite.com/` 后的字段。下面是两个例子。",
+      "",
+      "若订阅 [「ボイス・ASMR」の作品一覧 発売日が新しい順](https://www.dlsite.com/home/works/type/=/work_type_category/audio/order/release_d)，则将对应页面 URL <https://www.dlsite.com/home/works/type/=/work_type_category/audio/order/release_d> 中 `https://www.dlsite.com/` 后的字段 `home/works/type/=/work_type_category/audio/order/release_d` 作为路径填入。此时路由为 [`/dlsite/home/works/type/=/work_type_category/audio/order/release_d`](https://rsshub.app/dlsite/home/works/type/=/work_type_category/audio/order/release_d)",
+      "",
+      "若订阅 [割引中作品 割引開始日が新しい順](https://www.dlsite.com/home/works/discount/=/order/cstart_d)，则将对应页面 URL <https://www.dlsite.com/home/works/discount/=/order/cstart_d> 中 `https://www.dlsite.com/` 后的字段 `home/works/discount/=/order/cstart_d` 作为路径填入。此时路由为 [`/dlsite/home/works/discount/=/order/cstart_d`](https://rsshub.app/dlsite/home/works/discount/=/order/cstart_d)",
+      ""
+    ],
+    "tables": "| type |  视频 |  图片 |\n| :--: | :---: | :---: |\n| 参数 | video | image |"
+  },
+  {
+    "group": "二次元",
+    "subGroup": "Kemono",
+    "title": "Posts",
+    "route": {
+      "author": "czitz",
+      "example": "kemon",
+      "path": "kemono/:source?/:id",
+      "paramsdesc": [
+        "来源，见下表，默认为 Posts",
+        "用户 Id，可在对应页 URL 中找到"
+      ]
+    },
+    "tipsMarkDown": [
+      "",
+      "当选择 `posts` 作为参数 **source** 的值时，参数 **id** 不生效。",
+      ""
+    ],
+    "tables": "| Posts | Patreon | Pixiv Fanbox | Gumroad | SubscribeStar | DLsite | Discord | Fantia |\n| ----- | ------- | ------------ | ------- | ------------- | ------ | ------- | ------ |\n| posts | patreon | fanbox       | gumroad | subscribestar | dlsite | discord | fantia |"
+  },
+  {
+    "group": "二次元",
+    "subGroup": "lovelive-anime",
+    "title": "Love Live 官网分类 Topics",
+    "route": {
+      "author": "xojh",
+      "example": "lovelive-anime/topics/otonokizak",
+      "path": "lovelive-anime/topics/:abbr/:category?/:option",
+      "paramsdesc": [
+        "Love Live系列子企划在官网的路径，详见下表",
+        "官网列出的Topics分类，`category` 为 `detail` 时抓取全文，其他分类详见下表",
+        "`option` 为 `detail` 时抓取全文"
+      ],
+      "radar": ""
+    },
+    "tipsMarkDown": [
+      "",
+      "当选择 `posts` 作为参数 **source** 的值时，参数 **id** 不生效。",
+      ""
+    ],
+    "tables": "| 分类名         | 全てのニュース  | 音楽商品 | アニメ映像商品 | キャスト映像商品 | 劇場    | アニメ放送 / 配信 | キャスト配信 / ラジオ | ライブ / イベント | ブック | グッズ | ゲーム | メディア | ご当地情報 | その他 | キャンペーン |\n| -------------- | --------------- | -------- | -------------- | ---------------- | ------- | ----------------- | --------------------- | ----------------- | ------ | ------ | ------ | -------- | ---------- | ------ | ------------ |\n| `category`参数 | <u>*无参数*</u> | music    | anime_movie    | cast_movie       | theater | onair             | radio                 | event             | books  | goods  | game   | media    | local      | other  | campaign     |"
+  },
+  {
+    "group": "二次元",
+    "subGroup": "lovelive-anime",
+    "title": "Love Live 官网 Schedule",
+    "route": {
+      "author": "xojh",
+      "example": "lovelive-anime/schedule",
+      "path": "schedules/:serie?/:category",
+      "paramsdesc": [
+        "Love Live系列子企划简称，详见下表",
+        "官网列出的分类，详见下表"
+      ],
+      "radar": ""
+    },
+    "tipsMarkDown": [
+      "",
+      "当选择 `posts` 作为参数 **source** 的值时，参数 **id** 不生效。",
+      ""
+    ],
+    "tables": "| 分类名         | 全て                   | ライブ | イベント | 生配信    |\n| -------------- | ---------------------- | ------ | -------- | --------- |\n| `category`参数 | <u>*无参数*</u>或`all` | `live` | `event`  | `haishin` |"
+  },
+  {
+    "group": "二次元",
+    "subGroup": "Mox.moe",
+    "title": "首頁",
+    "route": {
+      "author": "czitz",
+      "example": "mo",
+      "path": "mox/:category",
+      "paramsdesc": [
+        "分类，可在对应分类页 URL 中找到"
+      ]
+    },
+    "tipsMarkDown": [
+      "",
+      "在首页将分类参数选择确定后跳转到的分类页面 URL 中，`/l/` 后的字段即为分类参数。",
+      "",
+      "如 [科幻 + 日語 + 日本 + 長篇 + 完結 + 最近更新](https://mox.moe/l/CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL) 的 URL 为 [https://mox.moe/l/CAT%2A 科幻，日本，完結，lastupdate,jpn,l,BL](https://mox.moe/l/CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL)，此时 `/l/` 后的字段为 `CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL`。最终获得路由为 [`/mox/CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL`](https://rsshub.app/mox/CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL)",
+      ""
+    ],
+    "tables": "| 分类名         | 全て                   | ライブ | イベント | 生配信    |\n| -------------- | ---------------------- | ------ | -------- | --------- |\n| `category`参数 | <u>*无参数*</u>或`all` | `live` | `event`  | `haishin` |"
+  },
+  {
+    "group": "二次元",
+    "subGroup": "QooApp",
+    "title": "遊戲庫 - 評論",
+    "route": {
+      "author": "onyR",
+      "example": "qoo-app/apps/comment/767",
+      "path": "qoo-app/apps/:lang?/comment/:i",
+      "paramsdesc": [
+        "語言，見下表，留空為中文",
+        "遊戲 ID，可在 URL 找到"
+      ],
+      "radar": ""
+    },
+    "tipsMarkDown": [
+      "",
+      "在首页将分类参数选择确定后跳转到的分类页面 URL 中，`/l/` 后的字段即为分类参数。",
+      "",
+      "如 [科幻 + 日語 + 日本 + 長篇 + 完結 + 最近更新](https://mox.moe/l/CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL) 的 URL 为 [https://mox.moe/l/CAT%2A 科幻，日本，完結，lastupdate,jpn,l,BL](https://mox.moe/l/CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL)，此时 `/l/` 后的字段为 `CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL`。最终获得路由为 [`/mox/CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL`](https://rsshub.app/mox/CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL)",
+      ""
+    ],
+    "tables": "| 中文 | English | 한국어 | Español | 日本語 | ไทย | Tiếng Việt |\n| ---- | ------- | ------ | ------- | ------ | --- | ---------- |\n|      | en      | ko     | es      | ja     | th  | vi         |"
+  },
+  {
+    "group": "二次元",
+    "subGroup": "QooApp",
+    "title": "資訊",
+    "route": {
+      "author": "onyR",
+      "example": "qoo-app/new",
+      "path": "qoo-app/news/:lang",
+      "paramsdesc": [
+        "語言，見下表，留空為中文"
+      ],
+      "radar": ""
+    },
+    "tipsMarkDown": [
+      "",
+      "在首页将分类参数选择确定后跳转到的分类页面 URL 中，`/l/` 后的字段即为分类参数。",
+      "",
+      "如 [科幻 + 日語 + 日本 + 長篇 + 完結 + 最近更新](https://mox.moe/l/CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL) 的 URL 为 [https://mox.moe/l/CAT%2A 科幻，日本，完結，lastupdate,jpn,l,BL](https://mox.moe/l/CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL)，此时 `/l/` 后的字段为 `CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL`。最终获得路由为 [`/mox/CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL`](https://rsshub.app/mox/CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL)",
+      ""
+    ],
+    "tables": "| 中文 | English |\n| ---- | ------- |\n|      | en      |"
+  },
+  {
+    "group": "二次元",
+    "subGroup": "VCB-Studio",
+    "title": "分类文章",
+    "route": {
+      "author": "xfkswor",
+      "example": "vcb-s/category/work",
+      "path": "vcb-s/category/:cat",
+      "paramsdesc": [
+        "分类"
+      ],
+      "radar": ""
+    },
+    "tipsMarkDown": [
+      "",
+      "在首页将分类参数选择确定后跳转到的分类页面 URL 中，`/l/` 后的字段即为分类参数。",
+      "",
+      "如 [科幻 + 日語 + 日本 + 長篇 + 完結 + 最近更新](https://mox.moe/l/CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL) 的 URL 为 [https://mox.moe/l/CAT%2A 科幻，日本，完結，lastupdate,jpn,l,BL](https://mox.moe/l/CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL)，此时 `/l/` 后的字段为 `CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL`。最终获得路由为 [`/mox/CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL`](https://rsshub.app/mox/CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL)",
+      ""
+    ],
+    "tables": "| 作品项目 | 科普系列 | 计划与日志 |\n| -------- | -------- | ---------- |\n| works    | kb       | planlog    |"
+  },
+  {
+    "group": "二次元",
+    "subGroup": "Vol.moe",
+    "title": "vol",
+    "route": {
+      "author": "oderTonyCha",
+      "example": "vol/finis",
+      "path": "vol/:mode",
+      "paramsdesc": [
+        "模式"
+      ]
+    },
+    "tipsMarkDown": [
+      "",
+      "在首页将分类参数选择确定后跳转到的分类页面 URL 中，`/l/` 后的字段即为分类参数。",
+      "",
+      "如 [科幻 + 日語 + 日本 + 長篇 + 完結 + 最近更新](https://mox.moe/l/CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL) 的 URL 为 [https://mox.moe/l/CAT%2A 科幻，日本，完結，lastupdate,jpn,l,BL](https://mox.moe/l/CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL)，此时 `/l/` 后的字段为 `CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL`。最终获得路由为 [`/mox/CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL`](https://rsshub.app/mox/CAT%2A科幻,日本,完結,lastupdate,jpn,l,BL)",
+      ""
+    ],
+    "tables": "| 连载   | 完结   |\n| ------ | ------ |\n| serial | finish |"
+  },
+  {
+    "group": "二次元",
+    "subGroup": "俺の 3D エロ動画 (oreno3d)",
+    "title": "关键词搜索",
+    "route": {
+      "author": "ueli-sherryl",
+      "example": "oreno3d/search/bronya/latest/",
+      "path": "oreno3d/search/:keyword/:sort/:pagelimit",
+      "paramsdesc": [
+        "关键词",
+        "排序方法，见下表",
+        "最大爬取页面数量，默认为 1"
+      ],
+      "radar": "",
+      "rssbud": ""
+    },
+    "tipsMarkDown": [
+      "",
+      "可配合其他 RSS 解析库 (如`Python`的`feedparser`库) 实现视频的更新检测以及自动下载",
+      ""
+    ],
+    "tables": "| 高評価    | 急上昇 | 新着   | 人気       |\n| --------- | ------ | ------ | ---------- |\n| favorites | hot    | latest | popularity |"
+  },
+  {
+    "group": "二次元",
+    "subGroup": "嘀哩嘀哩 - dilidili",
+    "title": "嘀哩嘀哩番剧更新",
+    "route": {
+      "author": "unShinenn",
+      "path": "dilidili/fanju/:i",
+      "example": "dilidili/fanju/onepunchman",
+      "paramsdesc": [
+        "番剧id"
+      ]
+    },
+    "tipsMarkDown": [
+      "",
+      "可配合其他 RSS 解析库 (如`Python`的`feedparser`库) 实现视频的更新检测以及自动下载",
+      ""
+    ],
+    "tables": "| 高評価    | 急上昇 | 新着   | 人気       |\n| --------- | ------ | ------ | ---------- |\n| favorites | hot    | latest | popularity |"
   }
 ]
