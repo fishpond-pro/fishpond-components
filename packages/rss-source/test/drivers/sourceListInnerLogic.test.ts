@@ -39,7 +39,7 @@ describe('test driver/sourceListInnerLogic', () => {
       const result = runner.init([
         {
           onQuery: () => Promise.resolve(mockMs()),
-          onSubmit: (form) => {
+          onSubmit: (source, form) => {
             expect(form).toEqual(mockForm())
           }
         }
@@ -64,7 +64,7 @@ describe('test driver/sourceListInnerLogic', () => {
       const result = runner.init([
         {
           onQuery: () => Promise.resolve(mockMs()),
-          onSubmit: (form) => {
+          onSubmit: (source, form) => {
             expect(form).toEqual(mockForm())
           }
         }

@@ -19,16 +19,17 @@ export interface RSSSource {
     paramsdesc?: string[]
   },
   tipsMarkDown: string[]
-  tables: string
+  tables?: string[]
 }
 
 export interface PreviewMessage {
   title: string
+  link?: string
 }
 
 export interface SourceListInnerLogicProps {
   onQuery: (arg: { path: string, payload: Record<string,any> }) => Promise<PreviewMessage[]>
-  onSubmit: (arg: { path: string, payload: Record<string,any> }) => void
+  onSubmit: (source: RSSSource, arg: { path: string, payload: Record<string,any> }) => void
 }
 
 export default function sourceListInnerLogic (props: SourceListInnerLogicProps) {
@@ -106,7 +107,10 @@ export default function sourceListInnerLogic (props: SourceListInnerLogicProps) 
       draft.visible = false
     })
     const form = sourcePreviewForm()
-    props.onSubmit(form)   
+    props.onSubmit(
+      currentSource(),
+      form
+    );
 
     selectCurrentSource(null)
   })

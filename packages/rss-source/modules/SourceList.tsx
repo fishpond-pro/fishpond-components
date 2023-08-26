@@ -119,7 +119,11 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
                     </sourceItemRouteParam>
                   ))}
                 </sourceItemRouteParams>
-                <RSSTable tables={currentSource.tables} />
+                {currentSource.tables.map((table, index) => (
+                  <div className="mt-3">
+                    <RSSTable  key={table[0]} tables={table} />
+                  </div>
+                ))}
                 <h3 className="mt-2">参数表单</h3>
                 <sourcePreviewForm className="block border-slate-100 mt-2 pd-2">
                   {Object.keys(logic.sourcePreviewForm().payload).map((key) => (
@@ -139,12 +143,14 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
                 &gt;
               </div>
               <div className="flex-1 relative border border-slate-500 p-2">
-                {logic.previewMessages().length === 0 ? <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">暂无</span> : ''}
-                {logic.previewMessages().map((m, index) => {
+                {logic.previewMessages()?.length === 0 ? <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">暂无</span> : ''}
+                {logic.previewMessages()?.map((m, index) => {
                   return (
-                    <previewMessage className="block mb-2" key={m.title}>
-                      {index+1}.{m.title}
-                    </previewMessage>
+                    <a href={m.link} target="_blank">
+                      <previewMessage className="block mb-2 hover:underline hover:underline-offset-2" key={m.title}>
+                        {index+1}.{m.title}
+                      </previewMessage>
+                    </a>
                   )
                 })}
               </div>
