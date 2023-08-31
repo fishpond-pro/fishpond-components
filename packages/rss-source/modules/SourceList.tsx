@@ -1,4 +1,4 @@
-import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, VirtualLayoutJSON } from '@polymita/renderer';
+import { classNames, h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, VirtualLayoutJSON } from '@polymita/renderer';
 import * as SourceItemModule from './SourceItem'
 
 import * as DrawerModule from 'polymita/components/drawer'
@@ -145,12 +145,22 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
               <div className="flex-1 relative border border-slate-500 p-2">
                 {logic.previewMessages()?.length === 0 ? <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">暂无</span> : ''}
                 {logic.previewMessages()?.map((m, index) => {
+                  const isExpand = logic.expandablePreviewDescriptions[index];
                   return (
-                    <a href={m.link} target="_blank">
-                      <previewMessage className="block mb-2 hover:underline hover:underline-offset-2" key={m.title}>
+                    <previewMessage key={m.title}>
+                      <a href={m.link} className="block mb-2 hover:underline hover:underline-offset-2" target="_blank">
                         {index+1}.{m.title}
-                      </previewMessage>
-                    </a>
+                      </a>
+                      <previewMessageDescription 
+                        className={classNames('px-4 block text-slate-300 relative', { 'line-clamp-2': !isExpand })}
+                      >
+                        <div _html={m.description}></div>
+
+                        <expandDescription className="absolute right-1 bottom-1" onClick={() => logic.toggleDescriptionExpandable(index)}>
+                          { isExpand ? '收起' : '展开'}
+                        </expandDescription>
+                      </previewMessageDescription>
+                    </previewMessage>
                   )
                 })}
               </div>

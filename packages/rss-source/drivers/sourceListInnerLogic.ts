@@ -25,6 +25,7 @@ export interface RSSSource {
 export interface PreviewMessage {
   title: string
   link?: string
+  description?: string // maybe html
 }
 
 export interface SourceListInnerLogicProps {
@@ -115,7 +116,16 @@ export default function sourceListInnerLogic (props: SourceListInnerLogicProps) 
     selectCurrentSource(null)
   })
 
+  const expandablePreviewDescriptions = signal([])
+  const toggleDescriptionExpandable = inputCompute((index: number) => {
+    expandablePreviewDescriptions(draft => {
+      draft[index] = !draft[index]
+    })
+  })
+
   return {
+    expandablePreviewDescriptions,
+    toggleDescriptionExpandable,
     currentSource,
     sourcePreviewForm,
     selectCurrentSource,
