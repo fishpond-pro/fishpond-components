@@ -45,7 +45,7 @@ export const layout = (props: RSSTableProps) => {
 
   const { header, body } = rssTables(props.tables)
   return (
-    <rssTableContainer className="max-w-full overflow-auto">
+    <rssTableContainer className="block pb-2 max-w-full overflow-auto">
       <table className="border">
         <thead>
           <tr>

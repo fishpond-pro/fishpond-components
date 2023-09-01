@@ -124,7 +124,7 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
                 <h3 className="mt-2">参数表单</h3>
                 <sourcePreviewForm className="block border-slate-100 mt-2 pd-2">
                   {Object.keys(logic.sourcePreviewForm().payload).map((key) => (
-                    <sourcePreviewFormItem className="mb-2" key={key}>
+                    <sourcePreviewFormItem className="block mb-2" key={key}>
                       <Input 
                         placeholder={key}
                         value={logic.sourcePreviewForm as any}
@@ -132,7 +132,7 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
                       />
                     </sourcePreviewFormItem>
                   ))}
-                  <fullContentPathLabel className="block mt-2">
+                  <fullContentPathLabel className="block mt-4">
                     指定全文内容的路径
                   </fullContentPathLabel>
                   <Input 
