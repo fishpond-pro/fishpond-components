@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import 'polymita/index.css'
-import SourceList from '@/views/SourceList'
+import SourceList from '@/views/RSSSourceList'
 import sourceMock from './source.json'
 
 export default function Main () {

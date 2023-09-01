@@ -2,10 +2,10 @@ import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft } from '@
 import { after, Signal, signal } from '@polymita/signal'
 import { getParamsFromPath } from '@/utils/index';
 
-export const name = 'SourceItem' as const
+export const name = 'RSSSourcePanel' as const
 export let meta: {
-  props: SourceItemProps,
-  layoutStruct: SourceItemLayout
+  props: RSSSourcePanelProps,
+  layoutStruct: RSSSourcePanelLayout
   patchCommands: []
 }
 
@@ -25,7 +25,7 @@ export interface RSSSource {
   tables?: string[]
 }
 
-export interface SourceItemProps {
+export interface RSSSourcePanelProps {
   value: RSSSource
   width: number
   onClick?: (target: RSSSource) => void
@@ -34,19 +34,19 @@ export interface SourceItemProps {
 export const propTypes = {
 }
 
-export const logic = (props: SignalProps<SourceItemProps>) => {
+export const logic = (props: SignalProps<RSSSourcePanelProps>) => {
   return {
   }
 }
 type LogicReturn = ReturnType<typeof logic>
 
-export type SourceItemLayout = {
+export type RSSSourcePanelLayout = {
   type: 'sourceItemContainer',
   children: [
   ]
 }
 
-export const layout = (props: SourceItemProps) => {
+export const layout = (props: RSSSourcePanelProps) => {
   const logic = useLogic<LogicReturn>();
   
   const { width, value } = props
@@ -86,12 +86,12 @@ export const layout = (props: SourceItemProps) => {
   )
 }
 
-export const styleRules = (props: SourceItemProps, layout: ConvertToLayoutTreeDraft<SourceItemLayout>) => {
+export const styleRules = (props: RSSSourcePanelProps, layout: ConvertToLayoutTreeDraft<RSSSourcePanelLayout>) => {
   return [
   ]
 }
 
-export const designPattern = (props: SourceItemProps, layout: ConvertToLayoutTreeDraft<SourceItemLayout>) => {
+export const designPattern = (props: RSSSourcePanelProps, layout: ConvertToLayoutTreeDraft<RSSSourcePanelLayout>) => {
   const logic = useLogic<LogicReturn>()
   return {}
 }

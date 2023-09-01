@@ -1,10 +1,10 @@
 import { classNames, h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, VirtualLayoutJSON } from '@polymita/renderer';
-import * as SourceItemModule from './SourceItem'
+import * as RSSSourcePanelModule from './RSSSourcePanel'
 
 import * as DrawerModule from 'polymita/components/drawer'
 import * as InputModule from 'polymita/components/input'
 import * as ButtonModule from 'polymita/components/button'
-import * as RSSTableModule from './RSSTable'
+import * as RSSPanelsTableModule from './RSSParamsTable'
 
 import {getParamsFromPath } from '@/utils/index'
 import sourceListInnerLogic, { SourceListInnerLogicProps } from '@/drivers/sourceListInnerLogic'
@@ -19,18 +19,18 @@ export let meta: {
 
 
 export interface SourceListProps extends SourceListInnerLogicProps {
-  sources: SourceItemModule.RSSSource[]
+  sources: RSSSourcePanelModule.RSSSource[]
   width: number
 }
 
 export const propTypes = {
 }
 
-const SourceItem = createFunctionComponent(SourceItemModule)
+const RSSSourcePanel = createFunctionComponent(RSSSourcePanelModule)
 const Drawer = createFunctionComponent(DrawerModule)
 const Input = createFunctionComponent(InputModule)
 const Button = createFunctionComponent(ButtonModule)
-const RSSTable = createFunctionComponent(RSSTableModule)
+const RSSTable = createFunctionComponent(RSSPanelsTableModule)
 
 export const logic = (props: SignalProps<SourceListProps>) => {
   
@@ -66,7 +66,7 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
     <sourceListContainer className="block">
       <div style={{ columnCount: COLUMN_WIDTH }}>
         {props.sources.map(source => (
-          <SourceItem 
+          <RSSSourcePanel 
             width={columnWidth} 
             key={`${source.group}-${source.subGroup}-${source.title}`}
             value={source}
