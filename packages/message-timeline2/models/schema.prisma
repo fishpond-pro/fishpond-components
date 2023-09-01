@@ -13,6 +13,7 @@ model Source {
   id Int      @id @default(autoincrement())
   channel String @unique // source url 或 rpa id
   lastUpdatedDate DateTime
+  fullContentPath String?
   data  Message[]
 
   createdAt   DateTime @default(now())
