@@ -26,6 +26,10 @@ export interface PreviewMessage {
   title: string
   link?: string
   description?: string // maybe html
+  content?: string | {
+    html?: string
+    [k: string]: string
+  }
 }
 
 export interface SourceListInnerLogicProps {
@@ -36,9 +40,14 @@ export interface SourceListInnerLogicProps {
 export default function sourceListInnerLogic (props: SourceListInnerLogicProps) {
   const currentSource = signal<RSSSource>(null)
 
-  const sourcePreviewForm = signal<{ path: string, payload: Record<string, string> }>({
+  const sourcePreviewForm = signal<{
+    path: string,
+    payload: Record<string, string>
+    fullContentPath?: string
+  }>({
     path: '',
     payload: {} ,
+    fullContentPath: ''
   })
 
   const selectCurrentSource = inputCompute((source?: RSSSource) => {

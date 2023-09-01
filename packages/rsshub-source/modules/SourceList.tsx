@@ -131,12 +131,15 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
                       <Input 
                         placeholder={key}
                         value={logic.sourcePreviewForm as any}
-                        onInput={v => {
-                        }}
                         value-path={['payload', key]} 
                       />
                     </div>
                   ))}
+                  <Input 
+                    placeholder='full content path'
+                    value={logic.sourcePreviewForm as any}
+                    value-path={['fullContentPath']}
+                  />
                 </sourcePreviewForm>
               </div>
               <div className="flex mx-4 items-center justify-center">
@@ -144,7 +147,9 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
               </div>
               <div className="flex-1 relative border border-slate-500 p-2">
                 {logic.previewMessages()?.length === 0 ? <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">暂无</span> : ''}
-                {logic.previewMessages()?.map((m, index) => {
+                
+                
+                {/* {logic.previewMessages()?.map((m, index) => {
                   const isExpand = logic.expandablePreviewDescriptions[index];
                   return (
                     <previewMessage key={m.title}>
@@ -161,6 +166,14 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
                         </expandDescription>
                       </previewMessageDescription>
                     </previewMessage>
+                  )
+                })} */}
+
+                {logic.previewMessages()?.map((m, index) => {
+                  return (
+                    <pre key={m.title} className="p-4 border my-2">
+                      {JSON.stringify(m, null, 2)}
+                    </pre>
                   )
                 })}
               </div>
