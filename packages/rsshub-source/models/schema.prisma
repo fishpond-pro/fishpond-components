@@ -8,3 +8,9 @@ generator client {
   output          = "./customPrismaClient/client"
   previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
+
+model RSSHub_Source_Item {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+}

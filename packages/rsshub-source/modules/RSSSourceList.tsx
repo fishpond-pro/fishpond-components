@@ -56,12 +56,7 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
   const columnWidth = props.width / COLUMN_WIDTH
 
   const currentSource = logic.currentSource()
-  console.log('currentSource: ', currentSource);
-
   const params = currentSource && getParamsFromPath(currentSource.route.path, currentSource.route.paramsdesc)
-
-  console.log('logic.previewMessages(): ', logic.sourcePreviewForm().payload);
-
   return (
     <sourceListContainer className="block">
       <div style={{ columnCount: COLUMN_WIDTH }}>
@@ -119,22 +114,27 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
                     </sourceItemRouteParam>
                   ))}
                 </sourceItemRouteParams>
-                {currentSource.tables.map((table, index) => (
-                  <div className="mt-3">
-                    <RSSTable  key={table[0]} tables={table} />
-                  </div>
-                ))}
+                {[].concat(currentSource.tables).filter(Boolean).map((table, index) => {
+                  return (
+                    <div key={table} className="mt-3">
+                      <RSSTable tables={table} />
+                    </div>
+                  )
+                })}
                 <h3 className="mt-2">参数表单</h3>
                 <sourcePreviewForm className="block border-slate-100 mt-2 pd-2">
                   {Object.keys(logic.sourcePreviewForm().payload).map((key) => (
-                    <div className="mb-2">
+                    <sourcePreviewFormItem className="mb-2" key={key}>
                       <Input 
                         placeholder={key}
                         value={logic.sourcePreviewForm as any}
                         value-path={['payload', key]} 
                       />
-                    </div>
+                    </sourcePreviewFormItem>
                   ))}
+                  <fullContentPathLabel className="block mt-2">
+                    指定全文内容的路径
+                  </fullContentPathLabel>
                   <Input 
                     placeholder='full content path'
                     value={logic.sourcePreviewForm as any}

@@ -49,16 +49,16 @@ export const layout = (props: RSSTableProps) => {
       <table className="border">
         <thead>
           <tr>
-            {header.map(t => (
-              <th key={t} className="px-2 py-1">{t}</th>
+            {header.map((t, i) => (
+              <th key={t+i} className="px-2 py-1">{t}</th>
             ))}
           </tr>
         </thead>
         <tbody>
           {body.map(row => (
             <tr className="border-t">
-              {row.map(t => (
-                <td key={t} className="px-2 py-1">{t}</td>
+              {row.map((t, i) => (
+                <td key={t + i} className="px-2 py-1">{t}</td>
               ))}
             </tr>
           ))}
