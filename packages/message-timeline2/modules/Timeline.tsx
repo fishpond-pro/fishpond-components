@@ -1,6 +1,6 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, StyleRule, VirtualLayoutJSON } from '@polymita/renderer';
-import { after, Signal, signal } from '@polymita/signal-model'
-import * as MessageModule from './MessageDirection'
+import { after, Signal, signal } from '@polymita/signal'
+import * as MessageDirectionModule from './MessageDirection'
 import type { MessageItem } from '@/drivers/message';
 
 export const name = 'Timeline' as const
@@ -46,7 +46,7 @@ function split (messages: MessageItem[]) {
   return [left, right];
 }
 
-const Message = createFunctionComponent(MessageModule, {
+const MessageDirection = createFunctionComponent(MessageDirectionModule, {
   patchRules (props, draft) {
     return [
       {
@@ -67,11 +67,11 @@ export const layout = (props: TimelineProps): VirtualLayoutJSON => {
   const [left, right] = split(messagesData);
 
   return (
-    <timelineContainer className='block p-2 flex relative'>
+    <timelineContainer className='p-2 flex relative'>
       <leftLine className='flex-1 min-w-0'>
         {left.map((message) => {
           return (
-            <Message
+            <MessageDirection
               key={message.id}
               title={message.title}
               description={message.description}
@@ -86,7 +86,7 @@ export const layout = (props: TimelineProps): VirtualLayoutJSON => {
       <rightLine className='flex-1 min-w-0'>
         {right.map((message) => {
           return (
-            <Message
+            <MessageDirection
               key={message.id}
               title={message.title}
               description={message.description}

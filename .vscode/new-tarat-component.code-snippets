@@ -2,7 +2,7 @@
   "tarat component": {
     "prefix": "new-cpt",
     "body": [
-      "import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft } from '@polymita/renderer';",
+      "import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, VirtualLayoutJSON } from '@polymita/renderer';",
       "import { after, Signal, signal } from '@polymita/signal'",
       "",
       "export const name = '${2:${TM_DIRECTORY/^.+[\\/\\\\]+(.)(.*)$/${1:/upcase}$2/}}' as const",
@@ -29,10 +29,11 @@
       "  children: [",
       "  ]",
       "}",
-      "export const layout = (props: $2Props) => {",
+      "export const layout = (props: $2Props): VirtualLayoutJSON => {",
       "  const logic = useLogic<LogicReturn>()",
       "  return (",
-      "    h('${TM_DIRECTORY/^.+[\\/\\\\]+(.*)$/$1/}Container', {})",
+      "    <${TM_DIRECTORY/^.+[\\/\\\\]+(.*)$/$1/}Container>",
+      "    </${TM_DIRECTORY/^.+[\\/\\\\]+(.*)$/$1/}Container>",
       "  )",
       "}",
       "",

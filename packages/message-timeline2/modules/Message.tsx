@@ -8,9 +8,10 @@ export let meta: {
 }
 
 export interface MessageProps {
+  className?: string,
   title: string,
   description: string,
-  footer: string
+  footer?: string
   createdAt: string | Date; // Date.toString()
 }
 
@@ -32,7 +33,7 @@ export const layout = (props: MessageProps) => {
   const logic = useLogic<LogicReturn>();
 
   return (
-    <messageContainer className="block border rounded-md overflow-hidden">
+    <messageContainer className={`block border rounded-md overflow-hidden ${props.className}`}>
       <messageTitle className="text-slate-800 block p-2 text-lg">{props.title}</messageTitle>
       <messageContent className="text-slate-400 block p-2 truncate">{props.description}</messageContent>
       <messageFooter className="text-slate-500 block border-t p-2 text-xs">{props.footer}</messageFooter>
