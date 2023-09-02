@@ -145,7 +145,7 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
               <div className="flex mx-4 items-center justify-center">
                 &gt;
               </div>
-              <div className="flex-1 relative border border-slate-500 p-2">
+              <div className="flex-1 relative border border-slate-500 p-2 min-w-0">
                 {logic.previewMessages()?.length === 0 ? <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">暂无</span> : ''}
                 
                 

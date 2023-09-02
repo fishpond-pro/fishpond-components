@@ -1,5 +1,5 @@
 {
-  "name": "@polymita/rss-source",
+  "name": "@polymita/rsshub-source",
   "version": "1.0.1",
   "tarat": {},
   "description": "a tarat unit",
@@ -34,6 +34,7 @@
     "@polymita/signal-model": "workspace:*",
     "@prisma/client": "^4.2.1",
     "@types/jest": "^29.5.3",
+    "fast-xml-parser": "^4.2.4",
     "immer": "^9.0.14",
     "lodash": "^4.17.21",
     "polymita": "workspace:*",

@@ -107,7 +107,6 @@ buildDeps().then(() => {
         }).then(() => {
           return Promise.all(allPackages.map(publish))
         }).then(() => {
-          console.timeEnd('release')
         });
     }
   })

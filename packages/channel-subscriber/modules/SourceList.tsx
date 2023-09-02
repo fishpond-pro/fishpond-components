@@ -45,8 +45,6 @@ export const layout = (props: SourceListProps) => {
   } = useLogic<LogicReturn>()
 
 
-  const list = props.list()
-
   return (
     <sourceListContainer className="block">
       <listHeader className="flex p-2">

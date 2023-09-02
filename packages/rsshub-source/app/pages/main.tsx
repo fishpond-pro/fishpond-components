@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react'
 import 'polymita/index.css'
 import SourceList from '@/views/RSSSourceList'
 import sourceMock from './source.json'
+import sourceMock2 from '@/shared/source-mock'
+import { toRSS_JSON } from '@/shared/utils'
 
 export default function Main () {
   const listDIVRef = useRef<HTMLDivElement>(null)
@@ -38,14 +40,7 @@ export default function Main () {
           sources={sourceMock} 
           onQuery={(form) => {
             console.log('[onQuery] form: ', form);
-            return [
-              {
-                title: 'mock message',
-              },
-              {
-                title: 'my message2',
-              },
-            ]
+            return toRSS_JSON(sourceMock2).item
           }}
           onSubmit={(form) => {
             console.log('[onSubmit] form: ', form);

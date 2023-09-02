@@ -1,5 +1,5 @@
 {
-  "name": "@polymita/source-subscriber",
+  "name": "@polymita/channel-subscriber",
   "version": "1.0.10",
   "tarat": {},
   "description": "a tarat unit",
