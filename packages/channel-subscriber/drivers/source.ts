@@ -43,7 +43,7 @@ export type RPA = {
 
 export default function source () {
 
-  const ds = model<DataSource[]>(indexes.dataSource, () => ({
+  const ds = model<DataSource[]>(indexes.subscribedChannel, () => ({
     orderBy: {
       modifiedAt: 'desc',
     },

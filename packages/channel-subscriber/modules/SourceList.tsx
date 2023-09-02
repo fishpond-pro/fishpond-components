@@ -16,7 +16,7 @@ export interface SourceListProps {
   onSubmit?: AddSourceModule.AddSourceProps['onSubmit']
   list: Signal<DataSource[]>
   onClick?: (ds: DataSource, index: number) => void;
-  modal?: boolean
+  internalModal?: boolean
   onClickPlus?: () => void;
 }
 
@@ -48,39 +48,39 @@ export const layout = (props: SourceListProps) => {
   const list = props.list()
 
   return (
-    h('sourceListContainer', { class: 'block' },
-      h('listHeader', { class: 'flex p-2' }, 
-        h('listTitle', { class: 'flex-1' },
-          props.title
-        ),
-        h('addSourceEntry', {
-          className: 'inline-block w-[24px] text-center cursor-pointer',
-          onClick() {
-            if (props.modal) {
+    <sourceListContainer className="block">
+      <listHeader className="flex p-2">
+        <listTitle className="flex-1">
+          {props.title}
+        </listTitle>
+        <addSourceEntry
+          className="inline-block w-[24px] text-center cursor-pointer"
+          onClick={() => {
+            if (props.internalModal) {
               sourceModalVisible(true)
             } else {
               props.onClickPlus?.();
             }
-          }
-        },
-          '+'
-        )
-      ),
-      h(ListCpt, { list: props.list as any, render: (item: DataSource, i: number) => {
+          }}
+        >
+          +
+        </addSourceEntry>
+      </listHeader>
+      <ListCpt list={props.list} render={(item: DataSource, i: number) => {
         const name = item.type === 0 ? item.rss?.name : item.type === 1 ? item.rpa?.name : '';
-        return h(
-          'listContent',
-          {
-            class: 'block',
-            onClick () {
+        return (
+          <listContent
+            className="block"
+            onClick={() => {
               props.onClick?.(item, i);
-            } 
-          }, 
-          `${i+1}.${name}`
+            }}
+          >
+            {`${i + 1}.${name}`}
+          </listContent>
         )
-      } }),
-      h(AddSourceCpt, { visible: sourceModalVisible, onSubmit: props.onSubmit })
-    )
+      }} />
+      <AddSourceCpt visible={sourceModalVisible} onSubmit={props.onSubmit} />
+    </sourceListContainer>
   )
 }
 
