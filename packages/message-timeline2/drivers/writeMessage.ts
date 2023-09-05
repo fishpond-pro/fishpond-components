@@ -14,7 +14,7 @@ export default function writeMessage () {
   const { messages } = compose(messageDriver)
 
   // source
-  const sourceModel = prisma<Source[]>(indexes.source);
+  const sourceModel = prisma<Source[]>(indexes.channelRecord);
 
   const writeSource = writePrisma(sourceModel);
   const saveSource = inputComputeInServer(async (param: Source) => {
@@ -37,7 +37,7 @@ export default function writeMessage () {
   });
 
   // content
-  const contentModel = prisma<Content[]>(indexes.content);
+  const contentModel = prisma<Content[]>(indexes.messageContent);
   const writeContent = writePrisma(contentModel);
   const saveContent = inputComputeInServer(async (param: Content) => {
     if (param.id) {

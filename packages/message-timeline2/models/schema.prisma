@@ -9,7 +9,7 @@ generator client {
   previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
-model Source {
+model ChannelRecord {
   id Int      @id @default(autoincrement())
   channel String @unique // source url 或 rpa id
   lastUpdatedDate DateTime
@@ -27,15 +27,15 @@ model Message {
   time DateTime?
   description String?
   type String // article/video/audio
-  content Content?
-  source Source @relation(fields: [sourceId], references: [id])
-  sourceId Int
+  content MessageContent?
+  channelRecord ChannelRecord @relation(fields: [channelRecordId], references: [id])
+  channelRecordId Int
 
   createdAt   DateTime @default(now())
   modifiedAt  DateTime @default(now()) @updatedAt
 }
 
-model Content {
+model MessageContent {
   id Int @id @default(autoincrement())
   title String
   description String
