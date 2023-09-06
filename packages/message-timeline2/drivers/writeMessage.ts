@@ -7,21 +7,21 @@ import {
   writePrisma,
 } from '@polymita/signal-model'
 import indexes from '@/models/indexes.json'
-import messageDriver, { Content, MessageItem, Source } from './message';
+import messageDriver, { MessageContent, MessageItem, ChannelRecord } from './message';
 
 
 export default function writeMessage () {
   const { messages } = compose(messageDriver)
 
   // source
-  const sourceModel = prisma<Source[]>(indexes.channelRecord);
+  const sourceModel = prisma<ChannelRecord[]>(indexes.channelRecord);
 
-  const writeSource = writePrisma(sourceModel);
-  const saveSource = inputComputeInServer(async (param: Source) => {
+  const writeChannelRecord = writePrisma(sourceModel);
+  const saveChannelRecord = inputComputeInServer(async (param: ChannelRecord) => {
     if (param.id) {
-      await writeSource.update(param.id, param)
+      await writeChannelRecord.update(param.id, param)
     } else {
-      await writeSource.create(param)
+      await writeChannelRecord.create(param)
     }
   })
 
@@ -37,20 +37,20 @@ export default function writeMessage () {
   });
 
   // content
-  const contentModel = prisma<Content[]>(indexes.messageContent);
-  const writeContent = writePrisma(contentModel);
-  const saveContent = inputComputeInServer(async (param: Content) => {
+  const contentModel = prisma<MessageContent[]>(indexes.messageContent);
+  const writeMessageContent = writePrisma(contentModel);
+  const saveMessageContent = inputComputeInServer(async (param: MessageContent) => {
     if (param.id) {
-      await writeContent.update(param.id, param)
+      await writeMessageContent.update(param.id, param)
     } else {
-      await writeContent.create(param)
+      await writeMessageContent.create(param)
     }
   });
 
   return {
     messages,
-    saveSource,
+    saveChannelRecord,
     saveMessage,
-    saveContent,
+    saveMessageContent,
   }
 }

@@ -8,7 +8,7 @@ import indexes from '@/models/indexes.json'
  * Model Source
  * 
  */
-export type Source = {
+export type ChannelRecord = {
   id: number
   platform: string
   createdAt: Date
@@ -26,18 +26,18 @@ export type MessageItem = {
   time: Date | null
   description: string | null
   type: string
-  sourceId: number
+  channelRecordId: number
   createdAt: Date
   modifiedAt: Date
 
-  source?: Source
+  channelRecord?: ChannelRecord
 }
 
 /**
  * Model Content
  * 
  */
-export type Content = {
+export type MessageContent = {
   id: number
   title: string
   description: string
@@ -56,7 +56,7 @@ export default function message () {
       createdAt: 'desc'
     },
     include: {
-      source: true
+      channelRecord: true
     }
   }))
 

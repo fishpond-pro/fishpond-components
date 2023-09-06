@@ -75,7 +75,7 @@ export const layout = (props: TimelineProps): VirtualLayoutJSON => {
               key={message.id}
               title={message.title}
               description={message.description}
-              footer={message.source?.platform}
+              footer={message.channelRecord?.platform}
               createdAt={message.createdAt}
               direction='left'
             />
@@ -90,7 +90,7 @@ export const layout = (props: TimelineProps): VirtualLayoutJSON => {
               key={message.id}
               title={message.title}
               description={message.description}
-              footer={message.source?.platform}
+              footer={message.channelRecord?.platform}
               createdAt={message.createdAt}
               direction='right'
             />
