@@ -67,6 +67,7 @@ export default function sourceListInnerLogic (props: SourceListInnerLogicProps) 
         draft.path = '';
         draft.payload = {}
       })
+      previewMessages(() => [])
     }
   });
 

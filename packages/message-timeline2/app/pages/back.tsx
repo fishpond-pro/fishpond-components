@@ -20,7 +20,7 @@ export default function Main () {
     description: '基于Nop平台中内置的NopOrm引擎',
     type: 'article',
     link: 'https://zhuanlan.zhihu.com/p/618851796',
-    source: {
+    channelRecord: {
       connect: {
         id: 1
       }
@@ -57,7 +57,7 @@ export default function Main () {
         </textarea>
       </div>
       <Button variant="contained" onClick={() => {
-        wmDriver.saveSource(JSON.parse(source))
+        wmDriver.saveChannelRecord(JSON.parse(source))
       } }>Save Source</Button>
 
       <hr className="m-2 w-[200px]" />
@@ -77,7 +77,7 @@ export default function Main () {
         </textarea>
       </div>
       <Button variant="contained" onClick={() => {
-        wmDriver.saveContent(JSON.parse(content));
+        wmDriver.saveMessageContent(JSON.parse(content));
       }}>Save Content</Button>
     </div>
   )

@@ -84,7 +84,7 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
             >submit</Button>,
           ]}
         >
-          <div className="flex flex-col mg-2">
+          <sourceParamsTop className="flex flex-col mg-2 h-full">
             <submitConfirmMessage
               if={logic.showSubmitConfirm().visible}
               className="flex mb-2 p-2 border border-yellow-600 justify-between items-center text-yellow-600"
@@ -94,8 +94,8 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
               </span>
               <Button onClick={() => logic.showSubmitConfirm()} type="primary" >Sure</Button>
             </submitConfirmMessage>
-            <div className="flex flex-row">
-              <div className="flex-1 min-w-0">
+            <rowParams className="flex flex-row h-full">
+              <leftParams className="flex-1 min-w-0">
                 <sourceItemRoute className="block break-all">
                   <span className='mr-1 text-gray-500'>路径:</span>
                   /{currentSource.route.path}
@@ -141,11 +141,11 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
                     value-path={['fullContentPath']}
                   />
                 </sourcePreviewForm>
-              </div>
-              <div className="flex mx-4 items-center justify-center">
+              </leftParams>
+              <arrowSymbol className="flex mx-4 items-center justify-center">
                 &gt;
-              </div>
-              <div className="flex-1 relative border border-slate-500 p-2 min-w-0">
+              </arrowSymbol>
+              <rightPreviewContainer className="flex-1 relative border border-slate-500 p-2 min-w-0 overflow-auto">
                 {logic.previewMessages()?.length === 0 ? <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">暂无</span> : ''}
                 
                 
@@ -171,14 +171,14 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
 
                 {logic.previewMessages()?.map((m, index) => {
                   return (
-                    <pre key={m.title} className="p-4 border my-2">
+                    <pre key={m.title + index} className="p-4 border my-2">
                       {JSON.stringify(m, null, 2)}
                     </pre>
                   )
                 })}
-              </div>
-            </div>
-          </div>
+              </rightPreviewContainer>
+            </rowParams>
+          </sourceParamsTop>
         </Drawer>
       )}
     </sourceListContainer>
