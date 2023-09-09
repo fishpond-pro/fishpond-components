@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import 'polymita/index.css'
 import SourceList from '@/views/RSSSourceList'
-import sourceMock from './source.json'
-import sourceMock2 from '@/shared/source-mock'
+import rsshubSourcesMock from '@/shared/rsshub-sources.json'
+import sourceMock2 from '@/shared/rss-mock'
 import { toRSS_JSON } from '@/shared/utils'
 
 export default function Main () {
@@ -37,8 +37,8 @@ export default function Main () {
       {width >= 0 ? (
         <SourceList 
           width={width} 
-          sources={sourceMock} 
-          onQuery={(form) => {
+          sources={rsshubSourcesMock as any} 
+          onQuery={async (form) => {
             console.log('[onQuery] form: ', form);
             return toRSS_JSON(sourceMock2).item
           }}

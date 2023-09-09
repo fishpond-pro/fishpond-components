@@ -1,4 +1,5 @@
 import { classNames, h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, VirtualLayoutJSON } from '@polymita/renderer';
+import showdown from 'showdown'
 import * as RSSSourcePanelModule from './RSSSourcePanel'
 
 import * as DrawerModule from 'polymita/components/drawer'
@@ -105,8 +106,9 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
                 </sourceItemRoute>
                 <sourceItemRouteParams if={!!params.length} className="block">
                   {params.map(p => (
-                    <sourceItemRouteParam className="block">
-                      <span className="px-[4px] py-[2px] bg-slate-100 text-gray-600">{p.name}</span>
+                    <sourceItemRouteParam className="flex items-center">
+                      <span className="ml-2 inline-block bg-black rounded-full w-[6px] h-[6px]" ></span>
+                      <span className="ml-2 px-[4px] py-[2px] bg-slate-100 text-gray-600">{p.name}</span>
                       ,
                       {p.optional ? '可选' : '必选'}
                       ,
@@ -121,26 +123,38 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
                     </div>
                   )
                 })}
-                <h3 className="mt-2">参数表单</h3>
-                <sourcePreviewForm className="block border-slate-100 mt-2 pd-2">
-                  {Object.keys(logic.sourcePreviewForm().payload).map((key) => (
-                    <sourcePreviewFormItem className="block mb-2" key={key}>
-                      <Input 
-                        placeholder={key}
-                        value={logic.sourcePreviewForm as any}
-                        value-path={['payload', key]} 
-                      />
-                    </sourcePreviewFormItem>
-                  ))}
-                  <fullContentPathLabel className="block mt-4">
-                    指定全文内容的路径
-                  </fullContentPathLabel>
-                  <Input 
-                    placeholder='full content path'
-                    value={logic.sourcePreviewForm as any}
-                    value-path={['fullContentPath']}
-                  />
-                </sourcePreviewForm>
+                <sourceItemParamTips className="block mt-2 p-4 bg-slate-200">
+                  {currentSource.tipsMarkDown.map(tip => {
+                    const converter = new showdown.Converter();
+                    const html = converter.makeHtml(tip);
+                    return (
+                      <div className="break-all mb-2" _html={html}></div>                    
+                    )
+                  })}
+                </sourceItemParamTips>
+
+                <sourceExtraParamBox className="block p-2 border my-2">
+                  <h3 className="mt-2">参数表单</h3>
+                  <sourcePreviewForm className="block border-slate-100 mt-2 pd-2">
+                    {Object.keys(logic.sourcePreviewForm().payload).map((key) => (
+                      <sourcePreviewFormItem className="block mb-2" key={key}>
+                        <Input 
+                          placeholder={key}
+                          value={logic.sourcePreviewForm as any}
+                          value-path={['payload', key]} 
+                        />
+                      </sourcePreviewFormItem>
+                    ))}
+                    <fullContentPathLabel className="block mt-4">
+                      指定全文内容的路径
+                    </fullContentPathLabel>
+                    <Input 
+                      placeholder='full content path'
+                      value={logic.sourcePreviewForm as any}
+                      value-path={['fullContentPath']}
+                    />
+                  </sourcePreviewForm>
+                </sourceExtraParamBox>
               </leftParams>
               <arrowSymbol className="flex mx-4 items-center justify-center">
                 &gt;

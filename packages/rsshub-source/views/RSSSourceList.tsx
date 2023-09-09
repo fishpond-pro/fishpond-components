@@ -4,8 +4,7 @@ import { RenderToReact } from '@/shared/render';
 
 const Component = RenderToReact(ComponentModule);
 
-const Timeline = (props: any) => {
-  console.log('props: ', props);
+const Timeline = (props: ComponentModule.SourceListProps) => {
 
   return (
     <Component {...props} />
