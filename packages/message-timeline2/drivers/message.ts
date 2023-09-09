@@ -1,5 +1,6 @@
 import {
   prisma,
+  signal,
   state,
 } from '@polymita/signal-model'
 import indexes from '@/models/indexes.json'
@@ -51,16 +52,30 @@ export type MessageContent = {
 
 export default function message () {
 
-  const messages = prisma<MessageItem[]>(indexes.message, () => ({
-    orderBy: {
-      createdAt: 'desc'
-    },
-    include: {
-      channelRecord: true
+  const params = signal<{ id: number,channelRecordId: number }>({
+    id: undefined,
+    channelRecordId: undefined,
+  })
+
+  const messages = prisma<MessageItem[]>(indexes.message, () => {
+    const payload = params()
+
+    return {
+      orderBy: {
+        createdAt: 'desc'
+      },
+      where: {
+        // id: payload.id,
+        channelRecordId: payload.channelRecordId
+      },
+      include: {
+        channelRecord: true
+      }
     }
-  }))
+  })
 
   return {
+    params,
     messages,
   }
 }
