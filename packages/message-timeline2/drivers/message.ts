@@ -1,4 +1,5 @@
 import {
+  inputComputeInServer,
   prisma,
   signal,
   state,
@@ -52,8 +53,8 @@ export type MessageContent = {
 
 export default function message () {
 
-  const params = signal<{ id: number,channelRecordId: number }>({
-    id: undefined,
+  const params = signal<{ messageId: number,channelRecordId: number }>({
+    messageId: undefined,
     channelRecordId: undefined,
   })
 
@@ -65,7 +66,7 @@ export default function message () {
         createdAt: 'desc'
       },
       where: {
-        // id: payload.id,
+        id: payload.messageId,
         channelRecordId: payload.channelRecordId
       },
       include: {
@@ -74,8 +75,36 @@ export default function message () {
     }
   })
 
+  const queryMessageByChannelRecord = inputComputeInServer(function * (id: number) {
+    params(draft => {
+      Object.assign(draft, {
+        messageId: undefined,
+        channelRecordId: id,
+      });
+    })
+  })
+  const queryMessageByMessageId = inputComputeInServer(function * (id: number) {
+    params(draft => {
+      Object.assign(draft, {
+        messageId: id,
+        channelRecordId: undefined,
+      });
+    })
+  })
+
+  const queryMessageAll = inputComputeInServer(function * () {
+    params(draft => {
+      Object.assign(draft, {
+        messageId: undefined,
+        channelRecordId: undefined,
+      });
+    })
+  })
+
   return {
-    params,
+    queryMessageByChannelRecord,
+    queryMessageByMessageId,
+    queryMessageAll,
     messages,
   }
 }

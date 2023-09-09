@@ -4,8 +4,7 @@ import { RenderToReact } from '@/shared/render';
 
 const SingleTimelineComponent = RenderToReact(SingleTimelineModule);
 
-const Timeline = (props: any) => {
-  console.log('props: ', props);
+const Timeline = (props: SingleTimelineModule.SingleTimelineProps) => {
 
   return (
     <SingleTimelineComponent {...props} />

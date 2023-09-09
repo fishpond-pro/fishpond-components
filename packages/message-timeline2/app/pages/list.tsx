@@ -7,29 +7,30 @@ export default function Main () {
 
   const message = useSignal(messageDriver);  
   
-  console.log('message: ', message.messages());
-
   const [mid, setMid] = React.useState<number>(0);
 
   useEffect(() => {
     if (mid) {
-      message.params(d => {
-        d.channelRecordId = mid;
-      })
-    } else {
-      message.params(d => ({}))
+      message.queryMessageByMessageId(mid)
     }
   }, [mid])
 
   return (
     <div className='main w-[300px] p-4'>
-      <input 
-        type="number" 
-        placeholder='message.id'
-        className="mb-4 w-full p-2 border border-gray-300 rounded-md" 
-        value={mid} 
-        onChange={(e) => { setMid(parseInt(e.target.value)) }}
-      />
+      <p>
+        <input 
+          type="number" 
+          placeholder='message.id'
+          className="mb-4 w-full p-2 border border-gray-300 rounded-md" 
+          value={mid} 
+          onChange={(e) => { setMid(parseInt(e.target.value)) }}
+        />
+      </p>
+      <p>
+        <button 
+          className="border p-2 mb-4"
+          onClick={() => message.queryMessageAll()}>queryMessageAll</button>
+      </p>
 
       <SingleTimeline messages={message.messages} />
     </div>
