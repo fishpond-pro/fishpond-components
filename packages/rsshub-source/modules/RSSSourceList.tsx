@@ -10,7 +10,6 @@ import * as RSSPanelsTableModule from './RSSParamsTable'
 import {getParamsFromPath } from '@/utils/index'
 import sourceListInnerLogic, { SourceListInnerLogicProps } from '@/drivers/sourceListInnerLogic'
 
-
 export const name = 'SourceList' as const
 export let meta: {
   props: SourceListProps,
