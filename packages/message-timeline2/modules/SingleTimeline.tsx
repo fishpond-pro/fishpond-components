@@ -12,6 +12,7 @@ export let meta: {
 
 export interface SingleTimelineProps {
   messages: Signal<MessageItem[]>
+  onClick?: (item: MessageItem, index: number) => void;
 }
 
 export const propTypes = {
@@ -41,6 +42,7 @@ export const layout = (props: SingleTimelineProps): VirtualLayoutJSON => {
       {messagesData.map((message, index) => {
         return (
           <Message
+            onClick={() => props.onClick(message, index)}
             key={message.title + index}
             className="mb-2"
             title={message.title}

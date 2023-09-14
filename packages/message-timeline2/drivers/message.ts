@@ -70,7 +70,7 @@ export default function message () {
         channelRecordId: payload.channelRecordId
       },
       include: {
-        channelRecord: true
+        channelRecord: true,
       }
     }
   })

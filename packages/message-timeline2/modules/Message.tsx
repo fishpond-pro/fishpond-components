@@ -13,6 +13,7 @@ export interface MessageProps {
   description: string,
   footer?: string
   createdAt: string | Date; // Date.toString()
+  onClick: () => void;
 }
 
 export const propTypes = {
@@ -33,7 +34,7 @@ export const layout = (props: MessageProps) => {
   const logic = useLogic<LogicReturn>();
 
   return (
-    <messageContainer className={`block border rounded-md overflow-hidden ${props.className}`}>
+    <messageContainer onClick={props.onClick} className={`block border rounded-md overflow-hidden ${props.className}`}>
       <messageTitle className="text-slate-800 block p-2 text-lg">{props.title}</messageTitle>
       <messageContent className="text-slate-400 block p-2 truncate">{props.description}</messageContent>
       <messageFooter className="text-slate-500 block border-t p-2 text-xs">{props.footer}</messageFooter>

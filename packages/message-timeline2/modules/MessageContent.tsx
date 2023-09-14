@@ -44,7 +44,7 @@ export const layout = (props: MessageContentProps): VirtualLayoutJSON => {
         <messageContentTitle className='text-lg font-bold'>{props.title}</messageContentTitle>
       </messageContentHeader>
       <messageContentBody className='flex flex-col'>
-        <messageContentLink className='text-sm text-gray-600' >
+        <messageContentLink className='text-sm text-gray-600 p-4 bg-slate-100 my-2 rounded-sm ' >
           <a href={props.contentLink} >{props.contentLink}</a>
         </messageContentLink>
         <messageContentDescription className='text-sm text-gray-600' _html={props.description} />
