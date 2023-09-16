@@ -19,6 +19,8 @@ export default function Main () {
   const [current, setCurrent] = useState<MessageItem>()
   console.log('current: ', current);
 
+  const item = message.currentMessageItem();
+
   return (
     <div className='flex h-screen'>
       <div className='main w-[300px] p-4'>
@@ -40,17 +42,18 @@ export default function Main () {
         <SingleTimeline 
           messages={message.messages} 
           onClick={item => {
-            setCurrent(item)
+            message.selectMessage(item)
           }}
         />
       </div>
       <div className='flex-1 border p-4 h-full min-h-0'>
-        {current && (
+        {item && (
           <MessageContent
+            mode='new-window'
             displayType='normal'
-            title={current.title}
-            description={current.description}
-            contentLink={current.link}
+            title={item.title}
+            description={item.description}
+            contentLink={item.link}
           />
         )}
       </div>

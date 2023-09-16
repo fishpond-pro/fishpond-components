@@ -16,13 +16,18 @@ export interface MessageContentProps {
   contentLink?: string
 
   displayType: 'drawer' | 'modal' | 'normal'
+
+  mode: 'iframe' | 'new-window'
 }
 
 export const propTypes = {
 }
 
 export const logic = (props: SignalProps<MessageContentProps>) => {
+  const showIframe = signal(false);
+
   return {
+    showIframe,
   }
 }
 type LogicReturn = ReturnType<typeof logic>
@@ -33,9 +38,11 @@ export type MessageContentLayout = {
   ]
 }
 
-const Drawer = createFunctionComponent(DrawerModule)
+const Drawer = createFunctionComponent(DrawerModule);
 
 export const layout = (props: MessageContentProps): VirtualLayoutJSON => {
+  const { mode } = props;
+
   const logic = useLogic<LogicReturn>();
 
   const contentNode = (
@@ -44,8 +51,11 @@ export const layout = (props: MessageContentProps): VirtualLayoutJSON => {
         <messageContentTitle className='text-lg font-bold'>{props.title}</messageContentTitle>
       </messageContentHeader>
       <messageContentBody className='flex flex-col'>
-        <messageContentLink className='text-sm text-gray-600 p-4 bg-slate-100 my-2 rounded-sm ' >
-          <a href={props.contentLink} >{props.contentLink}</a>
+        <messageContentLink className='text-sm text-gray-600 p-4 bg-slate-100 my-2 rounded-sm' >
+          <a if={mode === 'new-window'} target='_blank' href={props.contentLink} >{props.contentLink}</a>
+          <span if={mode ==='iframe'} onClick={() => {
+            logic.showIframe(true)
+          }} >{props.contentLink}</span>
         </messageContentLink>
         <messageContentDescription className='text-sm text-gray-600' _html={props.description} />
         <messageContentContent className='text-sm text-gray-600' _html={props.content} />

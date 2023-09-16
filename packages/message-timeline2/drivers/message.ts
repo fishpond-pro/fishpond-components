@@ -1,4 +1,5 @@
 import {
+  inputCompute,
   inputComputeInServer,
   prisma,
   signal,
@@ -101,10 +102,27 @@ export default function message () {
     })
   })
 
+  const currentMessageItemId = signal<number>(null);
+
+  const currentMessageItem = signal<MessageItem | null>(() => {
+    const id = currentMessageItemId();
+    return id ? messages().find((item) => {
+      return item.id === id;
+    }) : null;
+  });
+
+  const selectMessage = inputCompute((mc: MessageItem) => {
+    currentMessageItemId(() => {
+      return mc.id;
+    })
+  })
+
   return {
     queryMessageByChannelRecord,
     queryMessageByMessageId,
     queryMessageAll,
+    selectMessage,
+    currentMessageItem,
     messages,
   }
 }
