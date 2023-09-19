@@ -52,13 +52,13 @@ export const layout = (props: MessageContentProps): VirtualLayoutJSON => {
       </messageContentHeader>
       <messageContentBody className='flex flex-col'>
         <messageContentLink className='text-sm text-gray-600 p-4 bg-slate-100 my-2 rounded-sm' >
-          <a if={mode === 'new-window'} target='_blank' href={props.contentLink} >{props.contentLink}</a>
-          <span if={mode ==='iframe'} onClick={() => {
-            logic.showIframe(true)
-          }} >{props.contentLink}</span>
+          <a target='_blank' href={props.contentLink} >{props.contentLink}</a>
         </messageContentLink>
         <messageContentDescription className='text-sm text-gray-600' _html={props.description} />
-        <messageContentContent className='text-sm text-gray-600' _html={props.content} />
+        <messageContentContent if={!!props.content} className='text-sm text-gray-600' _html={props.content} />
+        <messageContentContentFrame if={!props.content} className='text-sm text-gray-600' >
+          <iframe src={props.contentLink} className='w-full' />
+        </messageContentContentFrame>
       </messageContentBody>
     </messageContent>
   );

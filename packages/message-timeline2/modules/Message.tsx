@@ -13,7 +13,7 @@ export interface MessageProps {
   description: string,
   footer?: string
   createdAt: string | Date; // Date.toString()
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export const propTypes = {
