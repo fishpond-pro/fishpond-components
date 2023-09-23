@@ -14,13 +14,13 @@ export type DataSource = {
   createdAt: Date
   modifiedAt: Date
   type: 0
-  platform: string
+  channel: string
   rss: RSS
 } | {
   id: number
   createdAt: Date
   modifiedAt: Date
-  platform: string
+  channel: string
   type: 1
   rpa: RPA
 }
@@ -59,7 +59,7 @@ export default function source () {
   const addSource = inputComputeInServer(function * (arg: { name: string, link: string, platform: string }) {
     yield writeSource.create({
       type: 0,
-      platform: arg.platform,
+      channel: arg.platform,
       rss: {
         create: {
           name: arg.name,
