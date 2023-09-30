@@ -54,9 +54,10 @@ export type MessageContent = {
 
 export default function message () {
 
-  const params = signal<{ messageId: number,channelRecordId: number }>({
+  const params = signal<{ messageId: number,channelRecordId: number, size: number }>({
     messageId: undefined,
     channelRecordId: undefined,
+    size: 50,
   })
 
   const messages = prisma<MessageItem[]>(indexes.message, () => {
@@ -70,6 +71,7 @@ export default function message () {
         id: payload.messageId,
         channelRecordId: payload.channelRecordId
       },
+      take: payload.size,
       include: {
         channelRecord: true,
       }

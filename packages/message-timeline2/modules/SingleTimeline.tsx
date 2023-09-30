@@ -41,15 +41,18 @@ export const layout = (props: SingleTimelineProps): VirtualLayoutJSON => {
     <singleTimeline>
       {messagesData.map((message, index) => {
         return (
-          <Message
-            onClick={() => props.onClick(message, index)}
-            key={message.title + index}
-            className="mb-2"
-            title={message.title}
-            description={message.description}
-            createdAt={message.createdAt}
-            footer=''
-          />
+          <singleTimelineItem className='block rounded-md overflow-hidden hover:bg-slate-50'>
+            <Message
+              onClick={() => props.onClick(message, index)}
+              key={message.title + index}
+              className="mb-2"
+              title={message.title}
+              description={message.description}
+              createdAt={message.createdAt}
+              footer=''
+              border={false}
+            />
+          </singleTimelineItem>
         )
       })}
     </singleTimeline>

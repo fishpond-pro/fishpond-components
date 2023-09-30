@@ -48,7 +48,7 @@ export const layout = (props: SourceListProps) => {
   return (
     <sourceListContainer className="block">
       <listHeader className="flex p-2">
-        <listTitle className="flex-1">
+        <listTitle className="flex-1 text-lg">
           {props.title}
         </listTitle>
         <addSourceEntry
@@ -64,19 +64,21 @@ export const layout = (props: SourceListProps) => {
           +
         </addSourceEntry>
       </listHeader>
-      <ListCpt list={props.list} render={(item: DataSource, i: number) => {
-        const name = item.type === 0 ? item.rss?.name : item.type === 1 ? item.rpa?.name : '';
-        return (
-          <listContent
-            className="block"
-            onClick={() => {
-              props.onClick?.(item, i);
-            }}
-          >
-            {`${i + 1}.${name}`}
-          </listContent>
-        )
-      }} />
+      <listContent className="block pl-2">
+        <ListCpt border={false} list={props.list} render={(item: DataSource, i: number) => {
+          const name = item.type === 0 ? item.rss?.name : item.type === 1 ? item.rpa?.name : '';
+          return (
+            <listSourceContent
+              className="block truncate text-base"
+              onClick={() => {
+                props.onClick?.(item, i);
+              }}
+            >
+              {`${name}`}
+            </listSourceContent>
+          )
+        }} />
+      </listContent>
       <AddSourceCpt visible={sourceModalVisible} onSubmit={props.onSubmit} />
     </sourceListContainer>
   )

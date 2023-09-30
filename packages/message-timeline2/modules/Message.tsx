@@ -1,4 +1,4 @@
-import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft } from '@polymita/renderer';
+import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, classNames } from '@polymita/renderer';
 
 export const name = 'Message' as const
 export let meta: {
@@ -14,6 +14,7 @@ export interface MessageProps {
   footer?: string
   createdAt: string | Date; // Date.toString()
   onClick?: () => void;
+  border?: boolean;
 }
 
 export const propTypes = {
@@ -33,11 +34,18 @@ export type MessageLayout = {
 export const layout = (props: MessageProps) => {
   const logic = useLogic<LogicReturn>();
 
+  const cls1 = classNames(`block p-2 text-base rounded-md overflow-hidden cursor-default`, props.className, {
+    border: props.border
+  });
+  const cls2 = classNames('text-sm text-slate-500 block p-2 text-xs', {
+    'border-t': props.border
+  })
+
   return (
-    <messageContainer onClick={props.onClick} className={`block border rounded-md overflow-hidden ${props.className}`}>
+    <messageContainer onClick={props.onClick} className={cls1}>
       <messageTitle className="text-slate-800 block p-2 text-lg">{props.title}</messageTitle>
-      <messageContent className="text-slate-400 block p-2 truncate">{props.description}</messageContent>
-      <messageFooter className="text-slate-500 block border-t p-2 text-xs">{props.footer}</messageFooter>
+      <messageContent className="text-slate-400 block px-2 truncate">{props.description}</messageContent>
+      <messageFooter if={!!props.footer} className={cls2}>{props.footer}</messageFooter>
     </messageContainer>
   )
 }
