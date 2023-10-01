@@ -34,7 +34,7 @@ export type MessageLayout = {
 export const layout = (props: MessageProps) => {
   const logic = useLogic<LogicReturn>();
 
-  const cls1 = classNames(`block p-2 text-base rounded-md overflow-hidden cursor-default`, props.className, {
+  const cls1 = classNames(`block text-base rounded-md overflow-hidden cursor-default`, props.className, {
     border: props.border
   });
   const cls2 = classNames('text-sm text-slate-500 block p-2 text-xs', {
