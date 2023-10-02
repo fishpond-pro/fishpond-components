@@ -43,7 +43,7 @@ export const layout = (props: SingleTimelineProps): VirtualLayoutJSON => {
     <singleTimeline>
       {messagesData.map((message, index) => {
         const current = message.id === selected;
-        const cls = classnames('block p-2 box-border rounded-md overflow-hidden hover:bg-slate-50', {
+        const cls = classnames('block p-2 mb-1 box-border rounded-md overflow-hidden cursor-default hover:bg-slate-50', {
           'bg-slate-50': current
         });
         return (

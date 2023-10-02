@@ -1,4 +1,4 @@
-import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent } from '@polymita/renderer';
+import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, classNames } from '@polymita/renderer';
 import { Signal, signal } from '@polymita/signal-model'
 import * as AddSourceModule from './AddSource'
 import type { DataSource } from '@/drivers/source';
@@ -18,6 +18,7 @@ export interface SourceListProps {
   onClick?: (ds: DataSource, index: number) => void;
   internalModal?: boolean
   onClickPlus?: () => void;
+  selected?: number;
 }
 
 export const propTypes = {
@@ -42,7 +43,9 @@ const ListCpt = createFunctionComponent(ListModule);
 export const layout = (props: SourceListProps) => {
   const {
     sourceModalVisible,
-  } = useLogic<LogicReturn>()
+  } = useLogic<LogicReturn>();
+
+  const { selected } = props;
 
 
   return (
@@ -67,9 +70,13 @@ export const layout = (props: SourceListProps) => {
       <listContent className="block pl-2">
         <ListCpt border={false} list={props.list} render={(item: DataSource, i: number) => {
           const name = item.type === 0 ? item.rss?.name : item.type === 1 ? item.rpa?.name : '';
+          const current = item.id === selected;
+          const cls = classNames(`block truncate text-base p-2 rounded hover:bg-slate-50`, {
+            'bg-slate-50': current
+          })
           return (
             <listSourceContent
-              className="block truncate text-base"
+              className={cls}
               onClick={() => {
                 props.onClick?.(item, i);
               }}
