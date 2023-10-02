@@ -15,6 +15,7 @@ export interface MessageProps {
   createdAt: string | Date; // Date.toString()
   onClick?: () => void;
   border?: boolean;
+  active?: boolean;
 }
 
 export const propTypes = {
@@ -44,7 +45,7 @@ export const layout = (props: MessageProps) => {
   return (
     <messageContainer onClick={props.onClick} className={cls1}>
       <messageTitle className="text-slate-800 block p-2 text-lg">{props.title}</messageTitle>
-      <messageContent className="text-slate-400 block px-2 truncate">{props.description}</messageContent>
+      <messageDescription className="text-slate-400 block px-2 truncate" >{props.description}</messageDescription>
       <messageFooter if={!!props.footer} className={cls2}>{props.footer}</messageFooter>
     </messageContainer>
   )

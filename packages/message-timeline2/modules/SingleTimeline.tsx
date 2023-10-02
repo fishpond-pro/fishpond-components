@@ -1,4 +1,4 @@
-import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, VirtualLayoutJSON } from '@polymita/renderer';
+import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, VirtualLayoutJSON, classnames } from '@polymita/renderer';
 import { after, Signal, signal } from '@polymita/signal'
 import * as MessageModule from './Message'
 import type { MessageItem } from '@/drivers/message';
@@ -13,6 +13,7 @@ export let meta: {
 export interface SingleTimelineProps {
   messages: Signal<MessageItem[]>
   onClick?: (item: MessageItem, index: number) => void;
+  selected?: number;
 }
 
 export const propTypes = {
@@ -33,6 +34,7 @@ export type SingleTimelineLayout = {
 const Message = createFunctionComponent(MessageModule)
 
 export const layout = (props: SingleTimelineProps): VirtualLayoutJSON => {
+  const { selected } = props;
   const logic = useLogic<LogicReturn>()
 
   const messagesData = props.messages();
@@ -40,12 +42,15 @@ export const layout = (props: SingleTimelineProps): VirtualLayoutJSON => {
   return (
     <singleTimeline>
       {messagesData.map((message, index) => {
+        const current = message.id === selected;
+        const cls = classnames('block p-2 box-border rounded-md overflow-hidden hover:bg-slate-50', {
+          'bg-slate-50': current
+        });
         return (
-          <singleTimelineItem className='block p-2 box-border rounded-md overflow-hidden hover:bg-slate-50'>
+          <singleTimelineItem className={cls}>
             <Message
               onClick={() => props.onClick(message, index)}
               key={message.title + index}
-              className="mb-2"
               title={message.title}
               description={message.description}
               createdAt={message.createdAt}

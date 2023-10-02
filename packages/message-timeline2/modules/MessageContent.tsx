@@ -46,17 +46,17 @@ export const layout = (props: MessageContentProps): VirtualLayoutJSON => {
   const logic = useLogic<LogicReturn>();
 
   const contentNode = (
-    <messageContent className='block'>
-      <messageContentHeader className='flex items-center justify-between'>
-        <messageContentTitle className='text-lg font-bold'>{props.title}</messageContentTitle>
+    <messageContent className='message-content block p-20'>
+      <messageContentHeader className='flex items-center justify-between mb-6'>
+        <messageContentTitle className='text-2xl font-bold'>{props.title}</messageContentTitle>
       </messageContentHeader>
       <messageContentBody className='flex flex-col'>
         <messageContentLink className='text-sm text-gray-600 p-4 bg-slate-100 my-2 rounded-sm' >
           <a target='_blank' href={props.contentLink} >{props.contentLink}</a>
         </messageContentLink>
-        <messageContentDescription className='text-sm text-gray-600' _html={props.description} />
-        <messageContentContent if={!!props.content} className='text-sm text-gray-600' _html={props.content} />
-        <messageContentContentFrame if={!props.content} className='text-sm text-gray-600' >
+        <messageContentDescription className='text-base rounded leading-8 text-gray-600' _html={props.description} />
+        <messageContentContent if={!!props.content} className='text-base leading-8 text-gray-600' _html={props.content} />
+        <messageContentContentFrame if={!props.content} className='text-base leading-8 text-gray-600' >
           <iframe src={props.contentLink} className='w-full' />
         </messageContentContentFrame>
       </messageContentBody>
