@@ -1,7 +1,7 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, VirtualLayoutJSON, classnames } from '@polymita/renderer';
 import { after, Signal, signal } from '@polymita/signal'
 import * as MessageModule from './Message'
-import type { MessageItem } from '@/drivers/message';
+import { MessageState, type MessageItem } from '@/drivers/message';
 
 export const name = 'SingleTimeline' as const
 export let meta: {
@@ -56,6 +56,7 @@ export const layout = (props: SingleTimelineProps): VirtualLayoutJSON => {
               createdAt={message.createdAt}
               footer=''
               border={false}
+              secondary={message.state === MessageState.Read}
             />
           </singleTimelineItem>
         )

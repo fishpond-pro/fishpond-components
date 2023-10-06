@@ -18,6 +18,12 @@ export type ChannelRecord = {
   modifiedAt: Date
 }
 
+export enum MessageState {
+  Unread = 0,
+  Read = 1,
+  Starred = 2,
+}
+
 /**
  * Model Message
  * 
@@ -34,6 +40,7 @@ export type MessageItem = {
   modifiedAt: Date
 
   channelRecord?: ChannelRecord
+  state?: MessageState;
 }
 
 /**

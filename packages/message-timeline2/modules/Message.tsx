@@ -16,6 +16,7 @@ export interface MessageProps {
   onClick?: () => void;
   border?: boolean;
   active?: boolean;
+  secondary?: boolean;
 }
 
 export const propTypes = {
@@ -36,7 +37,8 @@ export const layout = (props: MessageProps) => {
   const logic = useLogic<LogicReturn>();
 
   const cls1 = classNames(`block text-base rounded-md overflow-hidden cursor-default`, props.className, {
-    border: props.border
+    border: props.border,
+    'opacity-70': props.secondary,
   });
   const cls2 = classNames('text-sm text-slate-500 block p-2 text-xs', {
     'border-t': props.border
