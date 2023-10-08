@@ -32,13 +32,21 @@ export interface PreviewMessage {
   }
 }
 
+export type SourceMenus = Array<{
+  title: string
+  children: string[]
+}>
+
 export interface SourceListInnerLogicProps {
   onQuery: (arg: { path: string, payload: Record<string,any> }) => Promise<PreviewMessage[]>
   onSubmit: (source: RSSSource, arg: { path: string, payload: Record<string,any> }) => void
+  menus: SourceMenus
 }
 
 export default function sourceListInnerLogic (props: SourceListInnerLogicProps) {
   const currentSource = signal<RSSSource>(null)
+
+
 
   const sourcePreviewForm = signal<{
     path: string,
@@ -133,7 +141,48 @@ export default function sourceListInnerLogic (props: SourceListInnerLogicProps) 
     })
   })
 
+  const selectedGroups = signal<string[]>([props.menus[0].title]);
+
+  const selectGroup = (title: string) => {
+    selectedGroups(draft => {
+      const index = draft.indexOf(title)
+      if (index > -1) {
+        draft.splice(index, 1)
+      } else {
+        draft.push(title)
+      }
+    })
+  }
+
+  const subGroups = signal(() => {
+    const groups = props.menus
+    const selected = selectedGroups()
+    return groups.filter(item => {
+      return selected.length <= 0 || selected.includes(item.title)
+    }).map(item => item.children).flat()
+  })
+
+  const selectedSubGroups = signal<string[]>([subGroups()[0]])
+
+  const selectSubGroup = (title: string) => {
+    selectedSubGroups(draft => {
+      const index = draft.indexOf(title)
+      if (index > -1) {
+        draft.splice(index, 1)
+      } else {
+        draft.push(title)
+      }
+    })
+  }
+  
   return {
+    menus: {
+      selectedGroups,
+      selectedSubGroups,
+      subGroups,
+      selectGroup,
+      selectSubGroup,
+    },
     expandablePreviewDescriptions,
     toggleDescriptionExpandable,
     currentSource,

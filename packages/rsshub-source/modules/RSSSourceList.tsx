@@ -17,7 +17,6 @@ export let meta: {
   patchCommands: []
 }
 
-
 export interface SourceListProps extends SourceListInnerLogicProps {
   sources: RSSSourcePanelModule.RSSSource[]
   width: number
@@ -59,6 +58,30 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
   const params = currentSource && getParamsFromPath(currentSource.route.path, currentSource.route.paramsdesc)
   return (
     <sourceListContainer className="block">
+      <sourceListMenus>
+        <sourceMenuGroup>
+          <sourceMenuGroupPre>
+            group: 
+          </sourceMenuGroupPre>
+          <sourceMenuGroupItems>
+            {props.menus.map(menu => {
+              return (
+                <sourceMenuGroupItem className="inline-block mr-2">
+                  <sourceMenuGroupItemTitle className="mr-1 text-gray-500">{menu.title}</sourceMenuGroupItemTitle>
+                </sourceMenuGroupItem>
+              )
+            })}
+          </sourceMenuGroupItems>
+        </sourceMenuGroup>
+        <sourceMenuSubGroup>
+          <sourceMenuSubGroupPre>
+            subGroup:
+          </sourceMenuSubGroupPre>
+          <sourceMenuSubGroupItems>
+            sub 
+          </sourceMenuSubGroupItems>
+        </sourceMenuSubGroup>        
+      </sourceListMenus>
       <div style={{ columnCount: COLUMN_WIDTH }}>
         {props.sources.map(source => (
           <RSSSourcePanel 
