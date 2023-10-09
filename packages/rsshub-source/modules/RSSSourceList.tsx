@@ -66,7 +66,9 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
           <sourceMenuGroupItems>
             {props.menus.map(menu => {
               return (
-                <sourceMenuGroupItem className="inline-block mr-2">
+                <sourceMenuGroupItem key={menu} className="inline-block mr-2" onClick={()=>{
+                  logic.menus.selectGroup(menu.title)
+                }}>
                   <sourceMenuGroupItemTitle className="mr-1 text-gray-500">{menu.title}</sourceMenuGroupItemTitle>
                 </sourceMenuGroupItem>
               )
@@ -78,7 +80,15 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
             subGroup:
           </sourceMenuSubGroupPre>
           <sourceMenuSubGroupItems>
-            sub 
+            {logic.menus.subGroups().map(subGroup => {
+              return (
+                <sourceMenuSubGroupItem key={subGroup} onClick={() => {
+                  logic.menus.selectSubGroup(subGroup)
+                }}>
+                  <sourceMenuSubGroupItemTitle className="mr-1 text-gray-500">{subGroup}</sourceMenuSubGroupItemTitle>
+                </sourceMenuSubGroupItem>
+              )
+            })} 
           </sourceMenuSubGroupItems>
         </sourceMenuSubGroup>        
       </sourceListMenus>

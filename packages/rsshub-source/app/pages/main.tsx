@@ -4,6 +4,7 @@ import SourceList from '@/views/RSSSourceList'
 import rsshubSourcesMock from '@/shared/rsshub-sources.json'
 import sourceMock2 from '@/shared/rss-mock'
 import { toRSS_JSON } from '@/shared/utils'
+import menus from '@/models/rsshub-source-menu.json'
 
 export default function Main () {
   const listDIVRef = useRef<HTMLDivElement>(null)
@@ -36,6 +37,7 @@ export default function Main () {
     <div ref={listDIVRef}>
       {width >= 0 ? (
         <SourceList 
+          menus={menus}
           width={width} 
           sources={rsshubSourcesMock as any} 
           onQuery={async (form) => {
