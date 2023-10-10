@@ -1,3 +1,4 @@
+import { RSSItem } from '@/shared/utils'
 import { getParamsFromPath } from '@/utils/index'
 import {
   after,
@@ -22,14 +23,7 @@ export interface RSSSource {
   tables?: string[]
 }
 
-export interface PreviewMessage {
-  title: string
-  link?: string
-  description?: string // maybe html
-  content?: string | {
-    html?: string
-    [k: string]: string
-  }
+export interface PreviewMessage extends RSSItem{  
 }
 
 export type SourceMenus = Array<{
@@ -39,7 +33,11 @@ export type SourceMenus = Array<{
 
 export interface SourceListInnerLogicProps {
   onQuery: (arg: { path: string, payload: Record<string,any> }) => Promise<PreviewMessage[]>
-  onSubmit: (source: RSSSource, arg: { path: string, payload: Record<string,any> }) => void
+  onSubmit: (
+    source: RSSSource,
+    arg: { path: string, payload: Record<string,any> },
+    previews: PreviewMessage[],
+  ) => void
   menus: SourceMenus
 }
 
@@ -126,9 +124,11 @@ export default function sourceListInnerLogic (props: SourceListInnerLogicProps) 
       draft.visible = false
     })
     const form = sourcePreviewForm()
+    const previews = previewMessages()
     props.onSubmit(
       currentSource(),
-      form
+      form,
+      previews,
     );
 
     selectCurrentSource(null)

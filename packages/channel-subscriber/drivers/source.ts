@@ -56,7 +56,9 @@ export default function source () {
   const writeSource = writeModel(ds, () => ({
   }))
 
-  const addSource = inputComputeInServer(function * (arg: { name: string, link: string, platform: string }) {
+  const addSource = inputComputeInServer(function * (arg: {
+    name: string, link: string, platform: string,
+  }) {
     yield writeSource.create({
       type: 0,
       channel: arg.platform,

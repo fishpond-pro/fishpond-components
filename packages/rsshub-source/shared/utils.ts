@@ -29,6 +29,10 @@ export interface RSSItem{
   guid: string; // url
   link: string;
   author: string;
+  content?: string | {
+    html?: string
+    [k: string]: string
+  }
 }
 
 export function toRSS_JSON (rssXML: string): {
