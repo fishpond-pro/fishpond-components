@@ -44,8 +44,6 @@ export interface SourceListInnerLogicProps {
 export default function sourceListInnerLogic (props: SourceListInnerLogicProps) {
   const currentSource = signal<RSSSource>(null)
 
-
-
   const sourcePreviewForm = signal<{
     path: string,
     payload: Record<string, string>
@@ -154,23 +152,25 @@ export default function sourceListInnerLogic (props: SourceListInnerLogicProps) 
     })
   }
 
-  const subGroups = signal(() => {
+  const groupRows = signal(() => {
     const groups = props.menus
     const selected = selectedGroups()
     return groups.filter(item => {
       return selected.length <= 0 || selected.includes(item.title)
-    }).map(item => item.children).flat()
+    })
   })
 
-  const selectedSubGroups = signal<string[]>([subGroups()[0]])
+  const selectedSubGroups = signal<[string, string][]>([
+    [groupRows[0].title, groupRows[0].children[0]]
+  ])
 
-  const selectSubGroup = (title: string) => {
+  const selectSubGroup = (group: string, subGroup: string) => {
     selectedSubGroups(draft => {
-      const index = draft.indexOf(title)
-      if (index > -1) {
-        draft.splice(index, 1)
+      const i = draft.findIndex(([g, s]) => g === group && s === subGroup);
+      if (i > -1) {
+        draft.splice(i, 1)
       } else {
-        draft.push(title)
+        draft.push([group, subGroup])
       }
     })
   }
@@ -179,7 +179,7 @@ export default function sourceListInnerLogic (props: SourceListInnerLogicProps) 
     menus: {
       selectedGroups,
       selectedSubGroups,
-      subGroups,
+      groupRows,
       selectGroup,
       selectSubGroup,
     },

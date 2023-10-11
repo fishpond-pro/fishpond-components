@@ -31,7 +31,7 @@ const Input = createFunctionComponent(InputModule)
 const Button = createFunctionComponent(ButtonModule)
 const RSSTable = createFunctionComponent(RSSPanelsTableModule)
 
-export const logic = (props: SignalProps<SourceListProps>) => {
+export const logic = (props: SourceListProps) => {
   
   const r = sourceListInnerLogic(props)
 
@@ -73,7 +73,7 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
                 'inline-block cursor-default mr-1 rounded-md border mb-1',
                 {
                   'border-transparent': !selectedGroups.includes(menu.title),
-                  'border-slate-400': selectedGroups.includes(menu.title),
+                  'border-slate-500': selectedGroups.includes(menu.title),
                 }
               );
               return (
@@ -89,28 +89,36 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
           </sourceMenuGroupItems>
         </sourceMenuGroup>
         <sourceMenuSubGroup className='flex'>
-          <sourceMenuSubGroupPre className='block w-[40px] text-right mr-2' >
-            子类:
-          </sourceMenuSubGroupPre>
-          <sourceMenuSubGroupItems className='flex-1'>
-            {logic.menus.subGroups().map(subGroup => {
-              const cls = classnames(
-                'inline-block cursor-default mr-1 rounded-md border mb-1',
-                {
-                  'border-transparent': !selectedSubGroups.includes(subGroup),
-                  'border-slate-400': selectedSubGroups.includes(subGroup),
-                }
-              );
-              
-              return (
-                <sourceMenuSubGroupItem className={cls} key={subGroup} onClick={() => {
-                  logic.menus.selectSubGroup(subGroup)
-                }}>
-                  <sourceMenuSubGroupItemTitle className="text-gray-500 p-2">{subGroup}</sourceMenuSubGroupItemTitle>
-                </sourceMenuSubGroupItem>
-              )
-            })} 
-          </sourceMenuSubGroupItems>
+          {logic.menus.groupRows().map(row => {
+            return (
+              <sourceGroupRow className='block'>
+                <sourceMenuSubGroupPre className='block w-[40px] text-right mr-2' >
+                  {row.title}:
+                </sourceMenuSubGroupPre>
+                <sourceMenuSubGroupItems className='flex-1'>
+                  {row.children.map(subGroup => {
+                    const isSelected = selectedSubGroups.some(([g, g2]) => g === row.title && g2 === subGroup)
+
+                    const cls = classnames(
+                      'inline-block cursor-default mr-1 rounded-md border mb-1',
+                      {
+                        'border-transparent': !isSelected,
+                        'border-slate-500': isSelected,
+                      }
+                    );
+                    
+                    return (
+                      <sourceMenuSubGroupItem className={cls} key={subGroup} onClick={() => {
+                        logic.menus.selectSubGroup(row.title, subGroup);
+                      }}>
+                        <sourceMenuSubGroupItemTitle className="text-gray-500 p-2">{subGroup}</sourceMenuSubGroupItemTitle>
+                      </sourceMenuSubGroupItem>
+                    )
+                  })} 
+                </sourceMenuSubGroupItems>
+              </sourceGroupRow>
+            );
+          })}
         </sourceMenuSubGroup>        
       </sourceListMenus>
       <div style={{ columnCount: COLUMN_WIDTH }}>
