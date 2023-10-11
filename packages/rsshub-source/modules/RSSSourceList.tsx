@@ -1,4 +1,4 @@
-import { classNames, h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, VirtualLayoutJSON } from '@polymita/renderer';
+import { classNames, h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, VirtualLayoutJSON, classnames } from '@polymita/renderer';
 import showdown from 'showdown'
 import * as RSSSourcePanelModule from './RSSSourcePanel'
 
@@ -56,36 +56,57 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
 
   const currentSource = logic.currentSource()
   const params = currentSource && getParamsFromPath(currentSource.route.path, currentSource.route.paramsdesc)
+
+  const selectedGroups = logic.menus.selectedGroups();
+  const selectedSubGroups = logic.menus.selectedSubGroups();
+
   return (
     <sourceListContainer className="block">
-      <sourceListMenus>
-        <sourceMenuGroup>
-          <sourceMenuGroupPre>
-            group: 
+      <sourceListMenus className='block p-4'>
+        <sourceMenuGroup className='w-full flex mb-2 flex-wrap'>
+          <sourceMenuGroupPre className='block w-[40px] text-right mr-2'>
+            分类: 
           </sourceMenuGroupPre>
-          <sourceMenuGroupItems>
+          <sourceMenuGroupItems className='flex-1'>
             {props.menus.map(menu => {
+              const cls = classnames(
+                'inline-block cursor-default mr-1 rounded-md border mb-1',
+                {
+                  'border-transparent': !selectedGroups.includes(menu.title),
+                  'border-slate-400': selectedGroups.includes(menu.title),
+                }
+              );
               return (
-                <sourceMenuGroupItem key={menu} className="inline-block mr-2" onClick={()=>{
+                <sourceMenuGroupItem key={menu} className={cls} onClick={()=>{
                   logic.menus.selectGroup(menu.title)
                 }}>
-                  <sourceMenuGroupItemTitle className="mr-1 text-gray-500">{menu.title}</sourceMenuGroupItemTitle>
+                  <sourceMenuGroupItemTitle className="text-gray-500 p-2">
+                    {menu.title}
+                  </sourceMenuGroupItemTitle>
                 </sourceMenuGroupItem>
               )
             })}
           </sourceMenuGroupItems>
         </sourceMenuGroup>
-        <sourceMenuSubGroup>
-          <sourceMenuSubGroupPre>
-            subGroup:
+        <sourceMenuSubGroup className='flex'>
+          <sourceMenuSubGroupPre className='block w-[40px] text-right mr-2' >
+            子类:
           </sourceMenuSubGroupPre>
-          <sourceMenuSubGroupItems>
+          <sourceMenuSubGroupItems className='flex-1'>
             {logic.menus.subGroups().map(subGroup => {
+              const cls = classnames(
+                'inline-block cursor-default mr-1 rounded-md border mb-1',
+                {
+                  'border-transparent': !selectedSubGroups.includes(subGroup),
+                  'border-slate-400': selectedSubGroups.includes(subGroup),
+                }
+              );
+              
               return (
-                <sourceMenuSubGroupItem key={subGroup} onClick={() => {
+                <sourceMenuSubGroupItem className={cls} key={subGroup} onClick={() => {
                   logic.menus.selectSubGroup(subGroup)
                 }}>
-                  <sourceMenuSubGroupItemTitle className="mr-1 text-gray-500">{subGroup}</sourceMenuSubGroupItemTitle>
+                  <sourceMenuSubGroupItemTitle className="text-gray-500 p-2">{subGroup}</sourceMenuSubGroupItemTitle>
                 </sourceMenuSubGroupItem>
               )
             })} 
