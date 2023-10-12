@@ -38,6 +38,7 @@ export interface SourceListInnerLogicProps {
     arg: { path: string, payload: Record<string,any> },
     previews: PreviewMessage[],
   ) => void
+  onSelect: (v: [string, string][]) => void
   menus: SourceMenus
 }
 
@@ -160,8 +161,10 @@ export default function sourceListInnerLogic (props: SourceListInnerLogicProps) 
     })
   })
 
+  const initialGroupRows = groupRows()
+
   const selectedSubGroups = signal<[string, string][]>([
-    [groupRows[0].title, groupRows[0].children[0]]
+    [initialGroupRows[0].title, initialGroupRows[0].children[0]]
   ])
 
   const selectSubGroup = (group: string, subGroup: string) => {
@@ -174,7 +177,13 @@ export default function sourceListInnerLogic (props: SourceListInnerLogicProps) 
       }
     })
   }
-  
+
+  after(() => {
+    props.onSelect?.(selectedSubGroups())
+  }, [selectedSubGroups], {
+    immediate: true
+  })
+
   return {
     menus: {
       selectedGroups,

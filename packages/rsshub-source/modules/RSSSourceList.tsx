@@ -48,11 +48,12 @@ export type SourceListLayout = {
 }
 
 const COLUMN_WIDTH = 4;
+const COLUMN_PADDING = 20;
 
 export const layout = (props: SourceListProps): VirtualLayoutJSON => {
   const logic = useLogic<LogicReturn>()
 
-  const columnWidth = props.width / COLUMN_WIDTH
+  const columnWidth = (props.width - COLUMN_PADDING * 2 - 20) / COLUMN_WIDTH;
 
   const currentSource = logic.currentSource()
   const params = currentSource && getParamsFromPath(currentSource.route.path, currentSource.route.paramsdesc)
@@ -62,22 +63,22 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
 
   return (
     <sourceListContainer className="block">
-      <sourceListMenus className='block p-4'>
+      <sourceListMenus className='block'>
         <sourceMenuGroup className='w-full flex mb-2 flex-wrap'>
-          <sourceMenuGroupPre className='block w-[40px] text-right mr-2'>
+          <sourceMenuGroupPre className='block w-[80px] text-right mr-2'>
             分类: 
           </sourceMenuGroupPre>
           <sourceMenuGroupItems className='flex-1'>
             {props.menus.map(menu => {
               const cls = classnames(
-                'inline-block cursor-default mr-1 rounded-md border mb-1',
+                'inline-block cursor-pointer mr-1 rounded-md border mb-1',
                 {
                   'border-transparent': !selectedGroups.includes(menu.title),
                   'border-slate-500': selectedGroups.includes(menu.title),
                 }
               );
               return (
-                <sourceMenuGroupItem key={menu} className={cls} onClick={()=>{
+                <sourceMenuGroupItem key={menu.title} className={cls} onClick={()=>{
                   logic.menus.selectGroup(menu.title)
                 }}>
                   <sourceMenuGroupItemTitle className="text-gray-500 p-2">
@@ -88,11 +89,11 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
             })}
           </sourceMenuGroupItems>
         </sourceMenuGroup>
-        <sourceMenuSubGroup className='flex'>
+        <sourceMenuSubGroup className='block'>
           {logic.menus.groupRows().map(row => {
             return (
-              <sourceGroupRow className='block'>
-                <sourceMenuSubGroupPre className='block w-[40px] text-right mr-2' >
+              <sourceGroupRow key={row.title} className='flex mb-2'>
+                <sourceMenuSubGroupPre className='block w-[80px] text-right mr-2' >
                   {row.title}:
                 </sourceMenuSubGroupPre>
                 <sourceMenuSubGroupItems className='flex-1'>
@@ -100,17 +101,21 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
                     const isSelected = selectedSubGroups.some(([g, g2]) => g === row.title && g2 === subGroup)
 
                     const cls = classnames(
-                      'inline-block cursor-default mr-1 rounded-md border mb-1',
+                      'inline-block cursor-pointer mr-1 rounded-md border mb-1',
                       {
-                        'border-transparent': !isSelected,
+                        'border-transparent hover:border-slate-300': !isSelected,
                         'border-slate-500': isSelected,
                       }
                     );
                     
                     return (
-                      <sourceMenuSubGroupItem className={cls} key={subGroup} onClick={() => {
-                        logic.menus.selectSubGroup(row.title, subGroup);
-                      }}>
+                      <sourceMenuSubGroupItem 
+                        key={`${row.title}-${subGroup}`} 
+                        className={cls}  
+                        onClick={() => {
+                          logic.menus.selectSubGroup(row.title, subGroup);
+                        }}
+                      >
                         <sourceMenuSubGroupItemTitle className="text-gray-500 p-2">{subGroup}</sourceMenuSubGroupItemTitle>
                       </sourceMenuSubGroupItem>
                     )
@@ -121,7 +126,7 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
           })}
         </sourceMenuSubGroup>        
       </sourceListMenus>
-      <div style={{ columnCount: COLUMN_WIDTH }}>
+      <div style={{ columnCount: COLUMN_WIDTH, padding: `0 ${COLUMN_PADDING}px` }}>
         {props.sources.map(source => (
           <RSSSourcePanel 
             width={columnWidth} 

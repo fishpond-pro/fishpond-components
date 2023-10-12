@@ -12,9 +12,13 @@ export default function Main () {
 
   function onResize () {
     const w = listDIVRef.current?.offsetWidth
-    console.log('w: ', w);
+    const w2 = listDIVRef.current?.clientWidth
+    const bbox = listDIVRef.current?.getBoundingClientRect()
+    const { paddingLeft, paddingRight } = getComputedStyle(listDIVRef.current as Element);
     if (w) {
-      setWidth(w)
+      const p1 = parseInt(paddingLeft);
+      const p2 = parseInt(paddingRight);
+      setWidth(w - p1 - p2);
     }
   }
 
@@ -34,7 +38,7 @@ export default function Main () {
   }, []);
 
   return (
-    <div ref={listDIVRef}>
+    <div ref={listDIVRef} className='p-4'>
       {width >= 0 ? (
         <SourceList 
           menus={menus}
@@ -46,6 +50,9 @@ export default function Main () {
           }}
           onSubmit={(form) => {
             console.log('[onSubmit] form: ', form);
+          }}
+          onSelect={v => {
+            console.log('[onSelect] select result: ', v);
           }}
         />
       ) : null}
