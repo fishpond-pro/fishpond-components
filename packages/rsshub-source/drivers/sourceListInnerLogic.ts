@@ -2,10 +2,13 @@ import { RSSItem } from '@/shared/utils'
 import { getParamsFromPath } from '@/utils/index'
 import {
   after,
+  compose,
   computed,
   inputCompute,
   signal,
 } from '@polymita/signal'
+
+import menusLogic from './menusLogic'
 
 export interface RSSSource {
   group: string
@@ -140,58 +143,13 @@ export default function sourceListInnerLogic (props: SourceListInnerLogicProps) 
     })
   })
 
-  const selectedGroups = signal<string[]>([props.menus[0].title]);
-
-  const selectGroup = (title: string) => {
-    selectedGroups(draft => {
-      const index = draft.indexOf(title)
-      if (index > -1) {
-        draft.splice(index, 1)
-      } else {
-        draft.push(title)
-      }
-    })
-  }
-
-  const groupRows = signal(() => {
-    const groups = props.menus
-    const selected = selectedGroups()
-    return groups.filter(item => {
-      return selected.length <= 0 || selected.includes(item.title)
-    })
-  })
-
-  const initialGroupRows = groupRows()
-
-  const selectedSubGroups = signal<[string, string][]>([
-    [initialGroupRows[0].title, initialGroupRows[0].children[0]]
-  ])
-
-  const selectSubGroup = (group: string, subGroup: string) => {
-    selectedSubGroups(draft => {
-      const i = draft.findIndex(([g, s]) => g === group && s === subGroup);
-      if (i > -1) {
-        draft.splice(i, 1)
-      } else {
-        draft.push([group, subGroup])
-      }
-    })
-  }
-
-  after(() => {
-    props.onSelect?.(selectedSubGroups())
-  }, [selectedSubGroups], {
-    immediate: true
-  })
+  const menus = compose(menusLogic, [{
+    onSelect: props.onSelect,
+    menus: props.menus,
+  }])
 
   return {
-    menus: {
-      selectedGroups,
-      selectedSubGroups,
-      groupRows,
-      selectGroup,
-      selectSubGroup,
-    },
+    menus,
     expandablePreviewDescriptions,
     toggleDescriptionExpandable,
     currentSource,

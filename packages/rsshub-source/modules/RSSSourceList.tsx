@@ -98,7 +98,7 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
                 </sourceMenuSubGroupPre>
                 <sourceMenuSubGroupItems className='flex-1'>
                   {row.children.map(subGroup => {
-                    const isSelected = selectedSubGroups.some(([g, g2]) => g === row.title && g2 === subGroup)
+                    const isSelected = selectedSubGroups.some(([g, g2]) => g === row.title && g2 === subGroup);
 
                     const cls = classnames(
                       'inline-block cursor-pointer mr-1 rounded-md border mb-1',
