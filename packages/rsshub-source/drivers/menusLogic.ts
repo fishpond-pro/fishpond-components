@@ -32,9 +32,10 @@ export default function menusLogic (props: MenusLogicProps) {
   const groupRows = signal(() => {
     const groups = allMenus();
     const selected = selectedGroups()
-    return groups.filter(item => {
+    const r = groups.filter(item => {
       return selected.length <= 0 || selected.includes(item.title)
     })
+    return r;
   })
 
   const selectedSubGroups = signal<[string, string][]>([])

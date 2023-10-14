@@ -47,13 +47,13 @@ export type SourceListLayout = {
   ]
 }
 
-const COLUMN_WIDTH = 4;
+const COLUMN_WIDTH_COUNT = 4;
 const COLUMN_PADDING = 20;
 
 export const layout = (props: SourceListProps): VirtualLayoutJSON => {
   const logic = useLogic<LogicReturn>()
 
-  const columnWidth = (props.width - COLUMN_PADDING * 2 - 20) / COLUMN_WIDTH;
+  const columnWidth = (props.width - COLUMN_PADDING * 2 - 20) / COLUMN_WIDTH_COUNT;
 
   const currentSource = logic.currentSource()
   const params = currentSource && getParamsFromPath(currentSource.route.path, currentSource.route.paramsdesc)
@@ -126,7 +126,11 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
           })}
         </sourceMenuSubGroup>        
       </sourceListMenus>
-      <div style={{ columnCount: COLUMN_WIDTH, padding: `0 ${COLUMN_PADDING}px` }}>
+      <div style={{ 
+        columnCount: COLUMN_WIDTH_COUNT,
+        columnFill: 'balance',
+        padding: `0 ${COLUMN_PADDING}px`,
+      }}>
         {props.sources.map(source => (
           <RSSSourcePanel 
             width={columnWidth} 
