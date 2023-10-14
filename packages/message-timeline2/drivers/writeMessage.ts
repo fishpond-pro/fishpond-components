@@ -7,7 +7,7 @@ import {
   writePrisma,
 } from '@polymita/signal-model'
 import indexes from '@/models/indexes.json'
-import messageDriver, { MessageContent, MessageItem, ChannelRecord } from './message';
+import messageDriver, { MessageContent } from './message';
 
 
 export default function writeMessage () {

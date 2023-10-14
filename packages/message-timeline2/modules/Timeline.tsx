@@ -1,7 +1,7 @@
+/// <reference path="../types/global.d.ts" />
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, StyleRule, VirtualLayoutJSON } from '@polymita/renderer';
 import { after, Signal, signal } from '@polymita/signal'
 import * as MessageDirectionModule from './MessageDirection'
-import type { MessageItem } from '@/drivers/message';
 
 export const name = 'Timeline' as const
 export let meta: {
