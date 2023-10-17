@@ -1,5 +1,6 @@
 import {
   after,
+  onMount,
   signal,
 } from '@polymita/signal'
 
@@ -71,7 +72,9 @@ export default function menusLogic (props: MenusLogicProps) {
     }
   }
 
-  setAllMenus(props.menus);
+  onMount(() => {
+    setAllMenus(props.menus);
+  })
 
   return {
     allMenus,
