@@ -54,9 +54,7 @@ export default function menusLogic (props: MenusLogicProps) {
 
   after(() => {
     props.onSelect?.(selectedSubGroups())
-  }, [selectedSubGroups], {
-    immediate: true
-  })
+  }, [selectedSubGroups])
 
   function setAllMenus (menus: SourceMenus) {
     allMenus(menus);
@@ -73,6 +71,8 @@ export default function menusLogic (props: MenusLogicProps) {
   }
 
   onMount(() => {
+    props.onSelect?.(selectedSubGroups())
+
     setAllMenus(props.menus);
   })
 
