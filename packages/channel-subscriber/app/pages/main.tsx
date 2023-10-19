@@ -1,6 +1,6 @@
 import React from 'react'
 import 'polymita/index.css'
-import View from '@/views/sourceList'
+import View from '@/views/AsideSourceList'
 import SourceDriver from '@/drivers/source'
 import { useSignal } from '@polymita/connect'
 

@@ -27,20 +27,22 @@
     "README.md"
   ],
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.11.15",
     "@polymita/connect": "workspace:*",
     "@polymita/renderer": "workspace:*",
     "@polymita/server": "workspace:*",
     "@polymita/signal": "workspace:*",
     "@polymita/signal-model": "workspace:*",
-    "polymita": "workspace:*",
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
-    "@mui/material": "^5.11.15",
     "@prisma/client": "^4.2.1",
+    "fast-xml-parser": "^4.2.4",
     "immer": "^9.0.14",
     "lodash": "^4.17.21",
+    "polymita": "workspace:*",
     "prisma": "^4.2.1",
-    "react-router-dom": "^6.9.0"
+    "react-router-dom": "^6.9.0",
+    "showdown": "2.1.0"
   },
   "peerDependencies": {
     "react": "18.2.0",

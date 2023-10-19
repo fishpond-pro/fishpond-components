@@ -1,4 +1,4 @@
-import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, classNames } from '@polymita/renderer';
+import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, classNames, VirtualLayoutJSON } from '@polymita/renderer';
 import { Signal, signal } from '@polymita/signal-model'
 import * as AddSourceModule from './AddSource'
 import type { DataSource } from '@/drivers/source';
@@ -40,7 +40,7 @@ export type SourceListLayout = {
 const AddSourceCpt = createFunctionComponent(AddSourceModule)
 const ListCpt = createFunctionComponent(ListModule);
 
-export const layout = (props: SourceListProps) => {
+export const layout = (props: SourceListProps): VirtualLayoutJSON => {
   const {
     sourceModalVisible,
   } = useLogic<LogicReturn>();
