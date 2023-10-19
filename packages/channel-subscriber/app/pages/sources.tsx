@@ -5,6 +5,9 @@ import rsshubSourcesMock from '@/shared/rsshub-sources.json'
 import sourceMock2 from '@/shared/rss-mock'
 import { toRSS_JSON } from '@/shared/utils'
 import menus from '@/models/rsshub-source-menu.json'
+import View from '@/views/AsideSourceList'
+import SourceDriver from '@/drivers/source'
+import { useSignal } from '@polymita/connect'
 
 export default function Main () {
   const listDIVRef = useRef<HTMLDivElement>(null)
@@ -37,26 +40,45 @@ export default function Main () {
     };
   }, []);
 
+  const source = useSignal(SourceDriver)
+
   return (
-    <div ref={listDIVRef} className='p-4'>
-      {width >= 0 ? (
-        <SourceList 
-          subscribed={[]}
-          menus={menus}
-          width={width} 
-          sources={rsshubSourcesMock as any} 
-          onQuery={async (form) => {
-            console.log('[onQuery] form: ', form);
-            return toRSS_JSON(sourceMock2).item
+    <div className='flex'>
+      <div className='w-[300px]'>
+        <View
+          list={source.ds as any}
+          title="Aside Title" 
+          onSubmit={(arg) => {
+            source.addSource(arg)
           }}
-          onSubmit={(...args) => {
-            console.log('[onSubmit] form: ', args);
+          onClick={(item, i) => {
+            console.log('item: ', i, item);
           }}
-          onSelect={v => {
-            console.log('[onSelect] select result: ', v);
+          onClickPlus={() => {
+            console.log('onClickPlus');
           }}
         />
-      ) : null}
+      </div>
+      <div ref={listDIVRef} className='p-4 flex-1'>
+        {width >= 0 ? (
+          <SourceList 
+            subscribed={[]}
+            menus={menus}
+            width={width} 
+            sources={rsshubSourcesMock as any} 
+            onQuery={async (form) => {
+              console.log('[onQuery] form: ', form);
+              return toRSS_JSON(sourceMock2).item
+            }}
+            onSubmit={(...args) => {
+              console.log('[onSubmit] form: ', args);
+            }}
+            onSelect={v => {
+              console.log('[onSelect] select result: ', v);
+            }}
+          />
+        ) : null}
+    </div>
     </div>
   )
 }
