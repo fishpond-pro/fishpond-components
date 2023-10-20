@@ -1,13 +1,11 @@
 declare module '*.less'
 declare module '*.css'
 
-
-
 /**
  * Model Source
  * 
  */
-type ChannelRecord = {
+declare type ChannelRecord = {
   id: number
   platform: string
   createdAt: Date
@@ -24,7 +22,7 @@ declare enum MessageState {
  * Model Message
  * 
  */
-type MessageItem = {
+declare type MessageItem = {
   id: number
   link: string
   title: string | null
