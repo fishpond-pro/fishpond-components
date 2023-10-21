@@ -1,3 +1,4 @@
+/// <reference path="../types/global.d.ts" />
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, VirtualLayoutJSON, classnames } from '@polymita/renderer';
 import { after, Signal, signal } from '@polymita/signal'
 import * as MessageModule from './Message'
