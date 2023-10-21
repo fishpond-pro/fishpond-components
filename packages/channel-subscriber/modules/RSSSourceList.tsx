@@ -1,15 +1,17 @@
 import { classNames, h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, VirtualLayoutJSON, classnames } from '@polymita/renderer';
 import showdown from 'showdown'
 import * as RSSSourcePanelModule from './RSSSourcePanel'
-
 import * as DrawerModule from 'polymita/components/drawer'
 import * as InputModule from 'polymita/components/input'
 import * as ButtonModule from 'polymita/components/button'
 import * as RSSPanelsTableModule from './RSSParamsTable'
 
 import {getParamsFromPath } from '@/utils/index'
-import sourceListInnerLogic, { SourceListInnerLogicProps } from '@/drivers/sourceListInnerLogic'
 import { genUniquePlatformKey } from '@/shared/utils';
+
+import rssSourceDriver from '@/drivers/rssSource'
+
+type rssSourceDriverReturn = ReturnType<typeof rssSourceDriver>
 
 export const name = 'SourceList' as const
 export let meta: {
@@ -34,10 +36,8 @@ export interface SubscribedChannel{
   }[]
 }
 
-export interface SourceListProps extends SourceListInnerLogicProps {
-  sources: RSSSourcePanelModule.RSSSource[]
+export interface SourceListProps extends rssSourceDriverReturn {
   width: number
-  subscribed: SubscribedChannel[]
 }
 
 export const propTypes = {
@@ -51,10 +51,7 @@ const RSSTable = createFunctionComponent(RSSPanelsTableModule)
 
 export const logic = (props: SourceListProps) => {
   
-  const r = sourceListInnerLogic(props)
-
   return {
-    ...r,
   }
 }
 type LogicReturn = ReturnType<typeof logic>
@@ -73,11 +70,21 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
 
   const columnWidth = (props.width - COLUMN_PADDING * 2 - 20) / COLUMN_WIDTH_COUNT;
 
-  const currentSource = logic.currentSource()
+  const {
+    menus,
+  } = props;
+
+  const currentSource = props.currentSource()
   const params = currentSource && getParamsFromPath(currentSource.route.path, currentSource.route.paramsdesc)
 
-  const selectedGroups = logic.menus.selectedGroups();
-  const selectedSubGroups = logic.menus.selectedSubGroups();
+  const selectedGroups = menus.selectedGroups();
+  const selectedSubGroups = menus.selectedSubGroups();
+  const allMenus = menus.allMenus()
+
+  const rssSources = props.allRSSSources()
+  const subscribed = props.subscribed()
+
+  console.log('menus.groupRows()::', menus.groupRows());
 
   return (
     <sourceListContainer className="block">
@@ -87,7 +94,7 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
             分类: 
           </sourceMenuGroupPre>
           <sourceMenuGroupItems className='flex-1'>
-            {props.menus.map(menu => {
+            {allMenus.map(menu => {
               const cls = classnames(
                 'inline-block cursor-pointer mr-1 rounded-md border mb-1',
                 {
@@ -97,7 +104,7 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
               );
               return (
                 <sourceMenuGroupItem key={menu.title} className={cls} onClick={()=>{
-                  logic.menus.selectGroup(menu.title)
+                  menus.selectGroup(menu.title)
                 }}>
                   <sourceMenuGroupItemTitle className="text-gray-500 p-2">
                     {menu.title}
@@ -108,7 +115,7 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
           </sourceMenuGroupItems>
         </sourceMenuGroup>
         <sourceMenuSubGroup className='block'>
-          {logic.menus.groupRows().map(row => {
+          {menus.groupRows().map(row => {
             return (
               <sourceGroupRow key={row.title} className='flex mb-2'>
                 <sourceMenuSubGroupPre className='block w-[80px] text-right mr-2' >
@@ -131,7 +138,7 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
                         key={`${row.title}-${subGroup}`} 
                         className={cls}  
                         onClick={() => {
-                          logic.menus.selectSubGroup(row.title, subGroup);
+                          menus.selectSubGroup(row.title, subGroup);
                         }}
                       >
                         <sourceMenuSubGroupItemTitle className="text-gray-500 p-2">{subGroup}</sourceMenuSubGroupItemTitle>
@@ -149,9 +156,9 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
         columnFill: 'balance',
         padding: `0 ${COLUMN_PADDING}px`,
       }}>
-        {props.sources.map(source => {
+        {rssSources?.map(source => {
           const key = genUniquePlatformKey(source);
-          const subscribedChannel = props.subscribed.find(sub => {
+          const subscribedChannel = subscribed.find(sub => {
             return sub.channel === key
           })
           const count = subscribedChannel?.rss?.length || 0;
@@ -161,7 +168,7 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
               key={key}
               value={source}
               onClick={() => {
-                logic.selectCurrentSource(source)
+                props.selectCurrentSource(source)
               }} />
           )
         })}
@@ -170,25 +177,25 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
         <Drawer 
           closable 
           width={1000} 
-          onClose={() => logic.selectCurrentSource(null)} 
+          onClose={() => props.selectCurrentSource(null)} 
           title={`${currentSource.group}/${currentSource.subGroup}/${currentSource.title}`} 
           extra={[
-            <Button key="preview" onClick={() => logic.queryPreview()} >preview</Button>,
+            <Button key="preview" onClick={() => props.queryPreview()} >preview</Button>,
             <Button 
-              key="submit" disabled={logic.showSubmitConfirm().visible}
-              onClick={() => logic.submit()}
+              key="submit" disabled={props.showSubmitConfirm().visible}
+              onClick={() => props.submit()}
             >submit</Button>,
           ]}
         >
           <sourceParamsTop className="flex flex-col mg-2 h-full">
             <submitConfirmMessage
-              if={logic.showSubmitConfirm().visible}
+              if={props.showSubmitConfirm().visible}
               className="flex mb-2 p-2 border border-yellow-600 justify-between items-center text-yellow-600"
             >
               <span>
-                {logic.showSubmitConfirm().title}
+                {props.showSubmitConfirm().title}
               </span>
-              <Button onClick={() => logic.showSubmitConfirm()} type="primary" >Sure</Button>
+              <Button onClick={() => props.showSubmitConfirm()} type="primary" >Sure</Button>
             </submitConfirmMessage>
             <rowParams className="flex flex-row h-full">
               <leftParams className="flex-1 min-w-0">
@@ -231,11 +238,11 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
                 <sourceExtraParamBox className="block p-2 border my-2">
                   <h3 className="mt-2">参数表单</h3>
                   <sourcePreviewForm className="block border-slate-100 mt-2 pd-2">
-                    {Object.keys(logic.sourcePreviewForm().payload).map((key) => (
+                    {Object.keys(props.sourcePreviewForm().payload).map((key) => (
                       <sourcePreviewFormItem className="block mb-2" key={key}>
                         <Input 
                           placeholder={key}
-                          value={logic.sourcePreviewForm as any}
+                          value={props.sourcePreviewForm as any}
                           value-path={['payload', key]} 
                         />
                       </sourcePreviewFormItem>
@@ -245,7 +252,7 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
                     </fullContentPathLabel>
                     <Input 
                       placeholder='full content path'
-                      value={logic.sourcePreviewForm as any}
+                      value={props.sourcePreviewForm as any}
                       value-path={['fullContentPath']}
                     />
                   </sourcePreviewForm>
@@ -255,7 +262,7 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
                 &gt;
               </arrowSymbol>
               <rightPreviewContainer className="flex-1 relative border border-slate-500 p-2 min-w-0 overflow-auto">
-                {logic.previewMessages()?.length === 0 ? <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">暂无</span> : ''}
+                {props.previewMessages()?.length === 0 ? <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">暂无</span> : ''}
                 
                 
                 {/* {logic.previewMessages()?.map((m, index) => {
@@ -278,7 +285,7 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
                   )
                 })} */}
 
-                {logic.previewMessages()?.map((m, index) => {
+                {props.previewMessages()?.map((m, index) => {
                   return (
                     <pre key={m.title + index} className="p-4 border my-2">
                       {JSON.stringify(m, null, 2)}

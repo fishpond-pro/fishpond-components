@@ -58,8 +58,8 @@ export interface RSSSource {
     author: string
     example: string,
     path: string,
-    radar?: boolean,
-    rssbud?: boolean
+    radar?: string,
+    rssbud?: string
     paramsdesc?: string[]
   },
   tipsMarkDown: string[]

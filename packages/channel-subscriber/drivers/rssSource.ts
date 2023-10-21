@@ -5,12 +5,20 @@ import {
   compose,
   computed,
   inputCompute,
+  inputComputeInServer,
+  prisma,
   signal,
+  writePrisma,
 } from '@polymita/signal-model'
 import menusLogic from './menusLogic'
-
+import { RSS, SubscribedChannel } from '@/models/indexesTypes'
+import * as indexes from '@/models/indexes.json'
 
 export interface PreviewMessage extends RSSItem{  
+}
+
+interface SubscribedChannelWithRss extends SubscribedChannel{
+  rss?: RSS
 }
 
 export type SourceMenus = Array<{
@@ -19,7 +27,8 @@ export type SourceMenus = Array<{
 }>
 
 export interface RssSourceProps {
-  onQuery: (arg: { path: string, payload: Record<string,any> }) => Promise<PreviewMessage[]>
+  onQueryRssSources: (arg: [string, string][]) => Promise<RSSSource[]>
+  onQueryPreviews: (arg: { path: string, payload: Record<string,any> }) => Promise<PreviewMessage[]>
   onSubmit?: (
     platform: string,
     source: RSSSource,
@@ -31,6 +40,7 @@ export interface RssSourceProps {
 }
 
 export default function rssSource (props: RssSourceProps) {
+  console.log('props: ', props);
   const currentSource = signal<RSSSource>(null)
 
   const sourcePreviewForm = signal<{
@@ -78,7 +88,7 @@ export default function rssSource (props: RssSourceProps) {
   const queryPreview = inputCompute(function * () {
     const { path, payload } = sourcePreviewForm()
     try {
-      const messages:PreviewMessage[] = yield props.onQuery({
+      const messages:PreviewMessage[] = yield props.onQueryPreviews({
         path,
         payload
       })
@@ -136,8 +146,59 @@ export default function rssSource (props: RssSourceProps) {
     menus: props.menus,
   }])
 
+  const allRSSSources = computed<RSSSource[]>(function * () {
+    const rows = menus.selectedSubGroups();
+    if (rows.length === 0) {
+      return [];
+    };
+    const json = yield props.onQueryRssSources(rows);
+    return json
+  })
+
+  const subscribedChannels = prisma<SubscribedChannelWithRss[]>(indexes['subscribedChannel'])
+
+  const writeSource = writePrisma(indexes['subscribedChannel'])
+
+  const addChannel = inputComputeInServer(function * (params: {
+    source: {
+      name: string, link: string, platform: string
+    },
+    previews: RSSItem[]
+  }) {
+    const { source, previews } = params;
+
+    yield writeSource.create({
+      type: 0,
+      channel: source.platform,
+      rss: {
+        create: {
+          name: source.name,
+          href: source.link,
+        }
+      },
+      record: {
+        create: {
+          channel: source.platform,
+          lastUpdatedDate: new Date(),
+          data: {
+            create: previews.map((p, i) => ({
+              title: p.title,
+              link: p.link,
+              description: 'mock i',
+              // time: p.pubDate,
+              type: 'article',
+            }))
+          }
+        }
+      }
+    })        
+  })
+
+  const subscribed = signal([]);
+
   return {
     menus,
+    subscribed,
     expandablePreviewDescriptions,
     toggleDescriptionExpandable,
     currentSource,
@@ -148,5 +209,7 @@ export default function rssSource (props: RssSourceProps) {
     submit,
     secondConfirmSubmit,    
     showSubmitConfirm,
+    addChannel,
+    allRSSSources,
   }
 };

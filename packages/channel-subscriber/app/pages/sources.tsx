@@ -8,6 +8,7 @@ import menus from '@/models/rsshub-source-menu.json'
 import View from '@/views/AsideSourceList'
 import SourceDriver from '@/drivers/source'
 import { useSignal } from '@polymita/connect'
+import rssSourceDriver from '@/drivers/rssSource'
 
 export default function Main () {
   const listDIVRef = useRef<HTMLDivElement>(null)
@@ -42,9 +43,33 @@ export default function Main () {
 
   const source = useSignal(SourceDriver)
 
+  const rssSource = useSignal(rssSourceDriver, {
+    menus,
+    onQueryRssSources: async (arg) => {
+      return arg.map(([g, subGroup]) => {
+        return rsshubSourcesMock.filter(item => 
+          item.group === g && item.subGroup === subGroup
+        )
+      }).flat().map(item => ({
+        ...item,
+        tables: item.tables.split('\n')
+      }))
+    },
+    onQueryPreviews: async (form) => {
+      console.log('[onQuery] form: ', form);
+      return toRSS_JSON(sourceMock2).item
+    },
+    onSubmit: (...args) => {
+      console.log('[onSubmit] form: ', args);
+    },
+    onSelect: v => {
+      console.log('[onSelect] select result: ', v);
+    },
+  });
+
   return (
     <div className='flex'>
-      <div className='w-[300px]'>
+      <div className='w-[200px] border-r border-black'>
         <View
           list={source.ds as any}
           title="Aside Title" 
@@ -59,23 +84,11 @@ export default function Main () {
           }}
         />
       </div>
-      <div ref={listDIVRef} className='p-4 flex-1'>
+      <div ref={listDIVRef} className='p-4 flex-1 min-w-0'>
         {width >= 0 ? (
           <SourceList 
-            subscribed={[]}
-            menus={menus}
             width={width} 
-            sources={rsshubSourcesMock as any} 
-            onQuery={async (form) => {
-              console.log('[onQuery] form: ', form);
-              return toRSS_JSON(sourceMock2).item
-            }}
-            onSubmit={(...args) => {
-              console.log('[onSubmit] form: ', args);
-            }}
-            onSelect={v => {
-              console.log('[onSelect] select result: ', v);
-            }}
+            {...rssSource}
           />
         ) : null}
     </div>

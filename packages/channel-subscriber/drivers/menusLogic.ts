@@ -36,6 +36,7 @@ export default function menusLogic (props: MenusLogicProps) {
     const r = groups.filter(item => {
       return selected.length <= 0 || selected.includes(item.title)
     })
+    console.log('[groupRows]r: ', r);
     return r;
   })
 
