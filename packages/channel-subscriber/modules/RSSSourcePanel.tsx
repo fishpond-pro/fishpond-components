@@ -1,6 +1,6 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft } from '@polymita/renderer';
-import { after, Signal, signal } from '@polymita/signal'
 import { getParamsFromPath } from '@/utils/index';
+import type { RSSSource } from '@/shared/utils';
 
 export const name = 'RSSSourcePanel' as const
 export let meta: {
@@ -8,23 +8,6 @@ export let meta: {
   layoutStruct: RSSSourcePanelLayout
   patchCommands: []
 }
-
-export interface RSSSource {
-  group: string
-  subGroup: string
-  title: string
-  route: {
-    author: string
-    example: string,
-    path: string,
-    radar?: boolean,
-    rssbud?: boolean
-    paramsdesc?: string[]
-  },
-  tipsMarkDown: string[]
-  tables?: string[]
-}
-
 export interface RSSSourcePanelProps {
   value: RSSSource
   width: number
