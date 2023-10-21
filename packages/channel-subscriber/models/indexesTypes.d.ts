@@ -3,7 +3,7 @@ export type SubscribedChannel = {
   createdAt: Date
   modifiedAt: Date
   type: number
-  platform: string | null
+  channel: string | null
 }
 export type RSS = {
   id: number

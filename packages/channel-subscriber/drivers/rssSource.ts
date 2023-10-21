@@ -1,4 +1,4 @@
-import { RSSItem, RSSSource, genUniquePlatformKey } from '@/shared/utils'
+import { RSSItem, RSSSource, genUniquePlatformKey, getRSSComplementURL } from '@/shared/utils'
 import { getParamsFromPath } from '@/utils/index'
 import {
   after,
@@ -121,15 +121,21 @@ export default function rssSource (props: RssSourceProps) {
       draft.visible = false
     })
     const form = sourcePreviewForm()
+    const rsshubURL = getRSSComplementURL(form);
+    
     const previews = previewMessages()
+    
     const channel = currentSource();
-    const key = genUniquePlatformKey(channel)
-    props.onSubmit(
-      key,
-      channel,
-      form,
+    const uniquePlatform = genUniquePlatformKey(channel);
+
+    addChannel({
+      source: {
+        link: rsshubURL,
+        platform: uniquePlatform,
+        name: uniquePlatform,
+      },
       previews,
-    );
+    });
 
     selectCurrentSource(null)
   })
@@ -155,7 +161,7 @@ export default function rssSource (props: RssSourceProps) {
     return json
   })
 
-  const subscribedChannels = prisma<SubscribedChannelWithRss[]>(indexes['subscribedChannel'])
+  const subscribedChannels = prisma<SubscribedChannelWithRss[]>(indexes['subscribedChannel']);
 
   const writeSource = writePrisma(indexes['subscribedChannel'])
 
@@ -165,6 +171,7 @@ export default function rssSource (props: RssSourceProps) {
     },
     previews: RSSItem[]
   }) {
+    console.log('[addChannel] params: ', params);
     const { source, previews } = params;
 
     yield writeSource.create({
@@ -176,21 +183,21 @@ export default function rssSource (props: RssSourceProps) {
           href: source.link,
         }
       },
-      record: {
-        create: {
-          channel: source.platform,
-          lastUpdatedDate: new Date(),
-          data: {
-            create: previews.map((p, i) => ({
-              title: p.title,
-              link: p.link,
-              description: 'mock i',
-              // time: p.pubDate,
-              type: 'article',
-            }))
-          }
-        }
-      }
+      // record: {
+      //   create: {
+      //     channel: source.platform,
+      //     lastUpdatedDate: new Date(),
+      //     data: {
+      //       create: previews.map((p, i) => ({
+      //         title: p.title,
+      //         link: p.link,
+      //         description: 'mock i',
+      //         // time: p.pubDate,
+      //         type: 'article',
+      //       }))
+      //     }
+      //   }
+      // }
     })        
   })
 
