@@ -17,8 +17,8 @@ model SubscribedChannel {
   type Int // 0.RSShub 1.自定义爬虫脚本
   channel String?  @unique // 所属平台
 
-  rss RSS?
-  rpa RPA?
+  rss RSS[]
+  rpa RPA[]
 }
 
 model RSS {
@@ -27,7 +27,7 @@ model RSS {
   modifiedAt  DateTime @default(now()) @updatedAt
 
   name String
-  href String // RSS地址
+  href String @unique // RSS地址
   scheduleCron String? // 定时任务
 
   subscribedChannel SubscribedChannel? @relation(fields: [subscribedChannelId], references: [id]) // 数据源

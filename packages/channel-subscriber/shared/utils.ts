@@ -15,11 +15,26 @@ export function getRSSComplementURL (param: {
   Object.entries(payload).forEach(([key, value]) => {
     curPath = curPath.replace(new RegExp(`:${key}\\??`), value)
   })
-  console.log('curPath: ', curPath);
   // 清理可选的参数
   curPath = curPath.replace(/\/:\w+\??/g, '').replace(/\/{2,}/g, '')
 
   return `${prefix}/${curPath}`
+}
+
+export function parseRSSUrl (url: string) {
+  const prefix = LOCAL_RSS_HUB_PREFIX
+  const [path, query] = url.split('?')
+  const params = new URLSearchParams(query)
+  const payload: Record<string, any> = {}
+
+  params.forEach((value, key) => {
+    payload[key] = value
+  })
+
+  return {
+    path: path.replace(prefix, ''),
+    payload
+  }
 }
 
 export interface RSSItem{

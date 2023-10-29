@@ -1,9 +1,13 @@
 import {
   inputComputeInServer,
   model,
+  prisma,
+  signal,
   writeModel,
+  writePrisma,
 } from '@polymita/signal-model'
 import indexes from '@/models/indexes.json'
+import { parseRSSUrl } from '@/shared/utils'
 
 /**
  * Model DataSource
@@ -15,14 +19,14 @@ export type DataSource = {
   modifiedAt: Date
   type: 0
   channel: string
-  rss: RSS
+  rss: RSS[]
 } | {
   id: number
   createdAt: Date
   modifiedAt: Date
   channel: string
   type: 1
-  rpa: RPA
+  rpa: RPA[]
 }
 export type RSS = {
   id: number
@@ -43,7 +47,7 @@ export type RPA = {
 
 export default function source () {
 
-  const ds = model<DataSource[]>(indexes.subscribedChannel, () => ({
+  const ds = prisma<DataSource[]>(indexes.subscribedChannel, () => ({
     orderBy: {
       modifiedAt: 'desc',
     },
@@ -53,13 +57,34 @@ export default function source () {
     }
   }))
 
-  const writeSource = writeModel(ds, () => ({
+  const dsWithForm = signal(() => {
+    const source = ds()
+    return source.map(s => {
+      if (s.type === 0) {
+        return {
+          ...s,
+          rss: s.rss.map(r => {
+            const { path, payload } = parseRSSUrl(r.href)
+            return {
+              ...r,
+              path,
+              payload,
+            }
+          })
+        }
+      }
+      return s;
+    })
+  })
+
+  const writeSource = writePrisma(ds, () => ({
   }))
 
   const addSource = inputComputeInServer(function * (arg: {
-    name: string, link: string, platform: string,
+    name: string, link: string,
+    platform: string,
   }) {
-    yield writeSource.create({
+    yield writeSource.upsert({
       type: 0,
       channel: arg.platform,
       rss: {
@@ -73,6 +98,7 @@ export default function source () {
 
   return {
     ds,
+    dsWithForm,
     addSource
   }
 }

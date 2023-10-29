@@ -69,7 +69,8 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
       </listHeader>
       <listContent className="block pl-2">
         <ListCpt border={false} list={props.list} render={(item: DataSource, i: number) => {
-          const name = item.type === 0 ? item.rss?.name : item.type === 1 ? item.rpa?.name : '';
+          // const name = item.type === 0 ? item.rss?.name : item.type === 1 ? item.rpa?.name : '';
+          const name = item.channel;
           const current = item.id === selected;
           const cls = classNames(`block truncate text-base p-2 rounded hover:bg-slate-50`, {
             'bg-slate-50': current
