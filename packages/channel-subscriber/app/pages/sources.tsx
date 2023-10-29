@@ -87,6 +87,7 @@ export default function Main () {
       <div ref={listDIVRef} className='p-4 flex-1 min-w-0'>
         {width >= 0 ? (
           <SourceList 
+            subscribed={source.dsWithForm}
             width={width} 
             {...rssSource}
           />
