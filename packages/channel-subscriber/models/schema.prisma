@@ -31,7 +31,7 @@ model RSS {
   scheduleCron String? // 定时任务
 
   subscribedChannel SubscribedChannel? @relation(fields: [subscribedChannelId], references: [id]) // 数据源
-  subscribedChannelId Int? @unique
+  subscribedChannelId Int?
 }
 
 // 自定义RPA，待开发
@@ -42,5 +42,5 @@ model RPA {
   name String
 
   subscribedChannel SubscribedChannel? @relation(fields: [subscribedChannelId], references: [id]) // 数据源
-  subscribedChannelId Int? @unique
+  subscribedChannelId Int?
 }

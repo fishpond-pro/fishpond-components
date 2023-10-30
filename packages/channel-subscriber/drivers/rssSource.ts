@@ -175,31 +175,25 @@ export default function rssSource (props: RssSourceProps) {
     console.log('[addChannel] params: ', params);
     const { source, previews } = params;
 
-    yield writeSource.create({
-      type: 0,
-      channel: source.platform,
-      rss: {
-        create: {
-          name: source.name,
-          href: source.link,
-        }
+    yield writeSource.upsert(
+      {
+        channel: source.platform
       },
-      // record: {
-      //   create: {
-      //     channel: source.platform,
-      //     lastUpdatedDate: new Date(),
-      //     data: {
-      //       create: previews.map((p, i) => ({
-      //         title: p.title,
-      //         link: p.link,
-      //         description: 'mock i',
-      //         // time: p.pubDate,
-      //         type: 'article',
-      //       }))
-      //     }
-      //   }
-      // }
+      {
+        type: 0,
+        channel: source.platform,
+        rss: {
+          create: {
+            name: source.name,
+            href: source.link,
+          }
+        },
     })        
+
+
+
+
+
   })
 
   const subscribed = signal([]);
