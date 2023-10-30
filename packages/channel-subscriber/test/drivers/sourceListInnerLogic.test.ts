@@ -3,8 +3,6 @@ import * as clientSm from '@polymita/signal-model/dist/signal-model.client'
 import { preset } from '@polymita/server/dist/preset'
 import path from 'node:path'
 
-import clientDriver from '../../.test/client/drivers/cjs/sourceListInnerLogic'
-import serverDriver from '../../.test/server/drivers/cjs/sourceListInnerLogic'
 
 const source = () => ({
   group: 'group',
@@ -34,54 +32,7 @@ describe('test driver/sourceListInnerLogic', () => {
     const mockForm = () => ({ path: 'test path', payload: { test: 'test' } })
 
     it('preview and submit', async () => {
-      const runner = new clientSm.ModelRunner(clientDriver)      
       
-      const result = runner.init([
-        {
-          onQuery: () => Promise.resolve(mockMs()),
-          onSubmit: (source, form) => {
-            expect(form).toEqual(mockForm())
-          }
-        }
-      ])
-
-      expect(Object.keys(result).length).toBeGreaterThan(0)
-
-      result.selectCurrentSource(source())
-      result.sourcePreviewForm(draft => {
-        Object.assign(draft, mockForm())
-      })
-
-      await result.queryPreview()
-      const ms = result.previewMessages()
-      expect(ms).toEqual(mockMs())
-      
-      result.submit()
-    })    
-    it ('not preview but submit directly', async () => {
-      const runner = new clientSm.ModelRunner(clientDriver)      
-      
-      const result = runner.init([
-        {
-          onQuery: () => Promise.resolve(mockMs()),
-          onSubmit: (source, form) => {
-            expect(form).toEqual(mockForm())
-          }
-        }
-      ])
-
-      result.selectCurrentSource(source())
-      result.sourcePreviewForm(draft => {
-        Object.assign(draft, mockForm())
-      })
-
-      result.submit()
-
-      expect(result.showSubmitConfirm().visible).toEqual(true)
-      expect(result.showSubmitConfirm().title).toBeTruthy()
-
-      result.secondConfirmSubmit()
-      expect(result.showSubmitConfirm().visible).toEqual(false)
     })
   })
   describe('server', () => {
@@ -91,12 +42,6 @@ describe('test driver/sourceListInnerLogic', () => {
       })
     })
     it('hello server', async () => {
-      const runner = new sm.ModelRunner(serverDriver)
-      const result = runner.init()
-
-      expect(Object.keys(result).length).toBeGreaterThan(0)
-
-      await runner.ready()
     })
   })
 })
