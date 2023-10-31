@@ -19,7 +19,7 @@ export interface PreviewMessage extends RSSItem{
 }
 
 interface SubscribedChannelWithRss extends SubscribedChannel{
-  rss?: RSS
+  rss?: RSS[]
 }
 
 export type SourceMenus = Array<{
@@ -40,8 +40,7 @@ export interface RssSourceProps {
   menus: SourceMenus
 }
 
-export default function rssSource (props: RssSourceProps) {
-  console.log('props: ', props);
+export default function rss (props: RssSourceProps) {
   const currentSource = signal<RSSSource>(null)
 
   const sourcePreviewForm = signal<{
@@ -196,11 +195,9 @@ export default function rssSource (props: RssSourceProps) {
 
   })
 
-  const subscribed = signal([]);
-
   return {
     menus,
-    subscribed,
+    subscribed: subscribedChannels,
     expandablePreviewDescriptions,
     toggleDescriptionExpandable,
     currentSource,

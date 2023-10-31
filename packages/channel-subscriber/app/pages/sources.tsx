@@ -6,9 +6,9 @@ import sourceMock2 from '@/shared/rss-mock'
 import { toRSS_JSON } from '@/shared/utils'
 import menus from '@/models/rsshub-source-menu.json'
 import View from '@/views/AsideSourceList'
-import SourceDriver from '@/drivers/source'
+import channelDriver from '@/drivers/channel'
 import { useSignal } from '@polymita/connect'
-import rssSourceDriver from '@/drivers/rssSource'
+import rssDriver from '@/drivers/rss'
 
 export default function Main () {
   const listDIVRef = useRef<HTMLDivElement>(null)
@@ -41,9 +41,9 @@ export default function Main () {
     };
   }, []);
 
-  const source = useSignal(SourceDriver)
+  const source = useSignal(channelDriver)
 
-  const rssSource = useSignal(rssSourceDriver, {
+  const rssSource = useSignal(rssDriver, {
     menus,
     onQueryRssSources: async (arg) => {
       return arg.map(([g, subGroup]) => {
@@ -71,10 +71,10 @@ export default function Main () {
     <div className='flex'>
       <div className='w-[200px] border-r border-black'>
         <View
-          list={source.ds as any}
+          list={source.channels}
           title="Aside Title" 
           onSubmit={(arg) => {
-            source.addSource(arg)
+            source.addRssChannel(arg)
           }}
           onClick={(item, i) => {
             console.log('item: ', i, item);
@@ -87,7 +87,7 @@ export default function Main () {
       <div ref={listDIVRef} className='p-4 flex-1 min-w-0'>
         {width >= 0 ? (
           <SourceList 
-            subscribed={source.dsWithForm}
+            subscribed={source.channelsWithForm}
             width={width} 
             {...rssSource}
           />

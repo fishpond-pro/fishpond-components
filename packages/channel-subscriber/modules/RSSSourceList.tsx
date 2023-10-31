@@ -9,7 +9,7 @@ import * as RSSPanelsTableModule from './RSSParamsTable'
 import {getParamsFromPath } from '@/utils/index'
 import { genUniquePlatformKey } from '@/shared/utils';
 
-import rssSourceDriver from '@/drivers/rssSource'
+import rssSourceDriver from '@/drivers/rss'
 
 type rssSourceDriverReturn = ReturnType<typeof rssSourceDriver>
 

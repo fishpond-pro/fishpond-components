@@ -45,9 +45,9 @@ export type RPA = {
   dataSourceId: number | null
 }
 
-export default function source () {
+export default function channel () {
 
-  const ds = prisma<DataSource[]>(indexes.subscribedChannel, () => ({
+  const channels = prisma<DataSource[]>(indexes.subscribedChannel, () => ({
     orderBy: {
       modifiedAt: 'desc',
     },
@@ -57,8 +57,8 @@ export default function source () {
     }
   }))
 
-  const dsWithForm = signal(() => {
-    const source = ds()
+  const channelsWithForm = signal(() => {
+    const source = channels()
     return source.map(s => {
       if (s.type === 0) {
         return {
@@ -77,28 +77,33 @@ export default function source () {
     })
   })
 
-  const writeSource = writePrisma(ds, () => ({
+  const writeSource = writePrisma(channels, () => ({
   }))
 
-  const addSource = inputComputeInServer(function * (arg: {
+  const addRssChannel = inputComputeInServer(function * (arg: {
     name: string, link: string,
     platform: string,
   }) {
+    let rss = undefined;
+    if (arg.name) {
+      rss = {
+        name: arg.name,
+        href: arg.link,
+      }
+    }
+
     yield writeSource.upsert({
+      channel: arg.platform,
+    }, {
       type: 0,
       channel: arg.platform,
-      rss: {
-        create: {
-          name: arg.name,
-          href: arg.link,
-        }
-      }
+      rss,
     })
   })
 
   return {
-    ds,
-    dsWithForm,
-    addSource
+    channels,
+    channelsWithForm,
+    addRssChannel
   }
 }

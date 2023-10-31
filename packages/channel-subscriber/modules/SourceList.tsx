@@ -1,7 +1,7 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, classNames, VirtualLayoutJSON } from '@polymita/renderer';
 import { Signal, signal } from '@polymita/signal-model'
 import * as AddSourceModule from './AddSource'
-import type { DataSource } from '@/drivers/source';
+import type { DataSource } from '@/drivers/channel';
 import * as ListModule from 'polymita/components/list'
 
 export const name = 'SourceList' as const

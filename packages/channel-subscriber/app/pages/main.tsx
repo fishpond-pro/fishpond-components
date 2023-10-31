@@ -1,23 +1,23 @@
 import React from 'react'
 import 'polymita/index.css'
 import View from '@/views/AsideSourceList'
-import SourceDriver from '@/drivers/source'
+import channelDriver from '@/drivers/channel'
 import { useSignal } from '@polymita/connect'
 
 export default function Main () {
 
-  const source = useSignal(SourceDriver)
+  const source = useSignal(channelDriver)
 
-  console.log('ds:', source.ds())
+  console.log('ds:', source.channels())
 
   return (
     <div className="w-[300px] border"> 
       <View
         internalModal
-        list={source.ds as any}
+        list={source.channels}
         title="订阅源" 
         onSubmit={(arg) => {
-          source.addSource(arg)
+          source.addRssChannel(arg)
         }}
         onClick={(item, i) => {
           console.log('item: ', i, item);
