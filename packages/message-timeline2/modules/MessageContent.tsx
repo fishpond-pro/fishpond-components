@@ -17,7 +17,7 @@ export interface MessageContentProps {
 
   displayType: 'drawer' | 'modal' | 'normal'
 
-  mode: 'iframe' | 'new-window'
+  mode: 'iframe' | 'webview'
 }
 
 export const propTypes = {
@@ -57,7 +57,8 @@ export const layout = (props: MessageContentProps): VirtualLayoutJSON => {
         <messageContentDescription className='text-base rounded leading-8 text-gray-600' _html={props.description} />
         <messageContentContent if={!!props.content} className='text-base leading-8 text-gray-600' _html={props.content} />
         <messageContentContentFrame if={!props.content} className='text-base leading-8 text-gray-600' >
-          <iframe src={props.contentLink} className='w-full' />
+          <iframe v-if={mode === 'iframe'} id={props.contentLink} src={props.contentLink} className='w-full' />
+          <iframe v-if={mode === 'webview'} id={props.contentLink} src={props.contentLink} className='w-full' />
         </messageContentContentFrame>
       </messageContentBody>
     </messageContent>
