@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import * as ComponentModule from '../modules/SourceList';
+import * as ComponentModule from '../modules/ChannelList';
 import { RenderToReact } from '@/shared/render';
 
 const Component = RenderToReact(ComponentModule);
