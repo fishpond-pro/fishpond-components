@@ -20,14 +20,15 @@ export type DataSource = {
   type: 0
   channel: string
   rss: RSS[]
-} | {
-  id: number
-  createdAt: Date
-  modifiedAt: Date
-  channel: string
-  type: 1
-  rpa: RPA[]
-}
+} 
+// | {
+//   id: number
+//   createdAt: Date
+//   modifiedAt: Date
+//   channel: string
+//   type: 1
+//   rpa: RPA[]
+// }
 export type RSS = {
   id: number
   createdAt: Date
@@ -81,7 +82,8 @@ export default function channel () {
   }))
 
   const addRssChannel = inputComputeInServer(function * (arg: {
-    name: string, link: string,
+    name: string, 
+    link: string,
     platform: string,
   }) {
     let rss = undefined;

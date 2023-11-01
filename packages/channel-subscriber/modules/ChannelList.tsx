@@ -1,7 +1,7 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, classNames, VirtualLayoutJSON } from '@polymita/renderer';
 import { Signal, signal } from '@polymita/signal-model'
 import * as AddSourceModule from './AddSource'
-import type { DataSource } from '@/drivers/channel';
+import type { DataSource, RSS } from '@/drivers/channel';
 import * as ListModule from 'polymita/components/list'
 
 export const name = 'SourceList' as const
@@ -15,7 +15,7 @@ export interface SourceListProps {
   title?: string
   onSubmit?: AddSourceModule.AddSourceProps['onSubmit']
   list: Signal<DataSource[]>
-  onClick?: (ds: DataSource, index: number) => void;
+  onClick?: (ds: DataSource | RSS, index: number) => void;
   internalModal?: boolean
   onClickPlus?: () => void;
   selected?: number;
@@ -76,13 +76,32 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
             'bg-slate-50': current
           })
           return (
-            <listSourceContent
-              className={cls}
-              onClick={() => {
-                props.onClick?.(item, i);
-              }}
-            >
-              {`${name}`}
+            <listSourceContent>
+              <listSourceChannel               
+                className={cls}
+                onClick={() => {
+                  props.onClick?.(item, i);
+                }} >
+                {`${name}`}
+              </listSourceChannel>
+              <ListCpt 
+                border={false}
+                list={item.rss as any}
+                render={(rssItem:RSS, i:number) => {
+                  const cls2 = classNames(`block truncate text-sm py-2 pl-4 rounded hover:bg-slate-50`, {
+                    'bg-slate-50': rssItem.id === selected
+                  });        
+                  return (
+                    <listSourceRss 
+                      className={cls2}
+                      onClick={() => {
+                        props.onClick?.(rssItem, i);
+                      }} >
+                      {`${rssItem.name}`}
+                    </listSourceRss>
+                  );
+                }}
+              />
             </listSourceContent>
           )
         }} />

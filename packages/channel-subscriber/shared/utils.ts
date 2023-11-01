@@ -82,5 +82,5 @@ export interface RSSSource {
 }
 
 export function genUniquePlatformKey (s: RSSSource) {
-  return `${s.group}/${s.subGroup}/${s.title}`;
+  return `${s.group}/${s.subGroup}`;
 }

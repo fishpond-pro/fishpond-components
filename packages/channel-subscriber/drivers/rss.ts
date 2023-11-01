@@ -132,7 +132,7 @@ export default function rss (props: RssSourceProps) {
       source: {
         link: rsshubURL,
         platform: uniquePlatform,
-        name: uniquePlatform,
+        name: channel.title,
       },
       previews,
     });
@@ -167,7 +167,9 @@ export default function rss (props: RssSourceProps) {
 
   const addChannel = inputComputeInServer(function * (params: {
     source: {
-      name: string, link: string, platform: string
+      name: string, 
+      link: string, 
+      platform: string
     },
     previews: RSSItem[]
   }) {

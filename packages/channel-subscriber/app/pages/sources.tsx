@@ -5,7 +5,7 @@ import rsshubSourcesMock from '@/shared/rsshub-sources.json'
 import sourceMock2 from '@/shared/rss-mock'
 import { toRSS_JSON } from '@/shared/utils'
 import menus from '@/models/rsshub-source-menu.json'
-import View from '@/views/AsideSourceList'
+import ChannelList from '@/views/ChannelList'
 import channelDriver from '@/drivers/channel'
 import { useSignal } from '@polymita/connect'
 import rssDriver from '@/drivers/rss'
@@ -68,9 +68,9 @@ export default function Main () {
   });
 
   return (
-    <div className='flex'>
-      <div className='w-[200px] border-r border-black'>
-        <View
+    <div className='flex h-screen'>
+      <div className='w-[200px] border-r border-slate-100 h-full'>
+        <ChannelList
           list={source.channels}
           title="Aside Title" 
           onSubmit={(arg) => {
