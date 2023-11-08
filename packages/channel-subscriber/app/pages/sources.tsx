@@ -6,6 +6,7 @@ import sourceMock2 from '@/shared/rss-mock'
 import { toRSS_JSON } from '@/shared/utils'
 import menus from '@/models/rsshub-source-menu.json'
 import ChannelList from '@/views/ChannelList'
+import AddSourceDrawer from '@/views/AddSourceDrawer'
 import channelDriver from '@/drivers/channel'
 import { useSignal } from '@polymita/connect'
 import rssDriver from '@/drivers/rss'
@@ -52,7 +53,7 @@ export default function Main () {
         )
       }).flat().map(item => ({
         ...item,
-        tables: item.tables.split('\n')
+        tables: typeof item.tables === 'string' ? [item.tables] : item.tables
       }))
     },
     onQueryPreviews: async (form) => {
@@ -92,6 +93,12 @@ export default function Main () {
             {...rssSource}
           />
         ) : null}
+
+        {rssSource.currentSource() && (
+          <AddSourceDrawer
+            {...rssSource}
+          />
+        )}
     </div>
     </div>
   )
