@@ -1,5 +1,5 @@
 import { classNames, h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, VirtualLayoutJSON, classnames } from '@polymita/renderer';
-import showdown from 'showdown'
+import { ComputedSignal, Signal } from '@polymita/signal';
 import * as RSSSourcePanelModule from './RSSSourcePanel'
 import * as DrawerModule from 'polymita/components/drawer'
 import * as InputModule from 'polymita/components/input'
@@ -8,6 +8,7 @@ import * as RSSPanelsTableModule from './RSSParamsTable'
 
 import {getParamsFromPath } from '@/utils/index'
 import { genUniquePlatformKey } from '@/shared/utils';
+import { SubscribedChannel } from '@/shared/types';
 
 import rssSourceDriver from '@/drivers/rss'
 
@@ -20,24 +21,9 @@ export let meta: {
   patchCommands: []
 }
 
-export interface SubscribedChannel{
-  id: number
-  createdAt: Date
-  modifiedAt: Date
-  type: number
-  channel: string | null
-  rss?: {
-    id: number
-    createdAt: Date
-    modifiedAt: Date
-    name: string
-    href: string
-    scheduleCron: string | null  
-  }[]
-}
-
 export interface SourceListProps extends rssSourceDriverReturn {
   width: number
+  subscribed: ComputedSignal<SubscribedChannel[]>
 }
 
 export const propTypes = {

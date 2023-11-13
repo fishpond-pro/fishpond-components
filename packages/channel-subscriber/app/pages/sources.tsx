@@ -96,6 +96,7 @@ export default function Main () {
 
         {rssSource.currentSource() && (
           <AddSourceDrawer
+            subscribed={source.channelsWithForm}
             {...rssSource}
           />
         )}

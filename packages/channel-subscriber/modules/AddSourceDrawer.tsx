@@ -1,5 +1,5 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, VirtualLayoutJSON, createFunctionComponent } from '@polymita/renderer';
-import { after, Signal, signal } from '@polymita/signal'
+import { after, ComputedSignal, Signal, signal } from '@polymita/signal'
 import showdown from 'showdown'
 import rssSourceDriver from '@/drivers/rss'
 import * as DrawerModule from 'polymita/components/drawer'
@@ -7,6 +7,7 @@ import * as InputModule from 'polymita/components/input'
 import * as ButtonModule from 'polymita/components/button'
 import * as RSSPanelsTableModule from './RSSParamsTable'
 import { getParamsFromPath } from '@/utils/index';
+import { SubscribedChannel } from '@/shared/types';
 
 export const name = 'AddSourceDrawer' as const
 export let meta: {
@@ -18,6 +19,7 @@ export let meta: {
 type rssSourceDriverReturn = ReturnType<typeof rssSourceDriver>
 
 export interface AddSourceDrawerProps extends rssSourceDriverReturn {
+  subscribed: ComputedSignal<SubscribedChannel[]>
 }
 
 export const propTypes = {
@@ -72,6 +74,29 @@ export const layout = (props: AddSourceDrawerProps): VirtualLayoutJSON => {
         </submitConfirmMessage>
         <rowParams className="flex flex-row h-full">
           <leftParams className="flex-1 min-w-0">
+            <sourceExtraParamBox className="block p-2 border my-2">
+              <h3 className="mt-2">参数表单</h3>
+              <sourcePreviewForm className="block border-slate-100 mt-2 pd-2">
+                {Object.keys(props.sourcePreviewForm().payload).map((key) => (
+                  <sourcePreviewFormItem className="block mb-2" key={key}>
+                    <Input 
+                      placeholder={key}
+                      value={props.sourcePreviewForm as any}
+                      value-path={['payload', key]} 
+                    />
+                  </sourcePreviewFormItem>
+                ))}
+                <fullContentPathLabel className="block mt-4">
+                  指定全文内容的路径
+                </fullContentPathLabel>
+                <Input 
+                  placeholder='full content path'
+                  value={props.sourcePreviewForm as any}
+                  value-path={['fullContentPath']}
+                />
+              </sourcePreviewForm>
+            </sourceExtraParamBox>
+            
             <sourceItemRoute className="block break-all">
               <span className='mr-1 text-gray-500'>路径:</span>
               /{currentSource.route.path}
@@ -108,28 +133,7 @@ export const layout = (props: AddSourceDrawerProps): VirtualLayoutJSON => {
               })}
             </sourceItemParamTips>
 
-            <sourceExtraParamBox className="block p-2 border my-2">
-              <h3 className="mt-2">参数表单</h3>
-              <sourcePreviewForm className="block border-slate-100 mt-2 pd-2">
-                {Object.keys(props.sourcePreviewForm().payload).map((key) => (
-                  <sourcePreviewFormItem className="block mb-2" key={key}>
-                    <Input 
-                      placeholder={key}
-                      value={props.sourcePreviewForm as any}
-                      value-path={['payload', key]} 
-                    />
-                  </sourcePreviewFormItem>
-                ))}
-                <fullContentPathLabel className="block mt-4">
-                  指定全文内容的路径
-                </fullContentPathLabel>
-                <Input 
-                  placeholder='full content path'
-                  value={props.sourcePreviewForm as any}
-                  value-path={['fullContentPath']}
-                />
-              </sourcePreviewForm>
-            </sourceExtraParamBox>
+        
           </leftParams>
           <arrowSymbol className="flex mx-4 items-center justify-center">
             &gt;

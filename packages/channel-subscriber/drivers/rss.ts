@@ -161,8 +161,6 @@ export default function rss (props: RssSourceProps) {
     return json
   })
 
-  const subscribedChannels = prisma<SubscribedChannelWithRss[]>(indexes['subscribedChannel']);
-
   const writeSource = writePrisma(indexes['subscribedChannel'])
 
   const addChannel = inputComputeInServer(function * (params: {
@@ -199,7 +197,6 @@ export default function rss (props: RssSourceProps) {
 
   return {
     menus,
-    subscribed: subscribedChannels,
     expandablePreviewDescriptions,
     toggleDescriptionExpandable,
     currentSource,
