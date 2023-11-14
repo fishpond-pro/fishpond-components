@@ -3,7 +3,7 @@ import 'polymita/index.css'
 import SourceList from '@/views/RSSSourceList'
 import rsshubSourcesMock from '@/shared/rsshub-sources.json'
 import sourceMock2 from '@/shared/rss-mock'
-import { toRSS_JSON } from '@/shared/utils'
+import { genUniquePlatformKey, toRSS_JSON } from '@/shared/utils'
 import menus from '@/models/rsshub-source-menu.json'
 import ChannelList from '@/views/ChannelList'
 import AddSourceDrawer from '@/views/AddSourceDrawer'
@@ -42,7 +42,7 @@ export default function Main () {
     };
   }, []);
 
-  const source = useSignal(channelDriver)
+  const channel = useSignal(channelDriver)
 
   const rssSource = useSignal(rssDriver, {
     menus,
@@ -68,14 +68,20 @@ export default function Main () {
     },
   });
 
+
+  const uniqueChannel = genUniquePlatformKey(rssSource.currentSource());
+  useEffect(() => {
+    channel.currentChannel(uniqueChannel);
+  }, [uniqueChannel]);
+
   return (
     <div className='flex h-screen'>
       <div className='w-[200px] border-r border-slate-100 h-full'>
         <ChannelList
-          list={source.channels}
+          list={channel.channels}
           title="Aside Title" 
           onSubmit={(arg) => {
-            source.addRssChannel(arg)
+            channel.addRssChannel(arg)
           }}
           onClick={(item, i) => {
             console.log('item: ', i, item);
@@ -88,7 +94,7 @@ export default function Main () {
       <div ref={listDIVRef} className='p-4 flex-1 min-w-0'>
         {width >= 0 ? (
           <SourceList 
-            subscribed={source.channelsWithForm}
+            subscribed={channel.channelsWithForm}
             width={width} 
             {...rssSource}
           />
@@ -96,7 +102,7 @@ export default function Main () {
 
         {rssSource.currentSource() && (
           <AddSourceDrawer
-            subscribed={source.channelsWithForm}
+            subscribed={channel.channelsWithForm}
             {...rssSource}
           />
         )}

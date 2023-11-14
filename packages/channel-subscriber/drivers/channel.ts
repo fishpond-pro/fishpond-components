@@ -47,16 +47,26 @@ export type RPA = {
 }
 
 export default function channel () {
+  const currentChannel = signal<string>(null);
 
-  const channels = prisma<DataSource[]>(indexes.subscribedChannel, () => ({
-    orderBy: {
-      modifiedAt: 'desc',
-    },
-    include: {
-      rss: true,
-      rpa: true
+  const channels = prisma<DataSource[]>(indexes.subscribedChannel, () => {
+    const c = currentChannel();
+    if (!c) {
+      return;
     }
-  }))
+    return ({
+      where: {
+        channel: currentChannel(),
+      },
+      orderBy: {
+        modifiedAt: 'desc',
+      },
+      include: {
+        rss: true,
+        rpa: true
+      }
+    })
+  })
 
   const channelsWithForm = signal(() => {
     const source = channels()
@@ -104,6 +114,7 @@ export default function channel () {
   })
 
   return {
+    currentChannel,
     channels,
     channelsWithForm,
     addRssChannel
