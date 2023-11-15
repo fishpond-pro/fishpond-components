@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import 'polymita/index.css'
 import SourceList from '@/views/RSSSourceList'
-import rsshubSourcesMock from '@/shared/rsshub-sources.json'
+import rsshubSourcesMock from '@/models/rsshub-sources.json'
 import sourceMock2 from '@/shared/rss-mock'
 import { genUniquePlatformKey, toRSS_JSON } from '@/shared/utils'
 import menus from '@/models/rsshub-source-menu.json'

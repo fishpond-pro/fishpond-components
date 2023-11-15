@@ -8,48 +8,12 @@ import {
 } from '@polymita/signal-model'
 import indexes from '@/models/indexes.json'
 import { parseRSSUrl } from '@/shared/utils'
-
-/**
- * Model DataSource
- * 
- */
-export type DataSource = {
-  id: number
-  createdAt: Date
-  modifiedAt: Date
-  type: 0
-  channel: string
-  rss: RSS[]
-} 
-// | {
-//   id: number
-//   createdAt: Date
-//   modifiedAt: Date
-//   channel: string
-//   type: 1
-//   rpa: RPA[]
-// }
-export type RSS = {
-  id: number
-  createdAt: Date
-  modifiedAt: Date
-  name: string
-  href: string
-  scheduleCron: string | null
-  dataSourceId: number | null
-}
-export type RPA = {
-  id: number
-  createdAt: Date
-  modifiedAt: Date
-  name: string
-  dataSourceId: number | null
-}
+import { SubscribedChannel, SubscribedChannelWithForm } from '@/shared/types'
 
 export default function channel () {
   const currentChannel = signal<string>(null);
 
-  const channels = prisma<DataSource[]>(indexes.subscribedChannel, () => {
+  const channels = prisma<SubscribedChannel[]>(indexes.subscribedChannel, () => {
     const c = currentChannel();
     if (!c) {
       return;
@@ -68,23 +32,22 @@ export default function channel () {
     })
   })
 
-  const channelsWithForm = signal(() => {
+  const channelsWithForm = signal<SubscribedChannelWithForm[]>(() => {
     const source = channels()
     return source.map(s => {
-      if (s.type === 0) {
-        return {
-          ...s,
-          rss: s.rss.map(r => {
-            const { path, payload } = parseRSSUrl(r.href)
-            return {
-              ...r,
-              path,
-              payload,
-            }
-          })
-        }
+      if (s.type !== 0) {
       }
-      return s;
+      return {
+        ...s,
+        rss: s.rss.map(r => {
+          const { path, payload } = parseRSSUrl(r.href)
+          return {
+            ...r,
+            path,
+            payload,
+          }
+        })
+      }
     })
   })
 

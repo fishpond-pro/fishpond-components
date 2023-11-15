@@ -9,7 +9,8 @@ import * as TabsModule from 'polymita/components/tabs'
 import * as ListModule from 'polymita/components/list'
 import * as RSSPanelsTableModule from './RSSParamsTable'
 import { getParamsFromPath } from '@/utils/index';
-import { SubscribedChannel } from '@/shared/types';
+import { SubscribedChannel, SubscribedChannelWithForm } from '@/shared/types';
+import { extractParams } from '@/shared/utils';
 
 export const name = 'AddSourceDrawer' as const
 export let meta: {
@@ -21,14 +22,17 @@ export let meta: {
 type rssSourceDriverReturn = ReturnType<typeof rssSourceDriver>
 
 export interface AddSourceDrawerProps extends rssSourceDriverReturn {
-  subscribed: ComputedSignal<SubscribedChannel[]>
+  subscribed: ComputedSignal<SubscribedChannelWithForm[]>
 }
 
 export const propTypes = {
 }
 
 export const logic = (props: SignalProps<AddSourceDrawerProps>) => {
+  const showForm = signal<number[]>([])
+
   return {
+    showForm,
   }
 }
 type LogicReturn = ReturnType<typeof logic>
@@ -181,11 +185,42 @@ export const layout = (props: AddSourceDrawerProps): VirtualLayoutJSON => {
           </sourceParamsTop>
         </TabsPanel>
         <TabsPanel header="subscribed">
-          {props.subscribed()?.[0]?.rss.map(rssItem => {
+          {props.subscribed()?.[0]?.rss.map((rssItem, index) => {
+            const isShowForm = logic.showForm().includes(rssItem.id)
+            const params = extractParams(currentSource.route.path, rssItem.href);
+
+            const displayForm = {
+              ...rssItem.payload,
+              ...params,
+            }
+
             return (
-              <rssItem>
-                {rssItem.href}
-              </rssItem>
+              <rssListItem className='block'>
+                <rssItem className='w-full p-2 flex items-center'>
+                  <rssItemName className='flex-1'>
+                    {rssItem.name}
+                  </rssItemName>
+                  <rssItemLink className="ml-2">
+                    <rssItemForm className="mr-2" onClick={() =>{
+                      logic.showForm(draft => {
+                        if (draft.includes(rssItem.id)) {
+                          return draft.filter(id => id !== rssItem.id)
+                        } else {
+                          draft.push(rssItem.id)
+                        }
+                      })
+                    }}>
+                      parameters
+                    </rssItemForm>
+                    <a href={rssItem.href} target='_blank'>link</a>
+                  </rssItemLink>
+                </rssItem>
+                <rssItemFormContent className='block p-4' if={isShowForm}>
+                  <pre>
+                    {JSON.stringify(displayForm, null, 2)}
+                  </pre>
+                </rssItemFormContent>
+              </rssListItem>
             )
           })}
         </TabsPanel>
