@@ -14,13 +14,13 @@ export default function channel () {
   const currentChannel = signal<string>(null);
 
   const channels = prisma<SubscribedChannel[]>(indexes.subscribedChannel, () => {
-    const c = currentChannel();
-    if (!c) {
-      return;
-    }
+    // const c = currentChannel();
+    // if (!c) {
+    //   return;
+    // }
     return ({
       where: {
-        channel: currentChannel(),
+        // channel: currentChannel(),
       },
       orderBy: {
         modifiedAt: 'desc',
