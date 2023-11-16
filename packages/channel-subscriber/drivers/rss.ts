@@ -2,6 +2,7 @@ import { RSSItem, RSSSource, genUniquePlatformKey, getRSSComplementURL } from '@
 export type { RSSItem, RSSSource } from '@/shared/utils'
 import { getParamsFromPath } from '@/utils/index'
 import {
+  ComputedSignal,
   after,
   compose,
   computed,
@@ -14,12 +15,9 @@ import {
 import menusLogic from './menusLogic'
 import { RSS, SubscribedChannel } from '@/models/indexesTypes'
 import * as indexes from '@/models/indexes.json'
+import { SubscribedChannelWithForm } from '@/shared/types'
 
 export interface PreviewMessage extends RSSItem{  
-}
-
-interface SubscribedChannelWithRss extends SubscribedChannel{
-  rss?: RSS[]
 }
 
 export type SourceMenus = Array<{
@@ -38,6 +36,7 @@ export interface RssSourceProps {
   ) => void
   onSelect: (v: [string, string][]) => void
   menus: SourceMenus
+  subscribed: ComputedSignal<SubscribedChannelWithForm[]>
 }
 
 export default function rss (props: RssSourceProps) {
@@ -73,6 +72,20 @@ export default function rss (props: RssSourceProps) {
       previewMessages(() => [])
     }
   });
+
+  function resetSourcePreviewForm () {
+    sourcePreviewForm(draft => {
+      draft.path = '';
+      Object.keys(draft.payload).forEach(k => {
+        draft.payload[k] = ''
+      })
+    })
+  }
+
+  function checkDuplicate () {
+    const form = sourcePreviewForm();
+    
+  }
 
   after(() => {
     showSubmitConfirm(draft => {
@@ -188,11 +201,6 @@ export default function rss (props: RssSourceProps) {
           }
         },
     })        
-
-
-
-
-
   })
 
   return {
@@ -204,6 +212,7 @@ export default function rss (props: RssSourceProps) {
     selectCurrentSource,
     queryPreview,
     previewMessages,
+    resetSourcePreviewForm,
     submit,
     secondConfirmSubmit,    
     showSubmitConfirm,

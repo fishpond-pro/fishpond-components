@@ -12,6 +12,7 @@ export interface RSSSourcePanelProps {
   value: RSSSource
   width: number
   onClick?: (target: RSSSource) => void
+  count?: number
 }
 
 export const propTypes = {
@@ -32,7 +33,7 @@ export type RSSSourcePanelLayout = {
 export const layout = (props: RSSSourcePanelProps) => {
   const logic = useLogic<LogicReturn>();
   
-  const { width, value } = props
+  const { width, value, count } = props
   const { route, subGroup, title } = value
   const { path } = route
   const params = getParamsFromPath(route.path, route.paramsdesc)
@@ -41,7 +42,12 @@ export const layout = (props: RSSSourcePanelProps) => {
       onClick={() => {
         props.onClick?.(value)
       }}
-      className="cursor-pointer inline-block box-border border mb-2 p-4" style={{ width: width || 200 }}>
+      className="relative cursor-pointer inline-block box-border border mb-2 p-4" style={{ width: width || 200 }}>
+      <sourceItemCount 
+        if={!!count} 
+        className='inline-block bg-slate-300 w-2 h-2 absolute top-0 left-0 p-2 rounded-full border'>
+        {count}
+      </sourceItemCount>  
       <sourceItemTitle className="mb-2 pb-2 border-b flex items-center" >
         <span className="inline-block text-ellipsis whitespace-nowrap overflow-hidden">{subGroup}</span>
         <span className="mx-1" >-</span>

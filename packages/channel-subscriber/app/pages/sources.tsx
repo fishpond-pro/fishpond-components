@@ -45,6 +45,7 @@ export default function Main () {
   const channel = useSignal(channelDriver)
 
   const rssSource = useSignal(rssDriver, {
+    subscribed: channel.channelsWithForm,
     menus,
     onQueryRssSources: async (arg) => {
       return arg.map(([g, subGroup]) => {

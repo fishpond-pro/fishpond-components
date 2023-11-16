@@ -64,7 +64,6 @@ export const layout = (props: AddSourceDrawerProps): VirtualLayoutJSON => {
       onClose={() => props.selectCurrentSource(null)} 
       title={`${currentSource.group}/${currentSource.subGroup}/${currentSource.title}`} 
       extra={[
-        <Button key="preview" onClick={() => props.queryPreview()} >preview</Button>,
         <Button 
           key="submit" disabled={props.showSubmitConfirm().visible}
           onClick={() => props.submit()}
@@ -76,14 +75,14 @@ export const layout = (props: AddSourceDrawerProps): VirtualLayoutJSON => {
           <sourceParamsTop className="flex flex-col mg-2 h-full">
             <submitConfirmMessage
               if={props.showSubmitConfirm().visible}
-              className="flex mb-2 p-2 border border-yellow-600 justify-between items-center text-yellow-600"
+              className="flex my-4 p-2 border border-yellow-600 justify-between items-center text-yellow-600"
             >
               <span>
                 {props.showSubmitConfirm().title}
               </span>
               <Button onClick={() => props.showSubmitConfirm()} type="primary" >Sure</Button>
             </submitConfirmMessage>
-            <rowParams className="flex flex-row h-full">
+            <rowParams className="flex flex-row h-full relative">
               <leftParams className="flex-1 min-w-0">
                 <sourceExtraParamBox className="block p-2 border my-2">
                   <h3 className="mt-2">参数表单</h3>
@@ -100,12 +99,22 @@ export const layout = (props: AddSourceDrawerProps): VirtualLayoutJSON => {
                     <fullContentPathLabel className="block mt-4">
                       指定全文内容的路径
                     </fullContentPathLabel>
-                    <Input 
-                      placeholder='full content path'
-                      value={props.sourcePreviewForm as any}
-                      value-path={['fullContentPath']}
-                    />
+                    <div className='mt-2'>
+                      <Input 
+                        placeholder='full content path'
+                        value={props.sourcePreviewForm as any}
+                        value-path={['fullContentPath']}
+                      />
+                    </div>
                   </sourcePreviewForm>
+                  <sourceParamBoxError className="block mt-2 text-red-500">
+                  </sourceParamBoxError>
+                  <sourceParamBoxFooter className="flex justify-end mt-2">
+                    <div className='mr-2'>
+                      <Button key="preview" onClick={() => props.resetSourcePreviewForm()} >rest</Button>
+                    </div>
+                    <Button key="preview" onClick={() => props.queryPreview()} >preview</Button>
+                  </sourceParamBoxFooter>
                 </sourceExtraParamBox>
                 
                 <sourceItemRoute className="block break-all">
@@ -199,6 +208,8 @@ export const layout = (props: AddSourceDrawerProps): VirtualLayoutJSON => {
                 <rssItem className='w-full p-2 flex items-center'>
                   <rssItemName className='flex-1'>
                     {rssItem.name}
+
+                    <a href={rssItem.href} className='ml-2' target='_blank'>{rssItem.href}</a>
                   </rssItemName>
                   <rssItemLink className="ml-2">
                     <rssItemForm className="mr-2" onClick={() =>{
@@ -210,9 +221,9 @@ export const layout = (props: AddSourceDrawerProps): VirtualLayoutJSON => {
                         }
                       })
                     }}>
-                      parameters
+                      Parameters
                     </rssItemForm>
-                    <a href={rssItem.href} target='_blank'>link</a>
+                    
                   </rssItemLink>
                 </rssItem>
                 <rssItemFormContent className='block p-4' if={isShowForm}>

@@ -148,11 +148,13 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
             return sub.channel === key
           })
           const count = subscribedChannel?.rss?.length || 0;
+          console.log('count: ', count);
           return (
             <RSSSourcePanel 
               width={columnWidth} 
               key={key}
               value={source}
+              count={count}
               onClick={() => {
                 props.selectCurrentSource(source)
               }} />
