@@ -31,6 +31,9 @@ export default function channel () {
       }
     })
   })
+  const computedChannels = signal(() => {
+    return channels();
+  })
 
   const channelsWithForm = signal<SubscribedChannelWithForm[]>(() => {
     const source = channels()
@@ -79,6 +82,7 @@ export default function channel () {
   return {
     currentChannel,
     channels,
+    computedChannels,
     channelsWithForm,
     addRssChannel
   }

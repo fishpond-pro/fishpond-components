@@ -14,7 +14,7 @@ export default function Main () {
     <div className="w-[300px] border"> 
       <View
         internalModal
-        list={source.channels}
+        list={source.computedChannels}
         title="订阅源" 
         onSubmit={(arg) => {
           source.addRssChannel(arg)

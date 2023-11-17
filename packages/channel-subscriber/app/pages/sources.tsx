@@ -79,7 +79,7 @@ export default function Main () {
     <div className='flex h-screen'>
       <div className='w-[200px] border-r border-slate-100 h-full'>
         <ChannelList
-          list={channel.channels}
+          list={channel.computedChannels}
           title="Aside Title" 
           onSubmit={(arg) => {
             channel.addRssChannel(arg)

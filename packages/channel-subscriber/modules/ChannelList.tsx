@@ -1,8 +1,8 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, classNames, VirtualLayoutJSON } from '@polymita/renderer';
-import { Signal, signal } from '@polymita/signal-model'
+import { ComputedSignal, Signal, signal } from '@polymita/signal-model'
 import * as AddSourceModule from './AddSource'
-import type { DataSource, RSS } from '@/drivers/channel';
 import * as ListModule from 'polymita/components/list'
+import { SubscribedChannel, RSS } from '@/shared/types';
 
 export const name = 'SourceList' as const
 export let meta: {
@@ -14,8 +14,8 @@ export let meta: {
 export interface SourceListProps {
   title?: string
   onSubmit?: AddSourceModule.AddSourceProps['onSubmit']
-  list: Signal<DataSource[]>
-  onClick?: (ds: DataSource | RSS, index: number) => void;
+  list: ComputedSignal<SubscribedChannel[]>
+  onClick?: (ds: SubscribedChannel | RSS, index: number) => void;
   internalModal?: boolean
   onClickPlus?: () => void;
   selected?: number;
@@ -68,7 +68,7 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
         </addSourceEntry>
       </listHeader>
       <listContent className="block pl-2">
-        <ListCpt border={false} list={props.list} render={(item: DataSource, i: number) => {
+        <ListCpt border={false} list={props.list} render={(item: SubscribedChannel, i: number) => {
           // const name = item.type === 0 ? item.rss?.name : item.type === 1 ? item.rpa?.name : '';
           const name = item.channel;
           const current = item.id === selected;
