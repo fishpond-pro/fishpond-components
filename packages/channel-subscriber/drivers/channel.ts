@@ -9,6 +9,7 @@ import {
 import indexes from '@/models/indexes.json'
 import { parseRSSUrl } from '@/shared/utils'
 import { SubscribedChannel, SubscribedChannelWithForm } from '@/shared/types'
+export * from '@/shared/types'
 
 export default function channel () {
   const currentChannel = signal<string>(null);

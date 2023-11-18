@@ -4,7 +4,7 @@ import { RenderToReact } from '@/shared/render';
 
 const Component = RenderToReact(ComponentModule);
 
-export interface SourceListProps extends ComponentModule.SourceListProps {
+export interface SourceListProps extends ComponentModule.ChannelListProps {
 }
 
 const SourceList = (props: SourceListProps) => {

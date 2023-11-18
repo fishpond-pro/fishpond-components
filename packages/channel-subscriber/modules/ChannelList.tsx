@@ -6,12 +6,12 @@ import { SubscribedChannel, RSS } from '@/shared/types';
 
 export const name = 'SourceList' as const
 export let meta: {
-  props: SourceListProps,
+  props: ChannelListProps,
   layoutStruct: SourceListLayout
   patchCommands: []
 }
 
-export interface SourceListProps {
+export interface ChannelListProps {
   title?: string
   onSubmit?: AddSourceModule.AddSourceProps['onSubmit']
   list: ComputedSignal<SubscribedChannel[]>
@@ -24,7 +24,7 @@ export interface SourceListProps {
 export const propTypes = {
 }
 
-export const logic = (props: SignalProps<SourceListProps>) => {
+export const logic = (props: SignalProps<ChannelListProps>) => {
   const sourceModalVisible = signal(false)
   return {
     sourceModalVisible,
@@ -40,7 +40,7 @@ export type SourceListLayout = {
 const AddSourceCpt = createFunctionComponent(AddSourceModule)
 const ListCpt = createFunctionComponent(ListModule);
 
-export const layout = (props: SourceListProps): VirtualLayoutJSON => {
+export const layout = (props: ChannelListProps): VirtualLayoutJSON => {
   const {
     sourceModalVisible,
   } = useLogic<LogicReturn>();
@@ -111,12 +111,12 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
   )
 }
 
-export const styleRules = (props: SourceListProps, layout: ConvertToLayoutTreeDraft<SourceListLayout>) => {
+export const styleRules = (props: ChannelListProps, layout: ConvertToLayoutTreeDraft<SourceListLayout>) => {
   return [
   ]
 }
 
-export const designPattern = (props: SourceListProps, layout: ConvertToLayoutTreeDraft<SourceListLayout>) => {
+export const designPattern = (props: ChannelListProps, layout: ConvertToLayoutTreeDraft<SourceListLayout>) => {
   const logic = useLogic<LogicReturn>()
   return {}
 }
