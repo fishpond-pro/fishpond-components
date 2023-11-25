@@ -4,10 +4,10 @@ import * as AddSourceModule from './AddSource'
 import * as ListModule from 'polymita/components/list'
 import { SubscribedChannel, RSS } from '@/shared/types';
 
-export const name = 'SourceList' as const
+export const name = 'ChannelList' as const
 export let meta: {
   props: ChannelListProps,
-  layoutStruct: SourceListLayout
+  layoutStruct: ChannelListLayout
   patchCommands: []
 }
 
@@ -32,10 +32,34 @@ export const logic = (props: SignalProps<ChannelListProps>) => {
 }
 type LogicReturn = ReturnType<typeof logic>
 
-export type SourceListLayout = {
-  type: 'sourceListContainer',
-  children: [
-  ],
+export type ChannelListLayout = {
+  "type": "channelListContainer",
+  "children": [
+    {
+      "type": "listHeader",
+      "children": [
+        {
+          "type": "listTitle",
+          "children": []
+        },
+        {
+          "type": "addSourceEntry",
+          "children": []
+        }
+      ]
+    },
+    {
+      "type": "listContent",
+      "children": [
+        {
+          "type": "ListCpt"
+        }
+      ]
+    },
+    {
+      "type": "AddSourceCpt"
+    }
+  ]
 }
 const AddSourceCpt = createFunctionComponent(AddSourceModule)
 const ListCpt = createFunctionComponent(ListModule);
@@ -49,7 +73,7 @@ export const layout = (props: ChannelListProps): VirtualLayoutJSON => {
 
 
   return (
-    <sourceListContainer className="block">
+    <channelListContainer className="block">
       <listHeader className="flex p-2">
         <listTitle className="flex-1 text-lg">
           {props.title}
@@ -107,16 +131,16 @@ export const layout = (props: ChannelListProps): VirtualLayoutJSON => {
         }} />
       </listContent>
       <AddSourceCpt visible={sourceModalVisible} onSubmit={props.onSubmit} />
-    </sourceListContainer>
+    </channelListContainer>
   )
 }
 
-export const styleRules = (props: ChannelListProps, layout: ConvertToLayoutTreeDraft<SourceListLayout>) => {
+export const styleRules = (props: ChannelListProps, layout: ConvertToLayoutTreeDraft<ChannelListLayout>) => {
   return [
   ]
 }
 
-export const designPattern = (props: ChannelListProps, layout: ConvertToLayoutTreeDraft<SourceListLayout>) => {
+export const designPattern = (props: ChannelListProps, layout: ConvertToLayoutTreeDraft<ChannelListLayout>) => {
   const logic = useLogic<LogicReturn>()
   return {}
 }
