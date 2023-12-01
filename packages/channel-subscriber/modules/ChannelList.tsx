@@ -3,6 +3,7 @@ import { ComputedSignal, Signal, signal } from '@polymita/signal-model'
 import * as AddSourceModule from './AddSource'
 import * as ListModule from 'polymita/components/list'
 import { SubscribedChannel, RSS } from '@/shared/types';
+import CheckIcon from 'polymita/icons/check'
 
 export const name = 'ChannelList' as const
 export let meta: {
@@ -18,6 +19,7 @@ export interface ChannelListProps {
   onClick?: (ds: SubscribedChannel | RSS, index: number) => void;
   internalModal?: boolean
   onClickPlus?: () => void;
+  onClickRefresh?: () => void;
   selected?: number;
 }
 
@@ -41,6 +43,9 @@ export type ChannelListLayout = {
         {
           "type": "listTitle",
           "children": []
+        },
+        {
+          "type": "refreshButton"
         },
         {
           "type": "addSourceEntry",
@@ -74,10 +79,13 @@ export const layout = (props: ChannelListProps): VirtualLayoutJSON => {
 
   return (
     <channelListContainer className="block">
-      <listHeader className="flex p-2">
+      <listHeader className="flex p-2 items-center">
         <listTitle className="flex-1 text-lg">
           {props.title}
         </listTitle>
+        <refreshButton onClick={props.onClickRefresh}>
+          <CheckIcon />
+        </refreshButton>
         <addSourceEntry
           className="inline-block w-[24px] text-center cursor-pointer"
           onClick={() => {

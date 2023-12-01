@@ -152,7 +152,7 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
           return (
             <RSSSourcePanel 
               width={columnWidth} 
-              key={key}
+              key={key + source.title}
               value={source}
               count={count}
               onClick={() => {
