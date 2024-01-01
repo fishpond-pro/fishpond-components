@@ -3,7 +3,8 @@ import { ComputedSignal, Signal, signal } from '@polymita/signal-model'
 import * as AddSourceModule from './AddSource'
 import * as ListModule from 'polymita/components/list'
 import { SubscribedChannel, RSS } from '@/shared/types';
-import CheckIcon from 'polymita/icons/check'
+import ReloadIcon from 'polymita/icons/reload'
+import PlusIcon from 'polymita/icons/plus'
 
 export const name = 'ChannelList' as const
 export let meta: {
@@ -19,7 +20,6 @@ export interface ChannelListProps {
   onClick?: (ds: SubscribedChannel | RSS, index: number) => void;
   internalModal?: boolean
   onClickPlus?: () => void;
-  onClickRefresh?: () => void;
   selected?: number;
 }
 
@@ -44,13 +44,6 @@ export type ChannelListLayout = {
           "type": "listTitle",
           "children": []
         },
-        {
-          "type": "refreshButton"
-        },
-        {
-          "type": "addSourceEntry",
-          "children": []
-        }
       ]
     },
     {
@@ -79,14 +72,11 @@ export const layout = (props: ChannelListProps): VirtualLayoutJSON => {
 
   return (
     <channelListContainer className="block">
-      <listHeader className="flex p-2 items-center">
+      <listHeader className="flex items-center">
         <listTitle className="flex-1 text-lg">
           {props.title}
         </listTitle>
-        <refreshButton onClick={props.onClickRefresh}>
-          <CheckIcon />
-        </refreshButton>
-        <addSourceEntry
+        {/* <addSourceEntry
           className="inline-block w-[24px] text-center cursor-pointer"
           onClick={() => {
             if (props.internalModal) {
@@ -96,17 +86,20 @@ export const layout = (props: ChannelListProps): VirtualLayoutJSON => {
             }
           }}
         >
-          +
-        </addSourceEntry>
+          <PlusIcon />
+        </addSourceEntry> */}
       </listHeader>
       <listContent className="block pl-2">
         <ListCpt border={false} list={props.list} render={(item: SubscribedChannel, i: number) => {
           // const name = item.type === 0 ? item.rss?.name : item.type === 1 ? item.rpa?.name : '';
           const name = item.channel;
           const current = item.id === selected;
-          const cls = classNames(`block truncate text-base p-2 rounded hover:bg-slate-50`, {
-            'bg-slate-50': current
-          })
+          const cls = classNames(
+            `block cursor-pointer truncate text-base p-2 rounded hover:bg-slate-50`, 
+            {
+              'bg-slate-50': current
+            }
+          )
           return (
             <listSourceContent>
               <listSourceChannel               
@@ -120,9 +113,12 @@ export const layout = (props: ChannelListProps): VirtualLayoutJSON => {
                 border={false}
                 list={item.rss as any}
                 render={(rssItem:RSS, i:number) => {
-                  const cls2 = classNames(`block truncate text-sm py-2 pl-4 rounded hover:bg-slate-50`, {
-                    'bg-slate-50': rssItem.id === selected
-                  });        
+                  const cls2 = classNames(
+                    `block truncate cursor-pointer text-sm py-2 pl-4 rounded hover:bg-slate-50`, 
+                    {
+                      'bg-slate-50': rssItem.id === selected
+                    }
+                  );        
                   return (
                     <listSourceRss 
                       className={cls2}

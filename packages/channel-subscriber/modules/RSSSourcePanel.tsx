@@ -45,7 +45,7 @@ export const layout = (props: RSSSourcePanelProps) => {
       className="relative cursor-pointer inline-block box-border border mb-2 p-4" style={{ width: width || 200 }}>
       <sourceItemCount 
         if={!!count} 
-        className='inline-block bg-slate-300 w-5 h-5 text-center leading-5 text-sm absolute -top-1 -left-1 rounded-full border'>
+        className='inline-block bg-slate-300 w-6 h-6 text-center leading-5 text-sm absolute -top-2 -left-2 rounded-full border'>
         {count}
       </sourceItemCount>  
       <sourceItemTitle className="mb-2 pb-2 border-b flex items-center" >

@@ -30,6 +30,10 @@ model RSS {
   href String @unique // RSS地址
   scheduleCron String? // 定时任务
 
+  directory Directory? @relation(fields: [directoryId], references: [id])
+  directoryId Int?
+  tag String?
+
   subscribedChannel SubscribedChannel? @relation(fields: [subscribedChannelId], references: [id]) // 数据源
   subscribedChannelId Int?
 }
@@ -41,6 +45,24 @@ model RPA {
   modifiedAt  DateTime @default(now()) @updatedAt
   name String
 
+  directory Directory? @relation(fields: [directoryId], references: [id])
+  directoryId Int?
+  tag String?
+
   subscribedChannel SubscribedChannel? @relation(fields: [subscribedChannelId], references: [id]) // 数据源
   subscribedChannelId Int?
+}
+
+model Directory {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  modifiedAt  DateTime @default(now()) @updatedAt
+  name String
+
+  rss RSS[]
+  rpa RPA[]
+
+  parent Directory? @relation("ChildCategories", fields: [parentId], references: [id])
+  parentId Int?
+  children Directory[] @relation("ChildCategories")
 }
