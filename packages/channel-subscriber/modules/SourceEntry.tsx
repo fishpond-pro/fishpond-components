@@ -11,6 +11,7 @@ export let meta: {
 
 export interface SourceEntryProps {
   onClickRefresh?: () => void;
+  onClick?: () => void;
 }
 
 export const propTypes = {
@@ -31,7 +32,7 @@ export const layout = (props: SourceEntryProps): VirtualLayoutJSON => {
   const logic = useLogic<LogicReturn>()
   return (
     <sourceEntryContainer className='flex'>
-      <sourceEntryTitle className='flex-1'>
+      <sourceEntryTitle className='flex-1' onClick={props.onClick}> 
         订阅源
       </sourceEntryTitle>
 
