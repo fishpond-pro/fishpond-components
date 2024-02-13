@@ -2,6 +2,7 @@
   "name": "fishpond-components",
   "scripts": {
     "build:all": "node scripts/release",
+    "patch:all": "node scripts/patch",
     "release:all": "RELEASE=1 node scripts/release"
   },
   "dependencies": {
