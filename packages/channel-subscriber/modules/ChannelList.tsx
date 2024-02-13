@@ -93,12 +93,8 @@ export const layout = (props: ChannelListProps): VirtualLayoutJSON => {
         <ListCpt border={false} list={props.list} render={(item: SubscribedChannel, i: number) => {
           // const name = item.type === 0 ? item.rss?.name : item.type === 1 ? item.rpa?.name : '';
           const name = item.channel;
-          const current = item.id === selected;
           const cls = classNames(
-            `block cursor-pointer truncate text-base p-2 rounded hover:bg-slate-50`, 
-            {
-              'bg-slate-50': current
-            }
+            `block cursor-pointer truncate text-base p-2 rounded hover:bg-slate-50`,
           )
           return (
             <listSourceContent>
