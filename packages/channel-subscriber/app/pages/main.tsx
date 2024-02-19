@@ -1,5 +1,5 @@
 import React from 'react'
-import 'polymita/index.css'
+import '@polymita/ui/index.css'
 import View from '@/views/ChannelList'
 import channelDriver from '@/drivers/channel'
 import { useSignal } from '@polymita/connect'

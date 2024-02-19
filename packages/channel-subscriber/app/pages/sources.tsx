@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import 'polymita/index.css'
+import '@polymita/ui/index.css'
 import SourceList from '@/views/RSSSourceList'
 import rsshubSourcesMock from '@/models/rsshub-sources.json'
 import sourceMock2 from '@/shared/rss-mock'
