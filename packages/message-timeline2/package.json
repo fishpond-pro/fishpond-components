@@ -39,7 +39,7 @@
     "date-fns": "^2.29.3",
     "immer": "^9.0.14",
     "lodash": "^4.17.21",
-    "polymita": "workspace:*",
+    "@polymita/ui": "workspace:*",
     "prisma": "^4.2.1",
     "react-router-dom": "^6.9.0",
     "showdown": "2.1.0"
