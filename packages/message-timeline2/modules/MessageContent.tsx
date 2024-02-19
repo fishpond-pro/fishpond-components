@@ -1,6 +1,6 @@
 import { createFunctionComponent, h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, VirtualLayoutJSON } from '@polymita/renderer';
 import { after, Signal, signal } from '@polymita/signal'
-import * as DrawerModule from 'polymita/components/drawer'
+import * as DrawerModule from '@polymita/ui'/components/drawer'
 
 export const name = 'MessageContent' as const
 export let meta: {

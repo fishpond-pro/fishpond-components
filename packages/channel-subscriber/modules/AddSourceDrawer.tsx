@@ -2,11 +2,11 @@ import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, VirtualL
 import { after, ComputedSignal, Signal, signal } from '@polymita/signal'
 import showdown from 'showdown'
 import rssSourceDriver from '@/drivers/rss'
-import * as DrawerModule from 'polymita/components/drawer'
-import * as InputModule from 'polymita/components/input'
-import * as ButtonModule from 'polymita/components/button'
-import * as TabsModule from 'polymita/components/tabs'
-import * as ListModule from 'polymita/components/list'
+import * as DrawerModule from '@polymita/ui'/components/drawer'
+import * as InputModule from '@polymita/ui'/components/input'
+import * as ButtonModule from '@polymita/ui'/components/button'
+import * as TabsModule from '@polymita/ui'/components/tabs'
+import * as ListModule from '@polymita/ui'/components/list'
 import * as RSSPanelsTableModule from './RSSParamsTable'
 import { getParamsFromPath } from '@/utils/index';
 import { SubscribedChannel, SubscribedChannelWithForm } from '@/shared/types';
