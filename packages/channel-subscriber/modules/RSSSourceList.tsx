@@ -1,9 +1,9 @@
 import { classNames, h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, VirtualLayoutJSON, classnames } from '@polymita/renderer';
 import { ComputedSignal, Signal } from '@polymita/signal';
 import * as RSSSourcePanelModule from './RSSSourcePanel'
-import * as DrawerModule from '@polymita/ui'/components/drawer'
-import * as InputModule from '@polymita/ui'/components/input'
-import * as ButtonModule from '@polymita/ui'/components/button'
+import * as DrawerModule from '@polymita/ui/components/drawer'
+import * as InputModule from '@polymita/ui/components/input'
+import * as ButtonModule from '@polymita/ui/components/button'
 import * as RSSPanelsTableModule from './RSSParamsTable'
 
 import {getParamsFromPath } from '@/utils/index'

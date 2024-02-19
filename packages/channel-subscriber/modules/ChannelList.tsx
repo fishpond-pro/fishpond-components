@@ -1,10 +1,10 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, classNames, VirtualLayoutJSON } from '@polymita/renderer';
 import { ComputedSignal, Signal, signal } from '@polymita/signal-model'
 import * as AddSourceModule from './AddSource'
-import * as ListModule from '@polymita/ui'/components/list'
+import * as ListModule from '@polymita/ui/components/list'
 import { SubscribedChannel, RSS } from '@/shared/types';
-import ReloadIcon from '@polymita/ui'/icons/reload'
-import PlusIcon from '@polymita/ui'/icons/plus'
+import ReloadIcon from '@polymita/ui/icons/reload'
+import PlusIcon from '@polymita/ui/icons/plus'
 
 export const name = 'ChannelList' as const
 export let meta: {

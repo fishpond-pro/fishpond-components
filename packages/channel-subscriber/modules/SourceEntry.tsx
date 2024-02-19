@@ -1,6 +1,6 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, VirtualLayoutJSON } from '@polymita/renderer';
 import { after, Signal, signal } from '@polymita/signal'
-import ReloadIcon from '@polymita/ui'/icons/reload'
+import ReloadIcon from '@polymita/ui/icons/reload'
 
 export const name = 'SourceEntry' as const
 export let meta: {
