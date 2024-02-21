@@ -54,7 +54,7 @@ function build(cwd) {
 
 function publish (package) {
   return new Promise(resolve => {
-    console.log('npm publish');
+    console.log('pnpm publish');
     exec(`pnpm publish`, { cwd: package }, (err, stdout) => {
       if (err) {
         throw err
