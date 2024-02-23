@@ -45,28 +45,24 @@ export const layout = (props: MessageContentProps): VirtualLayoutJSON => {
 
   const logic = useLogic<LogicReturn>();
 
-  const contentNode = (
-    <messageContent className='message-content block p-20'>
-      <messageContentHeader className='flex items-center justify-between mb-6'>
-        <messageContentTitle className='text-2xl font-bold'>{props.title}</messageContentTitle>
-      </messageContentHeader>
-      <messageContentBody className='flex flex-col'>
-        <messageContentLink className='text-sm text-gray-600 p-4 bg-slate-100 my-2 rounded-sm' >
-          <a target='_blank' href={props.contentLink} >{props.contentLink}</a>
-        </messageContentLink>
-        <messageContentDescription className='text-base rounded leading-8 text-gray-600' _html={props.description} />
-        <messageContentContent if={!!props.content} className='text-base leading-8 text-gray-600' _html={props.content} />
-        <messageContentContentFrame if={!props.content} className='text-base leading-8 text-gray-600' >
-          <iframe v-if={mode === 'iframe'} id={props.contentLink} src={props.contentLink} className='w-full' />
-          <webview v-if={mode === 'webview'} id={props.contentLink} src={props.contentLink} className='w-full' />
-        </messageContentContentFrame>
-      </messageContentBody>
-    </messageContent>
-  );
-
   return (
-    <modulesContainer className="block ">
-      {contentNode}
+    <modulesContainer className="block h-full">
+      <messageContent className='h-full message-content p-10 py-4 flex flex-col'>
+        <messageContentHeader className='flex items-center justify-between mb-6'>
+          <messageContentTitle className='text-2xl font-bold'>{props.title}</messageContentTitle>
+        </messageContentHeader>
+        <messageContentBody className='flex flex-col flex-1'>
+          {/* <messageContentLink className='text-sm text-gray-600 p-4 bg-slate-100 my-2 rounded-sm' >
+            <a target='_blank' href={props.contentLink} >{props.contentLink}</a>
+          </messageContentLink>
+          <messageContentDescription className='text-base rounded leading-8 text-gray-600 ' _html={props.description} />
+          <messageContentContent if={!!props.content} className='text-base leading-8 text-gray-600' _html={props.content} /> */}
+          <messageContentContentFrame if={!props.content} className='flex text-base leading-8 text-gray-600 flex-1' >
+            {/* <iframe v-if={mode === 'iframe'} id={props.contentLink} src={props.contentLink} className='w-full h-full' /> */}
+            <webview id={props.contentLink} src={props.contentLink} className='w-full flex-1' />
+          </messageContentContentFrame>
+        </messageContentBody>
+      </messageContent>
     </modulesContainer>
   )
 }
