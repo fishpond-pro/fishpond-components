@@ -13,8 +13,7 @@ import {
   writePrisma,
 } from '@polymita/signal-model'
 import menusLogic from './menusLogic'
-import { RSS, SubscribedChannel } from '@/models/indexesTypes'
-import * as indexes from '@/models/indexes.json'
+import indexes from '@/models/indexes.json'
 import { SubscribedChannelWithForm } from '@/shared/types'
 
 export interface PreviewMessage extends RSSItem{  

@@ -1,0 +1,68 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  output          = "./customPrismaClient/client"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+}
+
+model SubscribedChannel {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  modifiedAt  DateTime @default(now()) @updatedAt
+
+  type Int // 0.RSShub 1.自定义爬虫脚本
+  channel String?  @unique // 所属平台
+
+  rss RSS[]
+  rpa RPA[]
+}
+
+model RSS {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  modifiedAt  DateTime @default(now()) @updatedAt
+
+  name String
+  href String @unique // RSS地址
+  scheduleCron String? // 定时任务
+
+  directory Directory? @relation(fields: [directoryId], references: [id])
+  directoryId Int?
+  tag String?
+
+  subscribedChannel SubscribedChannel? @relation(fields: [subscribedChannelId], references: [id]) // 数据源
+  subscribedChannelId Int?
+}
+
+// 自定义RPA，待开发
+model RPA {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  modifiedAt  DateTime @default(now()) @updatedAt
+  name String
+
+  directory Directory? @relation(fields: [directoryId], references: [id])
+  directoryId Int?
+  tag String?
+
+  subscribedChannel SubscribedChannel? @relation(fields: [subscribedChannelId], references: [id]) // 数据源
+  subscribedChannelId Int?
+}
+
+model Directory {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  modifiedAt  DateTime @default(now()) @updatedAt
+  name String
+
+  rss RSS[]
+  rpa RPA[]
+
+  parent Directory? @relation("ChildCategories", fields: [parentId], references: [id])
+  parentId Int?
+  children Directory[] @relation("ChildCategories")
+}

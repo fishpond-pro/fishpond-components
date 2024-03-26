@@ -1,18 +1,23 @@
+'use client'
 import React, { useEffect, useRef } from 'react'
 import '@polymita/ui/index.css'
-import SourceList from '@/views/RSSSourceList'
+import SourceList from '@/app/polymita/views/RSSSourceList'
 import rsshubSourcesMock from '@/models/rsshub-sources.json'
 import sourceMock2 from '@/shared/rss-mock'
 import { genUniquePlatformKey, toRSS_JSON } from '@/shared/utils'
 import menus from '@/models/rsshub-source-menu.json'
-import ChannelList from '@/views/ChannelList'
-import AddSourceDrawer from '@/views/AddSourceDrawer'
-import channelDriver from '@/drivers/channel'
-import { useSignal } from '@polymita/connect'
-import rssDriver from '@/drivers/rss'
-import SourceEntry from '@/views/SourceEntry'
+import ChannelList from '@/app/polymita/views/ChannelList'
+import AddSourceDrawer from '@/app/polymita/views/AddSourceDrawer'
+import SourceEntry from '@/app/polymita/views/SourceEntry'
+import { useSignal } from '../polymita/hooks';
+import { signalMap } from '../polymita/signalsMap'
+import { IHookContext } from '@polymita/signal'
 
-export default function Main () {
+
+export default function ClientSources (props: {
+  channelCtx: IHookContext,
+  rssCtx: IHookContext
+}) {
   const listDIVRef = useRef<HTMLDivElement>(null)
   const [width, setWidth] = React.useState(-1)
 
@@ -43,9 +48,9 @@ export default function Main () {
     };
   }, []);
 
-  const channel = useSignal(channelDriver)
+  const channel = useSignal(signalMap.channel)
 
-  const rssSource = useSignal(rssDriver, {
+  const rssSource = useSignal(signalMap.rss, {
     subscribed: channel.channelsWithForm,
     menus,
     onQueryRssSources: async (arg) => {
