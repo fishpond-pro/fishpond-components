@@ -85,7 +85,6 @@ async function cookieClear(s, k) {
   return cookies().set(k, '')
 }
 
-
 export {
   find,
   update,

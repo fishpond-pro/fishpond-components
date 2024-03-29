@@ -7,6 +7,7 @@
     "p:dev": "prisma migrate dev && prisma generate",
     "p:gen": "prisma generate",
     "dev": "polymita dev",
+    "any": "polymita any",
     "dev:next": "next dev",
     "build": "next build",
     "start": "next start",

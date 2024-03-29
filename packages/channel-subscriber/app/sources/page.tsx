@@ -1,15 +1,16 @@
 import React, { useEffect, useRef } from 'react'
 import '@polymita/ui/index.css'
 import ClientSources from './clientPage'
-import { signalMap } from '../polymita/signalsMap'
+import channelSignal from '../polymita/signals/channel'
+import rss from '../polymita/signals/rss'
 import { getContext } from '../polymita/connect'
 import menus from '@/models/rsshub-source-menu.json'
 
 export default async function Sources () {
 
-  const [channel, channelCtx] = await getContext(signalMap.channel)
+  const [channel, channelCtx] = await getContext(channelSignal)
 
-  const [_, rssSourceCtx] = await getContext(signalMap.rss, {
+  const [_, rssSourceCtx] = await getContext(rss, {
     subscribed: channel.channelsWithForm,
     menus,
   })

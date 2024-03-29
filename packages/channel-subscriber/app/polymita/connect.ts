@@ -3,6 +3,17 @@ import { createGetContext } from "@polymita/next-connect";
 import * as modelActions from "./actions";
 import { Plugin } from '@polymita/signal-model'
 
+function wrapTrace (obj: any): any {
+  let newObj = {}
+  Object.keys(obj).forEach(name => {
+    newObj[name] = function () {
+      console.trace(name)
+      return obj[name].apply(this, arguments)
+    }
+  })
+  return newObj
+}
+
 export function createPlugin () {
   const isServer = typeof window === 'undefined'
 
@@ -10,7 +21,7 @@ export function createPlugin () {
 
   if (isServer) {
     plugin.loadPlugin('Model', {
-      ...modelActions,
+      ...wrapTrace(modelActions),
     })
     plugin.loadPlugin('cookie', {
       set: modelActions.cookieSet,

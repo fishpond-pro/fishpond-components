@@ -3,14 +3,15 @@ import { IHookContext } from '@polymita/signal';
 import React, { FC, useContext, useState } from 'react';
 import View from '../polymita/views/ChannelList'
 import { useSignal } from '../polymita/hooks';
-import { signalMap } from '../polymita/signalsMap'
+import channel from '../polymita/signals/channel'
 
 interface ClientMainProps {
   ctx: IHookContext
 }
 const ClientMain: FC<ClientMainProps> = (props) => {
+  console.log('ClientMain: ');
   
-  const source = useSignal(props.ctx, signalMap.channel)
+  const source = useSignal(props.ctx, channel)
   
   return (
     <View
