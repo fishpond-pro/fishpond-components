@@ -107,5 +107,8 @@ customPrismaClient
 .tarat/
 dist/
 
-./models/dev.db
+models/dev.db
 .test/
+
+app/polymita/views
+app/polymita/signals

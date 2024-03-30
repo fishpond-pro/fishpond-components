@@ -110,5 +110,5 @@ dist/
 ./models/dev.db
 .test/
 
-./app/polymita/views/
-./app/polymita/signals/
+app/polymita/views
+app/polymita/signals
