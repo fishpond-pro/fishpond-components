@@ -12,13 +12,37 @@
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "removeComments": false,
-    "jsx": "react",
-    "lib": ["esnext", "dom"],
-    "types": ["node"],
+    "jsx": "preserve",
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "types": [
+      "node"
+    ],
     "baseUrl": ".",
     "paths": {
-      "immer": ["node_modules/immer"],
-      "@/*": ["./*"]
-    }
-  }
+      "@/*": [
+        "./*"
+      ]
+    },
+    "skipLibCheck": true,
+    "strict": false,
+    "noEmit": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

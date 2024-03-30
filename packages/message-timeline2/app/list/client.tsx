@@ -1,12 +1,14 @@
+'use client'
 import React, { useEffect, useState } from 'react'
-import { useSignal } from '@polymita/connect';
 import SingleTimeline from '../../views/SingleTimeline'
-import messageDriver, { MessageItem } from '@/drivers/message'
-import MessageContent from '@/views/MessageContent';
+import messageDriver from '../polymita/signals/message'
+import MessageContent from '../polymita/views/MessageContent';
+import { IHookContext } from '@polymita/signal-model';
+import { useSignal } from '../polymita/hooks';
 
-export default function Main () {
+export default function Main (props: { ctx: IHookContext }) {
 
-  const message = useSignal(messageDriver);  
+  const message = useSignal(props.ctx, messageDriver);  
   
   const [mid, setMid] = React.useState<number>(0);
 
@@ -15,9 +17,6 @@ export default function Main () {
       message.queryMessageByMessageId(mid)
     }
   }, [mid])
-
-  const [current, setCurrent] = useState<MessageItem>()
-  console.log('current: ', current);
 
   const item = message.currentMessageItem();
 

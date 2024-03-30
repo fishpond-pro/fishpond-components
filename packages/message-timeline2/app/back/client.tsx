@@ -1,11 +1,13 @@
+'use client'
 import React from 'react'
-import { useSignal } from '@polymita/connect';
 import Button from '@mui/material/Button';
-import writeMessage from '@/drivers/writeMessage';
+import writeMessage from '../polymita/signals/writeMessage';
+import { IHookContext } from '@polymita/signal';
+import { useSignal } from '../polymita/hooks';
 
-export default function Main () {
+export default function Main (props: { ctx: IHookContext }) {
 
-  const wmDriver = useSignal(writeMessage)
+  const wmDriver = useSignal(props.ctx, writeMessage)
 
   console.log('wmDriver.messages', wmDriver.messages());
 
@@ -56,7 +58,7 @@ export default function Main () {
         <textarea className="border p-2 w-full" rows={10} value={source} onChange={e => setSource(e.target.value)}>
         </textarea>
       </div>
-      <Button variant="contained" onClick={() => {
+      <Button onClick={() => {
         wmDriver.saveChannelRecord(JSON.parse(source))
       } }>Save Source</Button>
 
@@ -66,7 +68,7 @@ export default function Main () {
         <textarea className="border p-2 w-full" rows={10} value={message} onChange={e => setMessage(e.target.value)}>
         </textarea>
       </div>
-      <Button variant="contained" onClick={() => {
+      <Button onClick={() => {
         wmDriver.saveMessage(JSON.parse(message))
       }}>Save Message</Button>
 
@@ -76,7 +78,7 @@ export default function Main () {
         <textarea className="border p-2 w-full" rows={10} value={content} onChange={e => setContent(e.target.value)}>
         </textarea>
       </div>
-      <Button variant="contained" onClick={() => {
+      <Button onClick={() => {
         wmDriver.saveMessageContent(JSON.parse(content));
       }}>Save Content</Button>
     </div>

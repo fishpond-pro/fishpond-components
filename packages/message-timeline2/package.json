@@ -4,12 +4,16 @@
   "tarat": {},
   "description": "a tarat unit",
   "scripts": {
-    "init": "pnpm i && npm run p:dev",
-    "dev": "tarat dev",
-    "build": "tarat build",
-    "start": "tarat start",
     "p:dev": "prisma migrate dev && prisma generate",
     "p:gen": "prisma generate",
+    "dev": "polymita dev",
+    "any": "polymita any",
+    "dev:next": "next dev",
+    "build": "polymita build",
+    "build:next": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "init": "pnpm i && npm run p:dev",
     "p:deploy": "prisma migrate deploy",
     "p:studio": "prisma studio",
     "test": "polymita test"
@@ -26,38 +30,42 @@
     "types",
     "README.md"
   ],
-  "dependencies": {
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
-    "@mui/material": "^5.11.15",
-    "@polymita/connect": "workspace:^",
-    "@polymita/renderer": "workspace:^",
-    "@polymita/server": "workspace:^",
-    "@polymita/signal": "workspace:^",
-    "@polymita/signal-model": "workspace:^",
-    "@prisma/client": "^4.2.1",
-    "date-fns": "^2.29.3",
-    "immer": "^9.0.14",
-    "lodash": "^4.17.21",
-    "@polymita/ui": "workspace:^",
-    "prisma": "^4.2.1",
-    "react-router-dom": "^6.9.0",
-    "showdown": "2.1.0"
-  },
   "peerDependencies": {
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
+  "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.11.15",
+    "@polymita/channel-subscriber": "workspace:^",
+    "@polymita/connect": "workspace:^",
+    "@polymita/message-timeline2": "workspace:^",
+    "@polymita/next-connect": "workspace:^",
+    "@polymita/next-server": "workspace:^",
+    "@polymita/renderer": "workspace:^",
+    "@polymita/signal": "workspace:^",
+    "@polymita/signal-model": "workspace:^",
+    "@polymita/ui": "workspace:^",
+    "@prisma/client": "^5.10.2",
+    "next": "14.1.0",
+    "prisma": "^5.10.2",
+    "react": "^18",
+    "react-dom": "^18",
+    "date-fns": "^2.29.3"
+  },
   "devDependencies": {
-    "@types/lodash": "^4.14.182",
-    "@types/node": "^18.6.2",
-    "@types/react": "18.2.18",
-    "@types/react-dom": "18.2.7",
-    "less": "^4.1.2",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "tailwindcss": "^3.1.8",
-    "tslib": "^2.4.0",
-    "typescript": "^5.0.2"
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.0",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5"
+  },
+  "volta": {
+    "node": "20.11.1"
   }
 }

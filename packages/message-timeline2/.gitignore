@@ -107,4 +107,5 @@ customPrismaClient
 .tarat/
 dist/
 
+./models/dev.db
 .test/

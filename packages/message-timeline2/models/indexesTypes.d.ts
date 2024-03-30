@@ -1,29 +1,12 @@
-export type ChannelRecord = {
-  id: number
-  channel: string
-  lastUpdatedDate: Date
-  fullContentPath: string | null
-  createdAt: Date
-  modifiedAt: Date
-}
-export type Message = {
-  id: number
-  link: string
-  title: string | null
-  time: Date | null
-  description: string | null
-  type: string
-  channelRecordId: number
-  state: number | null
-  createdAt: Date
-  modifiedAt: Date
-}
-export type MessageContent = {
-  id: number
-  title: string
-  description: string
-  content: string
-  messageId: number
-  createdAt: Date
-  modifiedAt: Date
-}
+export {
+  ChannelRecord,
+  Message,
+  MessageContent,
+  Polymita_channel_subscriber_SubscribedChannel,
+  Polymita_channel_subscriber_RSS,
+  Polymita_channel_subscriber_RPA,
+  Polymita_channel_subscriber_Directory,
+  Polymita_channel_subscriber_Polymita_message_timeline2_ChannelRecord,
+  Polymita_channel_subscriber_Polymita_message_timeline2_Message,
+  Polymita_channel_subscriber_Polymita_message_timeline2_MessageContent 
+} from '/Users/zhouyunge/Documents/fishpond-desktop-workspace/packages/fishpond-components/packages/message-timeline2/models/customPrismaClient/client/index'
