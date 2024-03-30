@@ -10,7 +10,8 @@ import ChannelList from '@/app/polymita/views/ChannelList'
 import AddSourceDrawer from '@/app/polymita/views/AddSourceDrawer'
 import SourceEntry from '@/app/polymita/views/SourceEntry'
 import { useSignal } from '../polymita/hooks';
-import { signalMap } from '../polymita/signalsMap'
+import channelSignal from '../polymita/signals/channel';
+import rssSignal from '../polymita/signals/rss';
 import { IHookContext } from '@polymita/signal'
 
 
@@ -48,9 +49,9 @@ export default function ClientSources (props: {
     };
   }, []);
 
-  const channel = useSignal(signalMap.channel)
+  const channel = useSignal(channelSignal)
 
-  const rssSource = useSignal(signalMap.rss, {
+  const rssSource = useSignal(rssSignal, {
     subscribed: channel.channelsWithForm,
     menus,
     onQueryRssSources: async (arg) => {
@@ -82,7 +83,7 @@ export default function ClientSources (props: {
   }, [uniqueChannel]);
 
   return (
-    <div className='flex h-screen'>
+    <div className='flex h-screen w-full'>
       <div className='w-[200px] border-r border-slate-100 h-full'>
         <div className='p-2'>
           <SourceEntry />

@@ -10,7 +10,7 @@ import {getParamsFromPath } from '@/utils/index'
 import { genUniquePlatformKey } from '@/shared/utils';
 import { SubscribedChannel } from '@/shared/types';
 
-import rssSourceDriver from '@/drivers/rss'
+import rssSourceDriver from '@/signals/rss'
 
 type rssSourceDriverReturn = ReturnType<typeof rssSourceDriver>
 

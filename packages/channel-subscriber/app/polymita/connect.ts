@@ -4,6 +4,7 @@ import * as modelActions from "./actions";
 import { Plugin } from '@polymita/signal-model'
 
 function wrapTrace (obj: any): any {
+  return obj;
   let newObj = {}
   Object.keys(obj).forEach(name => {
     newObj[name] = function () {
@@ -52,6 +53,13 @@ export function createPlugin () {
     })
   }
 
+  plugin.loadPlugin('Context', {
+    async postDiffToServer(entity, d) {
+      modelActions.executeDiff('prisma', entity, d)
+    },
+    postComputeToServer: modelActions.postComputeToServer,
+    postQueryToServer: modelActions.postQueryToServer, 
+  })
 
   return plugin
 }

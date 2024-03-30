@@ -1,4 +1,4 @@
-import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft } from '@polymita/renderer';
+import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, VirtualLayoutJSON } from '@polymita/renderer';
 import { getParamsFromPath } from '@/utils/index';
 import type { RSSSource } from '@/shared/utils';
 
@@ -30,7 +30,7 @@ export type RSSSourcePanelLayout = {
   ]
 }
 
-export const layout = (props: RSSSourcePanelProps) => {
+export const layout = (props: RSSSourcePanelProps): VirtualLayoutJSON => {
   const logic = useLogic<LogicReturn>();
   
   const { width, value, count } = props

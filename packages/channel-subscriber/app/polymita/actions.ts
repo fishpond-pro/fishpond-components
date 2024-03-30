@@ -2,6 +2,9 @@
 import { cookies } from 'next/headers'
  
 import * as client from '@/models/customPrismaClient/client'
+import { Plugin, getNamespace, IDiff, IHookContext, ModelRunner, startReactiveChain } from '@polymita/signal-model'
+import { signalMap } from './signalsMap'
+import modelIndexes from '@/models/indexes.json'
 
 if (!client.PrismaClient) {
   throw new Error('[setPrisma] error, prisma.PrismaClient not found please run prisma generate first')
@@ -41,7 +44,7 @@ async function upsert(from, e: string, query) {
   return prisma[e].upsert(query).then(r => r)
 }
 // should check relation here
-async function executeDiff(from: string, e: string, d) {
+async function executeDiff(from: string, e: string, d: IDiff) {
   await Promise.all(d.create.map(async (obj) => {
     await prisma[e].create({
       data: obj.value
@@ -85,6 +88,73 @@ async function cookieClear(s, k) {
   return cookies().set(k, '')
 }
 
+function isComposedDriver (f: any) {
+  return !!(f as any).__polymita_compose__
+}
+
+function createServerPlugin () {
+  const plugin = new Plugin()
+
+  plugin.loadPlugin('Model', {
+    find,
+    update,
+    remove,
+    create,
+    updateMany,
+    upsert,
+    executeDiff,
+  })
+  plugin.loadPlugin('cookie', {
+    set: cookieSet,
+    get: cookieGet,
+    clear: cookieClear,
+  })
+
+  return plugin
+}
+
+
+async function postComputeToServer(ctx: IHookContext) {
+  const { name: signalName, initialArgList, index, args } = ctx
+  const signalFunction = signalMap[signalName]
+  
+
+  const driverNamespace = getNamespace(signalFunction)
+  const driverComposed = isComposedDriver(signalFunction);
+
+  const currentModelIndexes = driverNamespace && driverComposed ? modelIndexes[driverNamespace] : modelIndexes
+
+  let runner = new ModelRunner(signalFunction, {
+    believeContext: false,
+    modelIndexes: currentModelIndexes,
+    runtime: 'nodejs',
+    plugin: createServerPlugin(),
+  })
+  let scope = runner.prepareScope(initialArgList, ctx)
+
+  const chain1 = startReactiveChain(`${signalName}(init)`)
+
+  runner.executeDriver(scope)
+
+  await scope.ready()
+
+  chain1.stop()
+  // chain1.print()
+  
+  if (index !== undefined) {
+    const chain2 = startReactiveChain(`${signalName}:call(${index})`)
+    await scope.callHook(index, args)
+    await scope.ready()
+    chain2.stop()
+    // chain2.print()
+  }
+  const context = scope.createPatchContext()
+
+  return context
+}
+
+const postQueryToServer = postComputeToServer.bind(this)
+
 export {
   find,
   update,
@@ -96,4 +166,6 @@ export {
   cookieSet,
   cookieGet,
   cookieClear,
+  postComputeToServer,
+  postQueryToServer,
 }

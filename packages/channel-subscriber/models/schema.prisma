@@ -75,26 +75,83 @@ model Directory {
   children Directory[] @relation("ChildCategories")
 }
 
-model Polymita_message_timeline2_ChannelRecord {
-  id              Int                                  @id @default(autoincrement())
-  channel         String                               @unique // source url 或 rpa id
+model Polymita_channel_subscriber_SubscribedChannel {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  modifiedAt DateTime @default(now()) @updatedAt
+
+  type    Int // 0.RSShub 1.自定义爬虫脚本
+  channel String? @unique // 所属平台
+
+  rss Polymita_channel_subscriber_RSS[]
+  rpa Polymita_channel_subscriber_RPA[]
+}
+
+model Polymita_channel_subscriber_RSS {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  modifiedAt DateTime @default(now()) @updatedAt
+
+  name         String
+  href         String  @unique // RSS地址
+  scheduleCron String? // 定时任务
+
+  directory   Polymita_channel_subscriber_Directory? @relation(fields: [directoryId], references: [id])
+  directoryId Int?
+  tag         String?
+
+  subscribedChannel   Polymita_channel_subscriber_SubscribedChannel? @relation(fields: [subscribedChannelId], references: [id]) // 数据源
+  subscribedChannelId Int?
+}
+
+model Polymita_channel_subscriber_RPA {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  modifiedAt DateTime @default(now()) @updatedAt
+  name       String
+
+  directory   Polymita_channel_subscriber_Directory? @relation(fields: [directoryId], references: [id])
+  directoryId Int?
+  tag         String?
+
+  subscribedChannel   Polymita_channel_subscriber_SubscribedChannel? @relation(fields: [subscribedChannelId], references: [id]) // 数据源
+  subscribedChannelId Int?
+}
+
+model Polymita_channel_subscriber_Directory {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  modifiedAt DateTime @default(now()) @updatedAt
+  name       String
+
+  rss Polymita_channel_subscriber_RSS[]
+  rpa Polymita_channel_subscriber_RPA[]
+
+  parent   Polymita_channel_subscriber_Directory?  @relation("ChildCategories", fields: [parentId], references: [id])
+  parentId Int?
+  children Polymita_channel_subscriber_Directory[] @relation("ChildCategories")
+}
+
+model Polymita_channel_subscriber_Polymita_message_timeline2_ChannelRecord {
+  id              Int                                                              @id @default(autoincrement())
+  channel         String                                                           @unique // source url 或 rpa id
   lastUpdatedDate DateTime
   fullContentPath String?
-  data            Polymita_message_timeline2_Message[]
+  data            Polymita_channel_subscriber_Polymita_message_timeline2_Message[]
 
   createdAt  DateTime @default(now())
   modifiedAt DateTime @default(now()) @updatedAt
 }
 
-model Polymita_message_timeline2_Message {
-  id              Int                                        @id @default(autoincrement())
-  link            String                                     @unique
+model Polymita_channel_subscriber_Polymita_message_timeline2_Message {
+  id              Int                                                                    @id @default(autoincrement())
+  link            String                                                                 @unique
   title           String?
   time            DateTime?
   description     String?
   type            String // article/video/audio
-  content         Polymita_message_timeline2_MessageContent?
-  channelRecord   Polymita_message_timeline2_ChannelRecord   @relation(fields: [channelRecordId], references: [id])
+  content         Polymita_channel_subscriber_Polymita_message_timeline2_MessageContent?
+  channelRecord   Polymita_channel_subscriber_Polymita_message_timeline2_ChannelRecord   @relation(fields: [channelRecordId], references: [id])
   channelRecordId Int
 
   state Int? @default(0) // 0: unread (default), 1: read, 2: starred, 3: deleted
@@ -103,13 +160,13 @@ model Polymita_message_timeline2_Message {
   modifiedAt DateTime @default(now()) @updatedAt
 }
 
-model Polymita_message_timeline2_MessageContent {
-  id          Int                                @id @default(autoincrement())
+model Polymita_channel_subscriber_Polymita_message_timeline2_MessageContent {
+  id          Int                                                            @id @default(autoincrement())
   title       String
   description String
   content     String // article content or media OSS URL
-  message     Polymita_message_timeline2_Message @relation(fields: [messageId], references: [id])
-  messageId   Int                                @unique
+  message     Polymita_channel_subscriber_Polymita_message_timeline2_Message @relation(fields: [messageId], references: [id])
+  messageId   Int                                                            @unique
 
   createdAt  DateTime @default(now())
   modifiedAt DateTime @default(now()) @updatedAt
