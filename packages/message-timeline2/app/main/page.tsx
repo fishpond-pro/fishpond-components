@@ -7,7 +7,6 @@ import Client from './client'
 export default async function Main () {
 
   const [_, sourceCtx] = await getContext(message)
-
   return (
     <> 
       <Client ctx={sourceCtx} />

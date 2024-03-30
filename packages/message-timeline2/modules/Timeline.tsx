@@ -60,8 +60,6 @@ const MessageDirection = createFunctionComponent(MessageDirectionModule, {
   } 
 });
 export const layout = (props: TimelineProps): VirtualLayoutJSON => {
-  const logic = useLogic<LogicReturn>()
-
   const messagesData = props.messages();
 
   const [left, right] = split(messagesData);
