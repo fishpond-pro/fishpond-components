@@ -1,6 +1,6 @@
 import { RSSItem, RSSSource, genUniquePlatformKey, getRSSComplementURL } from '../shared/utils'
 export type { RSSItem, RSSSource } from '../shared/utils'
-import { getParamsFromPath } from '../utils/index'
+import { getParamsFromPath } from '../shared/utils';
 import {
   ComputedSignal,
   after,

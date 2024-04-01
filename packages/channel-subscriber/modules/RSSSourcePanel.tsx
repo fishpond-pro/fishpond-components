@@ -1,5 +1,5 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, VirtualLayoutJSON } from '@polymita/renderer';
-import { getParamsFromPath } from '../utils/index';
+import { getParamsFromPath } from '../shared/utils';
 import type { RSSSource } from '../shared/utils';
 
 export const name = 'RSSSourcePanel' as const

@@ -8,7 +8,7 @@ import * as ButtonModule from '@polymita/ui/components/button'
 import * as TabsModule from '@polymita/ui/components/tabs'
 import * as ListModule from '@polymita/ui/components/list'
 import * as RSSPanelsTableModule from './RSSParamsTable'
-import { getParamsFromPath } from '../utils/index';
+import { getParamsFromPath } from '../shared/utils';
 import { SubscribedChannel, SubscribedChannelWithForm } from '../shared/types';
 import { extractParams } from '../shared/utils';
 

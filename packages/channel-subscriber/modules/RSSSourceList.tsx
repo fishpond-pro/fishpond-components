@@ -6,7 +6,7 @@ import * as InputModule from '@polymita/ui/components/input'
 import * as ButtonModule from '@polymita/ui/components/button'
 import * as RSSPanelsTableModule from './RSSParamsTable'
 
-import {getParamsFromPath } from '../utils/index'
+import { getParamsFromPath } from '../shared/utils';
 import { genUniquePlatformKey } from '../shared/utils';
 import { SubscribedChannel } from '../shared/types';
 
