@@ -1,16 +1,16 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, VirtualLayoutJSON, createFunctionComponent } from '@polymita/renderer';
 import { after, ComputedSignal, Signal, signal } from '@polymita/signal'
 import showdown from 'showdown'
-import rssSourceDriver from '@/drivers/rss'
+import rssSourceDriver from '../signals/rss'
 import * as DrawerModule from '@polymita/ui/components/drawer'
 import * as InputModule from '@polymita/ui/components/input'
 import * as ButtonModule from '@polymita/ui/components/button'
 import * as TabsModule from '@polymita/ui/components/tabs'
 import * as ListModule from '@polymita/ui/components/list'
 import * as RSSPanelsTableModule from './RSSParamsTable'
-import { getParamsFromPath } from '@/utils/index';
-import { SubscribedChannel, SubscribedChannelWithForm } from '@/shared/types';
-import { extractParams } from '@/shared/utils';
+import { getParamsFromPath } from '../utils/index';
+import { SubscribedChannel, SubscribedChannelWithForm } from '../shared/types';
+import { extractParams } from '../shared/utils';
 
 export const name = 'AddSourceDrawer' as const
 export let meta: {

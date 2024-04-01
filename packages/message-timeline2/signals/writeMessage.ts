@@ -6,7 +6,7 @@ import {
   state,
   writePrisma,
 } from '@polymita/signal-model'
-import indexes from '@/models/indexes.json'
+import indexes from '../models/indexes.json'
 import messageDriver, { MessageContent } from './message';
 
 

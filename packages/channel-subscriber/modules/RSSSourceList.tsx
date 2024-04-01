@@ -6,11 +6,11 @@ import * as InputModule from '@polymita/ui/components/input'
 import * as ButtonModule from '@polymita/ui/components/button'
 import * as RSSPanelsTableModule from './RSSParamsTable'
 
-import {getParamsFromPath } from '@/utils/index'
-import { genUniquePlatformKey } from '@/shared/utils';
-import { SubscribedChannel } from '@/shared/types';
+import {getParamsFromPath } from '../utils/index'
+import { genUniquePlatformKey } from '../shared/utils';
+import { SubscribedChannel } from '../shared/types';
 
-import rssSourceDriver from '@/signals/rss'
+import rssSourceDriver from '../signals/rss'
 
 type rssSourceDriverReturn = ReturnType<typeof rssSourceDriver>
 

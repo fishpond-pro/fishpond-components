@@ -1,6 +1,6 @@
-import { RSSItem, RSSSource, genUniquePlatformKey, getRSSComplementURL } from '@/shared/utils'
-export type { RSSItem, RSSSource } from '@/shared/utils'
-import { getParamsFromPath } from '@/utils/index'
+import { RSSItem, RSSSource, genUniquePlatformKey, getRSSComplementURL } from '../shared/utils'
+export type { RSSItem, RSSSource } from '../shared/utils'
+import { getParamsFromPath } from '../utils/index'
 import {
   ComputedSignal,
   after,
@@ -13,8 +13,8 @@ import {
   writePrisma,
 } from '@polymita/signal-model'
 import menusLogic from './menusLogic'
-import indexes from '@/models/indexes.json'
-import { SubscribedChannelWithForm } from '@/shared/types'
+import indexes from '../models/indexes.json'
+import { SubscribedChannelWithForm } from '../shared/types'
 
 export interface PreviewMessage extends RSSItem{  
 }

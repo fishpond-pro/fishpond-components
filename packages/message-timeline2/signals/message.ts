@@ -5,7 +5,7 @@ import {
   signal,
   state,
 } from '@polymita/signal-model'
-import indexes from '@/models/indexes.json'
+import indexes from '../models/indexes.json'
 
 /**
  * Model Content
