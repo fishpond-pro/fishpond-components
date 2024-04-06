@@ -55,10 +55,14 @@ export const layout = (props: AddSourceDrawerProps): VirtualLayoutJSON => {
   const logic = useLogic<LogicReturn>();
 
   const currentSource = props.currentSource()
+  if (!currentSource) {
+    return null
+  }
+
   const params = currentSource && getParamsFromPath(currentSource.route.path, currentSource.route.paramsdesc);
 
   return (
-    <Drawer 
+    <Drawer
       closable 
       width={1000} 
       onClose={() => props.selectCurrentSource(null)} 
@@ -119,7 +123,7 @@ export const layout = (props: AddSourceDrawerProps): VirtualLayoutJSON => {
                 
                 <sourceItemRoute className="block break-all">
                   <span className='mr-1 text-gray-500'>路径:</span>
-                  /{currentSource.route.path}
+                  /{currentSource?.route.path}
                 </sourceItemRoute>
                 <sourceItemRoute if={!!params.length} className="block break-all">
                   <span className='mr-1 text-gray-500'>参数:</span>
@@ -136,7 +140,7 @@ export const layout = (props: AddSourceDrawerProps): VirtualLayoutJSON => {
                     </sourceItemRouteParam>
                   ))}
                 </sourceItemRouteParams>
-                {[].concat(currentSource.tables).filter(Boolean).map((table, index) => {
+                {[].concat(currentSource?.tables).filter(Boolean).map((table, index) => {
                   return (
                     <div key={table} className="mt-3">
                       <RSSTable tables={table} />
@@ -144,7 +148,7 @@ export const layout = (props: AddSourceDrawerProps): VirtualLayoutJSON => {
                   )
                 })}
                 <sourceItemParamTips className="block mt-2 p-4 bg-slate-200">
-                  {currentSource.tipsMarkDown.map(tip => {
+                  {currentSource?.tipsMarkDown.map(tip => {
                     const converter = new showdown.Converter();
                     const html = converter.makeHtml(tip);
                     return (

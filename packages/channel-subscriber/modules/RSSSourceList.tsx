@@ -70,8 +70,6 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
   const rssSources = props.allRSSSources()
   const subscribed = props.subscribed()
 
-  console.log('menus.groupRows()::', menus.groupRows());
-
   return (
     <sourceListContainer className="block">
       <sourceListMenus className='block'>
