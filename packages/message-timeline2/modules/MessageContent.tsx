@@ -58,8 +58,8 @@ export const layout = (props: MessageContentProps): VirtualLayoutJSON => {
           <messageContentDescription className='text-base rounded leading-8 text-gray-600 ' _html={props.description} />
           <messageContentContent if={!!props.content} className='text-base leading-8 text-gray-600' _html={props.content} /> */}
           <messageContentContentFrame if={!props.content} className='flex text-base leading-8 text-gray-600 flex-1' >
-            {/* <iframe v-if={mode === 'iframe'} id={props.contentLink} src={props.contentLink} className='w-full h-full' /> */}
-            <webview id={props.contentLink} src={props.contentLink} className='w-full flex-1' />
+            <iframe if={mode === 'iframe'} id={props.contentLink} src={props.contentLink} className='w-full h-full' />
+            <webview if={mode === 'webview'} id={props.contentLink} src={props.contentLink} className='w-full flex-1' />
           </messageContentContentFrame>
         </messageContentBody>
       </messageContent>
