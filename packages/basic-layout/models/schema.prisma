@@ -1,0 +1,57 @@
+//
+// auto generated file
+// provide by
+// warning: auto generated . Do not modify this file
+//
+// original writing schema
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  output          = "./customPrismaClient/client"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+}
+
+// auto composing schema 
+model ChannelRecord {
+  id              Int       @id @default(autoincrement())
+  channel         String    @unique // source url 或 rpa id
+  lastUpdatedDate DateTime
+  fullContentPath String?
+  data            Message[]
+
+  createdAt  DateTime @default(now())
+  modifiedAt DateTime @default(now()) @updatedAt
+}
+
+model Message {
+  id              Int             @id @default(autoincrement())
+  link            String          @unique
+  title           String?
+  time            DateTime?
+  description     String?
+  type            String // article/video/audio
+  content         MessageContent?
+  channelRecord   ChannelRecord   @relation(fields: [channelRecordId], references: [id])
+  channelRecordId Int
+
+  state Int? @default(0) // 0: unread (default), 1: read, 2: starred, 3: deleted
+
+  createdAt  DateTime @default(now())
+  modifiedAt DateTime @default(now()) @updatedAt
+}
+
+model MessageContent {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String
+  content     String // article content or media OSS URL
+  message     Message @relation(fields: [messageId], references: [id])
+  messageId   Int     @unique
+
+  createdAt  DateTime @default(now())
+  modifiedAt DateTime @default(now()) @updatedAt
+}

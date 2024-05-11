@@ -6,6 +6,7 @@
       "import { after, Signal, signal } from '@polymita/signal'",
       "",
       "export const name = '${2:${TM_DIRECTORY/^.+[\\/\\\\]+(.)(.*)$/${1:/upcase}$2/}}' as const",
+      "export const namespace = '${2:${TM_DIRECTORY/^.+[\\/\\\\]+(.)(.*)$/${1:/upcase}$2/}}' as const",
       "export let meta: {",
       "  props: ${2:${TM_DIRECTORY/^.+[\\/\\\\]+(.)(.*)$/${1:/upcase}$2/}}Props,",
       "  layoutStruct: ${2:${TM_DIRECTORY/^.+[\\/\\\\]+(.)(.*)$/${1:/upcase}$2/}}Layout",
