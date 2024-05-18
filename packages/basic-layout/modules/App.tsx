@@ -34,11 +34,11 @@ const Content = createFunctionComponent(ContentModule)
 export const layout = (props: AppProps): VirtualLayoutJSON => {
   const logic = useLogic<LogicReturn>()
   return (
-    <appContainer className='flex'>
-      <div className='m-10 border'>
+    <appContainer className='flex h-screen w-screen'>
+      <div className='h-full'>
         <Aside>aside</Aside>
       </div>
-      <div className='flex-1 m-10 border'>
+      <div className='flex-1 h-full'>
         <Content>content</Content>
       </div>
     </appContainer>

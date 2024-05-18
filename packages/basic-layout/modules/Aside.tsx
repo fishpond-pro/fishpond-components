@@ -18,6 +18,7 @@ export const propTypes = {
 
 export const logic = (props: SignalProps<AsideProps>) => {
   return {
+    logicName: '123'
   }
 }
 type LogicReturn = ReturnType<typeof logic>

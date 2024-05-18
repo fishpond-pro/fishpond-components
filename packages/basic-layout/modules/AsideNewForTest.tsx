@@ -5,13 +5,14 @@ export interface AsideNewProps {
 }
 const NewModule = extendModule(BaseModule, () => ({
   patchLayout(props: typeof BaseModule.meta.props & AsideNewProps, root) {
-    console.log('props: ', props, root);
+    const logic = useLogic()
+
     return [
       {
         op: CommandOP.addChild,
         condition: true,
         target: root.asideContainer,
-        child: (<div>new child</div>)
+        child: (<div>new child x</div>)
       }
     ]
   }
