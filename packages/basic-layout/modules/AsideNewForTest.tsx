@@ -8,12 +8,19 @@ const NewModule = extendModule(BaseModule, () => ({
     const logic = useLogic()
 
     return [
+
+      {
+        op: CommandOP.wrap,
+        condition: true,
+        target: root.asideContainer,
+        parent: <div className='parent'>parent</div>
+      },
       {
         op: CommandOP.addChild,
         condition: true,
         target: root.asideContainer,
         child: (<div>new child x</div>)
-      }
+      },
     ]
   }
 }))

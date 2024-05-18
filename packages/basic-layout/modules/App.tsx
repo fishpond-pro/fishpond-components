@@ -36,10 +36,10 @@ export const layout = (props: AppProps): VirtualLayoutJSON => {
   return (
     <appContainer className='flex h-screen w-screen'>
       <div className='h-full'>
-        <Aside>aside</Aside>
+        <Aside />
       </div>
       <div className='flex-1 h-full'>
-        <Content>content</Content>
+        <Content />
       </div>
     </appContainer>
   )
