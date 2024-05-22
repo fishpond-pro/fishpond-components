@@ -8,7 +8,6 @@ const NewModule = extendModule(BaseModule, () => ({
     const logic = useLogic()
 
     return [
-
       {
         op: CommandOP.wrap,
         condition: true,
