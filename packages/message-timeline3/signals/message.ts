@@ -1,3 +1,4 @@
+'use client'
 import { prisma } from '@polymita/next-connect'
 import indexes from '../models/indexes.json'
 import { useMemo, useState } from 'react'
@@ -43,6 +44,7 @@ export default function message () {
       }
     }
   })
+  console.log('[signals/message] messages: ', messages);
 
   const queryMessageByChannelRecord = (id: number) => {
     setParams(draft => {

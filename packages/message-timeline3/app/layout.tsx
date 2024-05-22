@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import './globals.css'
-import { prisma } from '@polymita/next-connect'
+import LayoutWrap from "./layoutWrap";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}
+        <LayoutWrap>
+          {children}
+        </LayoutWrap>
       </body>
     </html>
   );

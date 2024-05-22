@@ -1,6 +1,6 @@
 /// <reference path="../types/global.d.ts" />
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, StyleRule, VirtualLayoutJSON } from '@polymita/renderer';
-import { after, Signal, signal } from '@polymita/signal'
+import '@polymita/renderer/jsx-runtime'
 import * as MessageDirectionModule from './MessageDirection'
 
 export const name = 'Timeline' as const
@@ -11,7 +11,7 @@ export let meta: {
 }
 
 export interface TimelineProps {
-  messages: Signal<MessageItem[]>
+  messages: MessageItem[]
 }
 
 export const propTypes = {
@@ -60,9 +60,9 @@ const MessageDirection = createFunctionComponent(MessageDirectionModule, {
   } 
 });
 export const layout = (props: TimelineProps): VirtualLayoutJSON => {
-  const messagesData = props.messages();
+  const messagesData = props.messages;
 
-  const [left, right] = split(messagesData);
+  const [left, right] = split(messagesData || []);
 
   return (
     <timelineContainer className='p-2 flex relative'>
