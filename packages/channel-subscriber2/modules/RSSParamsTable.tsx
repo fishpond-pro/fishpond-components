@@ -1,4 +1,5 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft } from '@polymita/renderer';
+import '@polymita/renderer/jsx-runtime';
 
 export const name = 'RSSTable' as const
 export let meta: {

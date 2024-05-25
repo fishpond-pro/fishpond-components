@@ -1,4 +1,5 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, VirtualLayoutJSON } from '@polymita/renderer';
+import '@polymita/renderer/jsx-runtime';
 import { getParamsFromPath } from '../shared/utils';
 import type { RSSSource } from '../shared/utils';
 

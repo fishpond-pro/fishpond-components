@@ -1,8 +1,9 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, classNames, VirtualLayoutJSON } from '@polymita/renderer';
-import { ComputedSignal, Signal, signal } from '@polymita/signal-model'
+import '@polymita/renderer/jsx-runtime';
 import * as AddSourceModule from './AddSource'
 import * as ListModule from '@polymita/ui/components/list'
 import { SubscribedChannel, RSS } from '../shared/types';
+import { useState } from 'react';
 
 export const name = 'ChannelList' as const
 export let meta: {
@@ -14,7 +15,7 @@ export let meta: {
 export interface ChannelListProps {
   title?: string
   onSubmit?: AddSourceModule.AddSourceProps['onSubmit']
-  list: ComputedSignal<SubscribedChannel[]>
+  list: SubscribedChannel[]
   onClick?: (ds: SubscribedChannel | RSS, index: number) => void;
   internalModal?: boolean
   onClickPlus?: () => void;
@@ -25,7 +26,7 @@ export const propTypes = {
 }
 
 export const logic = (props: SignalProps<ChannelListProps>) => {
-  const sourceModalVisible = signal(false)
+  const sourceModalVisible = useState(false)
   return {
     sourceModalVisible,
   }
@@ -74,18 +75,6 @@ export const layout = (props: ChannelListProps): VirtualLayoutJSON => {
         <listTitle className="flex-1 text-lg">
           {props.title}
         </listTitle>
-        {/* <addSourceEntry
-          className="inline-block w-[24px] text-center cursor-pointer"
-          onClick={() => {
-            if (props.internalModal) {
-              sourceModalVisible(true)
-            } else {
-              props.onClickPlus?.();
-            }
-          }}
-        >
-          <PlusIcon />
-        </addSourceEntry> */}
       </listHeader>
       <listContent className="block pl-2">
         <ListCpt border={false} list={props.list} render={(item: SubscribedChannel, i: number) => {
@@ -128,7 +117,7 @@ export const layout = (props: ChannelListProps): VirtualLayoutJSON => {
           )
         }} />
       </listContent>
-      <AddSourceCpt visible={sourceModalVisible} onSubmit={props.onSubmit} />
+      <AddSourceCpt visible={sourceModalVisible[0]} onVisible={sourceModalVisible[1]} onSubmit={props.onSubmit} />
     </channelListContainer>
   )
 }

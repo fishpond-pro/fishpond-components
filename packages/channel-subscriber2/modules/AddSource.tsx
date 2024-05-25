@@ -1,8 +1,9 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, createComposeComponent } from '@polymita/renderer';
-import { after, inputCompute, Signal, signal } from '@polymita/signal-model'
+import '@polymita/renderer/jsx-runtime';
 import * as ModalModule from '@polymita/ui/components/modal'
 import * as InputModule from '@polymita/ui/components/input'
 import * as FormModule from '@polymita/ui/components/schema-form'
+import { useState } from 'react';
 
 export const name = 'AddSource' as const
 export let meta: {
@@ -12,7 +13,8 @@ export let meta: {
 }
 
 export interface AddSourceProps {
-  visible: Signal<boolean>,
+  visible: boolean,
+  onVisible: (v: boolean) => void,
   onSubmit: (arg: {
     name: string,
     link: string,
@@ -25,15 +27,15 @@ export const propTypes = {
 }
 
 export const logic = (props: SignalProps<AddSourceProps>) => {
-  const name = signal('')
-  const link = signal('')
-  const platform = signal('')
+  const name = useState('')
+  const link = useState('')
+  const platform = useState('')
 
-  const submit = inputCompute(() => {
+  const submit = (() => {
     props.onSubmit({
-      name: name(),
-      link: link(),
-      platform: platform(),
+      name: name[0],
+      link: link[0],
+      platform: platform[0],
     });
   });
 
@@ -72,14 +74,14 @@ const FormCpt = createFunctionComponent(FormModule);
 export const layout = (props: AddSourceProps) => {
   const logic = useLogic<LogicReturn>()
 
-  const visible = props.visible();
+  const visible = props.visible;
 
   return (
     h('addSourceContainer', {},
       visible ? h(ModalCpt, {
         title: '数据源',
-        onClose () { props.visible(false) },
-        onOk () { props.visible(false); logic.submit() }
+        onClose () { props.onVisible(false) },
+        onOk () { props.onVisible(false); logic.submit() }
       },
         h(FormCpt, {
           layout: { labelWidth: '4em' },

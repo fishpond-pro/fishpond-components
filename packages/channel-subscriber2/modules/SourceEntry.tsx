@@ -1,4 +1,5 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, VirtualLayoutJSON } from '@polymita/renderer';
+import '@polymita/renderer/jsx-runtime';
 import ReloadIcon from '@polymita/ui/icons/reload'
 
 export const name = 'SourceEntry' as const
@@ -27,6 +28,7 @@ export type SourceEntryLayout = {
   children: [
   ]
 }
+
 export const layout = (props: SourceEntryProps): VirtualLayoutJSON => {
   const logic = useLogic<LogicReturn>()
   return (

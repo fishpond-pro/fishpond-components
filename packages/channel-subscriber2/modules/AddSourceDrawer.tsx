@@ -1,5 +1,5 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, VirtualLayoutJSON, createFunctionComponent } from '@polymita/renderer';
-import { after, ComputedSignal, Signal, signal } from '@polymita/signal'
+import '@polymita/renderer/jsx-runtime';
 import showdown from 'showdown'
 import rssSourceDriver from '../signals/rss'
 import * as DrawerModule from '@polymita/ui/components/drawer'
@@ -11,6 +11,7 @@ import * as RSSPanelsTableModule from './RSSParamsTable'
 import { getParamsFromPath } from '../shared/utils';
 import { SubscribedChannel, SubscribedChannelWithForm } from '../shared/types';
 import { extractParams } from '../shared/utils';
+import { useState } from 'react';
 
 export const name = 'AddSourceDrawer' as const
 export let meta: {
@@ -22,14 +23,14 @@ export let meta: {
 type rssSourceDriverReturn = ReturnType<typeof rssSourceDriver>
 
 export interface AddSourceDrawerProps extends rssSourceDriverReturn {
-  subscribed: ComputedSignal<SubscribedChannelWithForm[]>
+  subscribed: SubscribedChannelWithForm[]
 }
 
 export const propTypes = {
 }
 
-export const logic = (props: SignalProps<AddSourceDrawerProps>) => {
-  const showForm = signal<number[]>([])
+export const logic = (props: AddSourceDrawerProps) => {
+  const showForm = useState<number[]>([])
 
   return {
     showForm,
@@ -54,7 +55,7 @@ const List = createFunctionComponent(ListModule);
 export const layout = (props: AddSourceDrawerProps): VirtualLayoutJSON => {
   const logic = useLogic<LogicReturn>();
 
-  const currentSource = props.currentSource()
+  const currentSource = props.currentSource
   if (!currentSource) {
     return null
   }
@@ -69,7 +70,7 @@ export const layout = (props: AddSourceDrawerProps): VirtualLayoutJSON => {
       title={`${currentSource.group}/${currentSource.subGroup}/${currentSource.title}`} 
       extra={[
         <Button 
-          key="submit" disabled={props.showSubmitConfirm().visible}
+          key="submit" disabled={props.showSubmitConfirm.visible}
           onClick={() => props.submit()}
         >submit</Button>,
       ]}
@@ -78,25 +79,29 @@ export const layout = (props: AddSourceDrawerProps): VirtualLayoutJSON => {
         <TabsPanel header="new">
           <sourceParamsTop className="flex flex-col mg-2 h-full">
             <submitConfirmMessage
-              if={props.showSubmitConfirm().visible}
+              if={props.showSubmitConfirm.visible}
               className="flex my-4 p-2 border border-yellow-600 justify-between items-center text-yellow-600"
             >
               <span>
-                {props.showSubmitConfirm().title}
+                {props.showSubmitConfirm.title}
               </span>
-              <Button onClick={() => props.showSubmitConfirm()} type="primary" >Sure</Button>
+              <Button onClick={() => props.showSubmitConfirm} type="primary" >Sure</Button>
             </submitConfirmMessage>
             <rowParams className="flex flex-row h-full relative">
               <leftParams className="flex-1 min-w-0">
                 <sourceExtraParamBox className="block p-2 border my-2">
                   <h3 className="mt-2">参数表单</h3>
                   <sourcePreviewForm className="block border-slate-100 mt-2 pd-2">
-                    {Object.keys(props.sourcePreviewForm().payload).map((key) => (
+                    {Object.keys(props.sourcePreviewForm.payload).map((key) => (
                       <sourcePreviewFormItem className="block mb-2" key={key}>
                         <Input 
                           placeholder={key}
                           value={props.sourcePreviewForm as any}
                           value-path={['payload', key]} 
+                          onInput={(v: string) => props.setSourcePreviewForm(draft => {
+                            draft.payload[key] = v
+                            return {...draft}
+                          })}
                         />
                       </sourcePreviewFormItem>
                     ))}
@@ -108,6 +113,10 @@ export const layout = (props: AddSourceDrawerProps): VirtualLayoutJSON => {
                         placeholder='full content path'
                         value={props.sourcePreviewForm as any}
                         value-path={['fullContentPath']}
+                        onInput={(v: string) => props.setSourcePreviewForm(draft => {
+                          draft.fullContentPath = v
+                          return {...draft}
+                        })}
                       />
                     </div>
                   </sourcePreviewForm>
@@ -163,7 +172,7 @@ export const layout = (props: AddSourceDrawerProps): VirtualLayoutJSON => {
                 &gt;
               </arrowSymbol>
               <rightPreviewContainer className="flex-1 relative border border-slate-500 p-2 min-w-0 overflow-auto">
-                {props.previewMessages()?.length === 0 ? <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">暂无</span> : ''}
+                {props.previewMessages?.length === 0 ? <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">暂无</span> : ''}
                 
                 
                 {/* {logic.previewMessages()?.map((m, index) => {
@@ -186,7 +195,7 @@ export const layout = (props: AddSourceDrawerProps): VirtualLayoutJSON => {
                   )
                 })} */}
 
-                {props.previewMessages()?.map((m, index) => {
+                {props.previewMessages?.map((m, index) => {
                   return (
                     <pre key={m.title + index} className="p-4 border my-2">
                       {JSON.stringify(m, null, 2)}
@@ -198,8 +207,8 @@ export const layout = (props: AddSourceDrawerProps): VirtualLayoutJSON => {
           </sourceParamsTop>
         </TabsPanel>
         <TabsPanel header="subscribed">
-          {props.subscribed()?.[0]?.rss.map((rssItem, index) => {
-            const isShowForm = logic.showForm().includes(rssItem.id)
+          {props.subscribed?.[0]?.rss.map((rssItem, index) => {
+            const isShowForm = logic.showForm[0].includes(rssItem.id)
             const params = extractParams(currentSource.route.path, rssItem.href);
 
             const displayForm = {
@@ -217,12 +226,13 @@ export const layout = (props: AddSourceDrawerProps): VirtualLayoutJSON => {
                   </rssItemName>
                   <rssItemLink className="ml-2">
                     <rssItemForm className="mr-2" onClick={() =>{
-                      logic.showForm(draft => {
+                      logic.showForm[1](draft => {
                         if (draft.includes(rssItem.id)) {
                           return draft.filter(id => id !== rssItem.id)
                         } else {
                           draft.push(rssItem.id)
                         }
+                        return draft.slice()
                       })
                     }}>
                       Parameters

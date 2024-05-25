@@ -1,5 +1,5 @@
 import { classNames, h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, VirtualLayoutJSON, classnames } from '@polymita/renderer';
-import { ComputedSignal, Signal } from '@polymita/signal';
+import '@polymita/renderer/jsx-runtime';
 import * as RSSSourcePanelModule from './RSSSourcePanel'
 import * as DrawerModule from '@polymita/ui/components/drawer'
 import * as InputModule from '@polymita/ui/components/input'
@@ -23,7 +23,7 @@ export let meta: {
 
 export interface SourceListProps extends rssSourceDriverReturn {
   width: number
-  subscribed: ComputedSignal<SubscribedChannel[]>
+  subscribed: SubscribedChannel[]
 }
 
 export const propTypes = {
@@ -60,15 +60,15 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
     menus,
   } = props;
 
-  const currentSource = props.currentSource()
+  const currentSource = props.currentSource
   const params = currentSource && getParamsFromPath(currentSource.route.path, currentSource.route.paramsdesc)
 
-  const selectedGroups = menus.selectedGroups();
-  const selectedSubGroups = menus.selectedSubGroups();
-  const allMenus = menus.allMenus()
+  const selectedGroups = menus.selectedGroups
+  const selectedSubGroups = menus.selectedSubGroups
+  const allMenus = menus.allMenus
 
-  const rssSources = props.allRSSSources()
-  const subscribed = props.subscribed()
+  const rssSources = props.allRSSSources
+  const subscribed = props.subscribed
 
   return (
     <sourceListContainer className="block">
@@ -99,7 +99,7 @@ export const layout = (props: SourceListProps): VirtualLayoutJSON => {
           </sourceMenuGroupItems>
         </sourceMenuGroup>
         <sourceMenuSubGroup className='block'>
-          {menus.groupRows().map(row => {
+          {menus.groupRows?.map(row => {
             return (
               <sourceGroupRow key={row.title} className='flex mb-2'>
                 <sourceMenuSubGroupPre className='block w-[80px] text-right mr-2' >

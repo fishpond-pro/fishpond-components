@@ -9,15 +9,10 @@ import menus from '@/models/rsshub-source-menu.json'
 import ChannelList from '@/app/polymita/views/ChannelList'
 import AddSourceDrawer from '@/app/polymita/views/AddSourceDrawer'
 import SourceEntry from '@/app/polymita/views/SourceEntry'
-import { useSignal } from '../polymita/hooks';
-import channelSignal from '../polymita/signals/channel';
-import rssSignal from '../polymita/signals/rss';
-import { IHookContext } from '@polymita/signal'
-
+import channelSignal from '@/signals/channel';
+import rssSignal from '@/signals/rss';
 
 export default function ClientSources (props: {
-  channelCtx: IHookContext,
-  rssCtx: IHookContext
 }) {
   const listDIVRef = useRef<HTMLDivElement>(null)
   const [width, setWidth] = React.useState(-1)
@@ -49,9 +44,9 @@ export default function ClientSources (props: {
     };
   }, []);
 
-  const channel = useSignal(channelSignal)
+  const channel = channelSignal();
 
-  const rssSource = useSignal(rssSignal, {
+  const rssSource = rssSignal({
     subscribed: channel.channelsWithForm,
     menus,
     onQueryRssSources: async (arg) => {

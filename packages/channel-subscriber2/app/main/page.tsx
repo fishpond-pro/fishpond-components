@@ -6,11 +6,9 @@ import ClientMain from './clientPage'
 
 export default async function Main () {
 
-  const [_, sourceCtx] = await getContext(channel)
-
   return (
     <div className="w-[300px] border"> 
-      <ClientMain ctx={sourceCtx} />
+      <ClientMain />
     </div>
   )
 }

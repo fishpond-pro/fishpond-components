@@ -65,7 +65,7 @@ export default function rss (props: RssSourceProps) {
           payload: {}
         }
       })
-      previewMessages(() => [])
+      setPreviewMessages(() => [])
     }
   };
 
@@ -206,6 +206,7 @@ export default function rss (props: RssSourceProps) {
     toggleDescriptionExpandable,
     currentSource,
     sourcePreviewForm,
+    setSourcePreviewForm,
     selectCurrentSource,
     queryPreview,
     previewMessages,
