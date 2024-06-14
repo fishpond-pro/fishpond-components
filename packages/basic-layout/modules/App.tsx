@@ -11,6 +11,7 @@ export let meta: {
 }
 
 export interface AppProps {
+  contentChildren?: any;
 }
 
 export const propTypes = {
@@ -39,7 +40,9 @@ export const layout = (props: AppProps): VirtualLayoutJSON => {
         <Aside />
       </div>
       <div className='flex-1 h-full'>
-        <Content />
+        <Content>
+          {props.contentChildren}
+        </Content>
       </div>
     </appContainer>
   )

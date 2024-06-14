@@ -1,5 +1,4 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, VirtualLayoutJSON } from '@polymita/renderer';
-import { after, Signal, signal } from '@polymita/signal'
 
 export const name = 'Content' as const
 export const namespace = 'components' as const

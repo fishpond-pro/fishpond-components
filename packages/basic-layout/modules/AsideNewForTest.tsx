@@ -12,7 +12,7 @@ const NewModule = extendModule(BaseModule, () => ({
         op: CommandOP.wrap,
         condition: true,
         target: root.asideContainer,
-        parent: <div className='parent'>parent</div>
+        parent: <div className='parent'>new parent</div>
       },
       {
         op: CommandOP.addChild,
