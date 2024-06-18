@@ -9,15 +9,9 @@ const NewModule = extendModule(BaseModule, () => ({
 
     return [
       {
-        op: CommandOP.wrap,
-        condition: true,
-        target: root.asideContainer,
-        parent: <div className='parent'>new parent</div>
-      },
-      {
         op: CommandOP.addChild,
         condition: true,
-        target: root.asideContainer,
+        target: root.asideContainer.asideMenuContainer,
         child: (<div>new child x</div>)
       },
     ]

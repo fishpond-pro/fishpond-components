@@ -10,7 +10,7 @@ export let meta: {
   patchCommands: []
 }
 
-export interface AppProps {
+export interface AppProps extends AsideModule.AsideProps{
   contentChildren?: any;
 }
 
@@ -36,8 +36,9 @@ export const layout = (props: AppProps): VirtualLayoutJSON => {
   const logic = useLogic<LogicReturn>()
   return (
     <appContainer className='flex h-screen w-screen'>
-      <div className='h-full'>
-        <Aside />
+      <div className='h-full flex w-[200px]'>
+        <Aside {...props} />
+        <asideRightDivider className='my-4 w-[1px] bg-slate-400' />
       </div>
       <div className='flex-1 h-full'>
         <Content>

@@ -10,7 +10,8 @@ export let meta: {
 }
 
 export interface AsideProps {
-  children?: any
+  children?: any;
+  title?: string;
 }
 
 export const propTypes = {
@@ -29,10 +30,12 @@ export type AsideLayout = {
   ]
 }
 export const layout = (props: AsideProps): VirtualLayoutJSON => {
-  const logic = useLogic<LogicReturn>()
+  const logic = useLogic<LogicReturn>();
+  const { title } = props;
   return (
-    <asideContainer>
-      {props.children}
+    <asideContainer className="block flex-1 h-full">
+      <asideName className="block m-4 text-xl font-bold">{title}</asideName>
+      <asideMenuContainer className="block mt-6 mx-4" />
     </asideContainer>
   )
 }
