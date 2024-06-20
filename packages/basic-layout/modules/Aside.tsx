@@ -2,7 +2,7 @@ import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, VirtualL
 
 export const name = 'Aside' as const
 export const namespace = 'components' as const
-
+export const base = undefined
 export let meta: {
   props: AsideProps,
   layoutStruct: AsideLayout

@@ -3,7 +3,8 @@ import * as AsideModule from './Aside'
 import * as ContentModule from './Content'
 
 export const name = 'App' as const
-export const namespace = 'App' as const
+export const namespace = 'components' as const
+export const base = undefined
 export let meta: {
   props: AppProps,
   layoutStruct: AppLayout

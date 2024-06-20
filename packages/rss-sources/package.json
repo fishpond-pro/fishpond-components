@@ -1,5 +1,5 @@
 {
-  "name": "@polymita/basic-layout",
+  "name": "@polymita/rss-sources",
   "version": "1.0.14",
   "tarat": {},
   "description": "a tarat unit",
@@ -41,6 +41,7 @@
     "@polymita/next-connect": "workspace:^",
     "@polymita/next-server": "workspace:^",
     "@polymita/renderer": "workspace:^",
+    "@polymita/basic-layout": "workspace:^",
     "@prisma/client": "^5.10.2",
     "next": "14.1.0",
     "prisma": "^5.10.2",

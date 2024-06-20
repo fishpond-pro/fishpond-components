@@ -2,6 +2,7 @@ import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, VirtualL
 
 export const name = 'Content' as const
 export const namespace = 'components' as const
+export const base = undefined
 export let meta: {
   props: ContentProps,
   layoutStruct: ContentLayout
