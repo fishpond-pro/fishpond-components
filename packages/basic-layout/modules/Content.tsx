@@ -30,7 +30,7 @@ export type ContentLayout = {
 export const layout = (props: ContentProps): VirtualLayoutJSON => {
   const logic = useLogic<LogicReturn>()
   return (
-    <contentContainer>
+    <contentContainer className="block p-4">
       {props.children}
     </contentContainer>
   )

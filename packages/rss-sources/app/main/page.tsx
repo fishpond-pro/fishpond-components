@@ -1,12 +1,8 @@
 'use client'
-import '@polymita/basic-layout/dist/index.css'
-import App from '@polymita/basic-layout/dist/views/App'
-import '@/app/polymita/views/RssMenuItem'
+import Sources from '../polymita/views/RssSources'
 
 export default () => {
   return (
-    <App 
-      title="Polymita"
-    />
+    <Sources />
   )
 }

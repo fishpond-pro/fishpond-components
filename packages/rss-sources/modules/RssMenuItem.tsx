@@ -1,11 +1,14 @@
 import { h, SignalProps, useLogic, ConvertToLayoutTreeDraft, CommandOP, extendModule } from '@polymita/renderer';
 import * as BaseModule from '@polymita/basic-layout/dist/modules/Aside'
+import { usePathname } from 'next/navigation';
 export interface AsideNewProps {
   
 }
 const NewModule = extendModule(BaseModule, () => ({
   patchLayout(props: typeof BaseModule.meta.props & AsideNewProps, root) {
     const logic = useLogic()
+
+    const path = usePathname();
 
     return [
       {
