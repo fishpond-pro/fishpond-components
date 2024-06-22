@@ -38,16 +38,17 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/material": "^5.11.15",
+    "@polymita/basic-layout": "workspace:^",
     "@polymita/next-connect": "workspace:^",
     "@polymita/next-server": "workspace:^",
     "@polymita/renderer": "workspace:^",
-    "@polymita/basic-layout": "workspace:^",
     "@prisma/client": "^5.10.2",
+    "date-fns": "^2.29.3",
+    "fast-xml-parser": "^4.4.0",
     "next": "14.1.0",
     "prisma": "^5.10.2",
     "react": "^18",
-    "react-dom": "^18",
-    "date-fns": "^2.29.3"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@types/node": "^20",
