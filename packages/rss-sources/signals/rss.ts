@@ -1,3 +1,5 @@
+'use client'
+
 import { RSSItem, RSSSource, genUniquePlatformKey, getRSSComplementURL } from '../shared/utils'
 export type { RSSItem, RSSSource } from '../shared/utils'
 import { getParamsFromPath } from '../shared/utils';

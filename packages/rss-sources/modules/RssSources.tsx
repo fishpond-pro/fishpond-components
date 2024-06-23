@@ -167,7 +167,7 @@ export const layout = (props: RssSourceProps): VirtualLayoutJSON => {
       }}>
         {rssSources?.map(source => {
           const key = genUniquePlatformKey(source);
-          const subscribedChannel = subscribed.find(sub => {
+          const subscribedChannel = subscribed?.find(sub => {
             return sub.channel === key
           })
           const count = subscribedChannel?.rss?.length || 0;
