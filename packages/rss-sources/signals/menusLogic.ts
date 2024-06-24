@@ -15,7 +15,7 @@ export interface MenusLogicProps {
 export default function menusLogic (props: MenusLogicProps) {
   const [allMenus, innerSetAllMenus] = useState(props.menus);
 
-  const [selectedGroups, setSelectedGroups] = useState<string[]>([]);
+  const [selectedGroups, setSelectedGroups] = useState<string[]>([props.menus[0]?.title]);
 
   const selectGroup = (title: string) => {
     setSelectedGroups(draft => {
@@ -39,7 +39,9 @@ export default function menusLogic (props: MenusLogicProps) {
     return r;
   }, [allMenus, selectedGroups])
 
-  const [selectedSubGroups, setSelectedSubGroups] = useState<[string, string][]>([])
+  const [selectedSubGroups, setSelectedSubGroups] = useState<[string, string][]>([
+    [props.menus[0]?.title, props.menus[0]?.children[0]]
+  ])
 
   const selectSubGroup = (group: string, subGroup: string) => {
     setSelectedSubGroups(draft => {
@@ -53,9 +55,6 @@ export default function menusLogic (props: MenusLogicProps) {
     })
   }
 
-  useEffect(() => {
-    props.onSelect?.(selectedSubGroups)
-  }, [selectedSubGroups])
 
   function setAllMenus (menus: SourceMenus) {
     innerSetAllMenus(menus);
@@ -73,9 +72,13 @@ export default function menusLogic (props: MenusLogicProps) {
 
   useEffect(() => {
     props.onSelect?.(selectedSubGroups)
+  }, [selectedSubGroups])
 
-    setAllMenus(props.menus);
-  }, [])
+  // useEffect(() => {
+  //   props.onSelect?.(selectedSubGroups)
+
+  //   setAllMenus(props.menus);
+  // }, [])
 
   return {
     allMenus,
