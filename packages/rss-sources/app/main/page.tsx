@@ -12,14 +12,15 @@ export default () => {
     subscribed: [],
     menus,
     onQueryRssSources: async (arg) => {
-      return arg.map(([g, subGroup]) => {
+      const r = arg.map(([g, subGroup]) => {
         return rsshubSourcesMock.filter(item => 
           item.group === g && item.subGroup === subGroup
         )
       }).flat().map(item => ({
         ...item,
         tables: typeof item.tables === 'string' ? [item.tables] : item.tables
-      }))
+      }));
+      return r
     },
     onQueryPreviews: async (form) => {
       console.log('[onQuery] form: ', form);
@@ -34,6 +35,6 @@ export default () => {
   });
 
   return (
-    <Sources {...rssSource} />
+    <Sources {...rssSource} all />
   )
 }
