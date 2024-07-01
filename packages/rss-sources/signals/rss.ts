@@ -1,13 +1,9 @@
 'use client'
 
-import { RSSItem, RSSSource, genUniquePlatformKey, getRSSComplementURL } from '../shared/utils'
+import { RSSItem, RSSSource } from '../shared/utils'
 export type { RSSItem, RSSSource } from '../shared/utils'
 import { getParamsFromPath } from '../shared/utils';
-import {
-  writePrisma,
-} from '@polymita/next-connect'
 import menusLogic from './menusLogic'
-import indexes from '../models/indexes.json'
 import { SubscribedChannelWithForm } from '../shared/types'
 import { useEffect, useMemo, useState } from 'react';
 
@@ -111,45 +107,6 @@ export default function rss (props: RssSourceProps) {
     title: '',
   })
 
-  const submit = () => {
-
-    const messages = previewMessages
-    if (messages.length <= 0) {
-      setShowSubmitConfirm(draft => {
-        draft.visible = true
-        draft.title = 'Sure to submit?'
-        return {...draft}
-      })
-      return
-    } 
-
-    secondConfirmSubmit()
-  }
-  const secondConfirmSubmit = () => {
-    setShowSubmitConfirm(draft => {
-      draft.visible = false
-      return {...draft}
-    })
-    const form = sourcePreviewForm
-    const rsshubURL = getRSSComplementURL(form);
-    
-    const previews = previewMessages
-    
-    const channel = currentSource;
-    const uniquePlatform = genUniquePlatformKey(channel);
-
-    addChannel({
-      source: {
-        link: rsshubURL,
-        platform: uniquePlatform,
-        name: channel.title,
-      },
-      previews,
-    });
-
-    selectCurrentSource(null)
-  }
-
   const [expandablePreviewDescriptions, setExpandablePreviewDescriptions] = useState([])
   const toggleDescriptionExpandable = (index: number) => {
     setExpandablePreviewDescriptions(draft => {
@@ -173,35 +130,6 @@ export default function rss (props: RssSourceProps) {
     };
   }, [menus.selectedSubGroups])
 
-  const writeSource = writePrisma(indexes['subscribedChannel'])
-
-  const addChannel = async function (params: {
-    source: {
-      name: string, 
-      link: string, 
-      platform: string
-    },
-    previews: RSSItem[]
-  }) {
-    console.log('[addChannel] params: ', params);
-    const { source, previews } = params;
-
-    await writeSource.upsert(
-      {
-        channel: source.platform
-      },
-      {
-        type: 0,
-        channel: source.platform,
-        rss: {
-          create: {
-            name: source.name,
-            href: source.link,
-          }
-        },
-    })        
-  }
-
   return {
     menus,
     expandablePreviewDescriptions,
@@ -213,10 +141,7 @@ export default function rss (props: RssSourceProps) {
     queryPreview,
     previewMessages,
     resetSourcePreviewForm,
-    submit,
-    secondConfirmSubmit,    
     showSubmitConfirm,
-    addChannel,
     allRSSSources,
   }
 };
