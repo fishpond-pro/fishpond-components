@@ -161,14 +161,14 @@ export const layout = (props: RssSourceProps): VirtualLayoutJSON => {
           </sourceMenuSubGroup>        
         </rssSourceMenus>
         <div>
-          {rssSources?.map(source => {
+          {rssSources?.map((source, i) => {
             const key = genUniquePlatformKey(source);
             const subscribedChannel = subscribed?.find(sub => {
               return sub.channel === key
             })
             const count = subscribedChannel?.rss?.length || 0;
             return (
-              <div className="box-border p-1 float-left" style={{ width: '25%' }}>
+              <div data-index={i} className="box-border p-1 float-left" style={{ width: '25%' }}>
                 <RSSSourcePanel 
                   width='100%' 
                   key={key + source.title}

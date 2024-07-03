@@ -54,14 +54,13 @@ export const layout = (props: RSSSourcePanelProps): VirtualLayoutJSON => {
         <span className="mx-1" >-</span>
         <span className="flex-1 whitespace-nowrap" >{title}</span>
       </sourceItemTitle>
-      <sourceItemRoute className="block break-all">
-        <span className='mr-1 text-gray-500'>路径:</span>
+      <sourceItemRoute className="block break-all text-ellipsis line-clamp-2">
         /{path}
       </sourceItemRoute>
-      <sourceItemRoute if={!!params.length} className="block break-all">
+      {/* <sourceItemRoute if={!!params.length} className="block break-all">
         <span className='mr-1 text-gray-500'>参数:</span>
       </sourceItemRoute>
-      <sourceItemRouteParams if={!!params.length} className="block">
+      <sourceItemRouteParams if={!!params.length} className="block">1
         {params.map(p => (
           <sourceItemRouteParam className="block">
             <span className="px-[4px] py-[2px] bg-slate-100 text-gray-600">{p.name}</span>
@@ -71,7 +70,7 @@ export const layout = (props: RSSSourcePanelProps): VirtualLayoutJSON => {
             {p.desc}
           </sourceItemRouteParam>
         ))}
-      </sourceItemRouteParams>
+      </sourceItemRouteParams> */}
     </sourceItemContainer>
   )
 }
