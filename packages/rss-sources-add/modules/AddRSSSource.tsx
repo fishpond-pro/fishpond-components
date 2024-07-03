@@ -1,11 +1,11 @@
 import { h, SignalProps, useLogic, ConvertToLayoutTreeDraft, CommandOP, extendModule } from '@polymita/renderer';
-import * as BaseModule from '@polymita/basic-layout/dist/modules/Aside'
+import * as BaseModule from '@polymita/rss-sources/dist/modules/RSSSourcePanel2'
 import { usePathname } from 'next/navigation';
-export interface AsideNewProps {
+export interface AddRSSSourceProps {
   
 }
 const NewModule = extendModule(BaseModule, () => ({
-  patchLayout(props: typeof BaseModule.meta.props & AsideNewProps, root) {
+  patchLayout(props: typeof BaseModule.meta.props & AddRSSSourceProps, root) {
     const logic = useLogic()
 
     const path = usePathname();
@@ -23,7 +23,7 @@ const NewModule = extendModule(BaseModule, () => ({
 
 export const meta = NewModule.meta
 export const base = NewModule.base
-export const name = 'RssMenuItem'
+export const name = 'AddRSSSource'
 export const namespace = NewModule.namespace
 //
 export const override = NewModule.override

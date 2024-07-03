@@ -1,5 +1,5 @@
 {
-  "name": "@polymita/rss-sources",
+  "name": "@polymita/rss-sources-add",
   "version": "1.0.14",
   "tarat": {},
   "description": "a tarat unit",
@@ -42,6 +42,7 @@
     "@polymita/next-connect": "workspace:^",
     "@polymita/next-server": "workspace:^",
     "@polymita/renderer": "workspace:^",
+    "@polymita/rss-sources": "workspace:^",
     "@prisma/client": "^5.10.2",
     "date-fns": "^2.29.3",
     "fast-xml-parser": "^4.4.0",
