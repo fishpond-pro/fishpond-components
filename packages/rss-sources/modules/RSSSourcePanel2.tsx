@@ -3,6 +3,8 @@ import { getParamsFromPath } from '@/shared/utils';
 import type { RSSSource } from '@/shared/utils';
 
 export const name = 'RSSSourcePanel' as const
+export const namespace = 'components' as const
+export const base = undefined
 export let meta: {
   props: RSSSourcePanelProps,
   layoutStruct: RSSSourcePanelLayout

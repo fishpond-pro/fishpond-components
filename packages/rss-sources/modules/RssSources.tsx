@@ -17,6 +17,8 @@ type rssSourceDriverReturn = ReturnType<typeof rssSourceDriver>
 const RSSSourcePanel = createFunctionComponent(RSSSourcePanelModule)
 
 export const name = 'RssSource' as const
+export const namespace = 'components' as const
+export const base = undefined
 export let meta: {
   props: RssSourceProps,
   layoutStruct: RssSourceLayout

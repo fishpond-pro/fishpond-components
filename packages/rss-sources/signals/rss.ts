@@ -2,7 +2,7 @@
 
 import { RSSItem, RSSSource } from '../shared/utils'
 export type { RSSItem, RSSSource } from '../shared/utils'
-import { getParamsFromPath } from '../shared/utils';
+import { getParamsFromPath } from '@/shared/utils';
 import menusLogic from './menusLogic'
 import { SubscribedChannelWithForm } from '../shared/types'
 import { useEffect, useMemo, useState } from 'react';
