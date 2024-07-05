@@ -1,8 +1,9 @@
 'use client'
 
 import '@polymita/basic-layout/dist/index.css'
+import '@polymita/rss-sources/dist/index.css'
 import App from '@polymita/basic-layout/dist/views/App'
-import '@/app/polymita/views/RssMenuItem'
+import '@polymita/rss-sources/dist/views/RssMenuItem'
 import { ConnectProvider, PrismaNamespaceProvider } from '@polymita/next-connect'
 import mi from '@/models/indexes.json'
 import { createPlugin } from './polymita/connect'

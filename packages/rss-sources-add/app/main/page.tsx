@@ -1,10 +1,11 @@
 'use client'
-import rssSignal from '@/signals/rss'
-import Sources from '../polymita/views/RssSources'
+import rssSignal from '@polymita/rss-sources/dist/signals/rss'
+import Sources from '@polymita/rss-sources/dist/views/RssSources'
 import menus from '@/models/rsshub-source-menu.json'
 import rsshubSourcesMock from '@/models/rsshub-sources.json'
 import { toRSS_JSON } from '@/shared/utils'
 import sourceMock2 from '@/shared/rss-mock'
+import '@/app/polymita/views/AddRSSSource'
 
 export default () => {
 

@@ -1,11 +1,16 @@
-import { h, SignalProps, useLogic, ConvertToLayoutTreeDraft, CommandOP, extendModule } from '@polymita/renderer';
+import { Button } from '@mui/material';
+import { h, SignalProps, useLogic, CommandOP, extendModule, ConvertToLayoutTreeDraft2 } from '@polymita/renderer';
 import * as BaseModule from '@polymita/rss-sources/dist/modules/RSSSourcePanel2'
+import type BaseModuleLayout from '@polymita/rss-sources/dist/modules/RSSSourcePanel2.layout'
 import { usePathname } from 'next/navigation';
 export interface AddRSSSourceProps {
   
 }
 const NewModule = extendModule(BaseModule, () => ({
-  patchLayout(props: typeof BaseModule.meta.props & AddRSSSourceProps, root) {
+  patchLayout(
+    props: typeof BaseModule.meta.props & AddRSSSourceProps,
+    root: ConvertToLayoutTreeDraft2<BaseModuleLayout.LayoutTypes>
+  ) {
     const logic = useLogic()
 
     const path = usePathname();
@@ -14,8 +19,8 @@ const NewModule = extendModule(BaseModule, () => ({
       {
         op: CommandOP.addChild,
         condition: true,
-        target: root.asideContainer.asideMenuContainer,
-        child: (<div>Sources</div>)
+        target: root.sourceItemContainer,
+        child: (<Button>add</Button>)
       },
     ]
   }
