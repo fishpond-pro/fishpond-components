@@ -1,6 +1,8 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, VirtualLayoutJSON } from '@polymita/renderer';
 import { getParamsFromPath } from '@/shared/utils';
 import type { RSSSource } from '@/shared/utils';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 
 export const name = 'RSSSourcePanel' as const
 export const namespace = 'components' as const
@@ -41,39 +43,37 @@ export const layout = (props: RSSSourcePanelProps): VirtualLayoutJSON => {
   const { path } = route
   const params = getParamsFromPath(route.path, route.paramsdesc)
   return (
-    <sourceItemContainer
-      onClick={() => {
-        props.onClick?.(value)
-      }}
-      className="relative cursor-pointer inline-block box-border border mb-2 p-4" style={{ width: width || 200 }}>
-      <sourceItemCount 
-        if={!!count} 
-        className='inline-block bg-slate-300 w-6 h-6 text-center leading-5 text-sm absolute -top-2 -left-2 rounded-full border'>
-        {count}
-      </sourceItemCount>  
-      <sourceItemTitle className="mb-2 pb-2 border-b flex items-center" >
-        <span className="inline-block text-ellipsis whitespace-nowrap overflow-hidden">{subGroup}</span>
-        <span className="mx-1" >-</span>
-        <span className="flex-1 whitespace-nowrap" >{title}</span>
-      </sourceItemTitle>
-      <sourceItemRoute className="block break-all text-ellipsis line-clamp-2">
-        /{path}
-      </sourceItemRoute>
-      {/* <sourceItemRoute if={!!params.length} className="block break-all">
-        <span className='mr-1 text-gray-500'>参数:</span>
-      </sourceItemRoute>
-      <sourceItemRouteParams if={!!params.length} className="block">1
-        {params.map(p => (
-          <sourceItemRouteParam className="block">
-            <span className="px-[4px] py-[2px] bg-slate-100 text-gray-600">{p.name}</span>
-            ,
-            {p.optional ? '可选' : '必选'}
-            ,
-            {p.desc}
-          </sourceItemRouteParam>
-        ))}
-      </sourceItemRouteParams> */}
-    </sourceItemContainer>
+    <Card style={{ width: width || 200 }}>
+      <CardContent>
+        <sourceItemCount 
+          if={!!count} 
+          className='inline-block bg-slate-300 w-6 h-6 text-center leading-5 text-sm absolute -top-2 -left-2 rounded-full border'>
+          {count}
+        </sourceItemCount>  
+        <sourceItemTitle className="mb-2 pb-2 border-b flex items-center" >
+          <span className="inline-block text-ellipsis whitespace-nowrap overflow-hidden">{subGroup}</span>
+          <span className="mx-1" >-</span>
+          <span className="flex-1 whitespace-nowrap" >{title}</span>
+        </sourceItemTitle>
+        <sourceItemRoute className="block break-all text-ellipsis line-clamp-2 h-[48px]">
+          /{path}
+        </sourceItemRoute>
+        {/* <sourceItemRoute if={!!params.length} className="block break-all">
+          <span className='mr-1 text-gray-500'>参数:</span>
+        </sourceItemRoute>
+        <sourceItemRouteParams if={!!params.length} className="block">1
+          {params.map(p => (
+            <sourceItemRouteParam className="block">
+              <span className="px-[4px] py-[2px] bg-slate-100 text-gray-600">{p.name}</span>
+              ,
+              {p.optional ? '可选' : '必选'}
+              ,
+              {p.desc}
+            </sourceItemRouteParam>
+          ))}
+        </sourceItemRouteParams> */}
+      </CardContent>
+    </Card>
   )
 }
 

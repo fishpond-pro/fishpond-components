@@ -3,6 +3,8 @@ import { h, SignalProps, useLogic, CommandOP, extendModule, ConvertToLayoutTreeD
 import * as BaseModule from '@polymita/rss-sources/dist/modules/RSSSourcePanel2'
 import type BaseModuleLayout from '@polymita/rss-sources/dist/modules/RSSSourcePanel2.layout'
 import { usePathname } from 'next/navigation';
+import CardActions from '@mui/material/CardActions';
+
 export interface AddRSSSourceProps {
   
 }
@@ -19,8 +21,12 @@ const NewModule = extendModule(BaseModule, () => ({
       {
         op: CommandOP.addChild,
         condition: true,
-        target: root.sourceItemContainer,
-        child: (<Button>add</Button>)
+        target: root.Card,
+        child: (
+          <CardActions>
+            <Button size="small">添加</Button>
+          </CardActions>
+        ),
       },
     ]
   }
