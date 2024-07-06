@@ -25,7 +25,7 @@ export default function menusLogic (props: MenusLogicProps) {
       } else {
         draft.push(title)
       }
-      return draft.slice()
+      return [title]
     })
   }
 

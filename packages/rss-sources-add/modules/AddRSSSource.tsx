@@ -4,6 +4,7 @@ import * as BaseModule from '@polymita/rss-sources/dist/modules/RSSSourcePanel2'
 import type BaseModuleLayout from '@polymita/rss-sources/dist/modules/RSSSourcePanel2.layout'
 import { usePathname } from 'next/navigation';
 import CardActions from '@mui/material/CardActions';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 
 export interface AddRSSSourceProps {
   

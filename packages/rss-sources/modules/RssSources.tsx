@@ -2,6 +2,8 @@ import rssSourceDriver from '@/signals/rss'
 import { genUniquePlatformKey, getParamsFromPath } from '@/shared/utils';
 import * as RSSSourcePanelModule from './RSSSourcePanel2'
 import { SubscribedChannel } from '@/shared/types';
+import List from '@mui/material/List';
+import ListItemButton from '@mui/material/ListItemButton';
 
 import { 
   h,
@@ -102,28 +104,38 @@ export const layout = (props: RssSourceProps): VirtualLayoutJSON => {
 
   return (
     <rssSourceContainer className="flex h-full" ref={logic.listDIVRef}>
-      <rssLeftGroup className="w-[100px]">
-        {allMenus.map(menu => {
-          const cls = classnames(
-            'block cursor-pointer mr-1 rounded-md border mb-1',
-            {
-              'border-transparent': !selectedGroups.includes(menu.title),
-              'border-slate-500': selectedGroups.includes(menu.title),
-            }
-          );
-          return (
-            <sourceMenuGroupItem key={menu.title} className={cls} onClick={()=>{
-              menus.selectGroup(menu.title)
-            }}>
-              <sourceMenuGroupItemTitle className="text-gray-500 p-2">
-                {menu.title}
-              </sourceMenuGroupItemTitle>
-            </sourceMenuGroupItem>
-          )
-        })}
+      <rssLeftGroup className="w-[150px] h-full overflow-auto">
+        <List>
+          {allMenus.map(menu => {
+            const selected = selectedGroups.includes(menu.title)
+            const cls = classnames(
+              'block cursor-pointer mr-1 rounded-md border mb-1',
+              {
+                'border-transparent': !selectedGroups.includes(menu.title),
+                'border-slate-500': selectedGroups.includes(menu.title),
+              }
+            );
+            return (
+              <sourceMenuGroupItem key={menu.title} >
+                <ListItemButton
+                  selected={selected}
+                  onClick={()=>{
+                    menus.selectGroup(menu.title)
+                  }}
+                >
+                  <sourceMenuGroupItem className="block flex-1" >
+                    <sourceMenuGroupItemTitle className="text-gray-500 p-2">
+                      {menu.title}
+                    </sourceMenuGroupItemTitle>
+                  </sourceMenuGroupItem>
+                </ListItemButton>
+              </sourceMenuGroupItem>
+            )
+          })}
+        </List>
       </rssLeftGroup>
-      <rssDivider className="w-[1px] m-2 h-full bg-slate-600" />
-      <rssRightSources className="flex-1"> 
+      <rssDivider className="w-[1px] mx-2 h-full bg-slate-200" />
+      <rssRightSources className="flex-1 h-full"> 
         <rssSourceMenus className='block'>
           <sourceMenuSubGroup className='block'>
             {menus.groupRows?.map(row => {

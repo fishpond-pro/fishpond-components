@@ -39,7 +39,7 @@ export const layout = (props: AppProps): VirtualLayoutJSON => {
     <appContainer className='flex h-screen w-screen'>
       <div className='h-full flex w-[200px]'>
         <Aside {...props} />
-        <asideRightDivider className='my-4 w-[1px] bg-slate-400' />
+        <asideRightDivider className='my-4 w-[1px] bg-slate-200' />
       </div>
       <div className='flex-1 h-full'>
         <Content>
