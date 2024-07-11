@@ -1,7 +1,7 @@
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import { h, SignalProps, useLogic, CommandOP, extendModule, ConvertToLayoutTreeDraft2 } from '@polymita/renderer';
+import showdown from 'showdown'
+import { h, SignalProps, useLogic, CommandOP, extendModule, ConvertToLayoutTreeDraft2, createFunctionComponent } from '@polymita/renderer';
 import * as BaseModule from '@polymita/rss-sources/dist/modules/RSSSourcePanel2'
 import type BaseModuleLayout from '@polymita/rss-sources/dist/modules/RSSSourcePanel2.layout'
 import { usePathname } from 'next/navigation';
@@ -9,6 +9,9 @@ import CardActions from '@mui/material/CardActions';
 import Drawer from '@mui/material/Drawer';
 import { useState } from 'react';
 import { getParamsFromPath } from '@/shared/utils'
+import * as RSSParamsTable from './RSSParamsTable'
+
+const RSSParamsTableComponent = createFunctionComponent(RSSParamsTable)
 
 export interface AddRSSSourceProps {
   
@@ -38,9 +41,8 @@ const NewModule = extendModule(BaseModule, () => ({
     const { route, subGroup, title, tables } = value
     console.log('route, subGroup: ', value);
   
-    const params = getParamsFromPath(route.path, route.paramsdesc)
-    console.log('params: ', params);
-    
+    const urlParams = getParamsFromPath(route.path, route.paramsdesc)
+    console.log('params: ', urlParams);    
 
     return [
       {
@@ -66,14 +68,27 @@ const NewModule = extendModule(BaseModule, () => ({
             }}
             className='p-2'
           >
-            <addBox className="px-4">
-              <addTitle className="block py-2 w-[50vw]">
+            <addBox className="px-4 w-[50vw]">
+              <addTitle className="block py-2">
                 {subGroup} - {title}
               </addTitle>
               <Divider />
               <addContent className="block py-2">
-                
+                {value.tables?.filter(Boolean).map(table => {
+                  <RSSParamsTableComponent
+                    tables={table}
+                  />
+                })}
               </addContent>
+              <sourceParamTips className="block mt-2 p-4 bg-slate-200">
+                {value?.tipsMarkDown.map(tip => {
+                  const converter = new showdown.Converter();
+                  const html = converter.makeHtml(tip);
+                  return (
+                    <div className="break-all mb-2" _html={html}></div>                    
+                  )
+                })}
+              </sourceParamTips>
             </addBox>
           </Drawer>
         )
