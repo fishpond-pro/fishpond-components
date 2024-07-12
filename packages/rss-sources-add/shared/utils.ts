@@ -3,6 +3,23 @@ import { XMLParser } from "fast-xml-parser";
 const RSS_HUB_PREFIX = 'https://rsshub.app'
 const LOCAL_RSS_HUB_PREFIX = 'http://localhost:1200'
 
+export function getRSSPreviewURL (param: {
+  path: string;
+  payload: Record<string, any>;
+}) {
+  const prefix = LOCAL_RSS_HUB_PREFIX
+  const { path, payload } = param
+
+  let curPath = path;
+
+  Object.entries(payload).forEach(([key, value]) => {
+    if (value) {
+      curPath = curPath.replace(new RegExp(`:${key}\\??`), value)
+    }
+  })
+
+  return `/${curPath}`
+}
 export function getRSSComplementURL (param: {
   path: string;
   payload: Record<string, any>;
