@@ -10,8 +10,9 @@ import Drawer from '@mui/material/Drawer';
 import TextField from '@mui/material/TextField';
 import Input from '@mui/material/Input';
 import { useState } from 'react';
-import { getParamsFromPath, getRSSPreviewURL } from '@/shared/utils'
+import { getParamsFromPath, getRSSComplementURL, getRSSPreviewURL } from '@/shared/utils'
 import * as RSSParamsTable from './RSSParamsTable'
+import path from 'path';
 
 const RSSParamsTableComponent = createFunctionComponent(RSSParamsTable)
 
@@ -35,8 +36,11 @@ function patchLogic(
   };
 
   const handleSubmit = (event: Event) => {
-    event.preventDefault();
-    console.log(formValues); // 读取表单的值
+    const destUrl = getRSSComplementURL({
+      path: props.value.route.path,
+      payload: formValues,
+    })
+    console.log('destUrl: ', destUrl);
   };
 
   return {
@@ -126,8 +130,9 @@ const NewModule = extendModule(BaseModule, () => ({
                       <TextField 
                         label={obj.name}
                         name={obj.name}
-                        value={formValues[obj.name]}
+                        defaultValue={formValues[obj.name]}
                         onChange={handleInputChange}
+                        required={!obj.optional}
                         size='small'
                       />
                       <sourcePreviewFormDesc className="ml-2 text-xs text-slate-400">
