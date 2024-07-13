@@ -13,6 +13,7 @@ import {
 } from '@polymita/renderer';
 
 import { useEffect, useRef, useState } from 'react';
+import menusLogic, { SourceMenus } from '@/signals/menusLogic';
 
 type rssSourceDriverReturn = ReturnType<typeof rssSourceDriver>
 
@@ -27,7 +28,7 @@ export let meta: {
   patchCommands: []
 }
 
-export interface RssSourceProps extends rssSourceDriverReturn {
+export interface RssSourceProps extends rssSourceDriverReturn{
   width: number
   subscribed: SubscribedChannel[]
 }
@@ -38,7 +39,7 @@ export const propTypes = {
 export const logic = (props: RssSourceProps) => {  
   const listDIVRef = useRef<HTMLDivElement>(null)
   const [width, setWidth] = useState(-1)
-
+  
   function onResize () {
     const w = listDIVRef.current?.offsetWidth
     const w2 = listDIVRef.current?.clientWidth
@@ -80,20 +81,12 @@ export type RssSourceLayout = {
   ]
 }
 
-const COLUMN_WIDTH_COUNT = 4;
-const COLUMN_PADDING = 20;
-
 export const layout = (props: RssSourceProps): VirtualLayoutJSON => {
   const logic = useLogic<LogicReturn>()
-
-  const columnWidth = 200; //logic.width > 0 ? (logic.width - COLUMN_PADDING * 2 - 20) / COLUMN_WIDTH_COUNT : 0;
 
   const {
     menus,
   } = props;
-
-  const currentSource = props.currentSource
-  const params = currentSource && getParamsFromPath(currentSource.route.path, currentSource.route.paramsdesc)
 
   const selectedGroups = menus.selectedGroups
   const selectedSubGroups = menus.selectedSubGroups
@@ -188,9 +181,7 @@ export const layout = (props: RssSourceProps): VirtualLayoutJSON => {
                   key={key + source.title}
                   value={source}
                   count={count}
-                  onClick={() => {
-                    props.selectCurrentSource(source)
-                  }} />
+                />
               </div>
             )
           })}

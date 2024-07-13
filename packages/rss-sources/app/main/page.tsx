@@ -25,13 +25,6 @@ export default () => {
       }));
       return r
     },
-    onQueryPreviews: async (form) => {
-      console.log('[onQuery] form: ', form);
-      return toRSS_JSON(sourceMock2).item
-    },
-    onSubmit: (...args) => {
-      console.log('[onSubmit] form: ', args);
-    },
     onSelect: v => {
       console.log('[onSelect] select result: ', v);
     },
