@@ -35,7 +35,6 @@ export default function menusLogic (props: MenusLogicProps) {
     const r = groups.filter(item => {
       return selected.length <= 0 || selected.includes(item.title)
     })
-    console.log('[groupRows]r: ', r);
     return r;
   }, [allMenus, selectedGroups])
 
@@ -73,12 +72,6 @@ export default function menusLogic (props: MenusLogicProps) {
   useEffect(() => {
     props.onSelect?.(selectedSubGroups)
   }, [selectedSubGroups])
-
-  // useEffect(() => {
-  //   props.onSelect?.(selectedSubGroups)
-
-  //   setAllMenus(props.menus);
-  // }, [])
 
   return {
     allMenus,
