@@ -18,6 +18,10 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { queryContext } from '@/contexts/QueryContext'
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+
 
 const RSSParamsTableComponent = createFunctionComponent(RSSParamsTable)
 
@@ -29,12 +33,13 @@ function patchLogic(
   props: typeof BaseModule.meta.props & AddRSSSourceProps,
   prevLogicResult: ReturnType<typeof BaseModule.logic>,
 ) {
-  console.log('props: ', props);
   const [drawerVisible, setDrawerVisible] = useState(false)
-
   const [previewDrawerVisible, setPreviewDrawerVisible] = useState(false)
+  const [dialogParams, setDialogParams] = useState({
+    text: ''
+  })
 
-  const { onQueryPreviews } = useContext(queryContext)
+  const { onQueryPreviews, onSubmit } = useContext(queryContext)
 
   const [formValues, setFormValues] = useState<Record<string, string>>({});
   const handleInputChange = (event) => {
@@ -45,30 +50,72 @@ function patchLogic(
     }));
   };
 
+  const [previewLoading, setPreviewLoading] = useState(false)
   const [submitLoading, setSubmitLoading] = useState(false)
 
   const [previewItems, setPreviewItems] = useState<PreviewMessage[]>([])
 
+  const reset1 = () => {
+    setPreviewDrawerVisible(false)
+    setDrawerVisible(false)
+  }
+  const reset2 = () => {
+    setPreviewLoading(false)
+    setSubmitLoading(false)
+  }
+  const reset3 = () => {
+    setDialogParams({
+      text: ''
+    })
+  }
   const handleSubmit = async (event: Event) => {
-    setSubmitLoading(true);
+    setPreviewLoading(true);
+
+    setDialogParams({
+      text: 'load previews ...'
+    })
 
     try {
       const destUrl = getRSSComplementURL({
         path: props.value.route.path,
         payload: formValues,
       })
-      console.log('destUrl: ', destUrl);
 
       const previews = await onQueryPreviews(destUrl)
-      console.log('previews: ', previews);
 
       setPreviewItems(previews)
       setPreviewDrawerVisible(true)
 
     } finally {
-      setSubmitLoading(false)
+      setPreviewLoading(false)
+      reset3();
     }
   };
+
+
+  const confirmSubmit = async () => {
+    setDialogParams({
+      text: 'submit rss ...'
+    })
+
+    try {
+
+      const destUrl = getRSSComplementURL({
+        path: props.value.route.path,
+        payload: formValues,
+      })
+
+      await onSubmit?.(destUrl)
+
+      reset1()
+      reset2()
+
+    } catch (e) {
+
+    } finally {
+      reset3();
+    }
+  }
 
   return {
     ...prevLogicResult,
@@ -77,9 +124,12 @@ function patchLogic(
     formValues,
     handleInputChange,
     handleSubmit,
+    previewLoading,
     submitLoading,
     previewDrawerVisible, setPreviewDrawerVisible,
-    previewItems, setPreviewItems
+    previewItems, setPreviewItems,
+    confirmSubmit,
+    dialogParams,
   }
 }
 
@@ -97,17 +147,16 @@ const NewModule = extendModule(BaseModule, () => ({
       formValues,
       handleInputChange,
       handleSubmit,
-      submitLoading,
+      previewLoading,
       previewItems,
+      confirmSubmit,
+      dialogParams,
     } = useLogic<LogicReturn>()
-    console.log('drawerVisible: ', drawerVisible);
 
     const { value } = props
     const { route, subGroup, title, tables } = value
-    console.log('route, subGroup: ', value);
   
     const urlParams = getParamsFromPath(route.path, route.paramsdesc)
-    console.log('params: ', urlParams);    
 
     const previewPath = getRSSPreviewURL({
       path: route.path,
@@ -146,7 +195,7 @@ const NewModule = extendModule(BaseModule, () => ({
                     {subGroup} - {title}
                   </addTile>
                   <LoadingButton 
-                    loading={submitLoading}
+                    loading={previewLoading}
                     onClick={handleSubmit} variant="contained" size="small"
                   >
                     Submit
@@ -214,8 +263,8 @@ const NewModule = extendModule(BaseModule, () => ({
                     Preview
                   </addTile>
                   <LoadingButton 
-                    loading={submitLoading}
-                    onClick={handleSubmit} variant="contained" size="small"
+                    loading={previewLoading}
+                    onClick={confirmSubmit} variant="contained" size="small"
                   >
                     Confirm Submit
                   </LoadingButton>
@@ -223,10 +272,13 @@ const NewModule = extendModule(BaseModule, () => ({
                 <Divider />
                 <previewResult className="mt-4 flex-1 overflow-auto">
                   <List>
-                    {previewItems.map(item => {
+                    {previewItems.map((item, index) => {
                       return (
                         <ListItem>
-                          <ListItemText primary={item.title} />
+                          <ListItemText primary={`${index + 1}.${item.title}`} />
+                          <a href={item.link} target="_blank" className="hover:underline text-blue-500">
+                            [link]
+                          </a>
                         </ListItem>
                       )
                     })}
@@ -234,6 +286,15 @@ const NewModule = extendModule(BaseModule, () => ({
                 </previewResult>
               </previewBox>
             </Drawer>
+            <Dialog
+              open={!!dialogParams.text}
+            >
+              <DialogContent>
+                <DialogContentText>
+                  {dialogParams.text}
+                </DialogContentText>
+              </DialogContent>
+            </Dialog>
           </drawerContainer>
         )
       }
