@@ -13,7 +13,6 @@ import {
 } from '@polymita/renderer';
 
 import { useEffect, useRef, useState } from 'react';
-import menusLogic, { SourceMenus } from '@/signals/menusLogic';
 
 type rssSourceDriverReturn = ReturnType<typeof rssSourceDriver>
 
