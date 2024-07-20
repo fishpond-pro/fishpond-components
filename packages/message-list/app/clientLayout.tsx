@@ -20,7 +20,7 @@ export default ({
       modelIndexes={mi}
       plugin={createPlugin()}
     >
-      <PrismaNamespaceProvider namespace={pkg.name}>
+      <PrismaNamespaceProvider namespace="">
         <queryContext.Provider
           value={{
             onQueryPreviews: async (url) => {
