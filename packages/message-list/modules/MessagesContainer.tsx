@@ -3,7 +3,7 @@ import '@polymita/renderer/jsx-runtime';
 import { useState } from 'react';
 import * as SingleTimelineModule from './SingleTimeline'
 import * as MessageContentModule from './MessageContent'
-import { prisma } from '@polymita/next-connect';
+import { prisma, writePrisma } from '@polymita/next-connect';
 import indexes from '@/models/indexes.json'
 
 export const name = 'MessagesContainer' as const
@@ -48,18 +48,25 @@ export const logic = (props: MessagesContainerProps) => {
       }
     }
   })
+  const writeMessages = writePrisma<MessageItem[]>(indexes.message)
 
   const queryMessageAll = () => {
-
   }
+
+  const [markIds, setMarkIds] = useState<number[]>([])
 
   const selectMessage = (item: MessageItem) => {
     setMid(item.id)
+    setMarkIds(arr => arr.concat(item.id))
+    writeMessages.update(item.id, {
+      state: 1,
+    })
   }
 
   const currentMessage = messages?.find(m => m.id === currentMid)
 
   return {
+    markIds,
     messages,
     setMid,
     currentMid,
@@ -83,13 +90,14 @@ export const layout = (props: MessagesContainerProps): VirtualLayoutJSON => {
   const { 
     selectMessage,
     currentMessage,
-    messages, currentMid, setMid, queryMessageAll 
+    messages, currentMid, setMid, queryMessageAll,
+    markIds,
   } = useLogic<LogicReturn>()
   return (
     <messagesContainer className='flex h-full'>
       <messagesContainerTimeline className='main mr-4 w-[300px]'>
-
-        <SingleTimeline 
+        <SingleTimeline
+          markIds={markIds}
           messages={messages} 
           onClick={item => {
             selectMessage(item)

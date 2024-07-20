@@ -15,6 +15,7 @@ export interface SingleTimelineProps {
   messages: MessageItem[]
   onClick?: (item: MessageItem, index: number) => void;
   selected?: number;
+  markIds?: number[];
 }
 
 export const propTypes = {
@@ -35,7 +36,7 @@ export type SingleTimelineLayout = {
 const Message = createFunctionComponent(MessageModule)
 
 export const layout = (props: SingleTimelineProps): VirtualLayoutJSON => {
-  const { selected } = props;
+  const { selected, markIds } = props;
   const logic = useLogic<LogicReturn>()
 
   const messagesData = props.messages;
@@ -57,7 +58,10 @@ export const layout = (props: SingleTimelineProps): VirtualLayoutJSON => {
               createdAt={message.createdAt}
               footer=''
               border={false}
-              secondary={message.state === MessageState.Read}
+              secondary={
+                message.state === MessageState.Read ||
+                markIds?.includes(message.id)
+              }
             />
           </singleTimelineItem>
         )
