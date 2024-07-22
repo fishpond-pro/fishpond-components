@@ -1,6 +1,6 @@
 /// <reference path="../types/global.d.ts" />
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, VirtualLayoutJSON, classnames } from '@polymita/renderer';
-import * as MessageModule from './Message'
+import * as AsideMessageModule from './AsideMessage'
 import { MessageState } from '@/types/types'
 
 export const name = 'SingleTimeline' as const
@@ -33,7 +33,7 @@ export type SingleTimelineLayout = {
   ]
 }
 
-const Message = createFunctionComponent(MessageModule)
+const AsideMessage = createFunctionComponent(AsideMessageModule)
 
 export const layout = (props: SingleTimelineProps): VirtualLayoutJSON => {
   const { selected, markIds } = props;
@@ -50,7 +50,7 @@ export const layout = (props: SingleTimelineProps): VirtualLayoutJSON => {
         });
         return (
           <singleTimelineItem className={cls}>
-            <Message
+            <AsideMessage
               onClick={() => props.onClick(message, index)}
               key={message.title + index}
               title={message.title}

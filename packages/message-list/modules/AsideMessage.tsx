@@ -49,7 +49,7 @@ export const layout = (props: MessageProps) => {
   return (
     <messageContainer onClick={props.onClick} className={cls1}>
       <messageTitle className="text-slate-800 block p-2 text-base">{props.title}</messageTitle>
-      <messageDescription className="text-slate-400 block px-2 truncate" >{props.description}</messageDescription>
+      <messageDescription className="text-slate-400 block px-2 truncate text-sm" >{props.description}</messageDescription>
       <messageFooter if={!!props.footer} className={cls2}>{props.footer}</messageFooter>
     </messageContainer>
   )
