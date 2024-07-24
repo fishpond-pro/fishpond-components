@@ -21,6 +21,8 @@ import { queryContext } from '@/contexts/QueryContext'
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
+import { prisma, writePrisma } from '@polymita/next-connect';
+import mi from '@/models/indexes.json'
 
 
 const RSSParamsTableComponent = createFunctionComponent(RSSParamsTable)
@@ -39,11 +41,10 @@ function patchLogic(
     text: ''
   })
 
-  const { onQueryPreviews, onSubmit } = useContext(queryContext)
+  const { onQueryPreviews } = useContext(queryContext)
 
   const [formValues, setFormValues] = useState<Record<string, string>>({});
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
+  const handleInputChange = (name: string, value: string) => {
     setFormValues((prevFormValues) => ({
       ...prevFormValues,
       [name]: value,
@@ -55,9 +56,12 @@ function patchLogic(
 
   const [previewItems, setPreviewItems] = useState<PreviewMessage[]>([])
 
+  const writeRSS = writePrisma(mi.rSS)
+
   const reset1 = () => {
     setPreviewDrawerVisible(false)
     setDrawerVisible(false)
+    setFormValues({})
   }
   const reset2 = () => {
     setPreviewLoading(false)
@@ -105,7 +109,10 @@ function patchLogic(
         payload: formValues,
       })
 
-      await onSubmit?.(destUrl)
+      await writeRSS.create({
+        name: props.value.title,
+        href: destUrl,
+      })
 
       reset1()
       reset2()
@@ -203,7 +210,15 @@ const NewModule = extendModule(BaseModule, () => ({
                 </addDrawerHeader>
                 <Divider />
                 <sourceBox className="mt-4 flex-1 overflow-auto" >
-                  <sourceUrl className="flex items-center">
+                  <sourceTitle className="flex items-center mb-2 w-1/2 ">
+                    <sourcePreviewFormLabel className="inline-block w-[60px] text-right">标题：</sourcePreviewFormLabel>
+                    <Input 
+                      className='flex-1' 
+                      value={formValues.title || title}
+                      onChange={(e) => handleInputChange('title', e.target.value)}
+                    />
+                  </sourceTitle>
+                  <sourceUrl className="flex items-center mb-2  w-1/2">
                     <sourcePreviewFormLabel className="inline-block w-[60px] text-right">route：</sourcePreviewFormLabel>
                     <Input className='flex-1' value={previewPath} disabled />
                   </sourceUrl>
@@ -216,7 +231,7 @@ const NewModule = extendModule(BaseModule, () => ({
                             label={obj.name}
                             name={obj.name}
                             defaultValue={formValues[obj.name]}
-                            onChange={handleInputChange}
+                            onChange={e => handleInputChange(e.target.name, e.target.value)}
                             required={!obj.optional}
                             size='small'
                           />
