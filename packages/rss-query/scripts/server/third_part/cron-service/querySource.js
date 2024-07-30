@@ -1,10 +1,9 @@
 const https = require('https')
 const http = require('http')
-const PrismaClient = require('../../models/customPrismaClient/client')
 const { HttpProxyAgent } = require('http-proxy-agent');
 const { SocksProxyAgent } = require('socks-proxy-agent');
 const { XMLParser, XMLBuilder, XMLValidator} = require("fast-xml-parser");
-const mi = require('../../models/indexes.json');
+const mi = require('../../../../models/indexes.json');
 
 function createSocksProxyAgent (proxyHost, proxyPort) {
   // 创建Shadowsocks代理代理对象

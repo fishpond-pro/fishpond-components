@@ -43,6 +43,7 @@
     ".next/types/**/*.ts"
 , "common/moduleOverride.tx"  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "scripts/server/third_part"
   ]
 }

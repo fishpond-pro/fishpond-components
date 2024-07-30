@@ -1,5 +1,5 @@
-const PrismaClient = require('../../models/customPrismaClient/client')
-const mi = require('../../models/indexes.json');
+const PrismaClient = require('../../../../models/customPrismaClient/client')
+const mi = require('../../../../models/indexes.json');
 
 
 const withPrisma = async (callback) => {

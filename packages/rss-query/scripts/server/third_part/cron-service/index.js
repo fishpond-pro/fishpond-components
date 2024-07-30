@@ -1,4 +1,4 @@
-const PrismaClient = require('../../models/customPrismaClient/client')
+const PrismaClient = require('../../../../models/customPrismaClient/client')
 const { querySource } = require('./querySource')
 const { genRecord, frequency } = require('./frequency')
 
