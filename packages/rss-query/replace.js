@@ -8,8 +8,8 @@ async function replaceAtSymbolInLibFiles() {
         const content = await fs.readFile(filePath, 'utf-8');
         const libRelativePath = path.relative(path.dirname(filePath), libPath);
         const newContent = content.replace(
-            /require\s*\(\s*["']@\//g,
-            `require("${libRelativePath.replace(/\\/g, '/')}/${libRelativePath ? '' : '.'}`
+            /@\//g,
+            ` ${libRelativePath.replace(/\\/g, '/')}/${libRelativePath ? '' : '.'}`
         );
         
         if (content !== newContent) {
