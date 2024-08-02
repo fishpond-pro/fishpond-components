@@ -1,7 +1,7 @@
-const got = require('@/utils/got');
-const config = require('@/config').value;
-const { art } = require('@/utils/render');
-const { parseDate } = require('@/utils/parse-date');
+const got = require('../../utils/got');
+const config = require('../../config').value;
+const { art } = require('../../utils/render');
+const { parseDate } = require('../../utils/parse-date');
 const path = require('path');
 const md = require('markdown-it')({
     html: true,

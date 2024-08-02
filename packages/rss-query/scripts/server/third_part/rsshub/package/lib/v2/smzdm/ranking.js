@@ -1,5 +1,5 @@
-const got = require('@/utils/got');
-const timezone = require('@/utils/timezone');
+const got = require('../../utils/got');
+const timezone = require('../../utils/timezone');
 
 const getTrueHour = (rank_type, rank_id, hour) => {
     const rank_two_hour = ['11', '17', '28', '29'];

@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const qs = require('query-string');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 
 const baseURL = 'https://www.linkresearcher.com';
 

@@ -1,4 +1,4 @@
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../../utils/parse-date');
 
 const generateDescription = (target, init) =>
     target.content.reduce((description, item) => {

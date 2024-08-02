@@ -1,8 +1,8 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
 const path = require('path');
-const { art } = require('@/utils/render');
-const { parseDate } = require('@/utils/parse-date');
+const { art } = require('../../utils/render');
+const { parseDate } = require('../../utils/parse-date');
 
 async function getData(url) {
     const response = await got(url).json();
@@ -12,7 +12,7 @@ async function getData(url) {
 module.exports = async (ctx) => {
     const url = 'https://www.nber.org/api/v1/working_page_listing/contentType/working_paper/_/_/search';
     const baseUrl = 'https://www.nber.org';
-    const config = require('@/config').value;
+    const config = require('../../config').value;
     const data = await ctx.cache.tryGet(url, () => getData(url), config.cache.routeExpire, false);
     const items = await Promise.all(
         data

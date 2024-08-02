@@ -1,5 +1,5 @@
 const { CookieJar } = require('tough-cookie');
-const config = require('@/config').value;
+const config = require('../../../config').value;
 const { renderItems } = require('../common-utils');
 const { baseUrl, COOKIE_URL, getUserInfo, getUserFeedItems, getTagsFeedItems } = require('./utils');
 

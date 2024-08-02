@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 const newflashApi = 'https://api.theblockbeats.info/v3/newsflash/select';
 const articleApi = 'https://api.theblockbeats.info/v3/Information/newsall';
 

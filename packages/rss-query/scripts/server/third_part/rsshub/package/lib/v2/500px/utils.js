@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const config = require('@/config').value;
+const config = require('../../config').value;
 
 const baseUrl = 'https://500px.com.cn';
 

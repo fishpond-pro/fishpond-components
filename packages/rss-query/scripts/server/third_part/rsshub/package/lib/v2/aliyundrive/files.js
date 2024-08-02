@@ -1,4 +1,4 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 
 module.exports = async (ctx) => {
     const { share_id, parent_file_id } = ctx.params;

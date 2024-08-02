@@ -1,9 +1,9 @@
 const cheerio = require('cheerio');
-const got = require('@/utils/got');
-const { parseDate } = require('@/utils/parse-date');
-const timezone = require('@/utils/timezone');
+const got = require('../../utils/got');
+const { parseDate } = require('../../utils/parse-date');
+const timezone = require('../../utils/timezone');
 const path = require('path');
-const { art } = require('@/utils/render');
+const { art } = require('../../utils/render');
 
 const renderDesc = (item) => art(path.join(__dirname, 'templates/daily.art'), item);
 

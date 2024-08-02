@@ -1,5 +1,5 @@
-const { parseDate } = require('@/utils/parse-date');
-const { art } = require('@/utils/render');
+const { parseDate } = require('../../utils/parse-date');
+const { art } = require('../../utils/render');
 const path = require('path');
 const { getUuid, getBook, getChapter, getChapters, getImgEncrypted, getImgKey, decrypt, getRealKey, siteHost } = require('./utils');
 

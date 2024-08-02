@@ -1,5 +1,5 @@
-const got = require('@/utils/got');
-const { parseRelativeDate, parseDate } = require('@/utils/parse-date');
+const got = require('../../utils/got');
+const { parseRelativeDate, parseDate } = require('../../utils/parse-date');
 const cheerio = require('cheerio');
 
 const parseArticle = (item, ctx) => {

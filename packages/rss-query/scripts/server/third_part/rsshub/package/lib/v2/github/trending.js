@@ -1,6 +1,6 @@
-const config = require('@/config').value;
-const got = require('@/utils/got');
-const { art } = require('@/utils/render');
+const config = require('../../config').value;
+const got = require('../../utils/got');
+const { art } = require('../../utils/render');
 const cheerio = require('cheerio');
 const path = require('path');
 

@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
+const got = require('../../../../utils/got');
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../../../utils/parse-date');
 
 module.exports = async (ctx) => {
     // bangumi.tv未提供获取“人物信息”的API，因此仍需要通过抓取网页来获取

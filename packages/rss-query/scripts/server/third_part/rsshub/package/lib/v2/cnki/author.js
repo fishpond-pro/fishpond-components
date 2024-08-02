@@ -1,5 +1,5 @@
 const utils = require('./utils');
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
 
 const rootUrl = 'https://chn.oversea.cnki.net/kcms/detail/frame/knetlist.aspx?infotype=4&codetype=1&vl=&';

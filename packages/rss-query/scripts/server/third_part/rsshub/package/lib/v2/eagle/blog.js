@@ -1,7 +1,7 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
-const { isValidHost } = require('@/utils/valid-host');
+const { parseDate } = require('../../utils/parse-date');
+const { isValidHost } = require('../../utils/valid-host');
 const cateList = ['all', 'design-resources', 'learn-design', 'inside-eagle'];
 
 module.exports = async (ctx) => {

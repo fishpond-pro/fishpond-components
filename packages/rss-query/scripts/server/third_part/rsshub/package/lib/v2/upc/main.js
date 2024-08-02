@@ -1,8 +1,8 @@
 // 学校官网：http://www.upc.edu.cn/
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
-const timezone = require('@/utils/timezone');
+const { parseDate } = require('../../utils/parse-date');
+const timezone = require('../../utils/timezone');
 
 // 地址映射
 const MAP = {

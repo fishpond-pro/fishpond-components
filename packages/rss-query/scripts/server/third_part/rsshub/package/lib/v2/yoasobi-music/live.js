@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const { parseJSONP } = require('./jsonpHelper');
-const { art } = require('@/utils/render');
+const { art } = require('../../utils/render');
 const path = require('path');
 
 module.exports = async (ctx) => {

@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
-const { parseDate } = require('@/utils/parse-date');
-const timezone = require('@/utils/timezone');
+const got = require('../../utils/got');
+const { parseDate } = require('../../utils/parse-date');
+const timezone = require('../../utils/timezone');
 
 const { baseUrl, apiHost } = require('./utils');
 

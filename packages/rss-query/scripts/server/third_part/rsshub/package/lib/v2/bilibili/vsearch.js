@@ -1,6 +1,6 @@
-const config = require('@/config').value;
-const got = require('@/utils/got');
-const { parseDate } = require('@/utils/parse-date');
+const config = require('../../config').value;
+const got = require('../../utils/got');
+const { parseDate } = require('../../utils/parse-date');
 const utils = require('./utils');
 const { CookieJar } = require('tough-cookie');
 const cookieJar = new CookieJar();

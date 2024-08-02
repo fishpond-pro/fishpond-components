@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const util = require('./utils');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 
 module.exports = async (ctx) => {
     const response = await got('https://www.nintendo.com.hk/data/json/topics.json');

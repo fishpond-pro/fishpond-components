@@ -1,5 +1,5 @@
-const got = require('@/utils/got');
-const { parseDate } = require('@/utils/parse-date');
+const got = require('../../utils/got');
+const { parseDate } = require('../../utils/parse-date');
 const cheerio = require('cheerio');
 const asyncPool = require('tiny-async-pool');
 

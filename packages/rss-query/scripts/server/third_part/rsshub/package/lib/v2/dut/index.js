@@ -1,9 +1,9 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 const defaults = require('./defaults');
 const shortcuts = require('./shortcuts');
-const { isValidHost } = require('@/utils/valid-host');
+const { isValidHost } = require('../../utils/valid-host');
 
 module.exports = async (ctx) => {
     const site = ctx.params[0] ?? 'news';

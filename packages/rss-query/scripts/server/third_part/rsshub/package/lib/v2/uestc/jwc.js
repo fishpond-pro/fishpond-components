@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 
 const dateRegex = /(20\d{2})\/(\d{2})\/(\d{2})/;
 

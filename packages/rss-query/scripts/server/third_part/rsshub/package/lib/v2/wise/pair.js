@@ -1,9 +1,9 @@
-const got = require('@/utils/got');
-const { parseDate } = require('@/utils/parse-date');
+const got = require('../../utils/got');
+const { parseDate } = require('../../utils/parse-date');
 const dayjs = require('dayjs');
 const customParseFormat = require('dayjs/plugin/customParseFormat');
 dayjs.extend(customParseFormat);
-const { art } = require('@/utils/render');
+const { art } = require('../../utils/render');
 const path = require('path');
 const renderDesc = (content) => art(path.join(__dirname, 'templates/description.art'), content);
 

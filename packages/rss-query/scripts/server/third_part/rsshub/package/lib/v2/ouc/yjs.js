@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 
 module.exports = async (ctx) => {
     const link = 'https://yz.ouc.edu.cn/5926/list.htm';

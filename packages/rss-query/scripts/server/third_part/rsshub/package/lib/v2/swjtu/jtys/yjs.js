@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
+const got = require('../../../utils/got');
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../../utils/parse-date');
 
 const rootURL = 'https://ctt.swjtu.edu.cn';
 const url_addr = `${rootURL}/yethan/WebIndexAction?setAction=newsList&bigTypeId=0E4BF4D36E232918`;

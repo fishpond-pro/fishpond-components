@@ -1,6 +1,6 @@
 const path = require('path');
-const { art } = require('@/utils/render');
-const got = require('@/utils/got');
+const { art } = require('../../utils/render');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
 
 const renderDescription = ({ subtitle, quotation, pics, article }) =>

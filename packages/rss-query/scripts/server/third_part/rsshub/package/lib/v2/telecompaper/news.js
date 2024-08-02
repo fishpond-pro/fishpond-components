@@ -1,4 +1,4 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
 const tough = require('tough-cookie');
 // eslint-disable-next-line n/no-extraneous-require

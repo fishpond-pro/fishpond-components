@@ -1,5 +1,5 @@
-const got = require('@/utils/got');
-const { parseDate } = require('@/utils/parse-date');
+const got = require('../../utils/got');
+const { parseDate } = require('../../utils/parse-date');
 
 module.exports = async (ctx) => {
     const query = ctx.params.query ?? ''; // beginDate=2018-08-18&endDate=2020-09-01&productId=600696

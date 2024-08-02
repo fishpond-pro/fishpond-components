@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
-const { parseDate } = require('@/utils/parse-date');
-const { isValidHost } = require('@/utils/valid-host');
+const got = require('../../utils/got');
+const { parseDate } = require('../../utils/parse-date');
+const { isValidHost } = require('../../utils/valid-host');
 
 module.exports = async (ctx) => {
     const { id } = ctx.params;

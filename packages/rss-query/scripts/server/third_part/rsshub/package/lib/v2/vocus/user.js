@@ -1,4 +1,4 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const { processList, ProcessFeed, baseUrl, apiUrl } = require('./utils');
 
 module.exports = async (ctx) => {

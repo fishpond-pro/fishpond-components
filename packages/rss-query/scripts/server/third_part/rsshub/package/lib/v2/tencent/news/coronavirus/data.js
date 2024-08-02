@@ -1,6 +1,6 @@
 const { getData } = require('./utils');
-const { parseDate } = require('@/utils/parse-date');
-const { art } = require('@/utils/render');
+const { parseDate } = require('../../../../utils/parse-date');
+const { art } = require('../../../../utils/render');
 const path = require('path');
 
 module.exports = async (ctx) => {

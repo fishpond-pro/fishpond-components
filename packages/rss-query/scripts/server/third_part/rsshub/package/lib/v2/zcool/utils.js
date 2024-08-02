@@ -1,4 +1,4 @@
-const { art } = require('@/utils/render');
+const { art } = require('../../utils/render');
 const path = require('path');
 
 const extractArticle = (data) => data.props.pageProps.data.summary + data.props.pageProps.data.memo;

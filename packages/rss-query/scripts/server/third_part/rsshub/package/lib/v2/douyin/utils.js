@@ -1,8 +1,8 @@
 const path = require('path');
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const logger = require('@/utils/logger');
-const config = require('@/config').value;
+const logger = require('../../utils/logger');
+const config = require('../../config').value;
 
 const templates = {
     desc: path.join(__dirname, 'templates/desc.art'),
@@ -78,7 +78,7 @@ const gotGet = async (url, ua) => {
 };
 
 const puppeteerGet = async (pageUrl) => {
-    const browser = await require('@/utils/puppeteer')();
+    const browser = await require('../../utils/puppeteer')();
     const page = await browser.newPage();
     await page.setRequestInterception(true);
     page.on('request', (request) => {

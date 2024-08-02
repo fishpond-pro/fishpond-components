@@ -1,8 +1,8 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 const { extractArticle, extractWork } = require('./utils');
-const { isValidHost } = require('@/utils/valid-host');
+const { isValidHost } = require('../../utils/valid-host');
 
 module.exports = async (ctx) => {
     const { uid } = ctx.params;

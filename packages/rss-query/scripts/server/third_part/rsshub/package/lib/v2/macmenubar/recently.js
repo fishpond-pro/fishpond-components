@@ -1,4 +1,4 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 
 async function getCategoryId(categories) {
     const baseUrl = `https://macmenubar.com/wp-json/wp/v2/categories`;

@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const CryptoJS = require('crypto-js');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 const { queries } = require('./queries');
 
 module.exports = async (ctx) => {

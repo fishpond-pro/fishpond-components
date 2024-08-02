@@ -1,5 +1,5 @@
 const utils = require('./utils');
-const config = require('@/config').value;
+const config = require('../../config').value;
 
 module.exports = async (ctx) => {
     const site = ctx.params.site;

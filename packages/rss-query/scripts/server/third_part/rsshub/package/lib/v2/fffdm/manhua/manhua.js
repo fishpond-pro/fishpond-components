@@ -1,9 +1,9 @@
-const got = require('@/utils/got');
+const got = require('../../../utils/got');
 const domain = 'manhua.fffdm.com';
 const host = `https://${domain}`;
-const { art } = require('@/utils/render');
+const { art } = require('../../../utils/render');
 const path = require('path');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../../utils/parse-date');
 
 const get_pic = async (url) => {
     const response = await got(url);

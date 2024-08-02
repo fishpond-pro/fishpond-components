@@ -1,10 +1,10 @@
-const got = require('@/utils/got');
+const got = require('../../../utils/got');
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../../utils/parse-date');
 const md = require('markdown-it')({
     linkify: true,
 });
-const { art } = require('@/utils/render');
+const { art } = require('../../../utils/render');
 const path = require('path');
 
 const baseUrl = 'https://www.gq.com.tw';

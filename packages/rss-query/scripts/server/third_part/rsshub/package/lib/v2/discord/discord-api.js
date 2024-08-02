@@ -1,5 +1,5 @@
-const got = require('@/utils/got');
-const config = require('@/config').value;
+const got = require('../../utils/got');
+const config = require('../../config').value;
 
 const baseUrl = 'https://discord.com';
 const apiUrl = `${baseUrl}/api/v10`;

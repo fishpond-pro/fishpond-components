@@ -1,8 +1,8 @@
-const got = require('@/utils/got');
-const { art } = require('@/utils/render');
+const got = require('../../utils/got');
+const { art } = require('../../utils/render');
 const path = require('path');
-const { parseDate } = require('@/utils/parse-date');
-const config = require('@/config').value;
+const { parseDate } = require('../../utils/parse-date');
+const config = require('../../config').value;
 const rootUrl = 'https://devapi.qweather.com/v7/weather/now?';
 module.exports = async (ctx) => {
     const id = await ctx.cache.tryGet(ctx.params.location + '_id', async () => {

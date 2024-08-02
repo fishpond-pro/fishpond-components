@@ -1,6 +1,6 @@
 const cheerio = require('cheerio');
-const got = require('@/utils/got');
-const { parseRelativeDate } = require('@/utils/parse-date');
+const got = require('../../utils/got');
+const { parseRelativeDate } = require('../../utils/parse-date');
 
 module.exports = async (ctx) => {
     const cid = ctx.params.cid || 'all';

@@ -1,9 +1,9 @@
-const got = require('@/utils/got');
+const got = require('../../../../utils/got');
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
-const { art } = require('@/utils/render');
+const { parseDate } = require('../../../../utils/parse-date');
+const { art } = require('../../../../utils/render');
 const path = require('path');
-const timezone = require('@/utils/timezone');
+const timezone = require('../../../../utils/timezone');
 
 // 各地区url信息
 const basicInfoDict = {

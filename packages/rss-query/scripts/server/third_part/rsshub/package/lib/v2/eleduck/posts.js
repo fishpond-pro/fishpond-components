@@ -1,4 +1,4 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 
 const getCateName = async (ctx, cid = 0) => {
     const key = 'eleduck-categories';

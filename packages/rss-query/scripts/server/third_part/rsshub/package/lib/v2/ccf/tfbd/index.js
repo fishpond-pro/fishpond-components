@@ -1,5 +1,5 @@
 const utils = require('./utils');
-const got = require('@/utils/got');
+const got = require('../../../utils/got');
 const cheerio = require('cheerio');
 
 module.exports = async (ctx) => {

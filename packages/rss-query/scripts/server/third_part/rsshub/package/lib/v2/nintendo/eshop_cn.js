@@ -1,7 +1,7 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const util = require('./utils');
 const software_url = 'https://www.nintendoswitch.com.cn/software/';
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 
 module.exports = async (ctx) => {
     const response = await got(software_url);

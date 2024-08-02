@@ -1,8 +1,8 @@
-const got = require('@/utils/got');
-const { parseDate } = require('@/utils/parse-date');
+const got = require('../../utils/got');
+const { parseDate } = require('../../utils/parse-date');
 
 const apiUrl = 'https://api.github.com';
-const config = require('@/config').value;
+const config = require('../../config').value;
 
 module.exports = async (ctx) => {
     if (!config.github || !config.github.access_token) {

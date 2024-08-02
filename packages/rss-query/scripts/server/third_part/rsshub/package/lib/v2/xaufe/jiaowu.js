@@ -1,5 +1,5 @@
-const got = require('@/utils/got');
-const { parseDate } = require('@/utils/parse-date');
+const got = require('../../utils/got');
+const { parseDate } = require('../../utils/parse-date');
 const cheerio = require('cheerio');
 
 // Yep http is bad, but I had no choice :(

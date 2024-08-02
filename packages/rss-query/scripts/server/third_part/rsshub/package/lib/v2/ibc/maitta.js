@@ -1,7 +1,7 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
 const url = 'https://www.ibc.co.jp/radio/maitta/audio/';
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 
 module.exports = async (ctx) => {
     const res = await got(url);

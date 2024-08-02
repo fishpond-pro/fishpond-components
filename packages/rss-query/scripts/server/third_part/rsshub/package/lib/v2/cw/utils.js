@@ -1,7 +1,7 @@
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
-const { getCookies, setCookies } = require('@/utils/puppeteer-utils');
-const logger = require('@/utils/logger');
+const { parseDate } = require('../../utils/parse-date');
+const { getCookies, setCookies } = require('../../utils/puppeteer-utils');
+const logger = require('../../utils/logger');
 let cookie;
 
 const baseUrl = 'https://www.cw.com.tw';

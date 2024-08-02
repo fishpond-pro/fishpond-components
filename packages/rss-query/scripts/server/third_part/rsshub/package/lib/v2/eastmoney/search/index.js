@@ -1,6 +1,6 @@
-const { parseDate } = require('@/utils/parse-date');
-const got = require('@/utils/got');
-const timezone = require('@/utils/timezone');
+const { parseDate } = require('../../../utils/parse-date');
+const got = require('../../../utils/got');
+const timezone = require('../../../utils/timezone');
 
 module.exports = async (ctx) => {
     const keyword = ctx.params.keyword;

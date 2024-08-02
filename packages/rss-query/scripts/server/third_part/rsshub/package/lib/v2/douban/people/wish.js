@@ -1,7 +1,7 @@
 const querystring = require('querystring');
 const cheerio = require('cheerio');
-const got = require('@/utils/got');
-const config = require('@/config').value;
+const got = require('../../../utils/got');
+const config = require('../../../config').value;
 module.exports = async (ctx) => {
     const userid = ctx.params.userid;
     const routeParams = querystring.parse(ctx.params.routeParams);

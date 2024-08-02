@@ -1,9 +1,9 @@
 const path = require('path');
 const cheerio = require('cheerio');
-const got = require('@/utils/got');
-const { art } = require('@/utils/render');
-const { parseDate } = require('@/utils/parse-date');
-const timezone = require('@/utils/timezone');
+const got = require('../../utils/got');
+const { art } = require('../../utils/render');
+const { parseDate } = require('../../utils/parse-date');
+const timezone = require('../../utils/timezone');
 
 const HOME_URL = 'https://www.meituclub.com/';
 

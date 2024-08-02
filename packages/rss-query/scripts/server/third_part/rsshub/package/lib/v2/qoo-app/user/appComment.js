@@ -1,9 +1,9 @@
-const got = require('@/utils/got');
+const got = require('../../../utils/got');
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
-const timezone = require('@/utils/timezone');
+const { parseDate } = require('../../../utils/parse-date');
+const timezone = require('../../../utils/timezone');
 const { userUrl, appsUrl } = require('../utils');
-const { art } = require('@/utils/render');
+const { art } = require('../../../utils/render');
 const path = require('path');
 
 module.exports = async (ctx) => {

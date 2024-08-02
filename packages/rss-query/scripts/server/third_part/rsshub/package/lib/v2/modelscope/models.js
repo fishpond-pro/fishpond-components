@@ -1,9 +1,9 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const md = require('markdown-it')({
     html: true,
     linkify: true,
 });
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 
 module.exports = async (ctx) => {
     const baseUrl = 'https://modelscope.cn';

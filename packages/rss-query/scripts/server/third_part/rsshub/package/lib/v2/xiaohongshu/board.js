@@ -1,5 +1,5 @@
-const { parseDate } = require('@/utils/parse-date');
-const timezone = require('@/utils/timezone');
+const { parseDate } = require('../../utils/parse-date');
+const timezone = require('../../utils/timezone');
 const { getBoard } = require('./util');
 
 module.exports = async (ctx) => {

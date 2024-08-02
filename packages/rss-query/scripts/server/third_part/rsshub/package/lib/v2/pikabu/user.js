@@ -1,7 +1,7 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
 const iconv = require('iconv-lite');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 const { baseUrl, fixImage, fixVideo } = require('./utils');
 
 module.exports = async (ctx) => {

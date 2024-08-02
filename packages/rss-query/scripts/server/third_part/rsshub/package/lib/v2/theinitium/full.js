@@ -1,7 +1,7 @@
-const got = require('@/utils/got');
-const config = require('@/config').value;
+const got = require('../../utils/got');
+const config = require('../../config').value;
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 
 const TOKEN = 'Basic YW5vbnltb3VzOkdpQ2VMRWp4bnFCY1ZwbnA2Y0xzVXZKaWV2dlJRY0FYTHY=';
 

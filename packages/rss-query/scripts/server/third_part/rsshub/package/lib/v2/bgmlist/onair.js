@@ -1,7 +1,7 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const path = require('path');
-const { parseDate } = require('@/utils/parse-date');
-const { art } = require('@/utils/render');
+const { parseDate } = require('../../utils/parse-date');
+const { art } = require('../../utils/render');
 
 module.exports = async (ctx) => {
     const { lang } = ctx.params;

@@ -1,7 +1,7 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const { fetchArticle } = require('@/utils/wechat-mp');
-const config = require('@/config').value;
+const { fetchArticle } = require('../../utils/wechat-mp');
+const config = require('../../config').value;
 const asyncPool = require('tiny-async-pool');
 
 module.exports = async (ctx) => {

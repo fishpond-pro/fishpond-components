@@ -1,7 +1,7 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
 const url = 'https://www.sigsac.org/';
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 // https://www.sigsac.org/ccs/CCS2022/program/accepted-papers.html
 
 module.exports = async (ctx) => {

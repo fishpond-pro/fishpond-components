@@ -1,10 +1,10 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
 const md = require('markdown-it')({
     html: true,
 });
 const dayjs = require('dayjs');
-const { isValidHost } = require('@/utils/valid-host');
+const { isValidHost } = require('../../utils/valid-host');
 
 module.exports = async (ctx) => {
     const type = ctx.params.type;

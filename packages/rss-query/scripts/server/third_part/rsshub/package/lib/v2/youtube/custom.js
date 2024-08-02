@@ -1,8 +1,8 @@
 const utils = require('./utils');
-const config = require('@/config').value;
-const got = require('@/utils/got');
+const config = require('../../config').value;
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 
 module.exports = async (ctx) => {
     if (!config.youtube || !config.youtube.key) {

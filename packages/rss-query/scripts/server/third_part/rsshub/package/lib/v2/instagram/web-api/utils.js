@@ -1,5 +1,5 @@
-const got = require('@/utils/got');
-const config = require('@/config').value;
+const got = require('../../../utils/got');
+const config = require('../../../config').value;
 
 const baseUrl = 'https://www.instagram.com';
 const COOKIE_URL = 'https://instagram.com';

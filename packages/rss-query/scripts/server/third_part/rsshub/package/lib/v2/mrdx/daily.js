@@ -1,11 +1,11 @@
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 const { getElementChildrenInnerText } = require('./utils');
 const dayjs = require('dayjs');
 const utc = require('dayjs/plugin/utc');
 dayjs.extend(utc);
 
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 
 module.exports = async (ctx) => {
     const dateFormatted = dayjs().utcOffset(8).format('YYYYMMDD');

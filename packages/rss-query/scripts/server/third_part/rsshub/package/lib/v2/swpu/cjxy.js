@@ -1,7 +1,7 @@
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 const cheerio = require('cheerio');
-const got = require('@/utils/got');
-const timezone = require('@/utils/timezone');
+const got = require('../../utils/got');
+const timezone = require('../../utils/timezone');
 
 module.exports = async (ctx) => {
     const url = `https://www.swpu.edu.cn/nccjxy/xydt/${ctx.params.code}.htm`;

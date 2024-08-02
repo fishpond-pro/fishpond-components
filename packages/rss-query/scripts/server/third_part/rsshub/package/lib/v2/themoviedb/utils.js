@@ -1,6 +1,6 @@
 const path = require('path');
-const { art } = require('@/utils/render');
-const { parseDate } = require('@/utils/parse-date');
+const { art } = require('../../utils/render');
+const { parseDate } = require('../../utils/parse-date');
 
 const handleDescription = (item) => {
     const poster_path = item.poster_path ?? item.still_path;

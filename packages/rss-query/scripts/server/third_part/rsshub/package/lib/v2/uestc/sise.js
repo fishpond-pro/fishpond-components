@@ -1,5 +1,5 @@
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 const dayjs = require('dayjs');
 
 const baseUrl = 'https://sise.uestc.edu.cn/';
@@ -35,7 +35,7 @@ module.exports = async (ctx) => {
         throw new Error('type not supported');
     }
 
-    const browser = await require('@/utils/puppeteer')({ stealth: true });
+    const browser = await require('../../utils/puppeteer')({ stealth: true });
     const page = await browser.newPage();
     await page.setRequestInterception(true);
     page.on('request', (request) => {

@@ -1,5 +1,5 @@
 const utils = require('./utils');
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 
 const sections = {
     hotNews: '澎湃热榜',

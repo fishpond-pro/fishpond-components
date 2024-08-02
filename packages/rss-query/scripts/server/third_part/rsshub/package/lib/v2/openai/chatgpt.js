@@ -1,7 +1,7 @@
 const dayjs = require('dayjs');
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const config = require('@/config').value;
+const config = require('../../config').value;
 
 dayjs.extend(require('dayjs/plugin/isSameOrBefore'));
 

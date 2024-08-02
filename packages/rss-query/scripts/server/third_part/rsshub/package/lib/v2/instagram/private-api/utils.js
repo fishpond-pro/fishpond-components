@@ -1,6 +1,6 @@
 const { IgApiClient } = require('instagram-private-api');
-const logger = require('@/utils/logger');
-const config = require('@/config').value;
+const logger = require('../../../utils/logger');
+const config = require('../../../config').value;
 
 const ig = new IgApiClient();
 

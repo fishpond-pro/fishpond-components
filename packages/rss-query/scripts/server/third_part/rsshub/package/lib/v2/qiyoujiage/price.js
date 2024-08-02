@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const md5 = require('@/utils/md5');
+const md5 = require('../../utils/md5');
 
 module.exports = async (ctx) => {
     const { path } = ctx.params;

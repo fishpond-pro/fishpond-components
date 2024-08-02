@@ -1,5 +1,5 @@
-const got = require('@/utils/got');
-const { parseDate } = require('@/utils/parse-date');
+const got = require('../../utils/got');
+const { parseDate } = require('../../utils/parse-date');
 const { termsMap } = require('./termsMap');
 
 const baseUrl = 'https://thecatcity.com';

@@ -1,11 +1,11 @@
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 
 const baseIndexUrl = 'https://www.auto.uestc.edu.cn/index/tzgg1.htm';
 const host = 'https://www.auto.uestc.edu.cn/';
 
 module.exports = async (ctx) => {
-    const browser = await require('@/utils/puppeteer')({ stealth: true });
+    const browser = await require('../../utils/puppeteer')({ stealth: true });
     const page = await browser.newPage();
     await page.setRequestInterception(true);
     page.on('request', (request) => {

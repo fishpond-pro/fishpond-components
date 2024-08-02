@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const parser = require('@/utils/rss-parser');
+const parser = require('../../utils/rss-parser');
 const allowLang = ['chinese', 'cn', 'us', 'japanese', 'www'];
 
 module.exports = async (ctx) => {

@@ -1,10 +1,10 @@
-const got = require('@/utils/got');
-const { parseDate } = require('@/utils/parse-date');
+const got = require('../../utils/got');
+const { parseDate } = require('../../utils/parse-date');
 const md = require('markdown-it')({
     html: true,
     linkify: true,
 });
-const { isValidHost } = require('@/utils/valid-host');
+const { isValidHost } = require('../../utils/valid-host');
 
 module.exports = async (ctx) => {
     const id = ctx.params.id;

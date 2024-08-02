@@ -1,7 +1,7 @@
 const { baseUrl, parsePage } = require('./utils');
 
 module.exports = async (ctx) => {
-    const browser = await require('@/utils/puppeteer')();
+    const browser = await require('../../utils/puppeteer')();
 
     const { $, items } = await parsePage('sub', browser, ctx);
 

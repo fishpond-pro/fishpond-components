@@ -1,7 +1,7 @@
 const utils = require('./utils');
-const config = require('@/config').value;
-const { parseDate } = require('@/utils/parse-date');
-const got = require('@/utils/got');
+const config = require('../../config').value;
+const { parseDate } = require('../../utils/parse-date');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
 
 module.exports = async (ctx) => {

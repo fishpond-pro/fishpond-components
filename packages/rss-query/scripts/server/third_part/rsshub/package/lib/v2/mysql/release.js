@@ -1,5 +1,5 @@
-const got = require('@/utils/got');
-const config = require('@/config').value;
+const got = require('../../utils/got');
+const config = require('../../config').value;
 const cheerio = require('cheerio');
 
 module.exports = async (ctx) => {

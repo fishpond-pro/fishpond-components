@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
-const timezone = require('@/utils/timezone');
-const { parseDate } = require('@/utils/parse-date');
+const got = require('../../utils/got');
+const timezone = require('../../utils/timezone');
+const { parseDate } = require('../../utils/parse-date');
 
 async function getData(category, id) {
     const url = `https://radio.cgtn.com/downapiRES/radio/v1/program/historyList/programId${id}_category${category}_page1.json`;

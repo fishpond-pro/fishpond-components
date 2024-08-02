@@ -25,9 +25,9 @@
  * For more details of these functions, please refer to the jsDoc in the source code.
  */
 
-const got = require('@/utils/got');
+const got = require('../utils/got');
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../utils/parse-date');
 
 const replaceTag = ($, oldTag, newTagName) => {
     oldTag = $(oldTag);

@@ -1,7 +1,7 @@
 const cheerio = require('cheerio');
 const { puppeteerGet, renderDesc } = require('./utils');
-const config = require('@/config').value;
-const { isValidHost } = require('@/utils/valid-host');
+const config = require('../../config').value;
+const { isValidHost } = require('../../utils/valid-host');
 
 module.exports = async (ctx) => {
     const pub = ctx.params.pub;
@@ -13,7 +13,7 @@ module.exports = async (ctx) => {
     }
 
     // use Puppeteer due to the obstacle by cloudflare challenge
-    const browser = await require('@/utils/puppeteer')();
+    const browser = await require('../../utils/puppeteer')();
 
     const { jrnlName, list } = await ctx.cache.tryGet(
         jrnlUrl,

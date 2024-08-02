@@ -1,11 +1,11 @@
-const config = require('@/config').value;
-const logger = require('@/utils/logger');
+const config = require('../../config').value;
+const logger = require('../../utils/logger');
 
 const getUser = (url, cache) =>
     cache.tryGet(
         url,
         async () => {
-            const browser = await require('@/utils/puppeteer')();
+            const browser = await require('../../utils/puppeteer')();
             try {
                 const page = await browser.newPage();
                 await page.setRequestInterception(true);
@@ -48,7 +48,7 @@ const getBoard = (url, cache) =>
     cache.tryGet(
         url,
         async () => {
-            const browser = await require('@/utils/puppeteer')();
+            const browser = await require('../../utils/puppeteer')();
             try {
                 const page = await browser.newPage();
                 await page.setRequestInterception(true);

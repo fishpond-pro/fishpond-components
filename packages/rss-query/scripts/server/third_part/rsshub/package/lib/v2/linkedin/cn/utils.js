@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const path = require('path');
-const { art } = require('@/utils/render');
-const got = require('@/utils/got');
+const { art } = require('../../../utils/render');
+const got = require('../../../utils/got');
 const { parseAttr } = require('./renderer');
 
 const apiUrl = 'https://www.linkedin.cn/karpos/api/graphql';

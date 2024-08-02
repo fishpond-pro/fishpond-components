@@ -1,8 +1,8 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const { topicDataHanding } = require('./utils');
 const cheerio = require('cheerio');
 const dayjs = require('dayjs');
-const { constructTopicEntry } = require('@/v2/jike/utils');
+const { constructTopicEntry } = require('../../v2/jike/utils');
 
 module.exports = async (ctx) => {
     const id = ctx.params.id;

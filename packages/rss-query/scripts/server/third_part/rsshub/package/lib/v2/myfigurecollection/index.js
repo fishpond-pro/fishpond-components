@@ -1,8 +1,8 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const { art } = require('@/utils/render');
+const { art } = require('../../utils/render');
 const path = require('path');
-const { isValidHost } = require('@/utils/valid-host');
+const { isValidHost } = require('../../utils/valid-host');
 
 const shortcuts = {
     potd: 'picture/browse/potd/',

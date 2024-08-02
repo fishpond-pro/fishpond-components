@@ -1,7 +1,7 @@
 const crypto = require('crypto');
-const got = require('@/utils/got');
-const timezone = require('@/utils/timezone');
-const { parseDate } = require('@/utils/parse-date');
+const got = require('../../utils/got');
+const timezone = require('../../utils/timezone');
+const { parseDate } = require('../../utils/parse-date');
 
 module.exports = async (ctx) => {
     const channelUrl = `https://i.qingting.fm/capi/v3/channel/${ctx.params.id}`;

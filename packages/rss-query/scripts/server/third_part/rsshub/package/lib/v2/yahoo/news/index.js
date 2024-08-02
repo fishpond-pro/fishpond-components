@@ -1,7 +1,7 @@
-const got = require('@/utils/got');
-const parser = require('@/utils/rss-parser');
+const got = require('../../../utils/got');
+const parser = require('../../../utils/rss-parser');
 const cheerio = require('cheerio');
-const { isValidHost } = require('@/utils/valid-host');
+const { isValidHost } = require('../../../utils/valid-host');
 
 module.exports = async (ctx) => {
     const region = ctx.params.region === 'en' ? '' : ctx.params.region.toLowerCase();

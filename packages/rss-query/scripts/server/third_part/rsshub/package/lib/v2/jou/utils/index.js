@@ -1,11 +1,11 @@
 // 导入got库，该库用来请求网页数据
-const got = require('@/utils/got');
+const got = require('../../../utils/got');
 // 导入cheerio库，该库用来解析网页数据
 const cheerio = require('cheerio');
 // 导入parseDate函数，该函数用于日期处理
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../../utils/parse-date');
 // 导入timezone库，该库用于时区处理
-const timezone = require('@/utils/timezone');
+const timezone = require('../../../utils/timezone');
 
 async function getItems(ctx, url, host, tableClass, timeStyleClass1, titleStyleClass, timeStyleClass2) {
     // 发起Http请求，获取网页数据

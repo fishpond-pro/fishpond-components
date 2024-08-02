@@ -1,7 +1,7 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
 const md = require('markdown-it')();
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 const asyncPool = require('tiny-async-pool');
 
 const baseUrl = 'https://www.luogu.com.cn';

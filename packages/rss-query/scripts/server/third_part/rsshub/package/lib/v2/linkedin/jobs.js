@@ -1,5 +1,5 @@
-const got = require('@/utils/got');
-const { parseDate } = require('@/utils/parse-date');
+const got = require('../../utils/got');
+const { parseDate } = require('../../utils/parse-date');
 const { parseJobSearch, KEYWORDS_QUERY_KEY, JOB_TYPES, JOB_TYPES_QUERY_KEY, EXP_LEVELS_QUERY_KEY, parseParamsToSearchParams, EXP_LEVELS, parseParamsToString } = require('./utils');
 
 const BASE_URL = 'https://www.linkedin.com/';

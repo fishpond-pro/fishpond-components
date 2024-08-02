@@ -8,7 +8,7 @@
 // stm:            Science Translational Medicine
 
 const cheerio = require('cheerio');
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const { baseUrl, fetchDesc, getItem } = require('./utils');
 
 module.exports = async (ctx) => {
@@ -27,7 +27,7 @@ module.exports = async (ctx) => {
         .toArray()
         .map((item) => getItem(item, $));
 
-    const browser = await require('@/utils/puppeteer')();
+    const browser = await require('../../utils/puppeteer')();
     const items = await fetchDesc(list, browser, ctx.cache.tryGet);
     await browser.close();
 

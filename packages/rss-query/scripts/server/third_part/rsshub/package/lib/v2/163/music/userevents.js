@@ -1,6 +1,6 @@
 const path = require('path');
-const got = require('@/utils/got');
-const { art } = require('@/utils/render');
+const got = require('../../../utils/got');
+const { art } = require('../../../utils/render');
 const renderDescription = (info) => art(path.join(__dirname, '../templates/music/userevents.art'), info);
 
 module.exports = async (ctx) => {

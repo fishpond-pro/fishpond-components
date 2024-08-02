@@ -1,8 +1,8 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
-const timezone = require('@/utils/timezone');
-const { fixArticleContent } = require('@/utils/wechat-mp');
+const { parseDate } = require('../../utils/parse-date');
+const timezone = require('../../utils/timezone');
+const { fixArticleContent } = require('../../utils/wechat-mp');
 const baseUrl = 'https://freewechat.com';
 
 module.exports = async (ctx) => {

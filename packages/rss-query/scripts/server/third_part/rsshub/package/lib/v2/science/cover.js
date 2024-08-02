@@ -7,10 +7,10 @@
 // signaling:      Science Signaling
 // stm:            Science Translational Medicine
 
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
-const { art } = require('@/utils/render');
+const { parseDate } = require('../../utils/parse-date');
+const { art } = require('../../utils/render');
 const path = require('path');
 const { baseUrl } = require('./utils');
 

@@ -1,5 +1,5 @@
 const { LRUCache } = require('lru-cache');
-const config = require('@/config').value;
+const config = require('../../config').value;
 
 const status = { available: false };
 

@@ -1,6 +1,6 @@
 const cheerio = require('cheerio');
-const got = require('@/utils/got');
-const rssParser = require('@/utils/rss-parser');
+const got = require('../../utils/got');
+const rssParser = require('../../utils/rss-parser');
 const { asyncPoolAll, parseArticle } = require('./utils');
 
 const parseAuthorNewsList = async (slug) => {

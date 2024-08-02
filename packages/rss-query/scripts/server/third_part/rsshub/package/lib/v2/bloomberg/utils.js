@@ -2,9 +2,9 @@ const cheerio = require('cheerio');
 const path = require('path');
 const asyncPool = require('tiny-async-pool');
 
-const { parseDate } = require('@/utils/parse-date');
-const got = require('@/utils/got');
-const { art } = require('@/utils/render');
+const { parseDate } = require('../../utils/parse-date');
+const got = require('../../utils/got');
+const { art } = require('../../utils/render');
 
 const rootUrl = 'https://www.bloomberg.com/feeds';
 const sel = 'script[data-component-props="ArticleBody"], script[data-component-props="FeatureBody"]';

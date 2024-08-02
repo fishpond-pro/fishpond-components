@@ -1,5 +1,5 @@
-const got = require('@/utils/got');
-const { parseDate } = require('@/utils/parse-date');
+const got = require('../../utils/got');
+const { parseDate } = require('../../utils/parse-date');
 
 const rootURL = 'https://www.uber.com';
 const apiURL = 'https://blogapi.uber.com';

@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
-const { parseDate } = require('@/utils/parse-date');
-const Config = require('@/config').value.fantia;
+const got = require('../../utils/got');
+const { parseDate } = require('../../utils/parse-date');
+const Config = require('../../config').value.fantia;
 
 module.exports = async (ctx) => {
     const rootUrl = 'https://fantia.jp';

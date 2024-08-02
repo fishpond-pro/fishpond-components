@@ -1,7 +1,7 @@
-const got = require('@/utils/got');
+const got = require('../../../utils/got');
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
-const { finishArticleItem } = require('@/utils/wechat-mp');
+const { parseDate } = require('../../../utils/parse-date');
+const { finishArticleItem } = require('../../../utils/wechat-mp');
 const rootUrl = 'http://job.hrbeu.edu.cn';
 
 const idMap = {

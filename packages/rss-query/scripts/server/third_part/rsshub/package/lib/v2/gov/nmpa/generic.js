@@ -1,13 +1,13 @@
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
-const { finishArticleItem } = require('@/utils/wechat-mp');
-const config = require('@/config').value;
+const { parseDate } = require('../../../utils/parse-date');
+const { finishArticleItem } = require('../../../utils/wechat-mp');
+const config = require('../../../config').value;
 const baseUrl = 'https://www.nmpa.gov.cn';
 
 module.exports = async (ctx) => {
     const path = ctx.params[0];
     const url = `${baseUrl}/${path.endsWith('/') ? path.slice(0, -1) : path}/index.html`;
-    const browser = await require('@/utils/puppeteer')({ stealth: true });
+    const browser = await require('../../../utils/puppeteer')({ stealth: true });
     const data = await ctx.cache.tryGet(
         url,
         async () => {

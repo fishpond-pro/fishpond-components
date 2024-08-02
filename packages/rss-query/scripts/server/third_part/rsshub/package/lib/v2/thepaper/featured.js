@@ -1,6 +1,6 @@
 const utils = require('./utils');
 const cheerio = require('cheerio');
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 
 module.exports = async (ctx) => {
     const response = await got('https://m.thepaper.cn');

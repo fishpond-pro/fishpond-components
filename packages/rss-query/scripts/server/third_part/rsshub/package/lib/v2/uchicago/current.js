@@ -1,14 +1,14 @@
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
-const { getCookies, setCookies } = require('@/utils/puppeteer-utils');
-const logger = require('@/utils/logger');
+const { parseDate } = require('../../utils/parse-date');
+const { getCookies, setCookies } = require('../../utils/puppeteer-utils');
+const logger = require('../../utils/logger');
 
 module.exports = async (ctx) => {
     const { journal } = ctx.params;
     const baseUrl = 'https://www.journals.uchicago.edu';
     const link = `${baseUrl}/toc/${journal}/current`;
 
-    const browser = await require('@/utils/puppeteer')();
+    const browser = await require('../../utils/puppeteer')();
     const page = await browser.newPage();
     await page.setRequestInterception(true);
     page.on('request', (request) => {

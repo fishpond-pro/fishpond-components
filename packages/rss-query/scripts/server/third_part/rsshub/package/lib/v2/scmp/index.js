@@ -1,8 +1,8 @@
-const parser = require('@/utils/rss-parser');
+const parser = require('../../utils/rss-parser');
 const cheerio = require('cheerio');
-const got = require('@/utils/got');
-const { parseDate } = require('@/utils/parse-date');
-const chromeMobileUserAgent = require('@/utils/rand-user-agent')({ browser: 'chrome', os: 'android', device: 'mobile' });
+const got = require('../../utils/got');
+const { parseDate } = require('../../utils/parse-date');
+const chromeMobileUserAgent = require('../../utils/rand-user-agent')({ browser: 'chrome', os: 'android', device: 'mobile' });
 
 module.exports = async (ctx) => {
     const categoryId = ctx.params.category_id;

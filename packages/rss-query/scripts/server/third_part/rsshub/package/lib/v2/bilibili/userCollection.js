@@ -1,7 +1,7 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cache = require('./cache');
 const utils = require('./utils');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 
 const notFoundData = {
     title: '此 bilibili 频道不存在',

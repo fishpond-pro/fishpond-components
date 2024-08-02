@@ -1,7 +1,7 @@
-const { parseDate } = require('@/utils/parse-date');
-const { art } = require('@/utils/render');
-const config = require('@/config').value;
-const { fallback, queryToBoolean } = require('@/utils/readable-social');
+const { parseDate } = require('../../utils/parse-date');
+const { art } = require('../../utils/render');
+const config = require('../../config').value;
+const { fallback, queryToBoolean } = require('../../utils/readable-social');
 const { templates, resolveUrl, proxyVideo, getOriginAvatar } = require('./utils');
 
 module.exports = async (ctx) => {
@@ -19,7 +19,7 @@ module.exports = async (ctx) => {
     const tagData = await ctx.cache.tryGet(
         `douyin:hashtag:${cid}`,
         async () => {
-            const browser = await require('@/utils/puppeteer')();
+            const browser = await require('../../utils/puppeteer')();
             const page = await browser.newPage();
             await page.setRequestInterception(true);
             let awemeList = '';

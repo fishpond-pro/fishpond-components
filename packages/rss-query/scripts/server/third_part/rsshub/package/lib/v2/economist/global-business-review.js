@@ -1,4 +1,4 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 
 const ALLOW_LANGUAGE = {
     en: 'en_GB',

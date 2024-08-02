@@ -1,11 +1,11 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
-const timezone = require('@/utils/timezone');
-const { art } = require('@/utils/render');
+const { parseDate } = require('../../utils/parse-date');
+const timezone = require('../../utils/timezone');
+const { art } = require('../../utils/render');
 const path = require('path');
 const asyncPool = require('tiny-async-pool');
-const config = require('@/config').value;
+const config = require('../../config').value;
 
 // Visit https://www.bdys.me for the list of domains
 const allowDomains = ['52bdys.com', 'bde4.icu', 'bdys01.com'];

@@ -1,9 +1,9 @@
-const got = require('@/utils/got');
-const { parseRelativeDate } = require('@/utils/parse-date');
+const got = require('../../utils/got');
+const { parseRelativeDate } = require('../../utils/parse-date');
 const cheerio = require('cheerio');
-const { art } = require('@/utils/render');
+const { art } = require('../../utils/render');
 const path = require('path');
-const config = require('@/config').value;
+const config = require('../../config').value;
 const web_url = 'https://www.manhuagui.com/user/book/shelf/1';
 
 module.exports = async (ctx) => {

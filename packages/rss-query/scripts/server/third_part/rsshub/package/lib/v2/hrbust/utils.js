@@ -1,9 +1,9 @@
 const cheerio = require('cheerio');
-const got = require('@/utils/got');
-const { art } = require('@/utils/render');
+const got = require('../../utils/got');
+const { art } = require('../../utils/render');
 const path = require('path');
-const { parseDate } = require('@/utils/parse-date');
-const timezone = require('@/utils/timezone');
+const { parseDate } = require('../../utils/parse-date');
+const timezone = require('../../utils/timezone');
 
 // const base = 'http://hrbust.edu.cn';
 const jwzxBase = 'http://jwzx.hrbust.edu.cn/homepage/';

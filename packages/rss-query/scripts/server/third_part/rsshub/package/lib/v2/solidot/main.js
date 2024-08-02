@@ -3,10 +3,10 @@
 // params:
 // type: subject type
 
-const got = require('@/utils/got'); // get web content
+const got = require('../../utils/got'); // get web content
 const cheerio = require('cheerio'); // html parser
 const get_article = require('./_article');
-const { isValidHost } = require('@/utils/valid-host');
+const { isValidHost } = require('../../utils/valid-host');
 
 module.exports = async (ctx) => {
     const type = ctx.params.type ?? 'www';

@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
-const timezone = require('@/utils/timezone');
-const { parseDate } = require('@/utils/parse-date');
+const got = require('../../../utils/got');
+const timezone = require('../../../utils/timezone');
+const { parseDate } = require('../../../utils/parse-date');
 
 const baseUrl = 'https://e.ecust.edu.cn';
 

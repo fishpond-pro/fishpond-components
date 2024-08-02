@@ -1,6 +1,6 @@
 const cheerio = require('cheerio');
-const got = require('@/utils/got');
-const { isValidHost } = require('@/utils/valid-host');
+const got = require('../../utils/got');
+const { isValidHost } = require('../../utils/valid-host');
 
 module.exports = async (ctx) => {
     if (!isValidHost(ctx.params.column)) {

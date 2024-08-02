@@ -4,10 +4,10 @@
 // - 学工动态：http://computer.upc.edu.cn/6279/list.htm
 // - 通知公告：http://computer.upc.edu.cn/6280/list.htm
 
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
-const timezone = require('@/utils/timezone');
+const { parseDate } = require('../../utils/parse-date');
+const timezone = require('../../utils/timezone');
 
 // 地址映射
 const MAP = {

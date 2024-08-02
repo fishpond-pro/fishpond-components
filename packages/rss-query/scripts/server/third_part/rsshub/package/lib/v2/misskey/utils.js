@@ -1,5 +1,5 @@
-const { art } = require('@/utils/render');
-const { parseDate } = require('@/utils/parse-date');
+const { art } = require('../../utils/render');
+const { parseDate } = require('../../utils/parse-date');
 const path = require('path');
 
 const allowSiteList = ['misskey.io', 'madost.one', 'mk.nixnet.social'];

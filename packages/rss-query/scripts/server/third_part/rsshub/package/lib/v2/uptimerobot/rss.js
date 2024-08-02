@@ -1,8 +1,8 @@
 const Parser = require('rss-parser');
-const { art } = require('@/utils/render');
+const { art } = require('../../utils/render');
 const path = require('path');
 const dayjs = require('dayjs');
-const { fallback, queryToBoolean } = require('@/utils/readable-social');
+const { fallback, queryToBoolean } = require('../../utils/readable-social');
 
 const titleRegex = /(.+)\s+is\s+([A-Z]+)\s+\((.+)\)/;
 

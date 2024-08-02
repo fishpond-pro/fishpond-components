@@ -1,9 +1,9 @@
-const got = require('@/utils/got');
+const got = require('../../../../utils/got');
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
-const { art } = require('@/utils/render');
+const { parseDate } = require('../../../../utils/parse-date');
+const { art } = require('../../../../utils/render');
 const path = require('path');
-const timezone = require('@/utils/timezone');
+const timezone = require('../../../../utils/timezone');
 
 const rootUrl = 'http://www.mztoday.gov.cn';
 const basicInfoDict = {

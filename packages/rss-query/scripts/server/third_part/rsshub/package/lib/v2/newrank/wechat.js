@@ -1,8 +1,8 @@
-const got = require('@/utils/got');
-const { finishArticleItem } = require('@/utils/wechat-mp');
+const got = require('../../utils/got');
+const { finishArticleItem } = require('../../utils/wechat-mp');
 const cheerio = require('cheerio');
 const utils = require('./utils');
-const config = require('@/config').value;
+const config = require('../../config').value;
 
 module.exports = async (ctx) => {
     if (!config.newrank || !config.newrank.cookie) {

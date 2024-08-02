@@ -1,4 +1,4 @@
-const got = require('@/utils/got');
+const got = require('../../../utils/got');
 const { generateProductItem } = require('./utils');
 
 const familyPriceProductsRequest = ({ pageIndex = 1 }) =>

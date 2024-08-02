@@ -1,4 +1,4 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const apiKey = require('./api-key');
 const { handleMovieItem } = require('./utils');
 

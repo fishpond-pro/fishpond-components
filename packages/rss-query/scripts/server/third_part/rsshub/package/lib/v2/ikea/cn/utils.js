@@ -1,5 +1,5 @@
-const { art } = require('@/utils/render');
-const md5 = require('@/utils/md5');
+const { art } = require('../../../utils/render');
+const md5 = require('../../../utils/md5');
 const path = require('path');
 
 const generateRequestHeaders = () => {

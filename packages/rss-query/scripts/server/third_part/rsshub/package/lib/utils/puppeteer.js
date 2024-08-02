@@ -1,4 +1,4 @@
-const config = require('@/config').value;
+const config = require('../config').value;
 const { proxyUri, proxyUrlHandler } = require('./unify-proxy');
 let puppeteer = require('puppeteer');
 const proxyChain = require('proxy-chain');

@@ -1,8 +1,8 @@
-const { art } = require('@/utils/render');
-const { parseDate } = require('@/utils/parse-date');
+const { art } = require('../../utils/render');
+const { parseDate } = require('../../utils/parse-date');
 const cheerio = require('cheerio');
-const got = require('@/utils/got');
-const md5 = require('@/utils/md5');
+const got = require('../../utils/got');
+const md5 = require('../../utils/md5');
 const path = require('path');
 
 module.exports = async (ctx) => {

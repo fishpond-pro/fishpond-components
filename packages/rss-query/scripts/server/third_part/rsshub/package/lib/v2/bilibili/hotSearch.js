@@ -1,4 +1,4 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 
 module.exports = async (ctx) => {
     const url = `https://api.bilibili.com/x/web-interface/wbi/search/square?limit=10&platform=web&wts=${Math.floor(Date.now() / 1000)}`;

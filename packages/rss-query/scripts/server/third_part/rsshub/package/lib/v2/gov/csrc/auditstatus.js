@@ -1,8 +1,8 @@
 const cheerio = require('cheerio');
-const got = require('@/utils/got');
-const { parseDate } = require('@/utils/parse-date');
-const timezone = require('@/utils/timezone');
-const md5 = require('@/utils/md5');
+const got = require('../../../utils/got');
+const { parseDate } = require('../../../utils/parse-date');
+const timezone = require('../../../utils/timezone');
+const md5 = require('../../../utils/md5');
 
 module.exports = async (ctx) => {
     const baseUrl = 'https://neris.csrc.gov.cn';

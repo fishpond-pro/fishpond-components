@@ -1,13 +1,13 @@
 const cheerio = require('cheerio');
-const logger = require('@/utils/logger');
-const { parseDate } = require('@/utils/parse-date');
+const logger = require('../../utils/logger');
+const { parseDate } = require('../../utils/parse-date');
 
 module.exports = async (ctx) => {
     const { pkg, region = 'en' } = ctx.params;
     const baseUrl = 'https://apkpure.com';
     const link = `${baseUrl}/${region}/${pkg}/versions`;
 
-    const browser = await require('@/utils/puppeteer')();
+    const browser = await require('../../utils/puppeteer')();
     const page = await browser.newPage();
     await page.setRequestInterception(true);
     page.on('request', (request) => {

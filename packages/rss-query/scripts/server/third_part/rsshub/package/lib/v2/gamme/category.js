@@ -1,7 +1,7 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const parser = require('@/utils/rss-parser');
-const { isValidHost } = require('@/utils/valid-host');
+const parser = require('../../utils/rss-parser');
+const { isValidHost } = require('../../utils/valid-host');
 
 module.exports = async (ctx) => {
     const { domain = 'news', category } = ctx.params;

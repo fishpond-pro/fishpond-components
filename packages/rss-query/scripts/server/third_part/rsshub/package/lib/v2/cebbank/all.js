@@ -1,10 +1,10 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
 const path = require('path');
-const { art } = require('@/utils/render');
-const timezone = require('@/utils/timezone');
-const { parseDate } = require('@/utils/parse-date');
-const md5 = require('@/utils/md5');
+const { art } = require('../../utils/render');
+const timezone = require('../../utils/timezone');
+const { parseDate } = require('../../utils/parse-date');
+const md5 = require('../../utils/md5');
 
 module.exports = async (ctx) => {
     const link = 'https://www.cebbank.com/eportal/ui?pageId=477257';

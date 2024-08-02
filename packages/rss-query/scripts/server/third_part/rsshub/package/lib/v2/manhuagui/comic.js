@@ -1,7 +1,7 @@
 const cheerio = require('cheerio');
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const LZString = require('lz-string');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 
 let baseUrl = '';
 

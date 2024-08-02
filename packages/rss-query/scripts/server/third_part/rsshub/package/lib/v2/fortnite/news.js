@@ -1,5 +1,5 @@
-const { parseDate } = require('@/utils/parse-date');
-const logger = require('@/utils/logger');
+const { parseDate } = require('../../utils/parse-date');
+const logger = require('../../utils/logger');
 
 module.exports = async (ctx) => {
     const options = ctx.params.options?.split('&').map((op) => op.split('='));
@@ -12,7 +12,7 @@ module.exports = async (ctx) => {
 
     // using puppeteer instead instead of got
     // whitch may be blocked by anti-crawling script with response code 403
-    const browser = await require('@/utils/puppeteer')();
+    const browser = await require('../../utils/puppeteer')();
     const page = await browser.newPage();
 
     // intercept all requests

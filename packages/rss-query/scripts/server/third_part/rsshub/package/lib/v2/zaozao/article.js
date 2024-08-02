@@ -1,5 +1,5 @@
-const { parseDate } = require('@/utils/parse-date');
-const got = require('@/utils/got');
+const { parseDate } = require('../../utils/parse-date');
+const got = require('../../utils/got');
 
 module.exports = async (ctx) => {
     const { type = 'recommend' } = ctx.params;

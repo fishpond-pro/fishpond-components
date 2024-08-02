@@ -1,14 +1,14 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
 const chrono = require('chrono-node');
-const { art } = require('@/utils/render');
+const { art } = require('../../utils/render');
 const path = require('path');
-const config = require('@/config').value;
+const config = require('../../config').value;
 const { puppeteerGet } = require('./utils');
 
 module.exports = async (ctx) => {
     // use Puppeteer due to the obstacle by cloudflare challenge
-    const browser = await require('@/utils/puppeteer')();
+    const browser = await require('../../utils/puppeteer')();
 
     const id = ctx.params.id;
     const displayVideo = ctx.params.functionalFlag !== '0';

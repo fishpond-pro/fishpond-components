@@ -1,4 +1,4 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 
 const { baseUrl, apiHost, parseEventDetail, parseItem } = require('./utils');
 

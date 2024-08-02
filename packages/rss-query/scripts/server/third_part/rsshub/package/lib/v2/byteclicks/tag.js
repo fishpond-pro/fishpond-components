@@ -1,4 +1,4 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const { parseItem } = require('./utils');
 const baseUrl = 'https://byteclicks.com';
 

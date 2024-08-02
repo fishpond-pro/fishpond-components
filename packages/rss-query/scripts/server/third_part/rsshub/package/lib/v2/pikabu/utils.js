@@ -1,4 +1,4 @@
-const { art } = require('@/utils/render');
+const { art } = require('../../utils/render');
 const path = require('path');
 
 const baseUrl = 'https://pikabu.ru';

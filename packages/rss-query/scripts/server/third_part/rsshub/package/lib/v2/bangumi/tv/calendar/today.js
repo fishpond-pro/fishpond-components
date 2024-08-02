@@ -1,5 +1,5 @@
 const getData = require('./_base');
-const { art } = require('@/utils/render');
+const { art } = require('../../../../utils/render');
 const path = require('path');
 
 module.exports = async (ctx) => {

@@ -1,8 +1,8 @@
-const got = require('@/utils/got');
+const got = require('../../../utils/got');
 const cheerio = require('cheerio');
-const timezone = require('@/utils/timezone');
-const { parseDate } = require('@/utils/parse-date');
-const parser = require('@/utils/rss-parser');
+const timezone = require('../../../utils/timezone');
+const { parseDate } = require('../../../utils/parse-date');
+const parser = require('../../../utils/rss-parser');
 
 module.exports = async (ctx) => {
     let language = '';

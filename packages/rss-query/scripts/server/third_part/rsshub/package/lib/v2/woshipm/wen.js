@@ -1,7 +1,7 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
 const baseUrl = 'https://wen.woshipm.com';
-const { parseRelativeDate } = require('@/utils/parse-date');
+const { parseRelativeDate } = require('../../utils/parse-date');
 
 module.exports = async (ctx) => {
     const response = await got(`${baseUrl}/m/main/indexNewData.html`);

@@ -1,4 +1,4 @@
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 
 const parseItem = (data) =>
     data.map((item) => ({

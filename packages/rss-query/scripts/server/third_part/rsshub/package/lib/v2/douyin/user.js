@@ -1,7 +1,7 @@
-const { parseDate } = require('@/utils/parse-date');
-const { art } = require('@/utils/render');
-const config = require('@/config').value;
-const { fallback, queryToBoolean } = require('@/utils/readable-social');
+const { parseDate } = require('../../utils/parse-date');
+const { art } = require('../../utils/render');
+const config = require('../../config').value;
+const { fallback, queryToBoolean } = require('../../utils/readable-social');
 const { templates, resolveUrl, proxyVideo, getOriginAvatar, universalGet } = require('./utils');
 
 module.exports = async (ctx) => {

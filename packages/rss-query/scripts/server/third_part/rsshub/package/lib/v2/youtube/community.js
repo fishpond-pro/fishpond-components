@@ -1,7 +1,7 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const { parseRelativeDate } = require('@/utils/parse-date');
-const { art } = require('@/utils/render');
+const { parseRelativeDate } = require('../../utils/parse-date');
+const { art } = require('../../utils/render');
 const path = require('path');
 const { isYouTubeChannelId } = require('./utils');
 

@@ -1,5 +1,5 @@
-const { art } = require('@/utils/render');
-const got = require('@/utils/got');
+const { art } = require('../../utils/render');
+const got = require('../../utils/got');
 const path = require('path');
 
 module.exports = async (ctx) => {

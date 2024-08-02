@@ -3,9 +3,9 @@ const path = require('path');
 const { CookieJar } = require('tough-cookie');
 const cheerio = require('cheerio');
 
-const got = require('@/utils/got');
-const { art } = require('@/utils/render');
-const { isValidHost } = require('@/utils/valid-host');
+const got = require('../../utils/got');
+const { art } = require('../../utils/render');
+const { isValidHost } = require('../../utils/valid-host');
 
 const cookieJar = new CookieJar();
 

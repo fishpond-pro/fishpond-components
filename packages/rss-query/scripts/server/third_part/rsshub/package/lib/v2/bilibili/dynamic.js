@@ -1,7 +1,7 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const JSONbig = require('json-bigint');
 const utils = require('./utils');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 
 /**
     @by CaoMeiYouRen 2020-05-05 添加注释

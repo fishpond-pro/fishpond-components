@@ -1,7 +1,7 @@
-const got = require('@/utils/got');
-const { parseDate } = require('@/utils/parse-date');
+const got = require('../../utils/got');
+const { parseDate } = require('../../utils/parse-date');
 const { baseUrl, fetchUserDate } = require('./utils');
-const { art } = require('@/utils/render');
+const { art } = require('../../utils/render');
 const path = require('path');
 const dayjs = require('dayjs');
 

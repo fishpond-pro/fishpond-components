@@ -1,4 +1,4 @@
-const buildData = require('@/utils/common-config');
+const buildData = require('../../../utils/common-config');
 const weiboUtils = require('../utils');
 
 module.exports = async (ctx) => {

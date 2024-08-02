@@ -1,7 +1,7 @@
 const cheerio = require('cheerio');
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const iconv = require('iconv-lite');
-const { art } = require('@/utils/render');
+const { art } = require('../../utils/render');
 const path = require('path');
 
 const baseUrl = 'https://www.cartoonmad.com';

@@ -1,6 +1,6 @@
-const config = require('@/config').value;
-const { parseDate } = require('@/utils/parse-date');
-const { art } = require('@/utils/render');
+const config = require('../../config').value;
+const { parseDate } = require('../../utils/parse-date');
+const { art } = require('../../utils/render');
 const path = require('path');
 const { baseUrl, getChannel, getChannelMessages, getGuild } = require('./discord-api');
 

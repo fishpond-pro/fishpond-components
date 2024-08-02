@@ -1,11 +1,11 @@
 const cheerio = require('cheerio');
-const got = require('@/utils/got');
-const { parseDate } = require('@/utils/parse-date');
-const { art } = require('@/utils/render');
+const got = require('../../utils/got');
+const { parseDate } = require('../../utils/parse-date');
+const { art } = require('../../utils/render');
 const path = require('path');
-const { setCookies } = require('@/utils/puppeteer-utils');
+const { setCookies } = require('../../utils/puppeteer-utils');
 const { CookieJar } = require('tough-cookie');
-const logger = require('@/utils/logger');
+const logger = require('../../utils/logger');
 
 module.exports = async (ctx) => {
     const baseUrl = 'https://www.pnas.org';
@@ -35,7 +35,7 @@ module.exports = async (ctx) => {
             };
         });
 
-    const browser = await require('@/utils/puppeteer')();
+    const browser = await require('../../utils/puppeteer')();
 
     const out = await Promise.all(
         list.map((item) =>

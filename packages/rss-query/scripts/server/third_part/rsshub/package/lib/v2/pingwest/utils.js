@@ -1,7 +1,7 @@
 const cheerio = require('cheerio');
-const got = require('@/utils/got');
-const { parseDate, parseRelativeDate } = require('@/utils/parse-date');
-const timezone = require('@/utils/timezone');
+const got = require('../../utils/got');
+const { parseDate, parseRelativeDate } = require('../../utils/parse-date');
+const timezone = require('../../utils/timezone');
 
 const modifiedLink = (link) => (link.startsWith('http') ? link : `https:${link}`);
 

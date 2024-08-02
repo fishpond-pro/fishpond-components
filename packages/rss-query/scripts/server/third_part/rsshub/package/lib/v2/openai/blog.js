@@ -1,7 +1,7 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const { art } = require('@/utils/render');
-const { toTitleCase } = require('@/utils/common-utils');
+const { art } = require('../../utils/render');
+const { toTitleCase } = require('../../utils/common-utils');
 const path = require('path');
 
 module.exports = async (ctx) => {

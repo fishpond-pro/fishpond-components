@@ -1,10 +1,10 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const timezone = require('@/utils/timezone');
-const { parseDate } = require('@/utils/parse-date');
-const { art } = require('@/utils/render');
+const timezone = require('../../utils/timezone');
+const { parseDate } = require('../../utils/parse-date');
+const { art } = require('../../utils/render');
 const path = require('path');
-const { isValidHost } = require('@/utils/valid-host');
+const { isValidHost } = require('../../utils/valid-host');
 
 module.exports = async (ctx) => {
     const category = ctx.params.category ?? '-1';

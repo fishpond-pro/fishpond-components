@@ -35,10 +35,10 @@
 //     await gdgov(info, ctx);
 // };
 
-const got = require('@/utils/got');
+const got = require('../../../utils/got');
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
-const timezone = require('@/utils/timezone');
+const { parseDate } = require('../../../utils/parse-date');
+const timezone = require('../../../utils/timezone');
 
 const gdgov = async (info, ctx) => {
     const path = ctx.path.split('/').filter((item) => item !== '');
@@ -170,7 +170,7 @@ const gdgov = async (info, ctx) => {
                 // http://fgj.maoming.gov.cn/zcjdpt?id=4993
                 // https://zcjd.cloud.gd.gov.cn/api/home/article?id=4993
                 return ctx.cache.tryGet(link, async () => {
-                    const { art } = require('@/utils/render');
+                    const { art } = require('../../../utils/render');
 
                     const zcjdlink = 'https://zcjd.cloud.gd.gov.cn/api/home/article' + idlink.search;
                     const response = await got(zcjdlink);
@@ -188,7 +188,7 @@ const gdgov = async (info, ctx) => {
                     };
                 });
             } else if (idlink.host === 'mp.weixin.qq.com') {
-                const { finishArticleItem } = require('@/utils/wechat-mp');
+                const { finishArticleItem } = require('../../../utils/wechat-mp');
                 return finishArticleItem(ctx, { link });
             } else {
                 return ctx.cache.tryGet(link, async () => {

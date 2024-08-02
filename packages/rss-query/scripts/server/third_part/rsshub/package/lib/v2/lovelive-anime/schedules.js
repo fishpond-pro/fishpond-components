@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const path = require('path');
-const { art } = require('@/utils/render');
+const { art } = require('../../utils/render');
 const renderDescription = (desc) => art(path.join(__dirname, 'templates/scheduleDesc.art'), desc);
 const dayjs = require('dayjs');
 const utc = require('dayjs/plugin/utc');

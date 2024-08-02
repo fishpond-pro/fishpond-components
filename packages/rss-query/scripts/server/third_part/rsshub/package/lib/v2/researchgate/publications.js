@@ -1,12 +1,12 @@
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 
 module.exports = async (ctx) => {
     const id = ctx.params.id;
 
     const rootUrl = 'https://www.researchgate.net';
     const currentUrl = `${rootUrl}/profile/${id}`;
-    const browser = await require('@/utils/puppeteer')();
+    const browser = await require('../../utils/puppeteer')();
     const page = await browser.newPage();
     await page.setRequestInterception(true);
     page.on('request', (request) => {

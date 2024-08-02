@@ -1,4 +1,4 @@
-const config = require('@/config').value;
+const config = require('../../config').value;
 const { getOriginAvatar, universalGet } = require('./utils');
 
 module.exports = async (ctx) => {

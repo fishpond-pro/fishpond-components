@@ -1,4 +1,4 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const CryptoJS = require('crypto-js');
 
 const apiHost = 'https://api.creative-comic.tw';

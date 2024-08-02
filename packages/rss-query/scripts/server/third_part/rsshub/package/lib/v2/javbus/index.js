@@ -1,9 +1,9 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
-const { art } = require('@/utils/render');
+const { parseDate } = require('../../utils/parse-date');
+const { art } = require('../../utils/render');
 const path = require('path');
-const config = require('@/config').value;
+const config = require('../../config').value;
 
 const toSize = (raw) => {
     const matches = raw.match(/(\d+(\.\d+)?)(\w+)/);

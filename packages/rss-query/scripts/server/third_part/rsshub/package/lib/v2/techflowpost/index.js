@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
-const timezone = require('@/utils/timezone');
-const { parseDate } = require('@/utils/parse-date');
+const got = require('../../utils/got');
+const timezone = require('../../utils/timezone');
+const { parseDate } = require('../../utils/parse-date');
 const { unescapeAll } = require('markdown-it/lib/common/utils');
 
 module.exports = async (ctx) => {

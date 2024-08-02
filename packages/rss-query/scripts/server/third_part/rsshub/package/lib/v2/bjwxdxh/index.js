@@ -1,7 +1,7 @@
 const cheerio = require('cheerio');
-const got = require('@/utils/got');
-const timezone = require('@/utils/timezone');
-const { parseDate } = require('@/utils/parse-date');
+const got = require('../../utils/got');
+const timezone = require('../../utils/timezone');
+const { parseDate } = require('../../utils/parse-date');
 
 module.exports = async (ctx) => {
     const baseUrl = 'http://www.bjwxdxh.org.cn';

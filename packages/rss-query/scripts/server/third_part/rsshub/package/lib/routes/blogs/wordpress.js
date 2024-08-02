@@ -1,5 +1,5 @@
-const parser = require('@/utils/rss-parser');
-const config = require('@/config').value;
+const parser = require('../../utils/rss-parser');
+const config = require('../../config').value;
 const allowDomain = ['lawrence.code.blog'];
 
 module.exports = async (ctx) => {

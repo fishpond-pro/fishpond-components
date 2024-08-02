@@ -2,7 +2,7 @@
 // https://github.com/DIYgod/RSSHub/issues/8239
 // https://github.com/DIYgod/RSSHub/pull/8288
 const got = require('got');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../../utils/parse-date');
 const { categories } = require('./categoryMap');
 
 const baseUrl = 'https://www.mckinsey.com.cn';

@@ -1,7 +1,7 @@
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
-const got = require('@/utils/got');
-const timezone = require('@/utils/timezone');
+const { parseDate } = require('../../../utils/parse-date');
+const got = require('../../../utils/got');
+const timezone = require('../../../utils/timezone');
 
 const { CookieJar, Cookie } = require('tough-cookie');
 const cookieJar = new CookieJar();

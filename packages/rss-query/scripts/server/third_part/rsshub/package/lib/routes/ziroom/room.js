@@ -1,5 +1,5 @@
-const got = require('@/utils/got');
-const { isValidHost } = require('@/utils/valid-host');
+const got = require('../../utils/got');
+const { isValidHost } = require('../../utils/valid-host');
 
 module.exports = async (ctx) => {
     const city = ctx.params.city || 'sh';

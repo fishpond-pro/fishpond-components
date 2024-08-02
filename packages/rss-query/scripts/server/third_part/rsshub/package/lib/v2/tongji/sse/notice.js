@@ -3,10 +3,10 @@
 // params:
 // type: notification type
 
-const got = require('@/utils/got'); // get web content
+const got = require('../../../utils/got'); // get web content
 const cheerio = require('cheerio'); // html parser
 const getArticle = require('./_article');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../../utils/parse-date');
 
 module.exports = async (ctx) => {
     const baseUrl = 'https://sse.tongji.edu.cn';

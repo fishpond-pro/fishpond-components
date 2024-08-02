@@ -1,5 +1,5 @@
-const got = require('@/utils/got');
-const { parseDate } = require('@/utils/parse-date');
+const got = require('../../utils/got');
+const { parseDate } = require('../../utils/parse-date');
 
 module.exports = async (ctx) => {
     const { data: response } = await got('https://svc.eleduck.com/api/v1/posts', {

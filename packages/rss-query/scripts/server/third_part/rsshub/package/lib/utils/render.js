@@ -1,5 +1,5 @@
 const art = require('art-template');
-const json = require('@/views/json');
+const json = require('../views/json');
 
 // We may add more control over it later
 

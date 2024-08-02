@@ -1,7 +1,7 @@
 const cheerio = require('cheerio');
-const { art } = require('@/utils/render');
+const { art } = require('../../utils/render');
 const path = require('path');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 
 const baseUrl = 'https://www.science.org';
 

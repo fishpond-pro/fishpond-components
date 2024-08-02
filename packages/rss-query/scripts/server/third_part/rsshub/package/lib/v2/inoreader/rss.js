@@ -1,4 +1,4 @@
-const parser = require('@/utils/rss-parser');
+const parser = require('../../utils/rss-parser');
 const cheerio = require('cheerio');
 
 module.exports = async (ctx) => {

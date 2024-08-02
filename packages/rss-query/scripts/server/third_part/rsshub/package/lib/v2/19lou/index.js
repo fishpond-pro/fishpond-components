@@ -1,9 +1,9 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const timezone = require('@/utils/timezone');
-const { parseDate } = require('@/utils/parse-date');
+const timezone = require('../../utils/timezone');
+const { parseDate } = require('../../utils/parse-date');
 const iconv = require('iconv-lite');
-const { isValidHost } = require('@/utils/valid-host');
+const { isValidHost } = require('../../utils/valid-host');
 
 const setCookie = function (cookieName, cookieValue, seconds, path, domain, secure) {
     let expires = null;

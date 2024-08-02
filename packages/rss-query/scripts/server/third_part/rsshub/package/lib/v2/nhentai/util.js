@@ -1,8 +1,8 @@
 const cheerio = require('cheerio');
-const got = require('@/utils/got');
-const config = require('@/config').value;
-const { parseDate } = require('@/utils/parse-date');
-const { art } = require('@/utils/render');
+const got = require('../../utils/got');
+const config = require('../../config').value;
+const { parseDate } = require('../../utils/parse-date');
+const { art } = require('../../utils/render');
 const path = require('path');
 
 const baseUrl = 'https://nhentai.net';

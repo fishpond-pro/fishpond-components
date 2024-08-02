@@ -1,10 +1,10 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const timezone = require('@/utils/timezone');
-const { parseDate } = require('@/utils/parse-date');
-const { art } = require('@/utils/render');
+const timezone = require('../../utils/timezone');
+const { parseDate } = require('../../utils/parse-date');
+const { art } = require('../../utils/render');
 const path = require('path');
-const config = require('@/config').value;
+const config = require('../../config').value;
 const allowDomain = ['2btjia.com', '88btbtt.com', 'btbtt15.com', 'btbtt20.com'];
 
 module.exports = async (ctx) => {

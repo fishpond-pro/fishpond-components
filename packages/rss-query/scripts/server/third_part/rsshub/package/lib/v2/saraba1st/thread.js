@@ -1,9 +1,9 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
 const queryString = require('query-string');
-const config = require('@/config').value;
-const { parseDate } = require('@/utils/parse-date');
-const timezone = require('@/utils/timezone');
+const config = require('../../config').value;
+const { parseDate } = require('../../utils/parse-date');
+const timezone = require('../../utils/timezone');
 
 module.exports = async (ctx) => {
     const tid = ctx.params.tid;

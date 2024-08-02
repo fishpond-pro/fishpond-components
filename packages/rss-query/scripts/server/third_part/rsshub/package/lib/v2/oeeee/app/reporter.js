@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
+const got = require('../../../utils/got');
 const { parseArticle } = require('../utils');
-const { art } = require('@/utils/render');
+const { art } = require('../../../utils/render');
 const path = require('path');
 
 module.exports = async (ctx) => {

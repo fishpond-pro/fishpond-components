@@ -1,7 +1,7 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
 const host = 'https://weixin.sogou.com';
-const { finishArticleItem } = require('@/utils/wechat-mp');
+const { finishArticleItem } = require('../../utils/wechat-mp');
 module.exports = async (ctx) => {
     const wechatId = ctx.params.id;
     let url = `${host}/weixin`;

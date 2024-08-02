@@ -1,8 +1,8 @@
-// const config = require('@/config').value;
+// const config = require('../../../config').value;
 const { getUser, getUserTweet } = require('./twitter-api');
 const utils = require('../utils');
-const { fallback, queryToBoolean } = require('@/utils/readable-social');
-const config = require('@/config').value;
+const { fallback, queryToBoolean } = require('../../../utils/readable-social');
+const config = require('../../../config').value;
 
 module.exports = async (ctx) => {
     const id = ctx.params.id;

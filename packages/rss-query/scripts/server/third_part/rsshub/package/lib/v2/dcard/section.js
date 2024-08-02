@@ -1,10 +1,10 @@
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 const utils = require('./utils');
 
 module.exports = async (ctx) => {
     const { type = 'latest', section = 'posts' } = ctx.params;
     const limit = ctx.query.limit ? Number(ctx.query.limit) : 30;
-    const browser = await require('@/utils/puppeteer')();
+    const browser = await require('../../utils/puppeteer')();
 
     let link = `https://www.dcard.tw/f`;
     let api = `https://www.dcard.tw/service/api/v2`;

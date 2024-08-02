@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 
 const baseUrl = 'https://gr.uestc.edu.cn/tongzhi/';
 const baseIndexUrl = 'https://gr.uestc.edu.cn';

@@ -1,7 +1,7 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
-const timezone = require('@/utils/timezone');
-const { parseDate } = require('@/utils/parse-date');
+const timezone = require('../../utils/timezone');
+const { parseDate } = require('../../utils/parse-date');
 
 const parseArticle = (item, tryGet) =>
     tryGet(item.link, async () => {

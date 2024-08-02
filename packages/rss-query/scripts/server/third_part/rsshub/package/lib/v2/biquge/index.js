@@ -1,9 +1,9 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
 const iconv = require('iconv-lite');
-const timezone = require('@/utils/timezone');
-const { parseDate } = require('@/utils/parse-date');
-const config = require('@/config').value;
+const timezone = require('../../utils/timezone');
+const { parseDate } = require('../../utils/parse-date');
+const config = require('../../config').value;
 const allowHost = [
     'www.xbiquwx.la',
     'www.biqu5200.net',

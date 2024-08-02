@@ -1,4 +1,4 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 
 const rootUrl = 'http://www.yxdown.com';
 

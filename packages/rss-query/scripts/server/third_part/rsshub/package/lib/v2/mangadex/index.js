@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
-const { parseDate } = require('@/utils/parse-date');
-const { RequestInProgressError } = require('@/errors');
+const got = require('../../utils/got');
+const { parseDate } = require('../../utils/parse-date');
+const { RequestInProgressError } = require('../../errors');
 
 module.exports = async (ctx) => {
     const { id, lang } = ctx.params;

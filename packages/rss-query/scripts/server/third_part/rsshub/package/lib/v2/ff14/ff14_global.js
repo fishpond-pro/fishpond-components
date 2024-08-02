@@ -1,8 +1,8 @@
-const got = require('@/utils/got');
-const { parseDate } = require('@/utils/parse-date');
-const { art } = require('@/utils/render');
+const got = require('../../utils/got');
+const { parseDate } = require('../../utils/parse-date');
+const { art } = require('../../utils/render');
 const path = require('path');
-const { isValidHost } = require('@/utils/valid-host');
+const { isValidHost } = require('../../utils/valid-host');
 
 module.exports = async (ctx) => {
     const lang = ctx.params.lang;

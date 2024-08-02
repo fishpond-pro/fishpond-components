@@ -1,5 +1,5 @@
-const got = require('@/utils/got');
-const config = require('@/config').value;
+const got = require('../../../../utils/got');
+const config = require('../../../../config').value;
 
 module.exports = (tryGet) => {
     const bgmCalendarUrl = 'https://api.bgm.tv/calendar';

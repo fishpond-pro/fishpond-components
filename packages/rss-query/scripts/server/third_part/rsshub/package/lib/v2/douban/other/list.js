@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
+const got = require('../../../utils/got');
 const path = require('path');
-const { art } = require('@/utils/render');
+const { art } = require('../../../utils/render');
 
 module.exports = async (ctx) => {
     const type = ctx.params.type || 'subject_real_time_hotest';

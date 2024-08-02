@@ -1,6 +1,6 @@
 const { ig, login } = require('./utils');
-const logger = require('@/utils/logger');
-const config = require('@/config').value;
+const logger = require('../../../utils/logger');
+const config = require('../../../config').value;
 const { renderItems } = require('../common-utils');
 
 // loadContent pulls the desired user/tag/etc

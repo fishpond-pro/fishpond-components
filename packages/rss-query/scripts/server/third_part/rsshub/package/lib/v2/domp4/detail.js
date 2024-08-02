@@ -1,5 +1,5 @@
 const cheerio = require('cheerio');
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const { baseUrl, decodeCipherText, composeMagnetUrl, getUrlType } = require('./utils');
 
 function getItemList($, detailUrl) {

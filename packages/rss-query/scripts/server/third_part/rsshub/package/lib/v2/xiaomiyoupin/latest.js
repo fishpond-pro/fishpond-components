@@ -1,4 +1,4 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const { parseModule, parseFloorItem } = require('./utils');
 
 module.exports = async (ctx) => {

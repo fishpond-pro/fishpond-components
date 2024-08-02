@@ -1,5 +1,5 @@
-const parser = require('@/utils/rss-parser');
-const got = require('@/utils/got');
+const parser = require('../../utils/rss-parser');
+const got = require('../../utils/got');
 const cheerio = require('cheerio');
 const host = 'https://techcrunch.com';
 module.exports = async (ctx) => {

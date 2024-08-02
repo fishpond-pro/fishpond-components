@@ -1,4 +1,4 @@
-const got = require('@/utils/got'); // get web content
+const got = require('../../../utils/got'); // get web content
 const cheerio = require('cheerio'); // html parser
 
 module.exports = async function getArticle(item) {

@@ -1,4 +1,4 @@
-const { art } = require('@/utils/render');
+const { art } = require('../../utils/render');
 const path = require('path');
 
 const parseModule = (floors, module_key) => floors.filter((floor) => floor.module_key === module_key)[0];

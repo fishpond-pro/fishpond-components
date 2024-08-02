@@ -1,4 +1,4 @@
-const config = require('@/config').value;
+const config = require('../config').value;
 const { proxyUri, proxyObj, proxyUrlHandler } = require('./unify-proxy');
 const logger = require('./logger');
 const http = require('http');

@@ -1,8 +1,8 @@
-const { art, json } = require('@/utils/render');
+const { art, json } = require('../utils/render');
 const path = require('path');
-const config = require('@/config').value;
+const config = require('../config').value;
 const typeRegex = /\.(atom|rss|debug\.json|json)$/;
-const { collapseWhitespace, convertDateToISO8601 } = require('@/utils/common-utils');
+const { collapseWhitespace, convertDateToISO8601 } = require('../utils/common-utils');
 
 module.exports = async (ctx, next) => {
     if (ctx.headers['user-agent'] && ctx.headers['user-agent'].includes('Reeder')) {

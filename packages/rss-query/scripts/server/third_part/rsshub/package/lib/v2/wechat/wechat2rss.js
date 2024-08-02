@@ -1,6 +1,6 @@
-const parser = require('@/utils/rss-parser');
-const { parseDate } = require('@/utils/parse-date');
-const { finishArticleItem } = require('@/utils/wechat-mp');
+const parser = require('../../utils/rss-parser');
+const { parseDate } = require('../../utils/parse-date');
+const { finishArticleItem } = require('../../utils/wechat-mp');
 
 module.exports = async (ctx) => {
     const { id } = ctx.params;

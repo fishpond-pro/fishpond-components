@@ -1,10 +1,10 @@
-const got = require('@/utils/got');
-const config = require('@/config').value;
+const got = require('../../utils/got');
+const config = require('../../config').value;
 const md = require('markdown-it')({
     html: true,
     linkify: true,
 });
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 
 module.exports = async (ctx) => {
     const user = ctx.params.user;

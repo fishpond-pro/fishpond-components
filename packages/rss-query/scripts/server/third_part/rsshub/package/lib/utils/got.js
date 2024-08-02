@@ -1,5 +1,5 @@
 const logger = require('./logger');
-const config = require('@/config').value;
+const config = require('../config').value;
 const got = require('got');
 const { SocksProxyAgent } = require('socks-proxy-agent');
 

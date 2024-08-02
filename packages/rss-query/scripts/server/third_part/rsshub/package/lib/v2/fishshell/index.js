@@ -1,7 +1,7 @@
 const cheerio = require('cheerio');
-const got = require('@/utils/got');
-const config = require('@/config').value;
-const { parseDate } = require('@/utils/parse-date');
+const got = require('../../utils/got');
+const config = require('../../config').value;
+const { parseDate } = require('../../utils/parse-date');
 
 module.exports = async (ctx) => {
     const link = 'https://fishshell.com/docs/current/relnotes.html';

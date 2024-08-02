@@ -1,4 +1,4 @@
-const config = require('@/config').value;
+const config = require('../config').value;
 const logger = require('./logger');
 
 const defaultProtocol = 'http';

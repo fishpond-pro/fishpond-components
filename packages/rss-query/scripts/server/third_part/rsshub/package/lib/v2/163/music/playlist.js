@@ -1,6 +1,6 @@
-const got = require('@/utils/got');
-const config = require('@/config').value;
-const { art } = require('@/utils/render');
+const got = require('../../../utils/got');
+const config = require('../../../config').value;
+const { art } = require('../../../utils/render');
 const path = require('path');
 
 module.exports = async (ctx) => {

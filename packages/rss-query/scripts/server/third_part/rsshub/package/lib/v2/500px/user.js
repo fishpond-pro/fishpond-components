@@ -1,5 +1,5 @@
-const { art } = require('@/utils/render');
-const { parseDate } = require('@/utils/parse-date');
+const { art } = require('../../utils/render');
+const { parseDate } = require('../../utils/parse-date');
 const path = require('path');
 const { baseUrl, getUserInfoFromUsername, getUserInfoFromId, getUserWorks } = require('./utils');
 

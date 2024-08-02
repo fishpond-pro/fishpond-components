@@ -1,8 +1,8 @@
-const got = require('@/utils/got');
-const { art } = require('@/utils/render');
+const got = require('../../utils/got');
+const { art } = require('../../utils/render');
 const path = require('path');
-const { parseDate } = require('@/utils/parse-date');
-const timezone = require('@/utils/timezone');
+const { parseDate } = require('../../utils/parse-date');
+const timezone = require('../../utils/timezone');
 
 module.exports = async (ctx) => {
     const entryId = ctx.params.id;

@@ -3,8 +3,8 @@
 // params:
 // user?: fanbox domain name
 
-const got = require('@/utils/got');
-const { isValidHost } = require('@/utils/valid-host');
+const got = require('../../utils/got');
+const { isValidHost } = require('../../utils/valid-host');
 const conv_item = require('./conv');
 const get_header = require('./header');
 

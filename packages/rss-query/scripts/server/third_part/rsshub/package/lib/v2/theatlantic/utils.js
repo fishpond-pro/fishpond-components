@@ -1,9 +1,9 @@
 const cheerio = require('cheerio');
-const got = require('@/utils/got');
-const { parseDate } = require('@/utils/parse-date');
-const { art } = require('@/utils/render');
+const got = require('../../utils/got');
+const { parseDate } = require('../../utils/parse-date');
+const { art } = require('../../utils/render');
 const path = require('path');
-const UA = require('@/utils/rand-user-agent')({ browser: 'chrome', os: 'android', device: 'mobile' });
+const UA = require('../../utils/rand-user-agent')({ browser: 'chrome', os: 'android', device: 'mobile' });
 
 const getArticleDetails = async (items, ctx) => {
     const list = await Promise.all(

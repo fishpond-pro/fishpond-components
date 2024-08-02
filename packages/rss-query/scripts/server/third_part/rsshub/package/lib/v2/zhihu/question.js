@@ -1,8 +1,8 @@
-const got = require('@/utils/got');
+const got = require('../../utils/got');
 const utils = require('./utils');
-const md5 = require('@/utils/md5');
+const md5 = require('../../utils/md5');
 const g_encrypt = require('./execlib/x-zse-96_v3');
-const { parseDate } = require('@/utils/parse-date');
+const { parseDate } = require('../../utils/parse-date');
 
 module.exports = async (ctx) => {
     const {
