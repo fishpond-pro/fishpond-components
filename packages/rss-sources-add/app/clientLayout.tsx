@@ -2,8 +2,8 @@
 
 import '@polymita/basic-layout/dist/index.css'
 import '@polymita/rss-sources/dist/index.css'
-import App from '@polymita/basic-layout/dist/views/App'
-import '@polymita/rss-sources/dist/views/RssMenuItem'
+import AppFn from '@polymita/basic-layout/dist/views/App'
+import RssMenuItemFn from '@polymita/rss-sources/dist/views/RssMenuItem'
 import { ConnectProvider, PrismaNamespaceProvider } from '@polymita/next-connect'
 import mi from '@/models/indexes.json'
 import { createPlugin } from './polymita/connect'
@@ -11,6 +11,12 @@ import pkg from '../package.json'
 import { queryContext } from '@/contexts/QueryContext'
 import { toRSS_JSON } from '@/shared/utils'
 import sourceMock2 from '@/shared/rss-mock'
+import AddRSSSourceFn from '@/app/polymita/views/AddRSSSource'
+import * as mo from './moduleOverride'
+
+AddRSSSourceFn(mo.modulesLinkMap)
+RssMenuItemFn(mo.modulesLinkMap)
+const App = AppFn(mo.modulesLinkMap, mo.modulesActiveMap);
 
 export default ({
   children,

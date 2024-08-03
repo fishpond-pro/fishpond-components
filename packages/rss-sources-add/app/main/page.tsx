@@ -1,9 +1,13 @@
 'use client'
 import rssSignal from '@polymita/rss-sources/dist/signals/rss'
-import Sources from '@polymita/rss-sources/dist/views/RssSources'
+import SourcesFn from '@polymita/rss-sources/dist/views/RssSources'
 import menus from '@/models/rsshub-source-menu.json'
 import rsshubSourcesMock from '@/models/rsshub-sources.json'
-import '@/app/polymita/views/AddRSSSource'
+
+import * as mo from '../moduleOverride'
+
+const Sources = SourcesFn(mo.modulesLinkMap, mo.modulesActiveMap);
+
 
 export default () => {
 
