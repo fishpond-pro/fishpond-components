@@ -1,6 +1,9 @@
 'use client'
 
-import MessagesContainer from '../polymita/views/MessagesContainer'
+import MessagesContainerFn from '../polymita/views/MessagesContainer'
+import * as mo from '../moduleOverride'
+
+const MessagesContainer = MessagesContainerFn(mo.modulesLinkMap, mo.modulesActiveMap)
 
 export default () => {
 

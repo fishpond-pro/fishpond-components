@@ -1,9 +1,9 @@
 'use client'
 
 import '@polymita/basic-layout/dist/index.css'
-import App from '@polymita/basic-layout/dist/views/App'
+import AppFn from '@polymita/basic-layout/dist/views/App'
 
-import '@/app/polymita/views/RssMenuItem'
+import RssMenuItemFn from '@/app/polymita/views/RssMenuItem'
 import { ConnectProvider, PrismaNamespaceProvider } from '@polymita/next-connect'
 
 import mi from '@/models/indexes.json'
@@ -12,6 +12,11 @@ import pkg from '../package.json'
 import { queryContext } from '@/contexts/QueryContext'
 import { toRSS_JSON } from '@/shared/utils'
 import sourceMock2 from '@/shared/rss-mock'
+import * as mo from './moduleOverride'
+
+RssMenuItemFn(mo.modulesLinkMap)
+const App = AppFn(mo.modulesLinkMap, mo.modulesActiveMap);
+
 
 export default ({
   children,
