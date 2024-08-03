@@ -1,4 +1,4 @@
-import { h, SignalProps, useLogic, ConvertToLayoutTreeDraft, CommandOP, extendModule } from '@polymita/renderer';
+import { h, SignalProps, useLogic, ConvertToLayoutTreeDraft, CommandOP, extendModule, VirtualLayoutJSON } from '@polymita/renderer';
 import * as BaseModule from '@polymita/basic-layout/dist/modules/Aside'
 import { usePathname } from 'next/navigation';
 export interface AsideNewProps {
@@ -15,7 +15,7 @@ const NewModule = extendModule(BaseModule, () => ({
         op: CommandOP.addChild,
         condition: true,
         target: root.asideContainer.asideMenuContainer,
-        child: (<div>All Messages</div>)
+        child: (<div>All Messages</div>) as VirtualLayoutJSON
       },
     ]
   }
