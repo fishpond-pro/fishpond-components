@@ -1,10 +1,13 @@
 'use client'
 
 import '@polymita/basic-layout/dist/index.css'
-import App from '@polymita/basic-layout/dist/views/App'
+import AppFn from '@polymita/basic-layout/dist/views/App'
 import '@/app/polymita/views/RssMenuItem'
 import { PrismaNamespaceProvider } from '@polymita/next-connect'
 import pkg from '../package.json'
+import * as mo from './moduleOverride'
+
+const App = AppFn(mo.modulesLinkMap, mo.modulesActiveMap)
 
 export default ({
   children,
