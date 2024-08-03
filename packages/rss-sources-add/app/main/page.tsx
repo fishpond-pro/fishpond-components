@@ -8,7 +8,6 @@ import * as mo from '../moduleOverride'
 
 const Sources = SourcesFn(mo.modulesLinkMap, mo.modulesActiveMap);
 
-
 export default () => {
 
   const rssSource = rssSignal({
