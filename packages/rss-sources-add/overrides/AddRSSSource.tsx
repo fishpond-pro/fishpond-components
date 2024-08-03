@@ -13,7 +13,7 @@ import TextField from '@mui/material/TextField';
 import Input from '@mui/material/Input';
 import { useContext, useState } from 'react';
 import { getParamsFromPath, getRSSComplementURL, getRSSPreviewURL } from '@/shared/utils'
-import * as RSSParamsTable from './RSSParamsTable'
+import * as RSSParamsTable from '@/modules/RSSParamsTable'
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
