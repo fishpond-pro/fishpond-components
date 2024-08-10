@@ -1,10 +1,10 @@
 import { h, SignalProps, useLogic, ConvertToLayoutTreeDraft, CommandOP, extendModule } from '@polymita/renderer';
-import * as BaseModule from './Aside'
-export interface AsideNewProps {
+import * as BaseModule from '@/modules/Aside'
+export interface AsideNewForTestProps {
   
 }
 const NewModule = extendModule(BaseModule, () => ({
-  patchLayout(props: typeof BaseModule.meta.props & AsideNewProps, root) {
+  patchLayout(props: typeof BaseModule.meta.props & AsideNewForTestProps, root) {
     const logic = useLogic()
 
     return [
