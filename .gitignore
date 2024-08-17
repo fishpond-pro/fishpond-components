@@ -80,7 +80,7 @@ typings/
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+dist/
 
 # Gatsby files
 .cache/
@@ -113,3 +113,5 @@ packages/*/models/indexes.json
 packages/*/models/dev.db-journal
 
 .test/
+
+dist/
