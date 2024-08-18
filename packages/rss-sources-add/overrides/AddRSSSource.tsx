@@ -3,10 +3,9 @@ import Button from '@mui/material/Button';
 import LoadingButton from '@mui/lab/LoadingButton';
 import showdown from 'showdown'
 import { h, SignalProps, useLogic, CommandOP, extendModule, ConvertToLayoutTreeDraft2, createFunctionComponent } from '@polymita/renderer';
-import * as BaseModule from '@polymita/rss-sources/dist/modules/RSSSourcePanel2'
+import * as rs from '@polymita/rss-sources'
 import type { PreviewMessage } from '@polymita/rss-sources/dist/signals/signals/rss'
-import type BaseModuleLayout from '@polymita/rss-sources/dist/modules/RSSSourcePanel2.layout'
-import { usePathname } from 'next/navigation';
+import type RSSSourcePanel2Layout from '@polymita/rss-sources/dist/modules/RSSSourcePanel2.layout'
 import CardActions from '@mui/material/CardActions';
 import Drawer from '@mui/material/Drawer';
 import TextField from '@mui/material/TextField';
@@ -32,8 +31,8 @@ export interface AddRSSSourceProps {
 }
 
 function patchLogic(
-  props: typeof BaseModule.meta.props & AddRSSSourceProps,
-  prevLogicResult: ReturnType<typeof BaseModule.logic>,
+  props: typeof rs.modules.RSSSourcePanel2.meta.props & AddRSSSourceProps,
+  prevLogicResult: ReturnType<typeof rs.modules.RSSSourcePanel2.logic>,
 ) {
   const [drawerVisible, setDrawerVisible] = useState(false)
   const [previewDrawerVisible, setPreviewDrawerVisible] = useState(false)
@@ -142,11 +141,11 @@ function patchLogic(
 
 type LogicReturn = ReturnType<typeof patchLogic>
 
-const NewModule = extendModule(BaseModule, () => ({
+const NewModule = extendModule(rs.modules.RSSSourcePanel2, () => ({
   patchLogic,
   patchLayout(
-    props: typeof BaseModule.meta.props & AddRSSSourceProps,
-    root: ConvertToLayoutTreeDraft2<BaseModuleLayout.LayoutTypes>
+    props: typeof rs.modules.RSSSourcePanel2.meta.props & AddRSSSourceProps,
+    root: ConvertToLayoutTreeDraft2<RSSSourcePanel2Layout.LayoutTypes>
   ) {
     const { 
       setDrawerVisible, drawerVisible,

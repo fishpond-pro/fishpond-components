@@ -2,6 +2,7 @@
   "name": "@polymita/rss-sources",
   "version": "1.0.14",
   "tarat": {},
+  "main": "dist/index.js",
   "description": "a tarat unit",
   "scripts": {
     "p:dev": "prisma migrate dev && prisma generate",

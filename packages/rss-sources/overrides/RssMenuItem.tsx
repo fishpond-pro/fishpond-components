@@ -1,11 +1,11 @@
 import { h, SignalProps, useLogic, ConvertToLayoutTreeDraft, CommandOP, extendModule } from '@polymita/renderer';
 import * as bl from '@polymita/basic-layout'
 import { usePathname } from 'next/navigation';
-export interface AsideNewProps {
+export interface RssMenuItemProps {
   
 }
 const NewModule = extendModule(bl.modules.Aside, () => ({
-  patchLayout(props: typeof bl.modules.Aside.meta.props & AsideNewProps, root) {
+  patchLayout(props: typeof bl.modules.Aside.meta.props & RssMenuItemProps, root) {
     console.log('NewModule: ');
     const logic = useLogic()
     const path = usePathname();

@@ -4,6 +4,7 @@ import * as RSSSourcePanelModule from './RSSSourcePanel2'
 import { SubscribedChannel } from '@/shared/types';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
+import "@polymita/renderer/jsx-runtime"
 
 import { 
   h,
@@ -18,16 +19,16 @@ type rssSourceDriverReturn = ReturnType<typeof rssSourceDriver>
 
 const RSSSourcePanel = createFunctionComponent(RSSSourcePanelModule)
 
-export const name = 'RssSource' as const
+export const name = 'RssSources' as const
 export const namespace = 'components' as const
 export const base = undefined
 export let meta: {
-  props: RssSourceProps,
-  layoutStruct: RssSourceLayout
+  props: RssSourcesProps,
+  layoutStruct: RssSourcesLayout
   patchCommands: []
 }
 
-export interface RssSourceProps extends rssSourceDriverReturn{
+export interface RssSourcesProps extends rssSourceDriverReturn{
   width: number
   subscribed: SubscribedChannel[]
 }
@@ -35,7 +36,7 @@ export interface RssSourceProps extends rssSourceDriverReturn{
 export const propTypes = {
 }
 
-export const logic = (props: RssSourceProps) => {  
+export const logic = (props: RssSourcesProps) => {  
   const listDIVRef = useRef<HTMLDivElement>(null)
   const [width, setWidth] = useState(-1)
   
@@ -74,13 +75,13 @@ export const logic = (props: RssSourceProps) => {
 }
 type LogicReturn = ReturnType<typeof logic>
 
-export type RssSourceLayout = {
-  type: 'RssSourceContainer',
+export type RssSourcesLayout = {
+  type: 'RssSourcesContainer',
   children: [
   ]
 }
 
-export const layout = (props: RssSourceProps): VirtualLayoutJSON => {
+export const layout = (props: RssSourcesProps): VirtualLayoutJSON => {
   const logic = useLogic<LogicReturn>()
 
   const {
@@ -190,12 +191,12 @@ export const layout = (props: RssSourceProps): VirtualLayoutJSON => {
   )
 }
 
-export const styleRules = (props: RssSourceProps, layout: ConvertToLayoutTreeDraft<RssSourceLayout>) => {
+export const styleRules = (props: RssSourcesProps, layout: ConvertToLayoutTreeDraft<RssSourcesLayout>) => {
   return [
   ]
 }
 
-export const designPattern = (props: RssSourceProps, layout: ConvertToLayoutTreeDraft<RssSourceLayout>) => {
+export const designPattern = (props: RssSourcesProps, layout: ConvertToLayoutTreeDraft<RssSourcesLayout>) => {
   const logic = useLogic<LogicReturn>()
   return {}
 }

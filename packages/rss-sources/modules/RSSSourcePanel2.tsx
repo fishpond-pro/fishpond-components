@@ -4,16 +4,16 @@ import type { RSSSource } from '@/shared/utils';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 
-export const name = 'RSSSourcePanel' as const
+export const name = 'RSSSourcePanel2' as const
 export const namespace = 'components' as const
 export const base = undefined
 export let meta: {
-  props: RSSSourcePanelProps,
-  layoutStruct: RSSSourcePanelLayout
+  props: RSSSourcePanel2Props,
+  layoutStruct: RSSSourcePanel2Layout
   patchCommands: []
 }
 
-export interface RSSSourcePanelProps {
+export interface RSSSourcePanel2Props {
   value: RSSSource
   width: number | string
   onClick?: (target: RSSSource) => void
@@ -23,19 +23,19 @@ export interface RSSSourcePanelProps {
 export const propTypes = {
 }
 
-export const logic = (props: SignalProps<RSSSourcePanelProps>) => {
+export const logic = (props: SignalProps<RSSSourcePanel2Props>) => {
   return {
   }
 }
 type LogicReturn = ReturnType<typeof logic>
 
-export type RSSSourcePanelLayout = {
+export type RSSSourcePanel2Layout = {
   type: 'sourceItemContainer',
   children: [
   ]
 }
 
-export const layout = (props: RSSSourcePanelProps): VirtualLayoutJSON => {
+export const layout = (props: RSSSourcePanel2Props): VirtualLayoutJSON => {
   const logic = useLogic<LogicReturn>();
   
   const { width, value, count } = props
@@ -77,12 +77,12 @@ export const layout = (props: RSSSourcePanelProps): VirtualLayoutJSON => {
   )
 }
 
-export const styleRules = (props: RSSSourcePanelProps, layout: ConvertToLayoutTreeDraft<RSSSourcePanelLayout>) => {
+export const styleRules = (props: RSSSourcePanel2Props, layout: ConvertToLayoutTreeDraft<RSSSourcePanel2Layout>) => {
   return [
   ]
 }
 
-export const designPattern = (props: RSSSourcePanelProps, layout: ConvertToLayoutTreeDraft<RSSSourcePanelLayout>) => {
+export const designPattern = (props: RSSSourcePanel2Props, layout: ConvertToLayoutTreeDraft<RSSSourcePanel2Layout>) => {
   const logic = useLogic<LogicReturn>()
   return {}
 }
