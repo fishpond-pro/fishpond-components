@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import Button from '@mui/material/Button';
+import { Button } from '@mui/material';
 import indexes from '@/models/indexes.json'
 import { MessageContent } from '@/models/indexesTypes';
 import { writePrisma } from '@polymita/next-connect';

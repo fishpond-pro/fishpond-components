@@ -1,8 +1,8 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, VirtualLayoutJSON } from '@polymita/renderer';
 import { getParamsFromPath } from '@/shared/utils';
 import type { RSSSource } from '@/shared/utils';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
+import { Card } from '@mui/material';
+import { CardContent } from '@mui/material';
 
 export const name = 'RSSSourcePanel2' as const
 export const namespace = 'components' as const

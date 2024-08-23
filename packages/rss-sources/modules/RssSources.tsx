@@ -2,8 +2,8 @@ import rssSourceDriver from '@/signals/rss'
 import { genUniquePlatformKey, getParamsFromPath } from '@/shared/utils';
 import * as RSSSourcePanelModule from './RSSSourcePanel2'
 import { SubscribedChannel } from '@/shared/types';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
+import { List } from '@mui/material';
+import { ListItemButton } from '@mui/material';
 import "@polymita/renderer/jsx-runtime"
 
 import { 

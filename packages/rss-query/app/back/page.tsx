@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import Button from '@mui/material/Button';
+import { Button } from '@mui/material';
 import indexes from '@/models/indexes.json'
 import type { 
   Polymita_message_list_MessageContent as MessageContent,

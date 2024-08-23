@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import Button from '@mui/material/Button';
+import { Button } from '@mui/material';
 import writeMessage from '@/signals/writeMessage';
 
 export default function Main (props: {}) {

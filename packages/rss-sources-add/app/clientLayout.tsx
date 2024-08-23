@@ -38,7 +38,7 @@ export default ({
         }}
       >
         <App 
-          title="Polymita"
+          title=""
           contentChildren={children}
         />
       </queryContext.Provider>
