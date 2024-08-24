@@ -1,6 +1,5 @@
 import { Divider } from '@mui/material';
 import { Button } from '@mui/material';
-import LoadingButton from '@mui/lab/LoadingButton';
 import showdown from 'showdown'
 import { h, SignalProps, useLogic, CommandOP, extendModule, ConvertToLayoutTreeDraft2, createFunctionComponent } from '@polymita/renderer';
 import * as rs from '@polymita/rss-sources'
@@ -71,7 +70,7 @@ function patchLogic(
       text: ''
     })
   }
-  const handleSubmit = async (event: Event) => {
+  const handleSubmit = async () => {
     setPreviewLoading(true);
 
     setDialogParams({
@@ -200,12 +199,11 @@ const NewModule = extendModule(rs.modules.RSSSourcePanel2, () => ({
                   <addTile>
                     {subGroup} - {title}
                   </addTile>
-                  <LoadingButton 
-                    loading={previewLoading}
+                  <Button 
                     onClick={handleSubmit} variant="contained" size="small"
                   >
-                    Submit
-                  </LoadingButton>
+                    Submit {previewLoading ? '...' : ''}
+                  </Button>
                 </addDrawerHeader>
                 <Divider />
                 <sourceBox className="mt-4 flex-1 overflow-auto" >
@@ -276,12 +274,11 @@ const NewModule = extendModule(rs.modules.RSSSourcePanel2, () => ({
                   <addTile>
                     Preview
                   </addTile>
-                  <LoadingButton 
-                    loading={previewLoading}
+                  <Button 
                     onClick={confirmSubmit} variant="contained" size="small"
                   >
-                    Confirm Submit
-                  </LoadingButton>
+                    Confirm Submit {previewLoading ? '...' : ''}
+                  </Button>
                 </addDrawerHeader>
                 <Divider />
                 <previewResult className="mt-4 flex-1 overflow-auto">

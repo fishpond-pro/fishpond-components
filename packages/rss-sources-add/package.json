@@ -3,6 +3,8 @@
   "version": "1.0.14",
   "tarat": {},
   "description": "a tarat unit",
+  "main": "dist/index.js",
+  "types": "dist/index.d.js",
   "scripts": {
     "p:dev": "prisma migrate dev && prisma generate",
     "p:gen": "prisma generate",
@@ -56,7 +58,7 @@
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18.3.3",
-    "@types/react-dom": "^18",
+    "@types/react-dom": "^18.2.7",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",

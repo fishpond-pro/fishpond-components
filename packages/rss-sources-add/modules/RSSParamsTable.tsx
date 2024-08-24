@@ -1,4 +1,4 @@
-import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft } from '@polymita/renderer';
+import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, VirtualLayoutJSON } from '@polymita/renderer';
 import '@polymita/renderer/jsx-runtime';
 
 export const name = 'RSSTable' as const
@@ -38,7 +38,7 @@ function rssTables (tables: string) {
   }
 }
 
-export const layout = (props: RSSParamsTableProps) => {
+export const layout = (props: RSSParamsTableProps):VirtualLayoutJSON => {
   if (!props.tables) {
     return null
   }

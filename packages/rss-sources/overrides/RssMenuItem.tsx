@@ -23,7 +23,7 @@ const NewModule = extendModule(bl.modules.Aside, () => ({
 
 export const meta = NewModule.meta
 export const base = NewModule.base
-export const name = 'RssMenuItem'
+export const name = 'RssSourcesRssMenuItem'
 export const namespace = NewModule.namespace
 //
 export const override = NewModule.override
