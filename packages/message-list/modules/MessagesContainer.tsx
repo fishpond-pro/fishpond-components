@@ -15,7 +15,7 @@ export let meta: {
 }
 
 export interface MessagesContainerProps {
-  mid: string | number
+  mid?: string | number
   mode: MessageContentModule.MessageContentProps['mode']
 }
 
