@@ -26,22 +26,25 @@ export default ({
       modelIndexes={mi}
       plugin={createApiPlugin()}
     >
-      <queryContext.Provider
-        value={{
-          onQueryPreviews: async (url) => {
-            console.log('[onQuery] url: ', url);
-            return toRSS_JSON(sourceMock2).item
-          },        
-          onSubmit: async (url) => {
-            console.log('[onSubmit] url: ', url);
-          },        
-        }}
-      >
-        <App 
-          title=""
-          contentChildren={children}
-        />
-      </queryContext.Provider>
+
+      <PrismaNamespaceProvider namespace={''}>
+        <queryContext.Provider
+          value={{
+            onQueryPreviews: async (url) => {
+              console.log('[onQuery] url: ', url);
+              return toRSS_JSON(sourceMock2).item
+            },        
+            onSubmit: async (url) => {
+              console.log('[onSubmit] url: ', url);
+            },        
+          }}
+        >
+          <App 
+            title="Px"
+            contentChildren={children}
+          />
+        </queryContext.Provider>
+      </PrismaNamespaceProvider>
     </ConnectProvider>
   )
 }

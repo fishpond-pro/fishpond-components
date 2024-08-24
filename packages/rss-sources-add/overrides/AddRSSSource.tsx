@@ -109,7 +109,7 @@ function patchLogic(
       })
 
       await writeRSS.create({
-        name: props.value.title,
+        name: formValues.title || props.value.title,
         href: destUrl,
       })
 
