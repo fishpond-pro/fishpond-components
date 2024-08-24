@@ -3,19 +3,19 @@ import '@polymita/renderer/jsx-runtime';
 
 export const name = 'RSSTable' as const
 export let meta: {
-  props: RSSTableProps,
+  props: RSSParamsTableProps,
   layoutStruct: RSSTableLayout
   patchCommands: []
 }
 
-export interface RSSTableProps {
+export interface RSSParamsTableProps {
   tables: string;
 }
 
 export const propTypes = {
 }
 
-export const logic = (props: SignalProps<RSSTableProps>) => {
+export const logic = (props: SignalProps<RSSParamsTableProps>) => {
   return {
   }
 }
@@ -38,7 +38,7 @@ function rssTables (tables: string) {
   }
 }
 
-export const layout = (props: RSSTableProps) => {
+export const layout = (props: RSSParamsTableProps) => {
   if (!props.tables) {
     return null
   }
@@ -68,12 +68,12 @@ export const layout = (props: RSSTableProps) => {
   )
 }
 
-export const styleRules = (props: RSSTableProps, layout: ConvertToLayoutTreeDraft<RSSTableLayout>) => {
+export const styleRules = (props: RSSParamsTableProps, layout: ConvertToLayoutTreeDraft<RSSTableLayout>) => {
   return [
   ]
 }
 
-export const designPattern = (props: RSSTableProps, layout: ConvertToLayoutTreeDraft<RSSTableLayout>) => {
+export const designPattern = (props: RSSParamsTableProps, layout: ConvertToLayoutTreeDraft<RSSTableLayout>) => {
   const logic = useLogic<LogicReturn>()
   return {}
 }
