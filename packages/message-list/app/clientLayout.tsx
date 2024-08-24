@@ -7,7 +7,7 @@ import RssMenuItemFn from '@/app/polymita/views/RssMenuItem'
 import { ConnectProvider, PrismaNamespaceProvider } from '@polymita/next-connect'
 
 import mi from '@/models/indexes.json'
-import { createPlugin } from './polymita/connect'
+import { createApiPlugin } from '@polymita/next-connect'
 import pkg from '../package.json'
 import { queryContext } from '@/contexts/QueryContext'
 import { toRSS_JSON } from '@/shared/utils'
@@ -24,7 +24,7 @@ export default ({
   return (
     <ConnectProvider
       modelIndexes={mi}
-      plugin={createPlugin()}
+      plugin={createApiPlugin()}
     >
       <PrismaNamespaceProvider namespace="">
         <queryContext.Provider
