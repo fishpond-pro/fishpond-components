@@ -6,7 +6,6 @@ export interface RssMenuItemProps {
 }
 const NewModule = extendModule(bl.modules.Aside, () => ({
   patchLayout(props: typeof bl.modules.Aside.meta.props & RssMenuItemProps, root) {
-    console.log('NewModule: ');
     const logic = useLogic()
     const path = usePathname();
 
@@ -15,7 +14,7 @@ const NewModule = extendModule(bl.modules.Aside, () => ({
         op: CommandOP.addChild,
         condition: true,
         target: root.asideContainer.asideMenuContainer,
-        child: (<div>Sources</div>)
+        child: (<asideSourcesMenuItem className='block mt-4'>Sources</asideSourcesMenuItem>)
       },
     ]
   }
