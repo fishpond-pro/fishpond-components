@@ -33,10 +33,7 @@ export default ({
             onQueryPreviews: async (url) => {
               console.log('[onQuery] url: ', url);
               return toRSS_JSON(sourceMock2).item
-            },        
-            onSubmit: async (url) => {
-              console.log('[onSubmit] url: ', url);
-            },        
+            },
           }}
         >
           <App 

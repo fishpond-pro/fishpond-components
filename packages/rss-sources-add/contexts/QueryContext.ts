@@ -6,5 +6,4 @@ export const queryContext = React.createContext<{
    * @name 查询预览
    */
   onQueryPreviews?: (v: string) => Promise<PreviewMessage[]>
-  onSubmit?: (v: string) => Promise<void>
 }>(null)
