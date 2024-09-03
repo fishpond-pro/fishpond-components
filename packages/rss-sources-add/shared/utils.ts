@@ -7,7 +7,6 @@ export function getRSSPreviewURL (param: {
   path: string;
   payload: Record<string, any>;
 }) {
-  const prefix = LOCAL_RSS_HUB_PREFIX
   const { path, payload } = param
 
   let curPath = path;
@@ -24,7 +23,6 @@ export function getRSSComplementURL (param: {
   path: string;
   payload: Record<string, any>;
 }) {
-  const prefix = LOCAL_RSS_HUB_PREFIX
   const { path, payload } = param
 
   let curPath = path;
@@ -35,13 +33,12 @@ export function getRSSComplementURL (param: {
   // 清理可选的参数
   curPath = curPath.replace(/\/:\w+\??/g, '').replace(/\/{2,}/g, '')
 
-  return `${prefix}/${curPath}`
+  return `/${curPath}`
 }
 
 export function parseRSSUrl (url: string) {
-  const prefix = LOCAL_RSS_HUB_PREFIX
-  const [path, query] = url.split('?')
-  const params = new URLSearchParams(query)
+  const u = new URL(url)
+  const params = new URLSearchParams(u.search)
   const payload: Record<string, any> = {}
 
   params.forEach((value, key) => {
@@ -49,7 +46,7 @@ export function parseRSSUrl (url: string) {
   })
 
   return {
-    path: path.replace(prefix, ''),
+    path: u.pathname,
     payload
   }
 }
