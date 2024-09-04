@@ -19,9 +19,8 @@ import { queryContext } from '@/contexts/QueryContext'
 import { Dialog } from '@mui/material';
 import { DialogContent } from '@mui/material';
 import { DialogContentText } from '@mui/material';
-import { prisma, writePrisma } from '@polymita/next-connect';
+import { writePrisma } from '@polymita/next-connect';
 import mi from '@/models/indexes.json'
-
 
 const RSSParamsTableComponent = createFunctionComponent(RSSParamsTable)
 
@@ -54,7 +53,7 @@ function patchLogic(
 
   const [previewItems, setPreviewItems] = useState<PreviewMessage[]>([])
 
-  const writeRSS = writePrisma(mi.rSS)
+  const writeRSS = writePrisma(mi.namespace, mi.rSS)
 
   const reset1 = () => {
     setPreviewDrawerVisible(false)

@@ -1,6 +1,8 @@
 import { h, SignalProps, useLogic, ConvertToLayoutTreeDraft, CommandOP, extendModule, VirtualLayoutJSON } from '@polymita/renderer';
 import * as bl from '@polymita/basic-layout'
 import { usePathname } from 'next/navigation';
+import { Link } from 'react-router-dom'
+
 export interface AsideNewProps {
   
 }
@@ -16,7 +18,8 @@ const NewModule = extendModule(bl.modules.Aside, () => ({
         condition: true,
         target: root.asideContainer.asideMenuContainer,
         child: (<asideMessageListMenuItem className='block mt-4'>
-          All Messages</asideMessageListMenuItem>),
+          <Link to="all">All Messages</Link>
+          </asideMessageListMenuItem>),
       },
     ]
   }

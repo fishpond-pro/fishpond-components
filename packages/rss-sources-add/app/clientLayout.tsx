@@ -15,7 +15,7 @@ import AddRSSSourceFn from '@/app/polymita/views/AddRSSSource'
 import * as mo from './moduleOverride'
 
 AddRSSSourceFn(mo.modulesLinkMap)
-rs.views.RssMenuItem(mo.modulesLinkMap, mo.modulesActiveMap)
+rs.views.RssMenuItem(mo.modulesLinkMap)
 const App = AppFn(mo.modulesLinkMap, mo.modulesActiveMap);
 
 export default ({
@@ -27,7 +27,7 @@ export default ({
       plugin={createApiPlugin()}
     >
 
-      <PrismaNamespaceProvider namespace={''}>
+      <PrismaNamespaceProvider namespace={pkg.name}>
         <queryContext.Provider
           value={{
             onQueryPreviews: async (url) => {

@@ -1,6 +1,7 @@
 import { h, SignalProps, useLogic, ConvertToLayoutTreeDraft, CommandOP, extendModule } from '@polymita/renderer';
 import * as bl from '@polymita/basic-layout'
 import { usePathname } from 'next/navigation';
+import { Link } from 'react-router-dom'
 export interface RssMenuItemProps {
   
 }
@@ -14,7 +15,7 @@ const NewModule = extendModule(bl.modules.Aside, () => ({
         op: CommandOP.addChild,
         condition: true,
         target: root.asideContainer.asideMenuContainer,
-        child: (<asideSourcesMenuItem className='block mt-4'>Sources</asideSourcesMenuItem>)
+        child: (<asideSourcesMenuItem className='block mt-4'><Link to="/sources" >Sources</Link></asideSourcesMenuItem>)
       },
     ]
   }

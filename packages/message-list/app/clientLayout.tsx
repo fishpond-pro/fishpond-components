@@ -26,24 +26,22 @@ export default ({
       modelIndexes={mi}
       plugin={createApiPlugin()}
     >
-      <PrismaNamespaceProvider namespace="">
-        <queryContext.Provider
-          value={{
-            onQueryPreviews: async (url) => {
-              console.log('[onQuery] url: ', url);
-              return toRSS_JSON(sourceMock2).item
-            },        
-            onSubmit: async (url) => {
-              console.log('[onSubmit] url: ', url);
-            },        
-          }}
-        >
-          <App 
-            title="Polymita"
-            contentChildren={children}
-          />
-        </queryContext.Provider>
-      </PrismaNamespaceProvider>
+      <queryContext.Provider
+        value={{
+          onQueryPreviews: async (url) => {
+            console.log('[onQuery] url: ', url);
+            return toRSS_JSON(sourceMock2).item
+          },        
+          onSubmit: async (url) => {
+            console.log('[onSubmit] url: ', url);
+          },        
+        }}
+      >
+        <App 
+          title="Polymita"
+          contentChildren={children}
+        />
+      </queryContext.Provider>
     </ConnectProvider>
   )
 }
