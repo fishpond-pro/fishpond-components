@@ -8,6 +8,7 @@
     "p:dev": "prisma migrate dev && prisma generate",
     "p:gen": "prisma generate",
     "dev": "polymita dev",
+    "release": "polymita release",
     "any": "polymita any",
     "dev:next": "next dev",
     "build": "polymita build",
@@ -17,7 +18,8 @@
     "init": "pnpm i && npm run p:dev",
     "p:deploy": "prisma migrate deploy",
     "p:studio": "prisma studio",
-    "test": "polymita test"
+    "test": "polymita test",
+    "eb": "electron-builder install-app-deps"
   },
   "publishConfig": {
     "access": "public"
@@ -42,8 +44,12 @@
     "@polymita/next-connect": "workspace:^",
     "@polymita/next-server": "workspace:^",
     "@polymita/renderer": "workspace:^",
+    "@polymita/signal": "workspace:^",
+    "@polymita/signal-model": "workspace:^",
     "@prisma/client": "^5.10.2",
     "date-fns": "^2.29.3",
+    "electron": "^32.0.2",
+    "electron-builder": "^25.0.5",
     "next": "14.1.0",
     "prisma": "^5.10.2",
     "react": "^18",
@@ -63,5 +69,63 @@
   },
   "volta": {
     "node": "20.11.1"
+  },
+  "build": {
+    "productName": "basic-layout",
+    "appId": "com.polymita.basiclayout",
+    "asar": true,
+    "asarUnpack": "**\\*.{node,dll}",
+    "files": [
+      "dist",
+      "node_modules",
+      "package.json"
+    ],
+    "mac": {
+      "target": {
+        "target": "default",
+        "arch": [
+          "arm64",
+          "x64"
+        ]
+      },
+      "type": "distribution",
+      "hardenedRuntime": true,
+      "entitlements": "assets/entitlements.mac.plist",
+      "entitlementsInherit": "assets/entitlements.mac.plist",
+      "gatekeeperAssess": false
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Development"
+    },
+    "directories": {
+      "app": "release/app",
+      "buildResources": "assets",
+      "output": "release/build"
+    },
+    "extraResources": [
+      "./assets/**"
+    ]
   }
 }

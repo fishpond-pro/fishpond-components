@@ -1,0 +1,19 @@
+{
+  "name": "@polymita/basic-layout",
+  "version": "1.0.14",
+  "author": {
+    "name": "unknown",
+    "url": "https://polymita.cc/"
+  },
+  "main": "dist/main.js",
+  "scripts": {
+  },
+  "packageManager": "pnpm@8.15.9",
+  "dependencies": {
+    "chrome-cookies-secure": "^0.0.2"
+  },
+  "resolutions": {
+    "sqlite3": "5.1.6"
+  }
+}
+
