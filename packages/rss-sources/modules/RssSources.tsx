@@ -4,7 +4,6 @@ import * as RSSSourcePanelModule from './RSSSourcePanel2'
 import { SubscribedChannel } from '@/shared/types';
 import { List } from '@mui/material';
 import { ListItemButton } from '@mui/material';
-import "@polymita/renderer/jsx-runtime"
 
 import { 
   h,
