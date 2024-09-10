@@ -9,6 +9,7 @@ export default () => {
 
   return (
     <div>
+      test:
       {a.current}
     </div>
   )

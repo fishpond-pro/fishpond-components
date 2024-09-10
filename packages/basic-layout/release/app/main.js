@@ -1,6 +1,4 @@
 const path = require('path');
-const c = require('child_process');
-const util = require('util');
 const { app, BrowserWindow, shell, ipcMain, dialog } = require('electron');
 const log = require('electron-log');
 const MenuBuilder = require('./menu').MenuBuilder;
@@ -13,44 +11,48 @@ log.info('process.env', process.env);
 
 let mainWindow = null;
 
-const isDebug = process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
+const isDebug = true || process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
+
+if (isDebug) {
+  require('electron-debug')();
+}
 
 const createWindow = async () => {
-  if (isDebug) {
-    await installExtensions();
-  }
 
   const RESOURCES_PATH = app.isPackaged
     ? path.join(process.resourcesPath, 'assets')
-    : path.join(__dirname, '../../assets');
+    : path.join(__dirname, './assets');
 
   const getAssetPath = (...paths) => {
     return path.join(RESOURCES_PATH, ...paths);
   };
 
   mainWindow = new BrowserWindow({
-    show: false,
+    show: true,
     width: 1400,
     height: 800,
     icon: getAssetPath('icon.png'),
     title: `Polymita${isDebug ? ' - debug' : ''}`,
     webPreferences: {
       devTools: isDebug || !app.isPackaged,
+      webviewTag: true,
       preload: path.join(__dirname, 'preload.js'),
     },
   });
 
-  mainWindow.loadURL(resolveHtmlPath('index.html'));
+  // mainWindow.loadURL('./index.html');
+  mainWindow.loadURL(`file://${path.join(__dirname, './index.html')}`);
 
   mainWindow.on('ready-to-show', () => {
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');
     }
-    if (process.env.START_MINIMIZED) {
-      mainWindow.minimize();
-    } else {
-      mainWindow.show();
-    }
+    // if (process.env.START_MINIMIZED) {
+    //   mainWindow.minimize();
+    // } else {
+    //   mainWindow.show();
+    // }
+    mainWindow.show();
   });
 
   mainWindow.on('closed', () => {
@@ -99,6 +101,8 @@ app
         await createWindow();
       }
     });
+
+    createWindow();
   })
   .catch(log.error);
 

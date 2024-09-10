@@ -5,10 +5,7 @@ const {
   BrowserWindow,
   Notification,
 } = require('electron');
-const { isDebug } = require('@/main/env');
-const { eStore } = require('./models/store');
-const { storeKeyMap } = require('./models/constant');
-const { notify } = require('./models/utils');
+const isDebug = process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
 
 class MenuBuilder {
   constructor(mainWindow) {

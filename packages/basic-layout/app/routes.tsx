@@ -3,7 +3,7 @@
  */
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter, createHashRouter } from "react-router-dom";
 
 import Root from "./page";
 import Main from "./main/page";
@@ -11,7 +11,7 @@ import MainXxxx from "./main/xxxx/page";
 import Test from "./test/page";
 
 function RootApplication({ location }) {
-  const router = createBrowserRouter([
+  const router = createHashRouter([
     {
       path: "/",
       element: <Root />,
