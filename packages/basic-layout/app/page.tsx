@@ -6,10 +6,10 @@ export default () => {
       root
 
       <div>
-        <Link to="/main">main</Link>
+        <Link to="/main">/main</Link>
       </div>
       <div>
-        <Link to="/test">test</Link>
+        <Link to="/test">/test</Link>
       </div>
 
       <Outlet />

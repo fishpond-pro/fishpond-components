@@ -3,34 +3,59 @@
  */
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import { RouterProvider, createBrowserRouter, createHashRouter } from "react-router-dom";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  createHashRouter,
+} from "react-router-dom";
 
 import Root from "./page";
+import RootLayout from "./layout";
 import Main from "./main/page";
 import MainXxxx from "./main/xxxx/page";
 import Test from "./test/page";
 
 function RootApplication({ location }) {
-  const router = createHashRouter([
+  const router = (
+    process.env.HASH_ROUTER === "true" ? createHashRouter : createBrowserRouter
+  )([
     {
       path: "/",
-      element: <Root />,
+      element: <RootLayout />,
       children: [
         {
+          element: <Root />,
+          index: true,
+        },
+        {
           path: "/main",
-          element: <Main />,
+          element: null,
           children: [
             {
+              element: <Main />,
+              index: true,
+            },
+            {
               path: "/main/xxxx",
-              element: <MainXxxx />,
-              children: [],
+              element: null,
+              children: [
+                {
+                  element: <MainXxxx />,
+                  index: true,
+                },
+              ],
             },
           ],
         },
         {
           path: "/test",
-          element: <Test />,
-          children: [],
+          element: null,
+          children: [
+            {
+              element: <Test />,
+              index: true,
+            },
+          ],
         },
       ],
     },

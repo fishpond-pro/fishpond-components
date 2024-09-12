@@ -2,6 +2,8 @@ const path = require('path');
 const { app, BrowserWindow, shell, ipcMain, dialog } = require('electron');
 const log = require('electron-log');
 const MenuBuilder = require('./menu').MenuBuilder;
+const nextServer = require('@polymita/next-server').nextServer;
+console.log('nextServer: ', nextServer);
 
 // 错误日志
 process.on('uncaughtException', log.error);
@@ -20,8 +22,8 @@ if (isDebug) {
 const createWindow = async () => {
 
   const RESOURCES_PATH = app.isPackaged
-    ? path.join(process.resourcesPath, 'assets')
-    : path.join(__dirname, './assets');
+    ? path.join(process.resourcesPath, './')
+    : path.join(__dirname, './');
 
   const getAssetPath = (...paths) => {
     return path.join(RESOURCES_PATH, ...paths);
@@ -31,7 +33,7 @@ const createWindow = async () => {
     show: true,
     width: 1400,
     height: 800,
-    icon: getAssetPath('icon.png'),
+    icon: getAssetPath('assets/icon.png'),
     title: `Polymita${isDebug ? ' - debug' : ''}`,
     webPreferences: {
       devTools: isDebug || !app.isPackaged,
@@ -41,7 +43,7 @@ const createWindow = async () => {
   });
 
   // mainWindow.loadURL('./index.html');
-  mainWindow.loadURL(`file://${path.join(__dirname, './index.html')}`);
+  mainWindow.loadURL(`file://${path.join(__dirname, '../index.html')}`);
 
   mainWindow.on('ready-to-show', () => {
     if (!mainWindow) {

@@ -8,17 +8,19 @@
     "p:dev": "prisma migrate dev && prisma generate",
     "p:gen": "prisma generate",
     "dev": "polymita dev",
-    "release": "polymita release",
     "any": "polymita any",
     "dev:next": "next dev",
     "build": "polymita build",
     "build:next": "next build",
-    "start": "next start",
+    "start": "polymita start",
     "lint": "next lint",
     "init": "pnpm i && npm run p:dev",
     "p:deploy": "prisma migrate deploy",
     "p:studio": "prisma studio",
     "test": "polymita test",
+    "mirror": "cross-env-shell ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/ ELECTRON_BUILDER_BINARIES_MIRROR=https://npmmirror.com/mirrors/electron-builder-binaries/",
+    "pkg": "rm -rf release/build && npm run mirror && npm run release && electron-builder build --mac --win --publish never",
+    "release": "polymita release",
     "eb": "electron-builder install-app-deps"
   },
   "publishConfig": {
@@ -47,11 +49,12 @@
     "@polymita/signal": "workspace:^",
     "@polymita/signal-model": "workspace:^",
     "@prisma/client": "^5.10.2",
+    "prisma": "^5.10.2",
+    "cross-env": "^7.0.3",
     "date-fns": "^2.29.3",
     "electron": "^32.0.2",
     "electron-builder": "^25.0.5",
     "next": "14.1.0",
-    "prisma": "^5.10.2",
     "react": "^18",
     "react-dom": "^18",
     "react-router-dom": "^6.3.0"
@@ -71,12 +74,16 @@
     "node": "20.11.1"
   },
   "build": {
-    "productName": "basic-layout",
-    "appId": "com.polymita.basiclayout",
-    "asar": true,
+    "productName": "polymitabasiclayout",
+    "appId": "com.polymita.polymitabasiclayout",
+    "asar": false,
     "asarUnpack": "**\\*.{node,dll}",
     "files": [
       "dist",
+      "assets",
+      "main",
+      "static",
+      "index.html",
       "node_modules",
       "package.json"
     ],
@@ -84,44 +91,18 @@
       "target": {
         "target": "default",
         "arch": [
-          "arm64",
           "x64"
         ]
       },
       "type": "distribution",
       "hardenedRuntime": true,
-      "entitlements": "release/app/assets/entitlements.mac.plist",
-      "entitlementsInherit": "release/app/assets/entitlements.mac.plist",
+      "entitlements": "assets/entitlements.mac.plist",
+      "entitlementsInherit": "assets/entitlements.mac.plist",
       "gatekeeperAssess": false
-    },
-    "dmg": {
-      "contents": [
-        {
-          "x": 130,
-          "y": 220
-        },
-        {
-          "x": 410,
-          "y": 220,
-          "type": "link",
-          "path": "/Applications"
-        }
-      ]
-    },
-    "win": {
-      "target": [
-        "nsis"
-      ]
-    },
-    "linux": {
-      "target": [
-        "AppImage"
-      ],
-      "category": "Development"
     },
     "directories": {
       "app": "release/app",
-      "buildResources": "assets",
+      "buildResources": "release/app/assets",
       "output": "release/build"
     },
     "extraResources": [

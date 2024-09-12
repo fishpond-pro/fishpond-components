@@ -112,3 +112,5 @@ dist/
 
 app/polymita/views
 app/polymita/signals
+
+release/build

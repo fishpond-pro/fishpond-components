@@ -5,7 +5,7 @@ const {
   BrowserWindow,
   Notification,
 } = require('electron');
-const isDebug = process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
+const isDebug = true || process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
 
 class MenuBuilder {
   constructor(mainWindow) {
@@ -13,10 +13,7 @@ class MenuBuilder {
   }
 
   buildMenu() {
-    if (
-      process.env.NODE_ENV === 'development' ||
-      process.env.DEBUG_PROD === 'true'
-    ) {
+    if (isDebug) {
       this.setupDevelopmentEnvironment();
     }
 
