@@ -16,9 +16,7 @@ import MainXxxx from "./main/xxxx/page";
 import Test from "./test/page";
 
 function RootApplication({ location }) {
-  const router = (
-    process.env.HASH_ROUTER === "true" ? createHashRouter : createBrowserRouter
-  )([
+  const router = createBrowserRouter([
     {
       path: "/",
       element: <RootLayout />,

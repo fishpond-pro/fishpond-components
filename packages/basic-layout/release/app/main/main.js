@@ -2,14 +2,26 @@ const path = require('path');
 const { app, BrowserWindow, shell, ipcMain, dialog } = require('electron');
 const log = require('electron-log');
 const MenuBuilder = require('./menu').MenuBuilder;
+
 const nextServer = require('@polymita/next-server').nextServer;
-console.log('nextServer: ', nextServer);
+const projectPath = path.join(__dirname, '../renderer');
+const configPromise = nextServer.readConfig({
+  cwd: projectPath,
+  resolveNodeModulesDir: path.join(projectPath, '../'),
+  isProd: true,
+  port: 9500,
+}).then((config) => {
+  console.log('config: ', config);
+  nextServer.createServer(config);
+
+  return config;
+});
+
 
 // 错误日志
 process.on('uncaughtException', log.error);
 log.info('process.version', process.version);
 log.info('process.type', process.type);
-log.info('process.env', process.env);
 
 let mainWindow = null;
 
@@ -21,6 +33,8 @@ if (isDebug) {
 
 const createWindow = async () => {
 
+  const config = await configPromise;
+
   const RESOURCES_PATH = app.isPackaged
     ? path.join(process.resourcesPath, './')
     : path.join(__dirname, './');
@@ -30,7 +44,7 @@ const createWindow = async () => {
   };
 
   mainWindow = new BrowserWindow({
-    show: true,
+    show: false,
     width: 1400,
     height: 800,
     icon: getAssetPath('assets/icon.png'),
@@ -42,8 +56,7 @@ const createWindow = async () => {
     },
   });
 
-  // mainWindow.loadURL('./index.html');
-  mainWindow.loadURL(`file://${path.join(__dirname, '../index.html')}`);
+  mainWindow.loadURL(`http://127.0.0.1:${config.port}/`);
 
   mainWindow.on('ready-to-show', () => {
     if (!mainWindow) {
