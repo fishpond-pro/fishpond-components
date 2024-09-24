@@ -115,3 +115,4 @@ packages/*/models/dev.db-journal
 .test/
 
 dist/
+packages/rss-sources/rs.zip
