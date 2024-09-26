@@ -9,11 +9,18 @@ import {
   createHashRouter,
 } from "react-router-dom";
 
+import { getConfig, createModulesContext } from "@polymita/next-connect";
+
 import Root from "./page";
 import RootLayout from "./layout";
 import Main from "./main/page";
 import MainXxxx from "./main/xxxx/page";
 import Test from "./test/page";
+
+const modulesContext = createModulesContext(
+  getConfig(),
+  globalThis.POLYMITA_MODULES || {},
+);
 
 function RootApplication({ location }) {
   const router = createBrowserRouter([

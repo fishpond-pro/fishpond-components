@@ -1,3 +1,8 @@
-export const modulesLinkMap = new Map()
+import { getConfig } from '@polymita/next-connect'
 
-export const modulesActiveMap = ['components-AsideNew']
+export const modulesLinkMap = getConfig().moduleOverride?.linkMap
+
+export const modulesActiveMap = [
+  ...(getConfig().moduleOverride?.activeLink || []),
+  'components-AsideNew'
+]
