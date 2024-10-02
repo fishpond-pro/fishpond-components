@@ -114,3 +114,5 @@ app/polymita/views
 app/polymita/signals
 
 release/build
+
+dynamic_modules

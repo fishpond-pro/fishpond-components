@@ -9,6 +9,7 @@
     "p:gen": "prisma generate",
     "dev": "polymita dev",
     "any": "polymita any",
+    "zip": "polymita zip",
     "dev:next": "next dev",
     "build": "polymita build",
     "build:next": "next build",
