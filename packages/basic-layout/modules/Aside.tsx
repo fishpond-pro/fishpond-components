@@ -1,4 +1,7 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, VirtualLayoutJSON } from '@polymita/renderer';
+import { getDynamicRoutes } from '@polymita/next-connect'
+import '@polymita/renderer/jsx-runtime'
+import { Link } from 'react-router-dom'
 
 export const name = 'Aside' as const
 export const namespace = 'components' as const
@@ -32,10 +35,34 @@ export type AsideLayout = {
 export const layout = (props: AsideProps): VirtualLayoutJSON => {
   const logic = useLogic<LogicReturn>();
   const { title } = props;
+  
+  const routes = getDynamicRoutes();
+
   return (
     <asideContainer className="block flex-1 h-full">
       <asideName className="block m-4 text-xl font-bold">{title}</asideName>
-      <asideMenuContainer className="block mt-6 mx-4" />
+      <asideMenuContainer className="block mt-6 mx-2">
+        {routes.map((route) => {
+          return (
+            <sideMenuItem className="block mb-2">
+              <Link to={route.path}>
+                <sideMenuMainItem key={route.path} className="block hover:bg-gray-200 p-2 rounded-md">
+                  {route.title}
+                </sideMenuMainItem>
+              </Link>
+              {route.children?.map((child) => {
+                return (
+                  <Link to={child.path}>
+                    <sideMenuSubItem key={child.path} className="block ml-4 hover:bg-gray-200 p-2 rounded-md">
+                      {child.title}
+                    </sideMenuSubItem>
+                  </Link>
+                )
+              })}
+            </sideMenuItem>
+          )
+        })}
+      </asideMenuContainer>
     </asideContainer>
   )
 }

@@ -1,4 +1,3 @@
-
 /**
  * @type {import('@polymita/next-server')}
  */
@@ -7,7 +6,7 @@ module.exports = {
  
   routes: {
     pages: {
-      'main': 'App'
+      'main': ['App', { title: 'Polymita' }]
     }
   }  
 }

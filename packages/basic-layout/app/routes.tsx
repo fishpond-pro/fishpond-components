@@ -9,7 +9,12 @@ import {
   createHashRouter,
 } from "react-router-dom";
 
-import { getConfig, createModulesContext } from "@polymita/next-connect";
+import {
+  getConfig,
+  createModulesContext,
+  getModulesContext,
+  getDynamicRoutes,
+} from "@polymita/next-connect";
 
 import Root from "./page";
 import RootLayout from "./layout";
@@ -17,13 +22,8 @@ import Main from "./main/page";
 import MainXxxx from "./main/xxxx/page";
 import Test from "./test/page";
 
-const modulesContext = createModulesContext(
-  getConfig(),
-  globalThis.POLYMITA_MODULES || {},
-);
-
 function RootApplication({ location }) {
-  const router = createBrowserRouter([
+  const routes = [
     {
       path: "/",
       element: <RootLayout />,
@@ -64,7 +64,12 @@ function RootApplication({ location }) {
         },
       ],
     },
-  ]);
+  ];
+  const dynamicRoutes = getDynamicRoutes();
+  if (dynamicRoutes.length) {
+    routes.push(...dynamicRoutes);
+  }
+  const router = createBrowserRouter(routes);
 
   return <RouterProvider router={router} />;
 }
