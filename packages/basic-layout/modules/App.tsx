@@ -1,6 +1,7 @@
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, VirtualLayoutJSON, createFunctionComponent } from '@polymita/renderer';
 import * as AsideModule from './Aside'
 import * as ContentModule from './Content'
+import '@polymita/renderer/jsx-runtime'
 
 export const name = 'App' as const
 export const namespace = 'components' as const

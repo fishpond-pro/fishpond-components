@@ -8,5 +8,9 @@ module.exports = {
     pages: {
       'main': ['App', { title: 'Polymita' }]
     }
-  }  
+  },
+
+  settings: {
+    title: 'Polymita',
+  }
 }

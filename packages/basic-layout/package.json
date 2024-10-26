@@ -10,6 +10,7 @@
     "dev": "polymita dev",
     "any": "polymita any",
     "zip": "polymita zip",
+    "upload": "polymita upload",
     "dev:next": "next dev",
     "build": "polymita build",
     "build:next": "next build",
