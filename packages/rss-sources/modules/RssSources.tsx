@@ -1,9 +1,11 @@
 import rssSourceDriver from '@/signals/rss'
 import { genUniquePlatformKey, getParamsFromPath } from '@/shared/utils';
 import * as RSSSourcePanelModule from './RSSSourcePanel2'
-import { SubscribedChannel } from '@/shared/types';
+import '@polymita/renderer/jsx-runtime'
 import { List } from '@mui/material';
 import { ListItemButton } from '@mui/material';
+import rssSignal from '@/signals/rss'
+import { queryContext } from '@/contexts/QueryContext';
 
 import { 
   h,
@@ -12,7 +14,7 @@ import {
   createFunctionComponent
 } from '@polymita/renderer';
 
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 type rssSourceDriverReturn = ReturnType<typeof rssSourceDriver>
 
@@ -27,9 +29,7 @@ export let meta: {
   patchCommands: []
 }
 
-export interface RssSourcesProps extends rssSourceDriverReturn{
-  width: number
-  subscribed: SubscribedChannel[]
+export interface RssSourcesProps {
 }
 
 export const propTypes = {
@@ -39,6 +39,20 @@ export const logic = (props: RssSourcesProps) => {
   const listDIVRef = useRef<HTMLDivElement>(null)
   const [width, setWidth] = useState(-1)
   
+  const { menus, onQueryRssSources } = useContext(queryContext)
+  console.log('menus: ', menus);
+
+  const rssSource = rssSignal({
+    subscribed: [],
+    menus,
+    onQueryRssSources: async (arg) => {
+      return onQueryRssSources(arg)
+    },
+    onSelect: v => {
+      console.log('[onSelect] select result: ', v);
+    },
+  });
+
   function onResize () {
     const w = listDIVRef.current?.offsetWidth
     const w2 = listDIVRef.current?.clientWidth
@@ -70,9 +84,10 @@ export const logic = (props: RssSourcesProps) => {
   return {
     width,
     listDIVRef,
+    ...rssSource,
   }
 }
-type LogicReturn = ReturnType<typeof logic>
+type LogicReturn = ReturnType<typeof logic> & rssSourceDriverReturn
 
 export type RssSourcesLayout = {
   type: 'RssSourcesContainer',
@@ -85,14 +100,14 @@ export const layout = (props: RssSourcesProps): VirtualLayoutJSON => {
 
   const {
     menus,
-  } = props;
+  } = logic;
 
   const selectedGroups = menus.selectedGroups
   const selectedSubGroups = menus.selectedSubGroups
   const allMenus = menus.allMenus
 
-  const rssSources = props.allRSSSources
-  const subscribed = props.subscribed
+  const rssSources = logic.allRSSSources
+  const subscribed = []
 
   return (
     <rssSourceContainer className="flex h-full" ref={logic.listDIVRef}>
