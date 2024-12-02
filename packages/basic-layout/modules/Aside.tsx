@@ -43,10 +43,11 @@ export const layout = (props: AsideProps): VirtualLayoutJSON => {
       <asideName className="block m-4 text-xl font-bold">{title}</asideName>
       <asideMenuContainer className="block mt-6 mx-2">
         {routes.map((route) => {
+          const toPath = route.path.startsWith('/') ? route.path : `/${route.path}`;
           return (
             <sideMenuItem className="block mb-2">
-              <Link to={route.path}>
-                <sideMenuMainItem key={route.path} className="block hover:bg-gray-200 p-2 rounded-md">
+              <Link to={toPath}>
+                <sideMenuMainItem key={toPath} className="block hover:bg-gray-200 p-2 rounded-md">
                   {route.title}
                 </sideMenuMainItem>
               </Link>
