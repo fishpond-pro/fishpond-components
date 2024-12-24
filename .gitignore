@@ -116,3 +116,6 @@ packages/*/models/dev.db-journal
 
 dist/
 packages/rss-sources/rs.zip
+
+
+dynamic_modules/

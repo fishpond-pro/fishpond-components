@@ -1,15 +1,17 @@
 
-module.exports = config => {
-  const koa = require('koa')
-  const router = require('@koa/router')()
+module.exports = (config, app) => {
+  const Router = require('@koa/router')
+
+  const router = new Router()
   
-  const app = new koa()
   router.get('/', ctx => {
+
+    
+
     ctx.body = 'hello'
   })
+  router.prefix('/rss-query2')
+
   app.use(router.routes())
   
-  app.listen(12345, () => {
-    console.log('on:', 12345)
-  })
 }
