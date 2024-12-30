@@ -5,7 +5,6 @@ import '@polymita/renderer/jsx-runtime'
 import { List } from '@mui/material';
 import { ListItemButton } from '@mui/material';
 import rssSignal from '@/signals/rss'
-import { queryContext } from '@/contexts/QueryContext';
 
 import { 
   h,
@@ -39,8 +38,9 @@ export const logic = (props: RssSourcesProps) => {
   const listDIVRef = useRef<HTMLDivElement>(null)
   const [width, setWidth] = useState(-1)
   
-  const { menus, onQueryRssSources } = useContext(queryContext)
-  console.log('menus: ', menus);
+  // const { menus, onQueryRssSources } = useContext(queryContext)
+  // console.log('menus: ', menus);
+
 
   const rssSource = rssSignal({
     subscribed: [],

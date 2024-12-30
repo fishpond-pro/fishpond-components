@@ -47,8 +47,6 @@ router.post("/sources", async (ctx, next) => {
     result.push(...r);
   })
   ctx.body = result;
-
-  await next();
 });
 
 router.get('/search', async (ctx, next) => {
@@ -65,16 +63,13 @@ router.get('/search', async (ctx, next) => {
   });
 
   ctx.body = arr;
-  await next();
 })
 
 router.get('/menu', async (ctx, next) => {
   ctx.body = menusTree();
-  await next();
 })
 router.get('/name-map', async (ctx, next) => {
   ctx.body = menuMap;
-  await next();
 })
 
 exports.rss = router
