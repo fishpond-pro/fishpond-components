@@ -1,9 +1,7 @@
-import { koaTypes } from "@polymita/next-server/dist/src";
-
 const { rss } = require("./desktop-server/router/rss");
 const { setting } = require("./desktop-server/router/setting");
 
-module.exports = (config, app: koaTypes) => {
+module.exports = (config, app) => {
   
   console.log('[rss-query2]-third_part: loaded')
 
