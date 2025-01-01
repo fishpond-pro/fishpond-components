@@ -1,13 +1,13 @@
 {
-  "name": "@polymita/rss-sources-add",
-  "version": "1.0.14",
+  "name": "@polymita/rss-query2",
+  "version": "1.0.0",
   "tarat": {},
   "description": "a tarat unit",
-  "main": "dist/index.js",
-  "types": "dist/index.d.js",
   "scripts": {
     "p:dev": "prisma migrate dev && prisma generate",
     "p:gen": "prisma generate",
+    "pris": "polymita prisma",
+    "zip": "polymita zip",
     "dev": "polymita dev",
     "any": "polymita any",
     "dev:next": "next dev",
@@ -32,38 +32,28 @@
     "types",
     "README.md"
   ],
-  "peerDependencies": {
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
-  },
   "dependencies": {
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
-    "@mui/lab": "5.0.0-alpha.172",
-    "@mui/material": "^5.16.0",
-    "@polymita/basic-layout": "workspace:^",
+    "@koa/cors": "^3.1.0",
+    "@koa/router": "12.0.0",
+    "@polymita/message-list": "workspace:^",
     "@polymita/next-connect": "workspace:^",
     "@polymita/next-server": "workspace:^",
     "@polymita/renderer": "workspace:^",
-    "@polymita/rss-sources": "workspace:^",
+    "@polymita/rss-sources-add": "workspace:^",
+    "@polymita/third-rsshub": "workspace:^",
     "@prisma/client": "^5.10.2",
-    "date-fns": "^2.29.3",
-    "fast-xml-parser": "^4.4.0",
-    "prisma": "^5.10.2",
-    "react": "^18",
-    "react-dom": "^18",
-    "showdown": "^2.1.0"
+    "prisma": "^5.10.2"
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.2.7",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
-    
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
-    "typescript": "^5"
+    "typescript": "^5",
+    "webpack": "^5.93.0"
   },
   "volta": {
     "node": "20.11.1"
