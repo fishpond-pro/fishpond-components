@@ -1,5 +1,5 @@
 import rssSourceDriver from '@/signals/rss'
-import { genUniquePlatformKey, getParamsFromPath } from '@/shared/utils';
+import { genUniquePlatformKey, getParamsFromPath, RSSSource } from '@/shared/utils';
 import * as RSSSourcePanelModule from './RSSSourcePanel2'
 import '@polymita/renderer/jsx-runtime'
 import { List } from '@mui/material';
@@ -14,6 +14,7 @@ import {
 } from '@polymita/renderer';
 
 import { useContext, useEffect, useRef, useState } from 'react';
+import { useRequest } from 'ahooks';
 
 type rssSourceDriverReturn = ReturnType<typeof rssSourceDriver>
 
@@ -41,12 +42,29 @@ export const logic = (props: RssSourcesProps) => {
   // const { menus, onQueryRssSources } = useContext(queryContext)
   // console.log('menus: ', menus);
 
+  const menus = useRequest(async () => {
+    return fetch('/third_part/rss/menu').then(r => r.json())
+  })
+
+  const queryRssSources = useRequest((arg) => {
+    return fetch('/third_part/rss/sources', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        groupRows: arg
+      })
+    }).then(r => r.json() as Promise<RSSSource[]>)
+  },{
+    manual: true,
+  })
 
   const rssSource = rssSignal({
     subscribed: [],
-    menus,
+    menus: menus.data || [],
     onQueryRssSources: async (arg) => {
-      return onQueryRssSources(arg)
+      return queryRssSources.runAsync(arg)
     },
     onSelect: v => {
       console.log('[onSelect] select result: ', v);

@@ -15,7 +15,11 @@ export interface MenusLogicProps {
 export default function menusLogic (props: MenusLogicProps) {
   const [allMenus, innerSetAllMenus] = useState(props.menus);
 
-  const [selectedGroups, setSelectedGroups] = useState<string[]>([props.menus[0]?.title]);
+  useEffect(() => {
+    innerSetAllMenus(props.menus)
+  }, [props.menus])
+
+  const [selectedGroups, setSelectedGroups] = useState<string[]>(props.menus[0]?.title ? [props.menus[0]?.title] : []);
 
   const selectGroup = (title: string) => {
     setSelectedGroups(draft => {
