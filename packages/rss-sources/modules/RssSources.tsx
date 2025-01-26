@@ -199,7 +199,7 @@ export const layout = (props: RssSourcesProps): VirtualLayoutJSON => {
             })}
           </sourceMenuSubGroup>        
         </rssSourceMenus>
-        <div>
+        <rssSourceList className='flex flex-wrap gap-1'>
           {rssSources?.map((source, i) => {
             const key = genUniquePlatformKey(source);
             const subscribedChannel = subscribed?.find(sub => {
@@ -207,7 +207,7 @@ export const layout = (props: RssSourcesProps): VirtualLayoutJSON => {
             })
             const count = subscribedChannel?.rss?.length || 0;
             return (
-              <div data-index={i} className="box-border p-1 float-left" style={{ width: '25%' }}>
+              <div data-index={i} className="box-border p-1 float-left" style={{ width: 'calc(25% - 10px)' }}>
                 <RSSSourcePanel 
                   width='100%' 
                   key={key + source.title}
@@ -217,7 +217,7 @@ export const layout = (props: RssSourcesProps): VirtualLayoutJSON => {
               </div>
             )
           })}
-        </div>
+        </rssSourceList>
       </rssRightSources>
     </rssSourceContainer>
   )
