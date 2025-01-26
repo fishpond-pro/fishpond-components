@@ -5,7 +5,7 @@ module.exports = {
   ts: true,
  
   routes: {
-    pages: {
+    layout: {
       'main': ['App', { title: 'Polymita' }]
     }
   },

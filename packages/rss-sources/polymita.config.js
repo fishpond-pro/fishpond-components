@@ -5,7 +5,9 @@ module.exports = {
   ts: true,
   
   routes: {
-    '/sources': ['RssSources']
+    pages: {
+      '/sources': ['RssSources']
+    }
   },
 
   services: ['@polymita/rss-query2']

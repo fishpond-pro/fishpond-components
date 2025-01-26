@@ -13,7 +13,7 @@ import {
   createFunctionComponent
 } from '@polymita/renderer';
 
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useRequest } from 'ahooks';
 
 type rssSourceDriverReturn = ReturnType<typeof rssSourceDriver>
@@ -58,11 +58,16 @@ export const logic = (props: RssSourcesProps) => {
     }).then(r => r.json() as Promise<RSSSource[]>)
   },{
     manual: true,
+    
   })
+
+  const menusData = useMemo(() => {
+    return menus.data || []
+  }, [menus.data])
 
   const rssSource = rssSignal({
     subscribed: [],
-    menus: menus.data || [],
+    menus: menusData,
     onQueryRssSources: async (arg) => {
       return queryRssSources.runAsync(arg)
     },

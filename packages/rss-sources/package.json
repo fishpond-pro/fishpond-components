@@ -11,6 +11,7 @@
     "any": "polymita any",
     "dev:next": "next dev",
     "build": "polymita build",
+    "zip": "polymita zip",
     "build:next": "next build",
     "start": "next start",
     "lint": "next lint",

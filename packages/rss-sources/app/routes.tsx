@@ -42,6 +42,7 @@ function RootApplication({ location }) {
   if (dynamicRoutes.length) {
     routes.push(...dynamicRoutes);
   }
+  console.log("[RootApplication] routes: ", routes);
   const router = createBrowserRouter(routes);
 
   return <RouterProvider router={router} />;
