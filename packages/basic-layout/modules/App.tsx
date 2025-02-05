@@ -2,6 +2,7 @@ import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, VirtualL
 import * as AsideModule from './Aside'
 import * as ContentModule from './Content'
 import '@polymita/renderer/jsx-runtime'
+import { Outlet } from 'react-router-dom';
 
 export const name = 'App' as const
 export const namespace = 'components' as const
@@ -45,6 +46,7 @@ export const layout = (props: AppProps): VirtualLayoutJSON => {
       <div className='flex-1 h-full'>
         <Content>
           {props.contentChildren}
+          <Outlet />
         </Content>
       </div>
     </appContainer>
