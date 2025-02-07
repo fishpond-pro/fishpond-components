@@ -38,8 +38,6 @@ function patchLogic(
     text: ''
   })
 
-  const { onQueryPreviews } = useContext(queryContext)
-
   const [formValues, setFormValues] = useState<Record<string, string>>({});
   const handleInputChange = (name: string, value: string) => {
     setFormValues((prevFormValues) => ({
@@ -77,12 +75,12 @@ function patchLogic(
     })
 
     try {
-      const destUrl = getRSSComplementURL({
+      const destQueryPath = getRSSComplementURL({
         path: props.value.route.path,
         payload: formValues,
       })
 
-      const previews = await onQueryPreviews(destUrl)
+      const previews = await fetch(`/third_part/rsshub${destQueryPath}`).then(res => res.json())
 
       setPreviewItems(previews)
       setPreviewDrawerVisible(true)

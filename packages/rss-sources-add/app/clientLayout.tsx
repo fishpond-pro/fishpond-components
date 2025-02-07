@@ -8,7 +8,6 @@ import { ConnectProvider, PrismaNamespaceProvider } from '@polymita/next-connect
 import mi from '@/models/indexes.json'
 import { createApiPlugin } from '@polymita/next-connect'
 import pkg from '../package.json'
-import { queryContext } from '@/contexts/QueryContext'
 import { toRSS_JSON } from '@/shared/utils'
 import sourceMock2 from '@/shared/rss-mock'
 import AddRSSSourceFn from '@/app/polymita/views/AddRSSSource'
@@ -26,22 +25,19 @@ export default ({
       modelIndexes={mi}
       plugin={createApiPlugin()}
     >
-
-      <PrismaNamespaceProvider namespace={pkg.name}>
-        <queryContext.Provider
-          value={{
-            onQueryPreviews: async (url) => {
-              console.log('[onQuery] url: ', url);
-              return toRSS_JSON(sourceMock2).item
-            },
-          }}
-        >
-          <App 
-            title="Px"
-            contentChildren={children}
-          />
-        </queryContext.Provider>
-      </PrismaNamespaceProvider>
+      {/* <queryContext.Provider
+        value={{
+          onQueryPreviews: async (url) => {
+            console.log('[onQuery] url: ', url);
+            return toRSS_JSON(sourceMock2).item
+          },
+        }}
+      >
+      </queryContext.Provider> */}
+      <App 
+        title="Px"
+        contentChildren={children}
+      />
     </ConnectProvider>
   )
 }
