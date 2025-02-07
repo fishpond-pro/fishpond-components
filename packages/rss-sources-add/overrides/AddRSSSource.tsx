@@ -10,7 +10,7 @@ import { Drawer } from '@mui/material';
 import { TextField } from '@mui/material';
 import { Input } from '@mui/material';
 import { useContext, useState } from 'react';
-import { getParamsFromPath, getRSSComplementURL, getRSSPreviewURL } from '@/shared/utils'
+import { getParamsFromPath, getRSSComplementURL, getRSSPreviewURL, toRSS_JSON } from '@/shared/utils'
 import * as RSSParamsTable from '@/modules/RSSParamsTable'
 import { List } from '@mui/material';
 import { ListItem } from '@mui/material';
@@ -80,9 +80,9 @@ function patchLogic(
         payload: formValues,
       })
 
-      const previews = await fetch(`/third_part/rsshub${destQueryPath}`).then(res => res.json())
+      const previews = await fetch(`/third_part/rsshub${destQueryPath}`).then(res => res.text())
 
-      setPreviewItems(previews)
+      setPreviewItems(toRSS_JSON(previews).item)
       setPreviewDrawerVisible(true)
 
     } finally {
