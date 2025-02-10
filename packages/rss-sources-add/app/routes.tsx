@@ -15,6 +15,9 @@ import {
   getModulesContext,
   getDynamicRoutes,
   mergeDynamicRoutesToTree,
+  getDynamicModelIndexes,
+  createApiPlugin,
+  ConnectProvider,
 } from "@polymita/next-connect";
 
 import RootLayout from "./layout";
@@ -46,7 +49,14 @@ function RootApplication({ location }) {
   console.log("[RootApplication] routes: ", routes);
   const router = createBrowserRouter(routes);
 
-  return <RouterProvider router={router} />;
+  return (
+    <ConnectProvider
+      modelIndexes={getDynamicModelIndexes()}
+      plugin={createApiPlugin()}
+    >
+      <RouterProvider router={router} />
+    </ConnectProvider>
+  );
 }
 
 render(RootApplication);

@@ -4,5 +4,8 @@
 module.exports = {
   ts: true,
   
-  services: ['@polymita/third-rsshub']
+  services: [
+    '@polymita/third-rsshub',
+    '@polymita/rss-query2'
+  ]
 }
