@@ -84,7 +84,7 @@ function patchLogic(
         .then(res => res.text())
         .then(xml => toRSS_JSON(xml).item)
 
-      setPreviewItems(previews)
+      setPreviewItems((previews))
       setPreviewDrawerVisible(true)
 
     } finally {
