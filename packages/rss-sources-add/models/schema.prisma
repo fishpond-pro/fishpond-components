@@ -42,3 +42,70 @@ model Directory {
   parentId Int?
   children Directory[] @relation("ChildCategories")
 }
+
+model Polymita_rss_sources_Polymita_message_list_ChannelRecord {
+  id              Int                                                  @id @default(autoincrement())
+  channel         String                                               @unique // source url 或 rpa id
+  lastUpdatedDate DateTime
+  fullContentPath String?
+  data            Polymita_rss_sources_Polymita_message_list_Message[]
+
+  createdAt  DateTime @default(now())
+  modifiedAt DateTime @default(now()) @updatedAt
+}
+
+model Polymita_rss_sources_Polymita_message_list_Message {
+  id              Int                                                        @id @default(autoincrement())
+  link            String                                                     @unique
+  title           String?
+  time            DateTime?
+  description     String?
+  type            String // article/video/audio
+  content         Polymita_rss_sources_Polymita_message_list_MessageContent?
+  channelRecord   Polymita_rss_sources_Polymita_message_list_ChannelRecord   @relation(fields: [channelRecordId], references: [id])
+  channelRecordId Int
+
+  state Int? @default(0) // 0: unread (default), 1: read, 2: starred, 3: deleted
+
+  createdAt  DateTime @default(now())
+  modifiedAt DateTime @default(now()) @updatedAt
+}
+
+model Polymita_rss_sources_Polymita_message_list_MessageContent {
+  id          Int                                                @id @default(autoincrement())
+  title       String
+  description String
+  content     String // article content or media OSS URL
+  message     Polymita_rss_sources_Polymita_message_list_Message @relation(fields: [messageId], references: [id])
+  messageId   Int                                                @unique
+
+  createdAt  DateTime @default(now())
+  modifiedAt DateTime @default(now()) @updatedAt
+}
+
+model Polymita_rss_sources_Polymita_rss_sources_add_RSS {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  modifiedAt DateTime @default(now()) @updatedAt
+
+  name         String
+  href         String  @unique // RSS地址
+  scheduleCron String? // 定时任务
+
+  directory   Polymita_rss_sources_Polymita_rss_sources_add_Directory? @relation(fields: [directoryId], references: [id])
+  directoryId Int?
+  tag         String?
+}
+
+model Polymita_rss_sources_Polymita_rss_sources_add_Directory {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  modifiedAt DateTime @default(now()) @updatedAt
+  name       String
+
+  rss Polymita_rss_sources_Polymita_rss_sources_add_RSS[]
+
+  parent   Polymita_rss_sources_Polymita_rss_sources_add_Directory?  @relation("ChildCategories", fields: [parentId], references: [id])
+  parentId Int?
+  children Polymita_rss_sources_Polymita_rss_sources_add_Directory[] @relation("ChildCategories")
+}
