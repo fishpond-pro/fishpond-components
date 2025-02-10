@@ -12,6 +12,7 @@ import { toRSS_JSON } from '@/shared/utils'
 import sourceMock2 from '@/shared/rss-mock'
 import AddRSSSourceFn from '@/app/polymita/views/AddRSSSource'
 import * as mo from './moduleOverride'
+import { ReactNode } from 'react'
 
 AddRSSSourceFn(mo.modulesLinkMap)
 rs.views.RssMenuItem(mo.modulesLinkMap)
@@ -19,6 +20,8 @@ const App = AppFn(mo.modulesLinkMap, mo.modulesActiveMap);
 
 export default ({
   children,
+}: {
+  children?: ReactNode
 }) => {
   return (
     <ConnectProvider
@@ -36,7 +39,6 @@ export default ({
       </queryContext.Provider> */}
       <App 
         title="Px"
-        contentChildren={children}
       />
     </ConnectProvider>
   )

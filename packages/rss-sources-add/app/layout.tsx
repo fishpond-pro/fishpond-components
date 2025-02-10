@@ -10,7 +10,8 @@ export default function RootLayout({
 
   return (
     <>
-      <ClientLayout><Outlet /></ClientLayout>
+      {/* <ClientLayout><Outlet /></ClientLayout> */}
+      <ClientLayout />
     </>
   );
 }
