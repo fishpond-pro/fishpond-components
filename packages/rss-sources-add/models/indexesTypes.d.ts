@@ -1,6 +1,8 @@
 export {
   RSS,
   Directory,
+  Directory44,
+  Directory5,
   Polymita_rss_sources_Polymita_message_list_ChannelRecord,
   Polymita_rss_sources_Polymita_message_list_Message,
   Polymita_rss_sources_Polymita_message_list_MessageContent,

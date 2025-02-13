@@ -43,6 +43,22 @@ model Directory {
   children Directory[] @relation("ChildCategories")
 }
 
+model Directory44 {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  modifiedAt DateTime @default(now()) @updatedAt
+
+  name String
+}
+
+model Directory5 {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  modifiedAt DateTime @default(now()) @updatedAt
+
+  name String
+}
+
 model Polymita_rss_sources_Polymita_message_list_ChannelRecord {
   id              Int                                                  @id @default(autoincrement())
   channel         String                                               @unique // source url 或 rpa id
