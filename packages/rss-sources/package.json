@@ -1,6 +1,6 @@
 {
   "name": "@polymita/rss-sources",
-  "version": "1.0.14",
+  "version": "1.0.29",
   "tarat": {},
   "main": "dist/index.js",
   "description": "a tarat unit",
@@ -18,7 +18,10 @@
     "init": "pnpm i && npm run p:dev",
     "p:deploy": "prisma migrate deploy",
     "p:studio": "prisma studio",
-    "test": "polymita test"
+    "test": "polymita test",
+    "prisma": "polymita prisma",
+    "release": "polymita release",
+    "upload": "polymita upload"
   },
   "publishConfig": {
     "access": "public"

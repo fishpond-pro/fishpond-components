@@ -50,3 +50,10 @@ model Directory5 {
 
   name String
 }
+model Directory6 {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  modifiedAt  DateTime @default(now()) @updatedAt
+
+  name String
+}
