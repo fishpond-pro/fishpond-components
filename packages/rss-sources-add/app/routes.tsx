@@ -51,6 +51,7 @@ function RootApplication({ location }) {
 
   return (
     <ConnectProvider
+      pkgName="@polymita/rss-sources-add"
       modelIndexes={getDynamicModelIndexes()}
       plugin={createApiPlugin()}
     >

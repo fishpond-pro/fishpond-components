@@ -120,3 +120,5 @@ packages/rss-sources/rs.zip
 
 dynamic_modules/
 .vscode/settings.json
+
+test.js

@@ -1,6 +1,6 @@
 {
   "name": "@polymita/third-rsshub",
-  "version": "1.0.2",
+  "version": "1.0.9",
   "tarat": {},
   "description": "a tarat unit",
   "scripts": {
@@ -20,7 +20,8 @@
     "prisma": "polymita prisma",
     "start": "polymita start",
     "release": "polymita release",
-    "upload": "polymita upload"
+    "upload": "polymita upload",
+    "local": "npm run zip -- -d && npm run upload"
   },
   "publishConfig": {
     "access": "public"
