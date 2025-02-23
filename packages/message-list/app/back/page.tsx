@@ -12,7 +12,7 @@ export default function Main (props: {}) {
     size: 50,
   })
 
-  const writeChannelRecord = writePrisma(indexes.namespace, indexes.channelRecord);
+  const writeChannelRecord = writePrisma(indexes.channelRecord);
   const saveChannelRecord = async (param: ChannelRecord) => {
     if (param.id) {
       await writeChannelRecord.update(param.id, param)
@@ -22,7 +22,7 @@ export default function Main (props: {}) {
   }
 
   // message
-  const writeMessage = writePrisma(indexes.namespace, indexes.message);
+  const writeMessage = writePrisma(indexes.message);
   const saveMessage = async (param: MessageItem) => {
     if (param.id) {
       await writeMessage.update(param.id, param)
@@ -32,7 +32,7 @@ export default function Main (props: {}) {
   };
 
   // content
-  const writeMessageContent = writePrisma(indexes.namespace, indexes.messageContent);
+  const writeMessageContent = writePrisma(indexes.messageContent);
   const saveMessageContent = async (param: MessageContent) => {
     if (param.id) {
       await writeMessageContent.update(param.id, param)

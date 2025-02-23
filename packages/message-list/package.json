@@ -1,6 +1,6 @@
 {
   "name": "@polymita/message-list",
-  "version": "1.0.14",
+  "version": "1.0.34",
   "tarat": {},
   "description": "a tarat unit",
   "main": "dist/index.js",
@@ -18,7 +18,12 @@
     "init": "pnpm i && npm run p:dev",
     "p:deploy": "prisma migrate deploy",
     "p:studio": "prisma studio",
-    "test": "polymita test"
+    "test": "polymita test",
+    "prisma": "polymita prisma",
+    "release": "polymita release",
+    "zip": "polymita zip",
+    "upload": "polymita upload",
+    "local": "npm run build && npm run zip && npm run upload"
   },
   "publishConfig": {
     "access": "public"
@@ -37,10 +42,12 @@
     "@emotion/styled": "^11.10.6",
     "@mui/lab": "5.0.0-alpha.172",
     "@mui/material": "^5.16.0",
-    "@polymita/basic-layout": "workspace:^",
+    "@polymita/signal": "workspace:^",
+    "@polymita/signal-model": "workspace:^",
     "@polymita/next-connect": "workspace:^",
-    "@polymita/next-server": "workspace:^",
     "@polymita/renderer": "workspace:^",
+    "@polymita/basic-layout": "workspace:^",
+    "@polymita/next-server": "workspace:^",
     "@prisma/client": "^5.10.2",
     "date-fns": "^2.29.3",
     "fast-xml-parser": "^4.4.0",
@@ -57,7 +64,6 @@
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
-    
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"

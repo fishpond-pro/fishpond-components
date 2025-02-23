@@ -1,11 +1,11 @@
 module.exports = {
   ts: true,
-  pages: {
-    messages: [
-      ['modules/MessagesContainer', { mode: 'iframe' }],
-    ],
+  routes: {
+    pages: {
+      '/messages': ['MessagesContainer', { mode: 'iframe', title: 'messages' }],
+    },
   },
   overrides: [
-    'modules/RssMenuItem'
+    'RssMenuItem'
   ],
 }

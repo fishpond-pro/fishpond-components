@@ -4,12 +4,11 @@ import '@polymita/basic-layout/dist/index.css'
 import AppFn from '@polymita/basic-layout/dist/views/App'
 
 import RssMenuItemFn from '@/app/polymita/views/RssMenuItem'
-import { ConnectProvider, PrismaNamespaceProvider } from '@polymita/next-connect'
+import { ConnectProvider } from '@polymita/next-connect'
 
 import mi from '@/models/indexes.json'
 import { createApiPlugin } from '@polymita/next-connect'
 import pkg from '../package.json'
-import { queryContext } from '@/contexts/QueryContext'
 import { toRSS_JSON } from '@/shared/utils'
 import sourceMock2 from '@/shared/rss-mock'
 import * as mo from './moduleOverride'
@@ -22,26 +21,9 @@ export default ({
   children,
 }) => {
   return (
-    <ConnectProvider
-      modelIndexes={mi}
-      plugin={createApiPlugin()}
-    >
-      <queryContext.Provider
-        value={{
-          onQueryPreviews: async (url) => {
-            console.log('[onQuery] url: ', url);
-            return toRSS_JSON(sourceMock2).item
-          },        
-          onSubmit: async (url) => {
-            console.log('[onSubmit] url: ', url);
-          },        
-        }}
-      >
-        <App 
-          title="Polymita"
-          contentChildren={children}
-        />
-      </queryContext.Provider>
-    </ConnectProvider>
-  )
+    <App 
+      title="Polymita"
+      contentChildren={children}
+    />
+)
 }
