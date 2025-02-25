@@ -1,6 +1,6 @@
 {
-  "name": "@polymita/basic-layout",
-  "version": "1.0.14",
+  "name": "@polymita/blank",
+  "version": "1.0.16",
   "tarat": {},
   "description": "a tarat unit",
   "main": "dist/index.js",
@@ -9,6 +9,8 @@
     "p:gen": "prisma generate",
     "dev": "polymita dev",
     "any": "polymita any",
+    "zip": "polymita zip",
+    "upload": "polymita upload",
     "dev:next": "next dev",
     "build": "polymita build",
     "build:next": "next build",
