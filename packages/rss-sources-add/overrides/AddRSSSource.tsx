@@ -15,7 +15,6 @@ import * as RSSParamsTable from '@/modules/RSSParamsTable'
 import { List } from '@mui/material';
 import { ListItem } from '@mui/material';
 import { ListItemText } from '@mui/material';
-import { queryContext } from '@/contexts/QueryContext'
 import { Dialog } from '@mui/material';
 import { DialogContent } from '@mui/material';
 import { DialogContentText } from '@mui/material';
@@ -192,6 +191,7 @@ const NewModule = extendModule(rs.modules.RSSSourcePanel2, () => ({
                 setDrawerVisible(false)
               }}
               className='p-2'
+              
             >
               <addBox className="px-4 w-[70vw] h-full flex flex-col">
                 <addDrawerHeader className="w-full py-2 flex items-center justify-between">
