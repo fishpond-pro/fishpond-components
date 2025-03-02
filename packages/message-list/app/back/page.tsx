@@ -42,7 +42,8 @@ export default function Main (props: {}) {
   };
 
   const [source, setSource] = React.useState(JSON.stringify({
-    channel: 'zhihu',
+    channel: 'https://www.zhihu.com/hot',
+    name: 'zhihu',
     lastUpdatedDate: new Date(),
   }, null, 2));
 

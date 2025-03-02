@@ -1,6 +1,6 @@
 {
   "name": "@polymita/message-list",
-  "version": "1.0.47",
+  "version": "1.0.57",
   "tarat": {},
   "description": "a tarat unit",
   "main": "dist/index.js",
@@ -48,6 +48,7 @@
     "@polymita/renderer": "workspace:^",
     "@polymita/basic-layout": "workspace:^",
     "@polymita/next-server": "workspace:^",
+    "@polymita/rss-sources-add": "workspace:^",
     "@prisma/client": "^5.10.2",
     "date-fns": "^2.29.3",
     "fast-xml-parser": "^4.4.0",

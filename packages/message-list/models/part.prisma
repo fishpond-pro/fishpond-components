@@ -12,6 +12,7 @@ generator client {
 model ChannelRecord {
   id Int      @id @default(autoincrement())
   channel String @unique // source url 或 rpa id
+  name String?
   lastUpdatedDate DateTime
   fullContentPath String?
   data  Message[]
