@@ -9,15 +9,6 @@ console.log('SHOULD_RELEASE: ', SHOULD_RELEASE);
 
 const packagesPath = join(__dirname, '../packages/')
 const allPackages = readdirSync(packagesPath)
-  .sort((a, b) => {
-    if (a === 'rss-sources-add') {
-      return 1
-    }
-    if (b === 'rss-sources-add') {
-      return -1
-    }
-    return 0
-  })
   .filter(m => m !== 'rss-query')
   .map(pkg => {
     return join(packagesPath, pkg)
