@@ -1,6 +1,6 @@
 {
   "name": "@polymita/rss-sources-add",
-  "version": "1.0.77",
+  "version": "1.0.79",
   "tarat": {},
   "description": "a tarat unit",
   "main": "dist/index.js",

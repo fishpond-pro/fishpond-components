@@ -31,7 +31,7 @@ export const logic = (props: MessagesContainerProps) => {
     size: 50,
   })
 
-  const messages = prisma<MessageItem[]>(indexes.message, () => {
+  const messages = prisma<MessageItem[]>(indexes.namespace, indexes.message, () => {
     const payload = params;
 
     return {
@@ -48,7 +48,7 @@ export const logic = (props: MessagesContainerProps) => {
       }
     }
   })
-  const writeMessages = writePrisma<MessageItem[]>(indexes.message)
+  const writeMessages = writePrisma<MessageItem[]>(indexes.namespace, indexes.message)
 
   const queryMessageAll = () => {
   }

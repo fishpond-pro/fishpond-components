@@ -50,7 +50,7 @@ function patchLogic(
 
   const [previewItems, setPreviewItems] = useState<PreviewMessage[]>([])
 
-  const writeRSS = writePrisma(mi.rSS)
+  const writeRSS = writePrisma(mi.namespace, mi.rSS)
 
   const reset1 = () => {
     setPreviewDrawerVisible(false)

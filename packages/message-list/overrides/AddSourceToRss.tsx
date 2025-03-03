@@ -17,7 +17,7 @@ function patchLogic(
 
   console.log('[AddSourceToRss] patchLogic', arguments)
 
-  const writeChannelRecord = writePrisma(mi.channelRecord)
+  const writeChannelRecord = writePrisma(mi.namespace, mi.channelRecord)
 
   return {
     ...prevLogicResult,
