@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import mi from '@/models/indexes.json'
 import { writePrisma } from '@polymita/next-connect';
 import { getRSSComplementURL } from '@/shared/utils';
+import type { RSSItem } from '../../rss-sources/dist/signals/shared/utils';
+import type { Message } from '@/models/indexesTypes'
 
 export interface AddSourceToRssProps {
   
@@ -18,27 +20,38 @@ function patchLogic(
   console.log('[AddSourceToRss] patchLogic', arguments)
 
   const writeChannelRecord = writePrisma(mi.namespace, mi.channelRecord)
+  const writeMessage = writePrisma<Message[]>(mi.namespace, mi.message)
+
+  const previewItems: RSSItem[] = prevLogicResult.previewItems
 
   return {
     ...prevLogicResult,
     setDrawerVisible (v) {
       prevLogicResult.setDrawerVisible(v)
-      console.log('222')
+      console.log('111')
     },
-    confirmSubmit () {
+    async confirmSubmit () {
       prevLogicResult.confirmSubmit()
-      console.log('222')
 
       const destUrl = getRSSComplementURL({
         path: props.value.route.path,
         payload: prevLogicResult.formValues,
       })
 
-      writeChannelRecord.create({
+      const channel = await writeChannelRecord.create({
         name: prevLogicResult.formValues.title || props.value.title,
         channel: destUrl,
         lastUpdatedDate: new Date(),
       })
+      
+      writeMessage.createMany(previewItems.map(obj => ({
+        link: obj.link,
+        title: obj.title,
+        time: new Date(obj.pubDate),
+        description: obj.description,        
+        type: 'article',
+        channelRecordId: channel.id,
+      })))
     }
   }
 }

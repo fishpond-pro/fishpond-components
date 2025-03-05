@@ -1,5 +1,5 @@
 {
-  "name": "@polymita/basic-layout",
+  "name": "@polymita/query-rss-manual",
   "version": "1.0.17",
   "tarat": {},
   "description": "a tarat unit",
@@ -52,8 +52,8 @@
     "@polymita/renderer": "workspace:^",
     "@polymita/signal": "workspace:^",
     "@polymita/signal-model": "workspace:^",
-    "@prisma/client": "^5.10.2",
-    "prisma": "^5.10.2",
+    "@prisma/client": "^5.12.0",
+    "prisma": "^5.12.0",
     "cross-env": "^7.0.3",
     "date-fns": "^2.29.3",
     "electron": "^32.0.2",
