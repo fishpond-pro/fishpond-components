@@ -5,6 +5,7 @@ import * as SingleTimelineModule from './SingleTimeline'
 import * as MessageContentModule from './MessageContent'
 import { prisma, writePrisma } from '@polymita/next-connect';
 import indexes from '@/models/indexes.json'
+import { useSearchParams } from 'react-router-dom'
 
 export const name = 'MessagesContainer' as const
 export const namespace = 'components' as const
@@ -23,13 +24,17 @@ export const propTypes = {
 }
 
 export const logic = (props: MessagesContainerProps) => {
-  const [currentMid, setMid] = useState(Number(props.mid))
 
-  const [params, setParams] = useState<{ messageId: number,channelRecordId: number, size: number }>({
-    messageId: undefined,
-    channelRecordId: undefined,
+  const [searchParams, setSearchParams] = useSearchParams({ mid: String(props.mid) })
+  const currentMid = searchParams.get('mid') ? parseInt(searchParams.get('mid')) : 0
+
+  const channelFromParams = searchParams.get('channel') ? parseInt(searchParams.get('channel')) : undefined
+
+  const params = {
+    // messageId: undefined,
+    channelRecordId: channelFromParams,
     size: 50,
-  })
+  }
 
   const messages = prisma<MessageItem[]>(indexes.namespace, indexes.message, () => {
     const payload = params;
@@ -39,7 +44,7 @@ export const logic = (props: MessagesContainerProps) => {
         createdAt: 'desc'
       },
       where: {
-        id: payload.messageId,
+        // id: payload.messageId,
         channelRecordId: payload.channelRecordId
       },
       take: payload.size,
@@ -47,6 +52,8 @@ export const logic = (props: MessagesContainerProps) => {
         channelRecord: true,
       }
     }
+  }, {
+    deps: [channelFromParams]
   })
   const writeMessages = writePrisma<MessageItem[]>(indexes.namespace, indexes.message)
 
@@ -56,7 +63,10 @@ export const logic = (props: MessagesContainerProps) => {
   const [markIds, setMarkIds] = useState<number[]>([])
 
   const selectMessage = (item: MessageItem) => {
-    setMid(item.id)
+    const currentParams = new URLSearchParams(searchParams)
+    currentParams.set('mid', String(item.id))
+    setSearchParams(currentParams)
+
     setMarkIds(arr => arr.concat(item.id))
     writeMessages.update(item.id, {
       state: 1,
@@ -68,7 +78,6 @@ export const logic = (props: MessagesContainerProps) => {
   return {
     markIds,
     messages,
-    setMid,
     currentMid,
     queryMessageAll,
     selectMessage,
@@ -91,7 +100,7 @@ export const layout = (props: MessagesContainerProps): VirtualLayoutJSON => {
   const { 
     selectMessage,
     currentMessage,
-    messages, currentMid, setMid, queryMessageAll,
+    messages,
     markIds,
   } = useLogic<LogicReturn>()
   return (

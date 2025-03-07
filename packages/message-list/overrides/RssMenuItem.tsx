@@ -2,13 +2,30 @@ import { h, SignalProps, useLogic, ConvertToLayoutTreeDraft, CommandOP, extendMo
 import * as bl from '@polymita/basic-layout'
 import { usePathname } from 'next/navigation';
 import { Link } from 'react-router-dom'
+import { prisma } from '@polymita/next-connect';
+import mi from '@/models/indexes.json'
+import { ChannelRecord } from '@/models/indexesTypes';
 
 export interface AsideNewProps {
   
 }
+
+
+
 const NewModule = extendModule(bl.modules.Aside, () => ({
+  patchLogic(props, prevLogicResult) {
+
+    const channels = prisma<ChannelRecord[]>(mi.namespace, mi.channelRecord);
+
+    return {
+      ...prevLogicResult,
+      channels,
+    }
+  },
+
   patchLayout(props: typeof bl.modules.Aside.meta.props & AsideNewProps, root) {
     const logic = useLogic()
+    const channels: ChannelRecord[] = logic.channels
 
     const path = usePathname();
 
@@ -17,9 +34,26 @@ const NewModule = extendModule(bl.modules.Aside, () => ({
         op: CommandOP.addChild,
         condition: true,
         target: root.asideContainer.asideMenuContainer,
-        child: (<asideMessageListMenuItem className='block mt-4'>
-          <Link to="all">All Messages</Link>
-          </asideMessageListMenuItem>),
+        child: (
+          <asideMessageListMenuItem className='block mb-2'>
+            <asideMessageListTitle className='block hover:bg-gray-200 p-2 rounded-md'>
+              <Link to="/messages">All Messages 2</Link>
+            </asideMessageListTitle>
+            <asideMessageListRecordContainer className='block'>
+              {channels?.map(channel => {
+                return (
+                  <Link key={channel.channel} to={`/messages?channel=${channel.id}`}>
+                    <asideMessageListRecord 
+                      className="block hover:bg-gray-200 p-2 rounded-md ml-4"
+                    >
+                      {channel.name}
+                    </asideMessageListRecord>
+                  </Link>
+                )
+              })}
+            </asideMessageListRecordContainer>
+          </asideMessageListMenuItem>
+        ),
       },
     ]
   }

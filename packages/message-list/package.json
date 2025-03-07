@@ -1,6 +1,6 @@
 {
   "name": "@polymita/message-list",
-  "version": "1.0.64",
+  "version": "1.0.90",
   "tarat": {},
   "description": "a tarat unit",
   "main": "dist/index.js",
@@ -23,7 +23,8 @@
     "release": "polymita release",
     "zip": "polymita zip",
     "upload": "polymita upload",
-    "local": "npm run zip && npm run upload"
+    "local": "npm run zip && npm run upload",
+    "link": "polymita link"
   },
   "publishConfig": {
     "access": "public"
