@@ -4,12 +4,6 @@
 module.exports = {
   ts: true,
  
-  routes: {
-    pages: {
-      '/': ['App', { title: 'Polymita' }]
-    }
-  },
-
   settings: {
     title: 'Polymita',
   }

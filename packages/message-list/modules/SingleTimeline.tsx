@@ -1,6 +1,6 @@
 /// <reference path="../types/global.d.ts" />
 import { h, SignalProps, PropTypes, useLogic, ConvertToLayoutTreeDraft, createFunctionComponent, VirtualLayoutJSON, classnames } from '@polymita/renderer';
-import * as AsideMessageModule from './AsideMessage'
+import * as AsideMessageModule from './Message'
 import { MessageState } from '@/types/types'
 
 export const name = 'SingleTimeline' as const

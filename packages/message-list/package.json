@@ -1,6 +1,6 @@
 {
   "name": "@polymita/message-list",
-  "version": "1.0.130",
+  "version": "1.0.135",
   "tarat": {},
   "description": "a tarat unit",
   "main": "dist/index.js",
