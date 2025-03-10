@@ -1,7 +1,11 @@
-import { h, SignalProps, useLogic, ConvertToLayoutTreeDraft, CommandOP, extendModule, VirtualLayoutJSON } from '@polymita/renderer';
+import { 
+  h, SignalProps, useLogic, ConvertToLayoutTreeDraft, CommandOP, extendModule, VirtualLayoutJSON,
+  classnames,
+  classNames,
+} from '@polymita/renderer';
 import * as bl from '@polymita/basic-layout'
 import { usePathname } from 'next/navigation';
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { prisma } from '@polymita/next-connect';
 import mi from '@/models/indexes.json'
 import { ChannelRecord } from '@/models/indexesTypes';
@@ -29,6 +33,9 @@ const NewModule = extendModule(bl.modules.Aside, () => ({
 
     const path = usePathname();
 
+    const [params] = useSearchParams()
+    const channelId = parseInt(params.get('channel'))
+
     return [
       {
         op: CommandOP.addChild,
@@ -37,14 +44,20 @@ const NewModule = extendModule(bl.modules.Aside, () => ({
         child: (
           <asideMessageListMenuItem className='block mb-2'>
             <asideMessageListTitle className='block hover:bg-gray-200 p-2 rounded-md'>
-              <Link to="/messages">All Messages 2</Link>
+              <Link className='block' to="/messages">All Messages 2</Link>
             </asideMessageListTitle>
-            <asideMessageListRecordContainer className='block'>
+            <asideMessageListRecordContainer className='block mt-1'>
               {channels?.map(channel => {
+                const isActive =  channel.id === channelId
+
+                const cls = classNames('block hover:bg-gray-200 p-2 rounded-md ml-4', {
+                  'bg-gray-200': isActive
+                })
+
                 return (
-                  <Link key={channel.channel} to={`/messages?channel=${channel.id}`}>
+                  <Link className='block' key={channel.channel} to={`/messages?channel=${channel.id}`}>
                     <asideMessageListRecord 
-                      className="block hover:bg-gray-200 p-2 rounded-md ml-4"
+                      className={cls}
                     >
                       {channel.name}
                     </asideMessageListRecord>

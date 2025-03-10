@@ -6,6 +6,7 @@ import * as MessageContentModule from './MessageContent'
 import { prisma, writePrisma } from '@polymita/next-connect';
 import indexes from '@/models/indexes.json'
 import { useSearchParams } from 'react-router-dom'
+import RefreshIcon from '@mui/icons-material/Refresh';
 
 export const name = 'MessagesContainer' as const
 export const namespace = 'components' as const
@@ -105,6 +106,9 @@ export const layout = (props: MessagesContainerProps): VirtualLayoutJSON => {
   } = useLogic<LogicReturn>()
   return (
     <messagesContainer className='flex h-full'>
+      <topOperations className='block'>
+        <RefreshIcon />
+      </topOperations>
       <messagesContainerTimeline className='main mr-4 w-[300px]'>
         <SingleTimeline
           markIds={markIds}
